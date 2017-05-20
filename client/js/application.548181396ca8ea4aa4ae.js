@@ -14490,7 +14490,7 @@ var _eventMap2 = _interopRequireDefault(_eventMap);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (store) {
-  var socket = (0, _websocket.initialise)("http://35.167.249.144:8001");
+  var socket = (0, _websocket.initialise)("https://35.167.249.144:8001");
   socket.on('data', function (action) {
     (0, _eventMap2.default)(store, action);
   });
@@ -14937,7 +14937,7 @@ Object.defineProperty(exports, "__esModule", {
 // If we are in the electron main thread, we don't want to register the modal
 var modalName = 'THREAD_COMMIT';
 
-var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"http://35.167.249.144:8001"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("TPI8").default(modalName);
+var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://35.167.249.144:8001"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("TPI8").default(modalName);
 
 var _default2 = _default;
 exports.default = _default2;
