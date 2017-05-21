@@ -70464,7 +70464,13 @@ var _primusWebsockets = __webpack_require__("5lKq");
 
 var _primusWebsockets2 = _interopRequireDefault(_primusWebsockets);
 
+var _querystring = __webpack_require__("1nuA");
+
+var _querystring2 = _interopRequireDefault(_querystring);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var searchParams = typeof window !== 'undefined' ? _querystring2.default.parse(window.location.search.substring(1)) : {};
 
 var socket = exports.socket = undefined;
 
@@ -70473,10 +70479,10 @@ var initialise = exports.initialise = function initialise(hostUrl) {
   exports.socket = socket = _primusWebsockets2.default.connect(hostUrl);
 
   // Log stuff
-  if (false) {
+  if ("production" === 'development' || searchParams.debug) {
     // Receive
     var socketData = function socketData(data) {
-      if (GLOBAL_ENV.APP_THREAD === 'electron') {
+      if ({"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"wss://dev.stemn.com:8443"}.APP_THREAD === 'electron') {
         console.log('socket | RECEIVE - ' + data.type);
       } else {
         console.groupCollapsed(' socket | RECEIVE      ' + data.type);
@@ -70489,7 +70495,7 @@ var initialise = exports.initialise = function initialise(hostUrl) {
     // Write
     var oldWrite = socket.write.bind(socket);
     socket.write = function (data) {
-      if (GLOBAL_ENV.APP_THREAD === 'electron') {
+      if ({"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"wss://dev.stemn.com:8443"}.APP_THREAD === 'electron') {
         console.log('socket | SEND - ' + data.type);
       } else {
         console.groupCollapsed(' socket | SEND         ' + data.type);
@@ -70503,74 +70509,12 @@ var initialise = exports.initialise = function initialise(hostUrl) {
   socket.write({
     type: 'ADMIN/ECHO',
     payload: {
-      test: 'gooba'
+      test: 'test'
     }
   });
 
   return socket;
 };
-
-//import SockJs from 'sockjs-client'
-//export let socket = undefined
-//
-//export const initialise = (hostUrl) => {
-//  socket = new SockJs(hostUrl);
-////  socket.on('error', console.error )
-//
-////  // Log stuff
-////  if (GLOBAL_ENV.NODE_ENV === 'development') {
-////    // Receive
-////    const socketData = (data) => {
-////      if (GLOBAL_ENV.APP_THREAD === 'electron') {
-////        console.log(`socket | RECEIVE - ${data.type}`)
-////      } else {
-////        console.groupCollapsed(` socket | RECEIVE      ${data.type}`);
-////        console.log(data)
-////        console.groupEnd();
-////      }
-////    }
-////    socket.on('data', socketData)
-////
-////    // Write
-////    const oldWrite = socket.write.bind(socket);
-////    socket.write = (data) => {
-////      if (GLOBAL_ENV.APP_THREAD === 'electron') {
-////        console.log(`socket | SEND - ${data.type}`)
-////      } else {
-////        console.groupCollapsed(` socket | SEND         ${data.type}`);
-////        console.log(data)
-////        console.groupEnd();
-////      }
-////      return oldWrite(data)
-////    }
-////  }
-////
-////  socket.write({
-////    type: 'ADMIN/ECHO',
-////    payload: {
-////      test: 'gooba'
-////    }
-////  })
-//
-//   socket.onopen = () => {
-//     console.log('-----------------------------------------------');
-//     console.log('open');
-//     socket.send('test');
-//   }
-//
-//
-//   socket.onmessage = (e) => {
-//     console.log('message', e.data);
-//   }
-//
-//   socket.onclose = () => {
-//     console.log('-----------------------------------------------');
-//     console.log('close');
-//   };
-//
-//  return socket
-//}
-
 ;
 
 var _temp = function () {
@@ -70581,6 +70525,8 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(socket, 'socket', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Websocket/websocket.js');
 
   __REACT_HOT_LOADER__.register(initialise, 'initialise', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Websocket/websocket.js');
+
+  __REACT_HOT_LOADER__.register(searchParams, 'searchParams', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Websocket/websocket.js');
 }();
 
 ;
@@ -87675,4 +87621,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.548181396ca8ea4aa4ae.js.map
+//# sourceMappingURL=application.d24f5d668af064a04263.js.map
