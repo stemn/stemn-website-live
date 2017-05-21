@@ -1381,7 +1381,7 @@ var fetchConfigs = [{
     if (props.isOpen) {
       props.getFiles({
         path: props.path,
-        provider: props.provider,
+        //        provider: props.provider,
         projectId: props.projectId,
         cacheKey: props.fileListCacheKey
       });
@@ -1433,265 +1433,6 @@ var _temp2 = function () {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/dat.svg?e027700acb3f67de5cc7e09cb6b85690";
-
-/***/ },
-
-/***/ "/HcY":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.FileSelectModal = undefined;
-
-var _redux = __webpack_require__("c9Fv");
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _FileSelectActions = __webpack_require__("3Fci");
-
-var FileSelectActions = _interopRequireWildcard(_FileSelectActions);
-
-var _Store = __webpack_require__("+I1Y");
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _FileSelectModal = __webpack_require__("lOT8");
-
-var _FileSelectModal2 = _interopRequireDefault(_FileSelectModal);
-
-var _FileList = __webpack_require__("EzfF");
-
-var _FileList2 = _interopRequireDefault(_FileList);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _done = __webpack_require__("Xu4g");
-
-var _done2 = _interopRequireDefault(_done);
-
-var _utils = __webpack_require__("CzcJ");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-///////////////////////////////// COMPONENT /////////////////////////////////
-
-// Either a projectId or options.explore must be defined
-
-
-// Sub Components
-
-
-// Styles
-var propTypesObject = {
-  projectId: _react.PropTypes.string, // Optional: The project id (this is used if we are not exploring a provider)
-  path: _react.PropTypes.string, // The current fileId: This folder will be opened when the modal inits.
-  model: _react.PropTypes.string, // The { fileId, path } will be assigned to this model on confirm
-  storeKey: _react.PropTypes.string.isRequired, // The store key (to be used in the redicer)
-  options: _react2.default.PropTypes.shape({
-    allowFolder: _react2.default.PropTypes.bool,
-    foldersOnly: _react2.default.PropTypes.bool,
-    explore: _react2.default.PropTypes.string })
-};
-
-// Component Core
-
-
-// Container Actions
-// Container Core
-var FileSelectModal = exports.FileSelectModal = _react2.default.createClass({
-  displayName: 'FileSelectModal',
-
-  propTypes: propTypesObject,
-  componentWillMount: function componentWillMount() {
-    this.onMount(this.props);
-  },
-  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    this.onMount(nextProps, this.props);
-  },
-  onMount: function onMount(nextProps, prevProps) {
-    if (!nextProps.fileSelect) {
-      nextProps.FileSelectActions.init({
-        storeKey: nextProps.storeKey,
-        path: nextProps.path
-      });
-    }
-  },
-  singleClickFn: function singleClickFn(_ref) {
-    var file = _ref.file;
-
-    if (file.type == 'file' || this.props.options.allowFolder && file.type == 'folder') {
-      this.props.FileSelectActions.select({
-        storeKey: this.props.storeKey,
-        file: file
-      });
-    } else {
-      this.props.FileSelectActions.changePath({
-        storeKey: this.props.storeKey,
-        path: file.fileId
-      });
-    }
-  },
-  doubleClickFn: function doubleClickFn(_ref2) {
-    var file = _ref2.file;
-
-    if (file.type == 'folder') {
-      this.props.FileSelectActions.changePath({
-        storeKey: this.props.storeKey,
-        path: file.fileId
-      });
-    } else {
-      this.props.FileSelectActions.select({
-        storeKey: this.props.storeKey,
-        file: file
-      });
-    }
-  },
-  crumbClickFn: function crumbClickFn(_ref3) {
-    var file = _ref3.file;
-
-    this.props.FileSelectActions.changePath({
-      storeKey: this.props.storeKey,
-      path: file.fileId
-    });
-  },
-  submit: function submit() {
-    this.props.dispatch((0, _Store.storeChange)(this.props.model, {
-      fileId: this.props.fileSelect.selected.fileId,
-      path: this.props.fileSelect.selected.path
-    }));
-    this.props.modalConfirm();
-  },
-  cancel: function cancel() {
-    this.props.modalCancel();
-  },
-  render: function render() {
-    var _props = this.props,
-        projectId = _props.projectId,
-        path = _props.path,
-        fileSelect = _props.fileSelect,
-        options = _props.options;
-
-
-    var validatePath = function validatePath(path, provider) {
-      if (provider == 'drive') {
-        return (0, _utils.isDriveFileId)(path) ? path : '';
-      } else if (provider == 'dropbox') {
-        return (0, _utils.isDropboxFileId)(path) ? path : '';
-      } else {
-        return '';
-      }
-    };
-    var activePath = fileSelect ? validatePath(fileSelect.path, options.explore) : '';
-
-    return _react2.default.createElement(
-      'div',
-      { className: _FileSelectModal2.default.modal },
-      fileSelect ? _react2.default.createElement(_FileList2.default, {
-        projectId: projectId,
-        path: activePath,
-        singleClickFn: this.singleClickFn,
-        doubleClickFn: this.doubleClickFn,
-        crumbClickFn: this.crumbClickFn,
-        selected: fileSelect.selected,
-        options: options,
-        contentStyle: { height: '300px', overflowY: 'auto' }
-      }) : null,
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer layout-row layout-align-start-center' },
-        _react2.default.createElement(
-          'div',
-          { className: 'flex text-grey-3' },
-          fileSelect && fileSelect.selected && fileSelect.selected.path ? _react2.default.createElement(
-            'span',
-            null,
-            'Selected: ',
-            fileSelect.selected.path
-          ) : null
-        ),
-        _react2.default.createElement(
-          _Button2.default,
-          { style: { marginRight: '10px' }, onClick: this.cancel },
-          'Cancel'
-        ),
-        _react2.default.createElement(
-          _Button2.default,
-          { className: 'primary', onClick: this.submit },
-          'Select Folder'
-        )
-      )
-    );
-  }
-});
-
-/////////////////////////////////////////////////////////////////////////////
-///////////////////////////////// CONTAINER /////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
-
-function mapStateToProps(_ref4, _ref5) {
-  var fileSelect = _ref4.fileSelect;
-  var storeKey = _ref5.storeKey;
-
-  return {
-    fileSelect: fileSelect[storeKey]
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    FileSelectActions: (0, _redux.bindActionCreators)(FileSelectActions, dispatch),
-    dispatch: dispatch
-  };
-}
-
-var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(FileSelectModal);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(FileSelectModal, 'FileSelectModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal.jsx');
-
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal.jsx');
-
-  __REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal.jsx');
-
-  __REACT_HOT_LOADER__.register(propTypesObject, 'propTypesObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -7261,6 +7002,211 @@ module.exports = {
 		"prime": "ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a637ed6b0bff5cb6f406b7edee386bfb5a899fa5ae9f24117c4b1fe649286651ece45b3dc2007cb8a163bf0598da48361c55d39a69163fa8fd24cf5f83655d23dca3ad961c62f356208552bb9ed529077096966d670c354e4abc9804f1746c08ca18217c32905e462e36ce3be39e772c180e86039b2783a2ec07a28fb5c55df06f4c52c9de2bcbf6955817183995497cea956ae515d2261898fa051015728e5a8aaac42dad33170d04507a33a85521abdf1cba64ecfb850458dbef0a8aea71575d060c7db3970f85a6e1e4c7abf5ae8cdb0933d71e8c94e04a25619dcee3d2261ad2ee6bf12ffa06d98a0864d87602733ec86a64521f2b18177b200cbbe117577a615d6c770988c0bad946e208e24fa074e5ab3143db5bfce0fd108e4b82d120a92108011a723c12a787e6d788719a10bdba5b2699c327186af4e23c1a946834b6150bda2583e9ca2ad44ce8dbbbc2db04de8ef92e8efc141fbecaa6287c59474e6bc05d99b2964fa090c3a2233ba186515be7ed1f612970cee2d7afb81bdd762170481cd0069127d5b05aa993b4ea988d8fddc186ffb7dc90a6c08f4df435c93402849236c3fab4d27c7026c1d4dcb2602646dec9751e763dba37bdf8ff9406ad9e530ee5db382f413001aeb06a53ed9027d831179727b0865a8918da3edbebcf9b14ed44ce6cbaced4bb1bdb7f1447e6cc254b332051512bd7af426fb8f401378cd2bf5983ca01c64b92ecf032ea15d1721d03f482d7ce6e74fef6d55e702f46980c82b5a84031900b1c9e59e7c97fbec7e8f323a97a7e36cc88be0f1d45b7ff585ac54bd407b22b4154aacc8f6d7ebf48e1d814cc5ed20f8037e0a79715eef29be32806a1d58bb7c5da76f550aa3d8a1fbff0eb19ccb1a313d55cda56c9ec2ef29632387fe8d76e3c0468043e8f663f4860ee12bf2d5b0b7474d6e694f91e6dbe115974a3926f12fee5e438777cb6a932df8cd8bec4d073b931ba3bc832b68d9dd300741fa7bf8afc47ed2576f6936ba424663aab639c5ae4f5683423b4742bf1c978238f16cbe39d652de3fdb8befc848ad922222e04a4037c0713eb57a81a23f0c73473fc646cea306b4bcbc8862f8385ddfa9d4b7fa2c087e879683303ed5bdd3a062b3cf5b3a278a66d2a13f83f44f82ddf310ee074ab6a364597e899a0255dc164f31cc50846851df9ab48195ded7ea1b1d510bd7ee74d73faf36bc31ecfa268359046f4eb879f924009438b481c6cd7889a002ed5ee382bc9190da6fc026e479558e4475677e9aa9e3050e2765694dfc81f56e880b96e7160c980dd98edd3dfffffffffffffffff"
 	}
 };
+
+/***/ },
+
+/***/ "4YFL":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _FileSelectModal = __webpack_require__("YDYb");
+
+var _FileSelectModal2 = _interopRequireDefault(_FileSelectModal);
+
+var _FileList = __webpack_require__("EzfF");
+
+var _FileList2 = _interopRequireDefault(_FileList);
+
+var _Button = __webpack_require__("Yrew");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _done = __webpack_require__("Xu4g");
+
+var _done2 = _interopRequireDefault(_done);
+
+var _utils = __webpack_require__("CzcJ");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Either a projectId or options.explore must be defined
+var propTypesObject = {
+  projectId: _react.PropTypes.string, // Optional: The project id (this is used if we are not exploring a provider)
+  path: _react.PropTypes.string, // The current fileId: This folder will be opened when the modal inits.
+  model: _react.PropTypes.string, // The { fileId, path } will be assigned to this model on confirm
+  storeKey: _react.PropTypes.string.isRequired, // The store key (to be used in the redicer)
+  options: _react2.default.PropTypes.shape({
+    allowFolder: _react2.default.PropTypes.bool,
+    foldersOnly: _react2.default.PropTypes.bool,
+    explore: _react2.default.PropTypes.string })
+};
+
+var _default = _react2.default.createClass({
+  displayName: '_default',
+
+  propTypes: propTypesObject,
+  componentWillMount: function componentWillMount() {
+    this.onMount(this.props);
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    this.onMount(nextProps, this.props);
+  },
+  onMount: function onMount(nextProps, prevProps) {
+    if (!nextProps.fileSelect) {
+      nextProps.init({
+        storeKey: nextProps.storeKey,
+        path: nextProps.path
+      });
+    }
+  },
+  singleClickFn: function singleClickFn(_ref) {
+    var file = _ref.file;
+
+    if (file.type == 'file' || this.props.options.allowFolder && file.type == 'folder') {
+      this.props.select({
+        storeKey: this.props.storeKey,
+        file: file
+      });
+    } else {
+      this.props.changePath({
+        storeKey: this.props.storeKey,
+        path: file.fileId
+      });
+    }
+  },
+  doubleClickFn: function doubleClickFn(_ref2) {
+    var file = _ref2.file;
+
+    if (file.type == 'folder') {
+      this.props.changePath({
+        storeKey: this.props.storeKey,
+        path: file.fileId
+      });
+    } else {
+      this.props.select({
+        storeKey: this.props.storeKey,
+        file: file
+      });
+    }
+  },
+  crumbClickFn: function crumbClickFn(_ref3) {
+    var file = _ref3.file;
+
+    this.props.changePath({
+      storeKey: this.props.storeKey,
+      path: file.fileId
+    });
+  },
+  submit: function submit() {
+    this.props.storeChange(this.props.model, {
+      fileId: this.props.fileSelect.selected.fileId,
+      path: this.props.fileSelect.selected.path
+    });
+    this.props.modalConfirm();
+  },
+  cancel: function cancel() {
+    this.props.modalCancel();
+  },
+  render: function render() {
+    var _props = this.props,
+        projectId = _props.projectId,
+        path = _props.path,
+        fileSelect = _props.fileSelect,
+        options = _props.options;
+
+
+    var validatePath = function validatePath(path, provider) {
+      if (provider == 'drive') {
+        return (0, _utils.isDriveFileId)(path) ? path : '';
+      } else if (provider == 'dropbox') {
+        return (0, _utils.isDropboxFileId)(path) ? path : '';
+      } else {
+        return '';
+      }
+    };
+    var activePath = fileSelect ? validatePath(fileSelect.path, options.explore) : '';
+
+    return _react2.default.createElement(
+      'div',
+      { className: _FileSelectModal2.default.modal },
+      fileSelect && _react2.default.createElement(_FileList2.default, {
+        projectId: projectId,
+        path: activePath,
+        singleClickFn: this.singleClickFn,
+        doubleClickFn: this.doubleClickFn,
+        crumbClickFn: this.crumbClickFn,
+        selected: fileSelect.selected,
+        options: options,
+        contentStyle: { height: '300px', overflowY: 'auto' }
+      }),
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-footer layout-row layout-align-start-center' },
+        _react2.default.createElement(
+          'div',
+          { className: 'flex text-grey-3' },
+          fileSelect && fileSelect.selected && fileSelect.selected.path ? _react2.default.createElement(
+            'span',
+            null,
+            'Selected: ',
+            fileSelect.selected.path
+          ) : null
+        ),
+        _react2.default.createElement(
+          _Button2.default,
+          { style: { marginRight: '10px' }, onClick: this.cancel },
+          'Cancel'
+        ),
+        _react2.default.createElement(
+          _Button2.default,
+          { className: 'primary', onClick: this.submit },
+          'Select Folder'
+        )
+      )
+    );
+  }
+});
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(propTypesObject, 'propTypesObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal/FileSelectModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal/FileSelectModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal/FileSelectModal.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -17725,6 +17671,84 @@ module.exports = orderBy;
 
 /***/ },
 
+/***/ "Bmw9":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _ModalRegistry = __webpack_require__("p8CK");
+
+var _FileSelectModal = __webpack_require__("4YFL");
+
+var _FileSelectModal2 = _interopRequireDefault(_FileSelectModal);
+
+var _Store = __webpack_require__("+I1Y");
+
+var _FileSelectActions = __webpack_require__("3Fci");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var stateToProps = function stateToProps(_ref, _ref2) {
+  var fileSelect = _ref.fileSelect;
+  var storeKey = _ref2.storeKey;
+  return {
+    fileSelect: fileSelect[storeKey]
+  };
+};
+
+var dispatchToProps = {
+  storeChange: _Store.storeChange,
+  init: _FileSelectActions.init,
+  changePath: _FileSelectActions.changePath,
+  select: _FileSelectActions.select
+};
+
+var modalName = 'FILE_SELECT';
+var ModalComponent = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(_FileSelectModal2.default);
+(0, _ModalRegistry.registerModal)(modalName, ModalComponent);
+var _default = modalName;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal/FileSelectModal.container.js');
+
+  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal/FileSelectModal.container.js');
+
+  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal/FileSelectModal.container.js');
+
+  __REACT_HOT_LOADER__.register(ModalComponent, 'ModalComponent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal/FileSelectModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal/FileSelectModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileSelect/FileSelectModal/FileSelectModal.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "Bn1I":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25755,16 +25779,16 @@ var getFiles = exports.getFiles = function getFiles(_ref4) {
       projectId = _ref4.projectId,
       cacheKey = _ref4.cacheKey;
   return function (dispatch) {
-    if (projectId) {
-      dispatch(fetchFiles({
-        projectId: projectId,
-        path: path,
-        cacheKey: cacheKey
-      }));
-    } else if (projectId) {
+    if (provider) {
       dispatch(exploreFolder({
         provider: provider,
         folderId: path,
+        cacheKey: cacheKey
+      }));
+    } else {
+      dispatch(fetchFiles({
+        projectId: projectId,
+        path: path,
         cacheKey: cacheKey
       }));
     }
@@ -50554,6 +50578,14 @@ module.exports = baseIsEqual;
 
 /***/ },
 
+/***/ "YDYb":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","breadcrumbs":"FileSelectModal_breadcrumbs-2YxOR","modal":"FileSelectModal_modal-3YlED"};
+
+/***/ },
+
 /***/ "YQ7m":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -53459,6 +53491,45 @@ module.exports = baseGetTag;
 
 // removed by extract-text-webpack-plugin
 module.exports = {"primary":"rgb(68, 154, 211)","secondary":"rgba(0, 0, 0, 0.7)","loader":"LoadingSpinner_loader-2jJIX","animate":"LoadingSpinner_animate-2XNkz","circular":"LoadingSpinner_circular-1x0uU","rotate":"LoadingSpinner_rotate-dkRQB","path":"LoadingSpinner_path-22BJT","dash":"LoadingSpinner_dash-3KgWN","progress":"LoadingSpinner_progress-3ewav"};
+
+/***/ },
+
+/***/ "aGhC":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _FileSelectModal = __webpack_require__("Bmw9");
+
+var _FileSelectModal2 = _interopRequireDefault(_FileSelectModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _FileSelectModal2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -70476,11 +70547,13 @@ var socket = exports.socket = undefined;
 
 var initialise = exports.initialise = function initialise(hostUrl) {
 
+  // Conntect the websocket
   exports.socket = socket = _primusWebsockets2.default.connect(hostUrl);
 
-  // Log stuff
+  // Log some stuff if  ?debug=true or environment is development
   if ("production" === 'development' || searchParams.debug) {
-    // Receive
+
+    // Log Receives
     var socketData = function socketData(data) {
       if ({"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"wss://dev.stemn.com:8443"}.APP_THREAD === 'electron') {
         console.log('socket | RECEIVE - ' + data.type);
@@ -70492,7 +70565,7 @@ var initialise = exports.initialise = function initialise(hostUrl) {
     };
     socket.on('data', socketData);
 
-    // Write
+    // Log Writes
     var oldWrite = socket.write.bind(socket);
     socket.write = function (data) {
       if ({"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"wss://dev.stemn.com:8443"}.APP_THREAD === 'electron') {
@@ -71627,14 +71700,6 @@ module.exports = __webpack_require__.p + "images/3g2.svg?48b68ec36d5c2a462965582
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/nes.svg?afc6c50f1bf2e3865469e992df6f13aa";
-
-/***/ },
-
-/***/ "lOT8":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","breadcrumbs":"FileSelectModal_breadcrumbs-28Cao","modal":"FileSelectModal_modal-3oAmk"};
 
 /***/ },
 
@@ -76219,10 +76284,6 @@ var _AssemblyPartNotFoundModal = __webpack_require__("nJ6m");
 
 var _AssemblyPartNotFoundModal2 = _interopRequireDefault(_AssemblyPartNotFoundModal);
 
-var _FileSelectModal = __webpack_require__("/HcY");
-
-var _FileSelectModal2 = _interopRequireDefault(_FileSelectModal);
-
 var _PreviewExpiredModal = __webpack_require__("5uwe");
 
 var _PreviewExpiredModal2 = _interopRequireDefault(_PreviewExpiredModal);
@@ -76248,7 +76309,6 @@ var modalRegistry = {
   'ERROR': _ErrorModal2.default,
 
   'ASSEMBLY_PART_NOT_FOUND': _AssemblyPartNotFoundModal2.default,
-  'FILE_SELECT': _FileSelectModal2.default,
   'PREVIEW_EXPIRED': _PreviewExpiredModal2.default,
   'PROVIDER_ACCESS_ERROR': _ProviderAccessErrorModal2.default,
   'PROVIDER_ACCESS_REVOKED': _ProviderAccessRevokedModal2.default,
@@ -81332,6 +81392,10 @@ var _ModalActions = __webpack_require__("u2h7");
 
 var ModalActions = _interopRequireWildcard(_ModalActions);
 
+var _FileSelectModal = __webpack_require__("aGhC");
+
+var _FileSelectModal2 = _interopRequireDefault(_FileSelectModal);
+
 var _FileSelectInput = __webpack_require__("Xtm0");
 
 var _FileSelectInput2 = _interopRequireDefault(_FileSelectInput);
@@ -81358,6 +81422,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Container Actions
 var propTypesObject = {
   projectId: _react.PropTypes.string,
   provider: _react.PropTypes.string.isRequired, // 'dropbox' || 'drive' - The provider
@@ -81366,14 +81431,11 @@ var propTypesObject = {
   disabled: _react.PropTypes.bool // Should we disable the input
 };
 
-// Container Actions
-
-
 var FileSelectInput = _react2.default.createClass({
   displayName: 'FileSelectInput',
   showModal: function showModal() {
     this.props.ModalActions.showModal({
-      modalType: 'FILE_SELECT',
+      modalType: _FileSelectModal2.default,
       modalProps: {
         projectId: this.props.projectId,
         model: this.props.model,
@@ -87621,4 +87683,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.d24f5d668af064a04263.js.map
+//# sourceMappingURL=application.c7d1686d199e4aa63f03.js.map
