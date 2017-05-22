@@ -986,6 +986,39 @@ var _FileList = __webpack_require__("6phH");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var ClickFile = function ClickFile(props) {
+  var link = props.link,
+      file = props.file,
+      singleClick = props.singleClick,
+      doubleClick = props.doubleClick,
+      className = props.className,
+      children = props.children;
+
+  if (link) {
+    return _react2.default.createElement(
+      _Link2.default,
+      {
+        className: className,
+        onClick: singleClick,
+        onDoubleClick: doubleClick,
+        name: (0, _FileList.getFileRouteName)(file),
+        params: (0, _FileList.getFileRouteParams)(file)
+      },
+      children
+    );
+  } else {
+    return _react2.default.createElement(
+      'a',
+      {
+        className: className,
+        onClick: singleClick,
+        onDoubleClick: doubleClick
+      },
+      children
+    );
+  }
+};
+
 var FileRow = (_temp2 = _class = function (_Component) {
   (0, _inherits3.default)(FileRow, _Component);
 
@@ -1036,8 +1069,6 @@ var FileRow = (_temp2 = _class = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
-
       var _props3 = this.props,
           isActive = _props3.isActive,
           file = _props3.file,
@@ -1047,36 +1078,34 @@ var FileRow = (_temp2 = _class = function (_Component) {
 
       var timeFromNow = (0, _moment2.default)(file.modified).fromNow();
 
-      var getClickOverlay = function getClickOverlay() {
-        if (link) {
-          return _react2.default.createElement(_Link2.default, {
-            className: _FileRow2.default.clickOverlay,
-            onClick: _this4.singleClick,
-            onDoubleClick: _this4.doubleClick,
-            name: (0, _FileList.getFileRouteName)(file),
-            params: (0, _FileList.getFileRouteParams)(file)
-          });
-        } else {
-          return _react2.default.createElement('div', {
-            className: _FileRow2.default.clickOverlay,
-            onClick: _this4.singleClick,
-            onDoubleClick: _this4.doubleClick
-          });
-        }
-      };
-
       return _react2.default.createElement(
         'div',
         { className: (0, _classnames2.default)(_FileRow2.default.row, 'layout-row layout-align-start-center', (0, _defineProperty3.default)({}, _FileRow2.default.active, isActive)) },
-        getClickOverlay(),
+        _react2.default.createElement(ClickFile, {
+          className: _FileRow2.default.clickOverlay,
+          onClick: this.singleClick,
+          onDoubleClick: this.doubleClick,
+          file: file,
+          link: link
+        }),
         _react2.default.createElement(_FileIcon2.default, { fileType: file.extension, type: file.type }),
         _react2.default.createElement(
           'div',
           { className: 'text-ellipsis flex' },
-          _react2.default.createElement(_Highlight2.default, {
-            text: file.name,
-            query: query
-          })
+          _react2.default.createElement(
+            ClickFile,
+            {
+              onClick: this.singleClick,
+              onDoubleClick: this.doubleClick,
+              file: file,
+              link: link
+            },
+            _react2.default.createElement(_Highlight2.default, {
+              className: _FileRow2.default.name,
+              text: file.name,
+              query: query
+            })
+          )
         ),
         file.commit && file.commit.summary && file.commit._id ? _react2.default.createElement(
           'div',
@@ -1134,6 +1163,8 @@ var _temp3 = function () {
   }
 
   __REACT_HOT_LOADER__.register(FileRow, 'FileRow', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/components/FileRow.jsx');
+
+  __REACT_HOT_LOADER__.register(ClickFile, 'ClickFile', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/components/FileRow.jsx');
 }();
 
 ;
@@ -14444,6 +14475,13 @@ exports.default = function (store) {
 
 /***/ },
 
+/***/ "8ijQ":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/deviceMockups.jpg?c14eaba209d573117649415c7b16954c";
+
+/***/ },
+
 /***/ "8n7c":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25270,7 +25308,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var initialState = {
   data: {},
   projects: {},
-  events: {},
+  //  events: {},
   boards: {
     /********************************
     boardId: {
@@ -25348,27 +25386,24 @@ var mainReducer = function mainReducer(state, action) {
         loading: false
       });
 
-    case 'TASKS/GET_EVENTS_PENDING':
-      return _icepick2.default.assocIn(state, ['events', action.meta.cacheKey, 'loading'], true);
-    case 'TASKS/GET_EVENTS_REJECTED':
-      return _icepick2.default.assocIn(state, ['events', action.meta.cacheKey, 'loading'], false);
-    case 'TASKS/GET_EVENTS_FULFILLED':
-      return _icepick2.default.assocIn(state, ['events', action.meta.cacheKey], {
-        data: action.payload.data,
-        loading: false
-      });
-    case 'TASKS/NEW_EVENT':
-      return _icepick2.default.updateIn(state, ['events', action.payload.taskId, 'data'], function (events) {
-        return _icepick2.default.push(events, action.payload.event);
-      });
-
-    case 'TASKS/DELETE_EVENT':
-      return _icepick2.default.updateIn(state, ['events', action.payload.taskId, 'data'], function (events) {
-        var eventIndex = events.findIndex(function (event) {
-          return event._id === action.payload.eventId;
-        });
-        return eventIndex !== -1 ? _icepick2.default.splice(events, eventIndex, 1) : events;
-      });
+    //    case 'TASKS/GET_EVENTS_PENDING':
+    //      return i.assocIn(state, ['events', action.meta.cacheKey, 'loading'], true)
+    //    case 'TASKS/GET_EVENTS_REJECTED':
+    //      return i.assocIn(state, ['events', action.meta.cacheKey, 'loading'], false)
+    //    case 'TASKS/GET_EVENTS_FULFILLED':
+    //      return i.assocIn(state, ['events', action.meta.cacheKey], {
+    //        data: action.payload.data,
+    //        loading: false
+    //      })
+    //    case 'TASKS/NEW_EVENT':
+    //      return i.updateIn(state, ['events', action.payload.taskId, 'data'], events => {
+    //        return i.push(events, action.payload.event)
+    //      })
+    //    case 'TASKS/DELETE_EVENT':
+    //      return i.updateIn(state, ['events', action.payload.taskId, 'data'], events => {
+    //        const eventIndex = events.findIndex(event => event._id === action.payload.eventId)
+    //        return eventIndex !== -1 ? i.splice(events, eventIndex, 1) : events
+    //      })
 
     case 'TASKS/UPDATE_BOARD_PENDING':
       return _icepick2.default.assocIn(state, ['boards', action.meta.cacheKey, 'savePending'], true);
@@ -26637,7 +26672,6 @@ exports.getBoards = getBoards;
 exports.getBoard = getBoard;
 exports.newEvent = newEvent;
 exports.deleteEvent = deleteEvent;
-exports.getEvents = getEvents;
 exports.getTask = getTask;
 exports.updateTask = updateTask;
 exports.getGroup = getGroup;
@@ -26763,23 +26797,21 @@ function deleteEvent(_ref5) {
   };
 }
 
-function getEvents(_ref6) {
-  var taskId = _ref6.taskId;
+//export function getEvents({taskId}){
+//  return {
+//    type: 'TASKS/GET_EVENTS',
+//    payload: http({
+//      method: 'GET',
+//      url: `/api/v1/tasks/${taskId}/events`,
+//    }),
+//    meta: {
+//      cacheKey: taskId
+//    }
+//  }
+//}
 
-  return {
-    type: 'TASKS/GET_EVENTS',
-    payload: (0, _axios2.default)({
-      method: 'GET',
-      url: '/api/v1/tasks/' + taskId + '/events'
-    }),
-    meta: {
-      cacheKey: taskId
-    }
-  };
-}
-
-var updateBoard = exports.updateBoard = function updateBoard(_ref7) {
-  var board = _ref7.board;
+var updateBoard = exports.updateBoard = function updateBoard(_ref6) {
+  var board = _ref6.board;
   return {
     type: 'TASKS/UPDATE_BOARD',
     payload: (0, _axios2.default)({
@@ -26793,17 +26825,17 @@ var updateBoard = exports.updateBoard = function updateBoard(_ref7) {
   };
 };
 
-var editBoard = exports.editBoard = function editBoard(_ref8) {
-  var model = _ref8.model,
-      value = _ref8.value;
+var editBoard = exports.editBoard = function editBoard(_ref7) {
+  var model = _ref7.model,
+      value = _ref7.value;
   return {
     type: 'TASKS/EDIT_BOARD',
     payload: board
   };
 };
 
-function getTask(_ref9) {
-  var taskId = _ref9.taskId;
+function getTask(_ref8) {
+  var taskId = _ref8.taskId;
 
   return {
     type: 'TASKS/GET_TASK',
@@ -26820,8 +26852,8 @@ function getTask(_ref9) {
   };
 }
 
-function updateTask(_ref10) {
-  var task = _ref10.task;
+function updateTask(_ref9) {
+  var task = _ref9.task;
 
   return {
     type: 'TASKS/UPDATE_TASK',
@@ -26841,9 +26873,9 @@ function updateTask(_ref10) {
   };
 }
 
-function getGroup(_ref11) {
-  var boardId = _ref11.boardId,
-      groupId = _ref11.groupId;
+function getGroup(_ref10) {
+  var boardId = _ref10.boardId,
+      groupId = _ref10.groupId;
 
   return {
     type: 'TASKS/GET_GROUP',
@@ -26858,8 +26890,8 @@ function getGroup(_ref11) {
   };
 }
 
-function updateGroup(_ref12) {
-  var group = _ref12.group;
+function updateGroup(_ref11) {
+  var group = _ref11.group;
 
   return {
     type: 'TASKS/UPDATE_GROUP',
@@ -26879,9 +26911,9 @@ function updateGroup(_ref12) {
   };
 }
 
-function deleteTask(_ref13) {
-  var boardId = _ref13.boardId,
-      taskId = _ref13.taskId;
+function deleteTask(_ref12) {
+  var boardId = _ref12.boardId,
+      taskId = _ref12.taskId;
 
   return {
     type: 'TASKS/DELETE_TASK',
@@ -26896,13 +26928,13 @@ function deleteTask(_ref13) {
   };
 }
 
-function moveTask(_ref14) {
-  var boardId = _ref14.boardId,
-      task = _ref14.task,
-      destinationTask = _ref14.destinationTask,
-      destinationGroup = _ref14.destinationGroup,
-      after = _ref14.after,
-      save = _ref14.save;
+function moveTask(_ref13) {
+  var boardId = _ref13.boardId,
+      task = _ref13.task,
+      destinationTask = _ref13.destinationTask,
+      destinationGroup = _ref13.destinationGroup,
+      after = _ref13.after,
+      save = _ref13.save;
 
   // To move a task you must have either hoverItem or destinationGroup
   // destinationGroup is used if the group is empty
@@ -26936,9 +26968,9 @@ function moveTask(_ref14) {
   };
 }
 
-function beginDrag(_ref15) {
-  var boardId = _ref15.boardId,
-      taskId = _ref15.taskId;
+function beginDrag(_ref14) {
+  var boardId = _ref14.boardId,
+      taskId = _ref14.taskId;
 
   return {
     type: 'TASKS/BEGIN_DRAG',
@@ -26951,9 +26983,9 @@ function beginDrag(_ref15) {
   };
 }
 
-function endDrag(_ref16) {
-  var boardId = _ref16.boardId,
-      taskId = _ref16.taskId;
+function endDrag(_ref15) {
+  var boardId = _ref15.boardId,
+      taskId = _ref15.taskId;
 
   return {
     type: 'TASKS/END_DRAG',
@@ -26966,12 +26998,12 @@ function endDrag(_ref16) {
   };
 }
 
-function moveGroup(_ref17) {
-  var boardId = _ref17.boardId,
-      group = _ref17.group,
-      destinationGroup = _ref17.destinationGroup,
-      after = _ref17.after,
-      save = _ref17.save;
+function moveGroup(_ref16) {
+  var boardId = _ref16.boardId,
+      group = _ref16.group,
+      destinationGroup = _ref16.destinationGroup,
+      after = _ref16.after,
+      save = _ref16.save;
 
   return function (dispatch) {
     if (save) {
@@ -26999,10 +27031,10 @@ function moveGroup(_ref17) {
   };
 }
 
-function toggleComplete(_ref18) {
-  var taskId = _ref18.taskId,
-      model = _ref18.model,
-      value = _ref18.value;
+function toggleComplete(_ref17) {
+  var taskId = _ref17.taskId,
+      model = _ref17.model,
+      value = _ref17.value;
 
   return function (dispatch) {
     dispatch((0, _ToastsActions.show)({
@@ -27021,10 +27053,10 @@ function toggleComplete(_ref18) {
     }));
   };
 }
-function toggleCompleteUndo(_ref19) {
-  var taskId = _ref19.taskId,
-      model = _ref19.model,
-      value = _ref19.value;
+function toggleCompleteUndo(_ref18) {
+  var taskId = _ref18.taskId,
+      model = _ref18.model,
+      value = _ref18.value;
 
   return function (dispatch, getState) {
     dispatch((0, _Store.storeChange)(model, !value));
@@ -27034,9 +27066,9 @@ function toggleCompleteUndo(_ref19) {
   };
 }
 
-function newGroup(_ref20) {
-  var boardId = _ref20.boardId,
-      group = _ref20.group;
+function newGroup(_ref19) {
+  var boardId = _ref19.boardId,
+      group = _ref19.group;
 
   return function (dispatch) {
     if (group.name.length > 1) {
@@ -27057,9 +27089,9 @@ function newGroup(_ref20) {
   };
 }
 
-var deleteGroupConfirm = exports.deleteGroupConfirm = function deleteGroupConfirm(_ref21) {
-  var boardId = _ref21.boardId,
-      groupId = _ref21.groupId;
+var deleteGroupConfirm = exports.deleteGroupConfirm = function deleteGroupConfirm(_ref20) {
+  var boardId = _ref20.boardId,
+      groupId = _ref20.groupId;
   return function (dispatch) {
     return dispatch((0, _ModalActions.showConfirm)({
       message: 'Deleting a group is permanent. All tasks which belong to this group will be deleted (even archived tasks).'
@@ -27069,9 +27101,9 @@ var deleteGroupConfirm = exports.deleteGroupConfirm = function deleteGroupConfir
   };
 };
 
-function deleteGroup(_ref22) {
-  var boardId = _ref22.boardId,
-      groupId = _ref22.groupId;
+function deleteGroup(_ref21) {
+  var boardId = _ref21.boardId,
+      groupId = _ref21.groupId;
 
   return {
     type: 'TASKS/DELETE_GROUP',
@@ -27086,8 +27118,8 @@ function deleteGroup(_ref22) {
   };
 }
 
-function showLabelEditModal(_ref23) {
-  var boardId = _ref23.boardId;
+function showLabelEditModal(_ref22) {
+  var boardId = _ref22.boardId;
 
   return function (dispatch) {
     dispatch((0, _ModalActions.showModal)({
@@ -27099,9 +27131,9 @@ function showLabelEditModal(_ref23) {
   };
 }
 
-function changeLayout(_ref24) {
-  var boardId = _ref24.boardId,
-      layout = _ref24.layout;
+function changeLayout(_ref23) {
+  var boardId = _ref23.boardId,
+      layout = _ref23.layout;
 
   return {
     type: 'TASKS/CHANGE_LAYOUT',
@@ -27112,8 +27144,8 @@ function changeLayout(_ref24) {
   };
 }
 
-function websocketJoinBoard(_ref25) {
-  var boardId = _ref25.boardId;
+function websocketJoinBoard(_ref24) {
+  var boardId = _ref24.boardId;
 
   return {
     type: 'TASKS/WEBSOCKET_JOIN_BOARD',
@@ -27127,8 +27159,8 @@ function websocketJoinBoard(_ref25) {
     }
   };
 }
-function websocketLeaveBoard(_ref26) {
-  var boardId = _ref26.boardId;
+function websocketLeaveBoard(_ref25) {
+  var boardId = _ref25.boardId;
 
   return {
     type: 'TASKS/WEBSOCKET_LEAVE_BOARD',
@@ -27158,8 +27190,6 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(newEvent, 'newEvent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
 
   __REACT_HOT_LOADER__.register(deleteEvent, 'deleteEvent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(getEvents, 'getEvents', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
 
   __REACT_HOT_LOADER__.register(updateBoard, 'updateBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
 
@@ -35907,13 +35937,13 @@ var confirmLinkRemote = exports.confirmLinkRemote = function confirmLinkRemote(_
     };
 
     if (isConnected) {
-      dispatch(ModalActions.showConfirm({
+      return dispatch(ModalActions.showConfirm({
         message: 'Changing your file store <b>will delete your entire commit and change history.</b> Are you sure you want to do this? There is no going back.'
       })).then(function () {
-        dispatch(linkRemoteProviderDependent());
+        return dispatch(linkRemoteProviderDependent());
       });
     } else {
-      dispatch(linkRemoteProviderDependent());
+      return dispatch(linkRemoteProviderDependent());
     }
   };
 };
@@ -40559,13 +40589,17 @@ var _screenshot = __webpack_require__("IxSR");
 
 var _screenshot2 = _interopRequireDefault(_screenshot);
 
+var _deviceMockups = __webpack_require__("8ijQ");
+
+var _deviceMockups2 = _interopRequireDefault(_deviceMockups);
+
 var _historyCombined = __webpack_require__("g0Cx");
 
 var _historyCombined2 = _interopRequireDefault(_historyCombined);
 
-var _screens = __webpack_require__("i6jo");
+var _historyTimeline = __webpack_require__("opqY");
 
-var _screens2 = _interopRequireDefault(_screens);
+var _historyTimeline2 = _interopRequireDefault(_historyTimeline);
 
 var _Landing = __webpack_require__("UjRG");
 
@@ -40727,7 +40761,7 @@ var Landing = function (_Component) {
               _react2.default.createElement(
                 _Layout.Col,
                 { className: 'flex-order-xs-1 flex-xs-100 flex-gt-xs-50 lg' },
-                _react2.default.createElement('img', { className: _Landing2.default.screen, src: _screens2.default })
+                _react2.default.createElement('img', { className: _Landing2.default.screen, src: _deviceMockups2.default })
               )
             )
           )
@@ -40738,7 +40772,15 @@ var Landing = function (_Component) {
           _react2.default.createElement(
             _Layout.Row,
             { className: secionClasses },
-            _react2.default.createElement(_Layout.Col, { className: 'flex-xs-100 flex-gt-xs-50 lg' }),
+            _react2.default.createElement(
+              _Layout.Col,
+              { className: 'flex-xs-100 flex-gt-xs-50 lg' },
+              _react2.default.createElement(
+                'div',
+                { className: _Landing2.default.historyTimeline },
+                _react2.default.createElement('img', { src: _historyTimeline2.default })
+              )
+            ),
             _react2.default.createElement(
               _Layout.Col,
               { className: 'flex-xs-100 flex-gt-xs-50 lg' },
@@ -40750,7 +40792,7 @@ var Landing = function (_Component) {
               _react2.default.createElement(
                 'p',
                 { className: 'text-title-4' },
-                'Simplify your feedback process by having clients, team members, and stakeholders comment directly on your models.'
+                'Simplify your feedback process by team members, clients, and stakeholders comment directly on files.'
               ),
               _react2.default.createElement(
                 'p',
@@ -46167,7 +46209,7 @@ module.exports = initCloneArray;
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"banner":"Landing_banner-sJKnA","screenshot":"Landing_screenshot-pqx4Z","screen":"Landing_screen-1CNin","downloadButton":"Landing_downloadButton-2UB5A","timeline":"Landing_timeline-2-lC3","fileIcons":"Landing_fileIcons-D2pK_","section":"Landing_section-3oxT_","bgWhite":"Landing_bgWhite-zMu9O"};
+module.exports = {"banner":"Landing_banner-sJKnA","screenshot":"Landing_screenshot-pqx4Z","screen":"Landing_screen-1CNin","downloadButton":"Landing_downloadButton-2UB5A","timeline":"Landing_timeline-2-lC3","historyTimeline":"Landing_historyTimeline-3PXil","fileIcons":"Landing_fileIcons-D2pK_","section":"Landing_section-3oxT_","bgWhite":"Landing_bgWhite-zMu9O"};
 
 /***/ },
 
@@ -50211,6 +50253,45 @@ var _temp2 = function () {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"contain":"UserAvatar_contain-kEVph","cover":"UserAvatar_cover-2IBhR"};
+
+/***/ },
+
+/***/ "Xb+K":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _BetaBadge = __webpack_require__("gdY3");
+
+var _BetaBadge2 = _interopRequireDefault(_BetaBadge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _BetaBadge2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -54689,8 +54770,8 @@ var Component = function (_React$Component) {
 
       return _react2.default.createElement(_reactTextareaAutosize2.default, { style: style,
         className: className,
-        onChange: function onChange(e) {
-          dispatch((0, _Store.storeChange)(model, e));
+        onChange: function onChange(event) {
+          dispatch((0, _Store.storeChange)(model, event.target.value));
           if (_onChange) {
             _onChange();
           };
@@ -62682,6 +62763,106 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "gdY3":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _BetaBadge = __webpack_require__("uNai");
+
+var _BetaBadge2 = _interopRequireDefault(_BetaBadge);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var BetaBadge = function (_Component) {
+  (0, _inherits3.default)(BetaBadge, _Component);
+
+  function BetaBadge() {
+    (0, _classCallCheck3.default)(this, BetaBadge);
+    return (0, _possibleConstructorReturn3.default)(this, (BetaBadge.__proto__ || (0, _getPrototypeOf2.default)(BetaBadge)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(BetaBadge, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: _BetaBadge2.default.badge },
+        _react2.default.createElement('div', { className: _BetaBadge2.default.arrow }),
+        _react2.default.createElement(
+          'div',
+          { className: _BetaBadge2.default.bubble },
+          'B',
+          _react2.default.createElement(
+            'span',
+            null,
+            'eta'
+          )
+        )
+      );
+    }
+  }]);
+  return BetaBadge;
+}(_react.Component);
+
+exports.default = BetaBadge;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(BetaBadge, 'BetaBadge', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/modules/BetaBadge/BetaBadge.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "geuY":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -66400,6 +66581,10 @@ var _menu = __webpack_require__("IOYW");
 
 var _menu2 = _interopRequireDefault(_menu);
 
+var _BetaBadge = __webpack_require__("Xb+K");
+
+var _BetaBadge2 = _interopRequireDefault(_BetaBadge);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var LandingHeader = function (_Component) {
@@ -66539,7 +66724,8 @@ var LandingHeader = function (_Component) {
           _react2.default.createElement(
             _Link2.default,
             { to: '/landing', className: _LandingHeader2.default.logo },
-            _react2.default.createElement('img', { src: _logo80x80none2.default, alt: '' })
+            _react2.default.createElement('img', { src: _logo80x80none2.default, alt: '' }),
+            _react2.default.createElement(_BetaBadge2.default, null)
           ),
           items.map(function (item) {
             return _react2.default.createElement(
@@ -68201,13 +68387,6 @@ module.exports = assignValue;
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/m4a.svg?2d03714c839c0a9b9ed976093097383c";
-
-/***/ },
-
-/***/ "i6jo":
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/screens.jpg?97724e709e8bc0d7666fdec292c3b127";
 
 /***/ },
 
@@ -70899,7 +71078,7 @@ exports.default = ContextMenu;
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","row":"FileRow_row-3zCGp","clickOverlay":"FileRow_clickOverlay-20nGq","clickable":"FileRow_clickable-lLg8-","active":"FileRow_active-m6PXN","size":"FileRow_size-uhutZ","date":"FileRow_date-13HIe","label":"FileRow_label--_sKN"};
+module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","row":"FileRow_row-3zCGp","name":"FileRow_name-1t4Iu","clickOverlay":"FileRow_clickOverlay-20nGq","clickable":"FileRow_clickable-lLg8-","active":"FileRow_active-m6PXN","size":"FileRow_size-uhutZ","date":"FileRow_date-13HIe","label":"FileRow_label--_sKN"};
 
 /***/ },
 
@@ -75118,7 +75297,15 @@ var _icepick2 = _interopRequireDefault(_icepick);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var initialState = {
-  data: {},
+  data: {
+    /***********************************
+    [projectId]: {
+      loading: false,
+      data: {},
+      fileStoreForm: {},
+    }
+    ***********************************/
+  },
   activeProject: '', // The currently active project
   userProjects: {
     /***********************************
@@ -75155,11 +75342,7 @@ function reducer(state, action) {
     case 'PROJECTS/GET_PROJECT_REJECTED':
       return _icepick2.default.assocIn(state, ['data', action.meta.projectId, 'loading'], false);
     case 'PROJECTS/GET_PROJECT_FULFILLED':
-      return _icepick2.default.assocIn(state, ['data', action.meta.projectId], {
-        loading: false,
-        dataSize: action.meta.size,
-        data: action.payload.data
-      });
+      return _icepick2.default.chain(state).assocIn(['data', action.meta.projectId, 'loading'], false).assocIn(['data', action.meta.projectId, 'dataSize'], action.meta.size).assocIn(['data', action.meta.projectId, 'data'], action.payload.data).value();
 
     case 'PROJECTS/ADD_TEAM_MEMBER':
       return _icepick2.default.updateIn(state, ['data', action.payload.projectId, 'data', 'team'], function (team) {
@@ -75201,7 +75384,7 @@ function reducer(state, action) {
     case 'PROJECTS/LINK_REMOTE_PENDING':
       return _icepick2.default.chain(state).assocIn(['data', action.meta.cacheKey, 'linkPending'], true).assocIn(['data', action.meta.cacheKey, 'linkRejected'], false).value();
     case 'PROJECTS/LINK_REMOTE_FULFILLED':
-      return _icepick2.default.chain(state).assocIn(['data', action.meta.cacheKey, 'linkPending'], false).assocIn(['data', action.meta.cacheKey, 'linkRejected'], false).assocIn(['data', action.meta.cacheKey, 'data', 'remote'], action.payload.data).value();
+      return _icepick2.default.chain(state).assocIn(['data', action.meta.cacheKey, 'linkPending'], false).assocIn(['data', action.meta.cacheKey, 'linkRejected'], false).assocIn(['data', action.meta.cacheKey, 'data', 'remote'], action.payload.data).assocIn(['data', action.meta.cacheKey, 'fileStoreForm'], action.payload.data).value();
     case 'PROJECTS/LINK_REMOTE_REJECTED':
       return _icepick2.default.chain(state).assocIn(['data', action.meta.cacheKey, 'linkPending'], false).assocIn(['data', action.meta.cacheKey, 'linkRejected'], true).value();
 
@@ -76103,6 +76286,13 @@ var _temp3 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "opqY":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/historyTimeline.png?1d83b93ed26759897c11b23e3d6c4ca3";
 
 /***/ },
 
@@ -79485,6 +79675,10 @@ var _HeaderMobileMenu = __webpack_require__("D/i0");
 
 var _HeaderMobileMenu2 = _interopRequireDefault(_HeaderMobileMenu);
 
+var _BetaBadge = __webpack_require__("Xb+K");
+
+var _BetaBadge2 = _interopRequireDefault(_BetaBadge);
+
 var _menu = __webpack_require__("IOYW");
 
 var _menu2 = _interopRequireDefault(_menu);
@@ -79643,7 +79837,8 @@ var Header = function (_Component) {
           _react2.default.createElement(
             _Link2.default,
             { to: '/', className: _Header2.default.logo },
-            _react2.default.createElement('img', { src: _logo80x2.default, alt: '' })
+            _react2.default.createElement('img', { src: _logo80x2.default, alt: '' }),
+            _react2.default.createElement(_BetaBadge2.default, null)
           ),
           _react2.default.createElement(_SiteSearch2.default, { className: _Header2.default.search }),
           _react2.default.createElement(
@@ -81566,6 +81761,14 @@ var _temp2 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "uNai":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"primary":"rgb(68, 154, 211)","badge":"BetaBadge_badge-nGBpA","bubble":"BetaBadge_bubble-2QkWJ","arrow":"BetaBadge_arrow-3Zaxb"};
 
 /***/ },
 
@@ -87698,4 +87901,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.297e6a0ac83d3b7b9bb6.js.map
+//# sourceMappingURL=application.5ded62fd10bcac348762.js.map
