@@ -14436,7 +14436,7 @@ var _eventMap2 = _interopRequireDefault(_eventMap);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (store) {
-  var socket = (0, _websocket.initialise)("wss://dev.stemn.com:8443");
+  var socket = (0, _websocket.initialise)("https://dev.stemn.com:8443");
   socket.on('data', function (action) {
     (0, _eventMap2.default)(store, action);
   });
@@ -14883,7 +14883,7 @@ Object.defineProperty(exports, "__esModule", {
 // If we are in the electron main thread, we don't want to register the modal
 var modalName = 'THREAD_COMMIT';
 
-var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"wss://dev.stemn.com:8443"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("TPI8").default(modalName);
+var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("TPI8").default(modalName);
 
 var _default2 = _default;
 exports.default = _default2;
@@ -40559,6 +40559,10 @@ var _screenshot = __webpack_require__("IxSR");
 
 var _screenshot2 = _interopRequireDefault(_screenshot);
 
+var _historyCombined = __webpack_require__("g0Cx");
+
+var _historyCombined2 = _interopRequireDefault(_historyCombined);
+
 var _screens = __webpack_require__("i6jo");
 
 var _screens2 = _interopRequireDefault(_screens);
@@ -40655,7 +40659,11 @@ var Landing = function (_Component) {
             _react2.default.createElement(
               _Layout.Col,
               { className: 'flex-gt-xs-50 lg' },
-              _react2.default.createElement('div', { className: _Landing2.default.timeline })
+              _react2.default.createElement(
+                'div',
+                { className: _Landing2.default.timeline },
+                _react2.default.createElement('img', { src: _historyCombined2.default })
+              )
             ),
             _react2.default.createElement(
               _Layout.Col,
@@ -40668,12 +40676,12 @@ var Landing = function (_Component) {
               _react2.default.createElement(
                 'p',
                 { className: 'text-title-4' },
-                'All your work is automatically synced as you work.'
+                'All your changes are automatically synced as you work.'
               ),
               _react2.default.createElement(
                 'p',
                 { className: 'text-title-4' },
-                'View any previous versions, complete with comments, with the automatic version control features. Revert your files with a single click.'
+                'View any previous versions, complete with comments and commit messages. Compare and revert your files with a single click.'
               )
             )
           )
@@ -40698,7 +40706,7 @@ var Landing = function (_Component) {
                 _react2.default.createElement(
                   'p',
                   { className: 'text-title-4' },
-                  'Whether you\u2019re in the office, in the lab, or on the go, access your files in your browser, from any device.'
+                  'Whether you\u2019re in the office, in the lab, or on the go, preview your files in your browser, from any device.'
                 ),
                 _react2.default.createElement(
                   'p',
@@ -62257,6 +62265,13 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "g0Cx":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/historyCombined.jpg?4d8e8baad423c28de1c0d500f0b5f8a1";
+
+/***/ },
+
 /***/ "g62w":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -70555,7 +70570,7 @@ var initialise = exports.initialise = function initialise(hostUrl) {
 
     // Log Receives
     var socketData = function socketData(data) {
-      if ({"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"wss://dev.stemn.com:8443"}.APP_THREAD === 'electron') {
+      if ({"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron') {
         console.log('socket | RECEIVE - ' + data.type);
       } else {
         console.groupCollapsed(' socket | RECEIVE      ' + data.type);
@@ -70568,7 +70583,7 @@ var initialise = exports.initialise = function initialise(hostUrl) {
     // Log Writes
     var oldWrite = socket.write.bind(socket);
     socket.write = function (data) {
-      if ({"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"wss://dev.stemn.com:8443"}.APP_THREAD === 'electron') {
+      if ({"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron') {
         console.log('socket | SEND - ' + data.type);
       } else {
         console.groupCollapsed(' socket | SEND         ' + data.type);
@@ -79562,12 +79577,12 @@ var Header = function (_Component) {
             _react2.default.createElement(
               _Link2.default,
               { name: 'userRoute', params: routeParams },
-              'Your profile'
+              'My profile'
             ),
             _react2.default.createElement(
               _Link2.default,
               { name: 'userStarsRoute', params: routeParams },
-              'Your stars'
+              'My stars'
             ),
             _react2.default.createElement(
               _Link2.default,
@@ -87683,4 +87698,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.c7d1686d199e4aa63f03.js.map
+//# sourceMappingURL=application.297e6a0ac83d3b7b9bb6.js.map
