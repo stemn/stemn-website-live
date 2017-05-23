@@ -1,4 +1,4 @@
-webpackJsonp([55,60],{
+webpackJsonp([55,61],{
 
 /***/ "+4rd":
 /***/ function(module, exports) {
@@ -989,8 +989,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ClickFile = function ClickFile(props) {
   var link = props.link,
       file = props.file,
-      singleClick = props.singleClick,
-      doubleClick = props.doubleClick,
+      onClick = props.onClick,
+      onDoubleClick = props.onDoubleClick,
       className = props.className,
       children = props.children;
 
@@ -999,8 +999,8 @@ var ClickFile = function ClickFile(props) {
       _Link2.default,
       {
         className: className,
-        onClick: singleClick,
-        onDoubleClick: doubleClick,
+        onClick: onClick,
+        onDoubleClick: onDoubleClick,
         name: (0, _FileList.getFileRouteName)(file),
         params: (0, _FileList.getFileRouteParams)(file)
       },
@@ -1011,8 +1011,8 @@ var ClickFile = function ClickFile(props) {
       'a',
       {
         className: className,
-        onClick: singleClick,
-        onDoubleClick: doubleClick
+        onClick: onClick,
+        onDoubleClick: onDoubleClick
       },
       children
     );
@@ -1394,7 +1394,6 @@ var stateToProps = function stateToProps(_ref, _ref2) {
       path = _ref2.path,
       provider = _ref2.provider;
 
-  console.log({ projectId: projectId, path: path, provider: provider });
   var fileListCacheKey = projectId + '-' + path + '-' + provider;
   return {
     fileListCacheKey: fileListCacheKey,
@@ -3124,6 +3123,91 @@ var _temp2 = function () {
 		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
 				return;
 		}
+}();
+
+;
+
+/***/ },
+
+/***/ "1Ouf":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _ModalRegistry = __webpack_require__("p8CK");
+
+var _ProjectsActions = __webpack_require__("N31G");
+
+var _reactRouterRedux = __webpack_require__("jZgO");
+
+var _ProjectNewModal = __webpack_require__("LGMU");
+
+var _ProjectNewModal2 = _interopRequireDefault(_ProjectNewModal);
+
+var _routeActions = __webpack_require__("B98q");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var auth = _ref.auth,
+      projects = _ref.projects;
+
+  return {
+    auth: auth,
+    newProject: projects.newProject,
+    entityModel: 'projects.newProject'
+  };
+};
+
+var mapDispatchToProps = {
+  goToProjectSettings: function goToProjectSettings(_ref2) {
+    var projectId = _ref2.projectId;
+    return (0, _reactRouterRedux.push)((0, _routeActions.projectSettingsRoute)({ projectId: projectId }));
+  },
+  createProject: _ProjectsActions.createProject,
+  linkRemote: _ProjectsActions.linkRemote
+};
+
+var modalName = 'NEW_PROJECT';
+var ModalComponent = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_ProjectNewModal2.default);
+(0, _ModalRegistry.registerModal)(modalName, ModalComponent);
+var _default = modalName;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.container.js');
+
+  __REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.container.js');
+
+  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.container.js');
+
+  __REACT_HOT_LOADER__.register(ModalComponent, 'ModalComponent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
 }();
 
 ;
@@ -24575,8 +24659,8 @@ var _default = function (_React$Component) {
         null,
         _react2.default.createElement(
           _Radio2.default,
-          { model: model, value: 'public', modelValue: value },
-          _react2.default.createElement(_PublicPrivateIcon2.default, { type: 'public', style: { marginRight: '10px' }, size: 30 }),
+          { model: model, value: false, modelValue: value },
+          _react2.default.createElement(_PublicPrivateIcon2.default, { style: { marginRight: '10px' }, size: 30 }),
           _react2.default.createElement(
             'div',
             { className: 'flex' },
@@ -24594,8 +24678,8 @@ var _default = function (_React$Component) {
         ),
         _react2.default.createElement(
           _Radio2.default,
-          { model: model, value: 'private', modelValue: value },
-          _react2.default.createElement(_PublicPrivateIcon2.default, { type: 'private', style: { marginRight: '10px' }, size: 30 }),
+          { model: model, value: true, modelValue: value },
+          _react2.default.createElement(_PublicPrivateIcon2.default, { 'private': true, style: { marginRight: '10px' }, size: 30 }),
           _react2.default.createElement(
             'div',
             { className: 'flex' },
@@ -24617,11 +24701,7 @@ var _default = function (_React$Component) {
   return _default;
 }(_react2.default.Component);
 
-// Styles
-
-
 exports.default = _default;
-;
 ;
 
 var _temp = function () {
@@ -32748,29 +32828,35 @@ if (typeof Object.create === 'function') {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Component = undefined;
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _get2 = __webpack_require__("Q7hp");
+
+var _get3 = _interopRequireDefault(_get2);
 
 var _pick2 = __webpack_require__("w9Mt");
 
 var _pick3 = _interopRequireDefault(_pick2);
-
-var _has2 = __webpack_require__("umy1");
-
-var _has3 = _interopRequireDefault(_has2);
-
-var _redux = __webpack_require__("c9Fv");
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _ProjectsActions = __webpack_require__("N31G");
-
-var ProjectsActions = _interopRequireWildcard(_ProjectsActions);
-
-var _routeActions = __webpack_require__("B98q");
-
-var _reactRouterRedux = __webpack_require__("jZgO");
-
-var _ModalRegistry = __webpack_require__("p8CK");
 
 var _react = __webpack_require__("U7vG");
 
@@ -32818,336 +32904,329 @@ var _PanelDescription = __webpack_require__("e8Jd");
 
 var _PanelDescription2 = _interopRequireDefault(_PanelDescription);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-///////////////////////////////// COMPONENT /////////////////////////////////
+var ProjectNewModal = function (_Component) {
+  (0, _inherits3.default)(ProjectNewModal, _Component);
 
-// Component Core
+  function ProjectNewModal() {
+    var _ref;
 
+    var _temp, _this, _ret;
 
-// Container Actions
-// Container Core
-var Component = exports.Component = _react2.default.createClass({
-  displayName: 'Component',
-  getInitialState: function getInitialState() {
-    return {
+    (0, _classCallCheck3.default)(this, ProjectNewModal);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = ProjectNewModal.__proto__ || (0, _getPrototypeOf2.default)(ProjectNewModal)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       activeTab: 1,
       linkPending: false
-    };
-  },
-  createProject: function createProject() {
-    var _this = this;
+    }, _this.createProject = function () {
+      var _this2;
 
-    this.props.projectsActions.createProject((0, _pick3.default)(this.props.newProject, ['permissions', 'name', 'summary'])).then(function (response) {
-      var goToProject = function goToProject() {
-        _this.props.dispatch((0, _reactRouterRedux.push)((0, _routeActions.projectSettingsRoute)({ projectId: response.value.data._id })));
-        _this.props.modalConfirm();
-      };
-      // Link the provider if we can.
-      if (response.value.data._id && _this.props.newProject.provider && _this.props.newProject.root.path && _this.props.newProject.root.fileId) {
-        _this.setState({ linkPending: true });
-        _this.props.projectsActions.linkRemote({
-          projectId: response.value.data._id,
-          provider: _this.props.newProject.provider,
-          path: _this.props.newProject.root.path,
-          id: _this.props.newProject.root.fileId,
-          userId: _this.props.auth.user._id
-        }).then(function () {
-          // After we have linked, we go to the project
-          _this.setState({ linkPending: false });
-          goToProject();
-        }).catch(function () {
-          // If the link fails, we still go to the project
-          _this.setState({ linkPending: false });
-          goToProject();
-        });
-      } else {
-        goToProject();
-      }
-    });
-  },
-  changeTab: function changeTab(activeTab) {
-    this.setState({ activeTab: activeTab });
-  },
-  render: function render() {
-    var _this2 = this;
+      return (_this2 = _this).__createProject__REACT_HOT_LOADER__.apply(_this2, arguments);
+    }, _this.changeTab = function () {
+      var _this3;
 
-    var _props = this.props,
-        newProject = _props.newProject,
-        entityModel = _props.entityModel,
-        modalCancel = _props.modalCancel;
-    var _state = this.state,
-        activeTab = _state.activeTab,
-        linkPending = _state.linkPending;
-
-
-    var namePanelTemplate = function namePanelTemplate() {
-      return _react2.default.createElement(
-        'div',
-        { className: _ProjectNewModal2.default.panel },
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Name and blurb'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'Set your project name and blurb.'
-        ),
-        _react2.default.createElement(_Input2.default, {
-          model: entityModel + '.name',
-          value: newProject.name,
-          className: 'dr-input',
-          type: 'text',
-          placeholder: 'Project Name',
-          autoFocus: true
-        }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(_Textarea2.default, {
-          model: entityModel + '.summary',
-          value: newProject.summary,
-          className: 'dr-input',
-          placeholder: 'Project Summary'
-        })
-      );
-    };
-
-    var permissionsTemplate = function permissionsTemplate() {
-      return _react2.default.createElement(
-        'div',
-        { className: _ProjectNewModal2.default.panel },
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Project Type'
-        ),
-        _react2.default.createElement(_ProjectPermissionsRadio2.default, {
-          model: entityModel + '.permissions.projectType',
-          value: (0, _has3.default)(newProject, 'permissions.projectType') ? newProject.permissions.projectType : ''
-        })
-      );
-    };
-
-    var fileStoreTemplate = function fileStoreTemplate() {
-      return _react2.default.createElement(
-        'div',
-        { className: _ProjectNewModal2.default.panel + ' rel-box' },
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Cloud Storage Folder'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'Select your project\'s cloud store location.'
-        ),
-        _react2.default.createElement(_ProjectLinkRemote2.default, {
-          model: entityModel + '.provider',
-          value: newProject.provider
-        }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(_FileSelectInput2.default, {
-          disabled: !['drive', 'dropbox'].includes(newProject.provider),
-          provider: newProject.provider,
-          model: entityModel + '.root',
-          value: newProject.root || {}
-        }),
-        _react2.default.createElement(_LoadingOverlay2.default, { show: newProject.savePending || linkPending })
-      );
-    };
-
-    var tabTemplate = function tabTemplate(_ref) {
-      var title = _ref.title,
-          blurb = _ref.blurb,
-          body = _ref.body,
-          button1 = _ref.button1,
-          button2 = _ref.button2;
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'layout-column flex' },
-        _react2.default.createElement(
-          'div',
-          { className: _ProjectNewModal2.default.modalBody + ' layout-column flex' },
-          _react2.default.createElement(
-            _PanelDescription2.default,
-            {
-              title: title,
-              description: blurb
-            },
-            body
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: _ProjectNewModal2.default.modalFooter + ' layout-row layout-align-end' },
-          _react2.default.createElement(
-            _Button2.default,
-            { style: { marginRight: '10px' }, onClick: button1.onClick },
-            button1.text
-          ),
-          _react2.default.createElement(
-            _Button2.default,
-            { className: 'primary', onClick: button2.onClick },
-            button2.text
-          )
-        )
-      );
-    };
-
-    var getTab = function getTab() {
-      if (activeTab == 1) {
-        return tabTemplate({
-          title: 'Create Project',
-          blurb: 'Enter general display details such as project name and blurb. Remember to set a blurb if you want to open-source your project.',
-          body: _react2.default.createElement(
-            'div',
-            null,
-            namePanelTemplate(),
-            permissionsTemplate()
-          ),
-          button1: {
-            text: 'Cancel',
-            onClick: modalCancel
-          },
-          button2: {
-            text: 'Next',
-            onClick: function onClick() {
-              return _this2.changeTab(2);
-            }
-          }
-        });
-      } else if (activeTab == 2) {
-        return tabTemplate({
-          title: 'File Store',
-          blurb: 'Connect a cloud provider (Dropbox or Drive). This will give you access to version control and collaboration features.',
-          body: _react2.default.createElement(
-            'div',
-            null,
-            fileStoreTemplate()
-          ),
-          button1: {
-            text: 'Back',
-            onClick: function onClick() {
-              return _this2.changeTab(1);
-            }
-          },
-          button2: {
-            text: 'Create',
-            onClick: _this2.createProject
-          }
-        });
-      }
-    };
-
-    var tabTitles = [{
-      title: 'General',
-      arrow: true,
-      onClick: function onClick() {
-        _this2.changeTab(1);
-      },
-      isActive: function isActive() {
-        return activeTab === 1;
-      }
-    }, {
-      title: 'File Store',
-      arrow: false,
-      onClick: function onClick() {
-        _this2.changeTab(2);
-      },
-      isActive: function isActive() {
-        return activeTab === 2;
-      }
-    }];
-
-    return _react2.default.createElement(
-      'div',
-      { className: _ProjectNewModal2.default.stepModal + ' layout-column' },
-      _react2.default.createElement(
-        'div',
-        { className: _ProjectNewModal2.default.modalTitle },
-        _react2.default.createElement(
-          _ArrowTabs.ArrowTabs,
-          { className: 'layout-row flex' },
-          tabTitles.map(function (tab) {
-            return _react2.default.createElement(
-              _ArrowTabs.ArrowTab,
-              {
-                key: tab.title,
-                arrow: tab.arrow,
-                onClick: tab.onClick,
-                isActive: tab.isActive()
-              },
-              tab.title
-            );
-          })
-        )
-      ),
-      getTab()
-    );
+      return (_this3 = _this).__changeTab__REACT_HOT_LOADER__.apply(_this3, arguments);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
-});
 
-///////////////////////////////// CONTAINER /////////////////////////////////
+  (0, _createClass3.default)(ProjectNewModal, [{
+    key: '__createProject__REACT_HOT_LOADER__',
+    value: function __createProject__REACT_HOT_LOADER__() {
+      var _this4 = this;
 
-// Sub Components
+      var _props = this.props,
+          newProject = _props.newProject,
+          goToProjectSettings = _props.goToProjectSettings,
+          createProject = _props.createProject,
+          linkRemote = _props.linkRemote,
+          modalConfirm = _props.modalConfirm,
+          auth = _props.auth;
+
+      var newProjectData = (0, _pick3.default)(newProject, ['private', 'name', 'summary']);
+      createProject(newProjectData).then(function (_ref2) {
+        var value = _ref2.value;
 
 
-// Styles
-function mapStateToProps(_ref2) {
-  var auth = _ref2.auth,
-      projects = _ref2.projects;
+        var goToProject = function goToProject() {
+          goToProjectSettings({ projectId: value.data._id });
+          modalConfirm();
+        };
 
-  return {
-    auth: auth,
-    newProject: projects.newProject,
-    entityModel: 'projects.newProject'
-  };
-}
+        var canLink = value.data._id && newProject.provider && newProject.root.path && newProject.root.fileId;
 
-function mapDispatchToProps(dispatch) {
-  return {
-    projectsActions: (0, _redux.bindActionCreators)(ProjectsActions, dispatch),
-    dispatch: dispatch
-  };
-}
+        // Link the provider if we can.
+        if (canLink) {
+          _this4.setState({ linkPending: true });
+          linkRemote({
+            projectId: value.data._id,
+            provider: newProject.provider,
+            path: newProject.root.path,
+            id: newProject.root.fileId,
+            userId: auth.user._id
+          }).then(function () {
+            // After we have linked, we go to the project
+            _this4.setState({ linkPending: false });
+            goToProject();
+          }).catch(function () {
+            // If the link fails, we still go to the project
+            _this4.setState({ linkPending: false });
+            goToProject();
+          });
+        } else {
+          goToProject();
+        }
+      });
+    }
+  }, {
+    key: '__changeTab__REACT_HOT_LOADER__',
+    value: function __changeTab__REACT_HOT_LOADER__(activeTab) {
+      this.setState({ activeTab: activeTab });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this5 = this;
 
-var modalName = 'NEW_PROJECT';
-var ModalComponent = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Component);
-(0, _ModalRegistry.registerModal)(modalName, ModalComponent);
-var _default = modalName;
-var _default2 = _default;
-exports.default = _default2;
+      var _props2 = this.props,
+          newProject = _props2.newProject,
+          entityModel = _props2.entityModel,
+          modalCancel = _props2.modalCancel;
+      var _state = this.state,
+          activeTab = _state.activeTab,
+          linkPending = _state.linkPending;
+
+
+      var namePanelTemplate = function namePanelTemplate() {
+        return _react2.default.createElement(
+          'div',
+          { className: _ProjectNewModal2.default.panel },
+          _react2.default.createElement(
+            'h3',
+            null,
+            'Name and blurb'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Set your project name and blurb.'
+          ),
+          _react2.default.createElement(_Input2.default, {
+            model: entityModel + '.name',
+            value: newProject.name,
+            className: 'dr-input',
+            type: 'text',
+            placeholder: 'Project Name',
+            autoFocus: true
+          }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(_Textarea2.default, {
+            model: entityModel + '.summary',
+            value: newProject.summary,
+            className: 'dr-input',
+            placeholder: 'Project Summary'
+          })
+        );
+      };
+
+      var permissionsTemplate = function permissionsTemplate() {
+        return _react2.default.createElement(
+          'div',
+          { className: _ProjectNewModal2.default.panel },
+          _react2.default.createElement(
+            'h3',
+            null,
+            'Project Type'
+          ),
+          _react2.default.createElement(_ProjectPermissionsRadio2.default, {
+            model: entityModel + '.private',
+            value: (0, _get3.default)(newProject, 'private')
+          })
+        );
+      };
+
+      var fileStoreTemplate = function fileStoreTemplate() {
+        return _react2.default.createElement(
+          'div',
+          { className: _ProjectNewModal2.default.panel + ' rel-box' },
+          _react2.default.createElement(
+            'h3',
+            null,
+            'Cloud Storage Folder'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Select your project\'s cloud store location.'
+          ),
+          _react2.default.createElement(_ProjectLinkRemote2.default, {
+            model: entityModel + '.provider',
+            value: newProject.provider
+          }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(_FileSelectInput2.default, {
+            disabled: !['drive', 'dropbox'].includes(newProject.provider),
+            provider: newProject.provider,
+            model: entityModel + '.root',
+            value: newProject.root || {}
+          }),
+          _react2.default.createElement(_LoadingOverlay2.default, { show: newProject.savePending || linkPending })
+        );
+      };
+
+      var tabTemplate = function tabTemplate(_ref3) {
+        var title = _ref3.title,
+            blurb = _ref3.blurb,
+            body = _ref3.body,
+            button1 = _ref3.button1,
+            button2 = _ref3.button2;
+
+        return _react2.default.createElement(
+          'div',
+          { className: 'layout-column flex' },
+          _react2.default.createElement(
+            'div',
+            { className: _ProjectNewModal2.default.modalBody + ' layout-column flex' },
+            _react2.default.createElement(
+              _PanelDescription2.default,
+              {
+                title: title,
+                description: blurb
+              },
+              body
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: _ProjectNewModal2.default.modalFooter + ' layout-row layout-align-end' },
+            _react2.default.createElement(
+              _Button2.default,
+              { style: { marginRight: '10px' }, onClick: button1.onClick },
+              button1.text
+            ),
+            _react2.default.createElement(
+              _Button2.default,
+              { className: 'primary', onClick: button2.onClick },
+              button2.text
+            )
+          )
+        );
+      };
+
+      var getTab = function getTab() {
+        if (activeTab == 1) {
+          return tabTemplate({
+            title: 'Create Project',
+            blurb: 'Enter general display details such as project name and blurb. Remember to set a blurb if you want to open-source your project.',
+            body: _react2.default.createElement(
+              'div',
+              null,
+              namePanelTemplate(),
+              permissionsTemplate()
+            ),
+            button1: {
+              text: 'Cancel',
+              onClick: modalCancel
+            },
+            button2: {
+              text: 'Next',
+              onClick: function onClick() {
+                return _this5.changeTab(2);
+              }
+            }
+          });
+        } else if (activeTab == 2) {
+          return tabTemplate({
+            title: 'File Store',
+            blurb: 'Connect a cloud provider (Dropbox or Drive). This will give you access to version control and collaboration features.',
+            body: _react2.default.createElement(
+              'div',
+              null,
+              fileStoreTemplate()
+            ),
+            button1: {
+              text: 'Back',
+              onClick: function onClick() {
+                return _this5.changeTab(1);
+              }
+            },
+            button2: {
+              text: 'Create',
+              onClick: _this5.createProject
+            }
+          });
+        }
+      };
+
+      var tabTitles = [{
+        title: 'General',
+        arrow: true,
+        onClick: function onClick() {
+          _this5.changeTab(1);
+        },
+        isActive: function isActive() {
+          return activeTab === 1;
+        }
+      }, {
+        title: 'File Store',
+        arrow: false,
+        onClick: function onClick() {
+          _this5.changeTab(2);
+        },
+        isActive: function isActive() {
+          return activeTab === 2;
+        }
+      }];
+
+      return _react2.default.createElement(
+        'div',
+        { className: _ProjectNewModal2.default.stepModal + ' layout-column' },
+        _react2.default.createElement(
+          'div',
+          { className: _ProjectNewModal2.default.modalTitle },
+          _react2.default.createElement(
+            _ArrowTabs.ArrowTabs,
+            { className: 'layout-row flex' },
+            tabTitles.map(function (tab) {
+              return _react2.default.createElement(
+                _ArrowTabs.ArrowTab,
+                {
+                  key: tab.title,
+                  arrow: tab.arrow,
+                  onClick: tab.onClick,
+                  isActive: tab.isActive()
+                },
+                tab.title
+              );
+            })
+          )
+        ),
+        getTab()
+      );
+    }
+  }]);
+  return ProjectNewModal;
+}(_react.Component);
+
+exports.default = ProjectNewModal;
 ;
 
-var _temp = function () {
+var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.jsx');
-
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.jsx');
-
-  __REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.jsx');
-
-  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.jsx');
-
-  __REACT_HOT_LOADER__.register(ModalComponent, 'ModalComponent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.jsx');
+  __REACT_HOT_LOADER__.register(ProjectNewModal, 'ProjectNewModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/ProjectNewModal/ProjectNewModal.jsx');
 }();
 
 ;
 ;
 
-var _temp2 = function () {
+var _temp3 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -35782,7 +35861,7 @@ var getUserProjects = exports.getUserProjects = function getUserProjects(_ref3) 
         parentId: userId,
         size: 1000,
         published: 'both',
-        select: ['_id', 'picture', 'stub', 'name', 'type', 'remote', 'updated', 'blurb', 'permissions']
+        select: ['_id', 'picture', 'stub', 'name', 'type', 'remote', 'updated', 'blurb', 'private']
       }
     }),
     meta: {
@@ -39076,6 +39155,45 @@ module.exports = __webpack_require__.p + "images/kml.svg?20b17c6cb2bd43595774566
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__("crlp")('asyncIterator');
+
+/***/ },
+
+/***/ "Odj4":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _ProjectNewModal = __webpack_require__("1Ouf");
+
+var _ProjectNewModal2 = _interopRequireDefault(_ProjectNewModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _ProjectNewModal2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -50213,12 +50331,11 @@ var _lockOutline2 = _interopRequireDefault(_lockOutline);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(props) {
-  var type = props.type,
-      style = props.style,
-      otherProps = (0, _objectWithoutProperties3.default)(props, ['type', 'style']);
+  var style = props.style,
+      otherProps = (0, _objectWithoutProperties3.default)(props, ['style']);
 
 
-  return props.type === 'public' ? _react2.default.createElement(_public2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#bbe8bb' }, style) }, otherProps)) : _react2.default.createElement(_lockOutline2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#f5dbab' }, style) }, otherProps));
+  return props.private ? _react2.default.createElement(_lockOutline2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#f5dbab' }, style) }, otherProps)) : _react2.default.createElement(_public2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#bbe8bb' }, style) }, otherProps));
 };
 
 var _default2 = _default;
@@ -75323,9 +75440,7 @@ var initialState = {
       fileId: ''
     },
     provider: '',
-    permissions: {
-      projectType: 'public'
-    },
+    private: false,
     savePending: ''
   }
 };
@@ -75515,7 +75630,7 @@ var _AuthActions = __webpack_require__("+z2A");
 
 var _ModalActions = __webpack_require__("u2h7");
 
-var _ProjectNewModal = __webpack_require__("LGMU");
+var _ProjectNewModal = __webpack_require__("Odj4");
 
 var _ProjectNewModal2 = _interopRequireDefault(_ProjectNewModal);
 
@@ -86173,6 +86288,13 @@ var Component = exports.Component = _react2.default.createClass({
     var prevValue = this.state.value;
     var newValue = event.target.value;
 
+    // Convert 'true' and 'false' to bool
+    if (newValue === 'true') {
+      newValue = true;
+    } else if (newValue === 'false') {
+      newValue = false;
+    }
+
     // Toggle if checkbox
     // Value can be: true || false || 'other' || undefined
     if (type == 'checkbox') {
@@ -87901,4 +88023,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.5ded62fd10bcac348762.js.map
+//# sourceMappingURL=application.18217eb01df478f5fd1c.js.map
