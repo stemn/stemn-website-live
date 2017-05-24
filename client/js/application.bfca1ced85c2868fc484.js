@@ -21286,7 +21286,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(28).then(__webpack_require__.bind(null, "WnvL")), cb);
   };
   var getProjectSettingsGeneral = function getProjectSettingsGeneral(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(13), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "NH44")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(14), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "NH44")), cb);
   };
   var getProjectSettingsPermissions = function getProjectSettingsPermissions(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, "PAeO")), cb);
@@ -21331,7 +21331,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(23), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "vwLr")), cb);
   };
   var getSettingsProfile = function getSettingsProfile(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(14), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "WMt1")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(13), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "WMt1")), cb);
   };
   var getSettingsProfileDetails = function getSettingsProfileDetails(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, "q8Uh")), cb);
@@ -37238,7 +37238,9 @@ var ModalComponent = function (_Component) {
           isOpen: true,
           onRequestClose: this.onRequestClose,
           className: _Modal2.default.modal,
-          overlayClassName: overlayClassName },
+          overlayClassName: overlayClassName,
+          contentLabel: modal.modalType
+        },
         this.renderContent()
       );
     }
@@ -50332,10 +50334,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = function _default(props) {
   var style = props.style,
-      otherProps = (0, _objectWithoutProperties3.default)(props, ['style']);
+      priv = props.private,
+      otherProps = (0, _objectWithoutProperties3.default)(props, ['style', 'private']);
 
 
-  return props.private ? _react2.default.createElement(_lockOutline2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#f5dbab' }, style) }, otherProps)) : _react2.default.createElement(_public2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#bbe8bb' }, style) }, otherProps));
+  return priv ? _react2.default.createElement(_lockOutline2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#f5dbab' }, style) }, otherProps)) : _react2.default.createElement(_public2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#bbe8bb' }, style) }, otherProps));
 };
 
 var _default2 = _default;
@@ -54903,9 +54906,7 @@ var Component = function (_React$Component) {
 
 ;
 
-var _default = (0, _reactRedux.connect)(function (s) {
-  return s;
-})(Component);
+var _default = (0, _reactRedux.connect)()(Component);
 
 var _default2 = _default;
 exports.default = _default2;
@@ -62100,7 +62101,8 @@ var getFeed = exports.getFeed = function getFeed() {
       method: 'GET',
       url: '/api/v1/feed',
       params: {
-        types: ['commits'],
+        size: 50,
+        //      types: ['commits'],
         feedType: feedType }
     }),
     meta: {
@@ -88023,4 +88025,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.18217eb01df478f5fd1c.js.map
+//# sourceMappingURL=application.bfca1ced85c2868fc484.js.map
