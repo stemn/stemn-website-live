@@ -1,277 +1,10 @@
-webpackJsonp([6,61],{
-
-/***/ "/jJV":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _objectWithoutProperties2 = __webpack_require__("+6Bu");
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__("Zx67");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("Zrlr");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("wxAW");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("zwoO");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("Pf15");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _keys = __webpack_require__("fZjL");
-
-var _keys2 = _interopRequireDefault(_keys);
-
-var _orderBy2 = __webpack_require__("Ba3q");
-
-var _orderBy3 = _interopRequireDefault(_orderBy2);
-
-var _groupBy2 = __webpack_require__("swUc");
-
-var _groupBy3 = _interopRequireDefault(_groupBy2);
-
-var _class, _temp2;
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _moment = __webpack_require__("PJh5");
-
-var _moment2 = _interopRequireDefault(_moment);
-
-var _TimelineItem = __webpack_require__("rxMF");
-
-var _TimelineItem2 = _interopRequireDefault(_TimelineItem);
-
-var _TimelineVertical = __webpack_require__("t9it");
-
-var _TimelineVertical2 = _interopRequireDefault(_TimelineVertical);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var groupByDay = function groupByDay(data) {
-  var groupedObject = (0, _groupBy3.default)(data, function (item) {
-    return (0, _moment2.default)(item.timestamp).format('YY/MM/DD');
-  });
-  var groupedArray = (0, _keys2.default)(groupedObject).map(function (key) {
-    return {
-      date: key,
-      items: groupedObject[key]
-    };
-  });
-  var groupedArrayOrdered = (0, _orderBy3.default)(groupedArray, 'date', 'desc');
-  return groupedArrayOrdered;
-};
-
-var getCalendarText = function getCalendarText(time) {
-  return (0, _moment2.default)(time).calendar().split(' at')[0];
-};
-
-var TimelineVertical = (_temp2 = _class = function (_Component) {
-  (0, _inherits3.default)(TimelineVertical, _Component);
-
-  function TimelineVertical() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, TimelineVertical);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TimelineVertical.__proto__ || (0, _getPrototypeOf2.default)(TimelineVertical)).call.apply(_ref, [this].concat(args))), _this), _this.renderItems = function () {
-      var _this2;
-
-      return (_this2 = _this).__renderItems__REACT_HOT_LOADER__.apply(_this2, arguments);
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(TimelineVertical, [{
-    key: '__renderItems__REACT_HOT_LOADER__',
-    value: function __renderItems__REACT_HOT_LOADER__(items) {
-      var _this3 = this;
-
-      return items.map(function (item) {
-        return _react2.default.createElement(_TimelineItem2.default, { key: item._id, item: item, type: _this3.props.type, entity: _this3.props.entity });
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this4 = this;
-
-      var _props = this.props,
-          items = _props.items,
-          type = _props.type,
-          group = _props.group,
-          entity = _props.entity,
-          otherProps = (0, _objectWithoutProperties3.default)(_props, ['items', 'type', 'group', 'entity']);
-
-
-      if (!items || items.length === 0) return _react2.default.createElement(
-        'div',
-        { className: 'text-title-5' },
-        'Timeline empty'
-      );
-
-      if (group) {
-        var groupedByDay = groupByDay(items);
-        return _react2.default.createElement(
-          'div',
-          otherProps,
-          groupedByDay.map(function (group) {
-            return _react2.default.createElement(
-              'div',
-              { className: _TimelineVertical2.default.group, key: group.date },
-              _react2.default.createElement(
-                'div',
-                { className: _TimelineVertical2.default.groupTitle + ' text-mini-caps' },
-                getCalendarText(group.items[0].timestamp)
-              ),
-              _this4.renderItems(group.items)
-            );
-          })
-        );
-      } else {
-        var orderedItems = (0, _orderBy3.default)(items, 'timestamp', 'desc');
-        return _react2.default.createElement(
-          'div',
-          null,
-          this.renderItems(orderedItems)
-        );
-      }
-    }
-  }]);
-  return TimelineVertical;
-}(_react.Component), _class.propTypes = {
-  type: _react.PropTypes.oneOf(['feed', 'user', 'file', 'task', 'project']),
-  items: _react.PropTypes.array,
-  group: _react.PropTypes.bool,
-  entity: _react.PropTypes.object
-}, _temp2);
-exports.default = TimelineVertical;
-;
-
-var _temp3 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(TimelineVertical, 'TimelineVertical', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/TimelineVertical/TimelineVertical.jsx');
-
-  __REACT_HOT_LOADER__.register(groupByDay, 'groupByDay', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/TimelineVertical/TimelineVertical.jsx');
-
-  __REACT_HOT_LOADER__.register(getCalendarText, 'getCalendarText', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/TimelineVertical/TimelineVertical.jsx');
-}();
-
-;
-;
-
-var _temp4 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
+webpackJsonp([7,61],{
 
 /***/ "0MEN":
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"primary":"rgb(68, 154, 211)","slider":"FileCompareSlider_slider-3e-Om","active":"FileCompareSlider_active-2S86s"};
-
-/***/ },
-
-/***/ "0jvu":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _SimpleTable = __webpack_require__("Oygz");
-
-var _SimpleTable2 = _interopRequireDefault(_SimpleTable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-///////////////////////////////// COMPONENT /////////////////////////////////
-
-// Component Core
-var _default = _react2.default.createClass({
-  displayName: '_default',
-  render: function render() {
-    var children = this.props.children;
-
-    return _react2.default.createElement(
-      'table',
-      { className: _SimpleTable2.default.table },
-      _react2.default.createElement(
-        'tbody',
-        null,
-        children
-      )
-    );
-  }
-});
-
-// Styles
-
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tables/SimpleTable/SimpleTable.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tables/SimpleTable/SimpleTable.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -334,30 +67,6 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "1PO8":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"primary":"rgb(68, 154, 211)","primary-2":"rgb(64, 129, 173)","item":"TimelineItem_item-1mj4k","avatar":"TimelineItem_avatar-1EiVH"};
-
-/***/ },
-
-/***/ "2aAI":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","item":"TimelineWrapper_item-14OBh","marker":"TimelineWrapper_marker-26RGT"};
-
-/***/ },
-
-/***/ "2h8Z":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","grey-3":"rgba(0, 0, 0, 0.5)","comment":"Comment_comment-3Y0xc","commentAvatar":"Comment_commentAvatar-2XsKx","commentBody":"Comment_commentBody-2b90y","commentBodyHidden":"Comment_commentBodyHidden-2TK3X","commentHeader":"Comment_commentHeader-3t42A","date":"Comment_date-3DZJW","commentContent":"Comment_commentContent-1vfaK","commentFooter":"Comment_commentFooter-2oNxt","reactions":"Comment_reactions-1CUyQ","commentNew":"Comment_commentNew-1NRnt"};
-
-/***/ },
-
 /***/ "2v8s":
 /***/ function(module, exports) {
 
@@ -410,6 +119,54 @@ function forEach(collection, iteratee) {
 
 module.exports = forEach;
 
+
+/***/ },
+
+/***/ "37Zr":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Crumb = exports.Breadcrumbs = undefined;
+
+var _Breadcrumbs2 = __webpack_require__("iMBo");
+
+var _Breadcrumbs3 = _interopRequireDefault(_Breadcrumbs2);
+
+var _Crumb2 = __webpack_require__("7acK");
+
+var _Crumb3 = _interopRequireDefault(_Crumb2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Breadcrumbs = exports.Breadcrumbs = _Breadcrumbs3.default;
+var Crumb = exports.Crumb = _Crumb3.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Breadcrumbs, 'Breadcrumbs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Breadcrumbs/index.js');
+
+  __REACT_HOT_LOADER__.register(Crumb, 'Crumb', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Breadcrumbs/index.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -477,180 +234,6 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "3xiL":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _getPrototypeOf = __webpack_require__("Zx67");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("Zrlr");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("wxAW");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("zwoO");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("Pf15");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _get2 = __webpack_require__("Q7hp");
-
-var _get3 = _interopRequireDefault(_get2);
-
-var _dec, _dec2, _class;
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _FetchDataHoc = __webpack_require__("YapR");
-
-var _FetchDataHoc2 = _interopRequireDefault(_FetchDataHoc);
-
-var _SyncTimelineActions = __webpack_require__("frFe");
-
-var _FilesActions = __webpack_require__("iLLw");
-
-var _reactRouterRedux = __webpack_require__("jZgO");
-
-var _FileCompare = __webpack_require__("tDaj");
-
-var _File = __webpack_require__("Sm6U");
-
-var _File2 = _interopRequireDefault(_File);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var stateToProps = function stateToProps(_ref, _ref2) {
-  var files = _ref.files,
-      fileCompare = _ref.fileCompare,
-      syncTimeline = _ref.syncTimeline;
-  var params = _ref2.params,
-      location = _ref2.location;
-  var projectId = params.projectId,
-      fileId = params.fileId;
-
-  var revisionId = location.query.revision;
-  var cacheKey = fileId + '-' + revisionId;
-  return {
-    cacheKey: cacheKey,
-    fileId: fileId,
-    compare: (0, _get3.default)(fileCompare, cacheKey, {}),
-    file: files.fileMeta[cacheKey],
-    projectId: projectId,
-    revisonId: revisionId || '',
-    timeline: (0, _get3.default)(syncTimeline, cacheKey, {}),
-    relatedTasks: files.relatedTasks[fileId]
-  };
-};
-
-var dispatchToProps = {
-  changeMode: _FileCompare.changeMode,
-  fetchTimeline: _SyncTimelineActions.fetchTimeline,
-  getMeta: _FilesActions.getMeta,
-  getRelatedTasks: _FilesActions.getRelatedTasks,
-  initCompare: _FileCompare.initCompare,
-  pushRoute: _reactRouterRedux.push,
-  select: _FileCompare.select
-};
-
-var fetchConfigs = [{
-  hasChanged: 'cacheKey',
-  onChange: function onChange(props) {
-    props.getMeta({
-      fileId: props.fileId,
-      revisionId: props.revisionId,
-      projectId: props.projectId,
-      cacheKey: props.cacheKey
-    });
-    props.getRelatedTasks({
-      fileId: props.fileId,
-      projectId: props.projectId
-    });
-    props.fetchTimeline({
-      entityType: 'file',
-      entityId: props.fileId,
-      cacheKey: props.cacheKey
-    });
-  }
-}, {
-  hasChanged: 'file.data.fileId',
-  onChange: function onChange(props) {
-    if ((0, _get3.default)(props, 'file.data.fileId')) {
-      props.initCompare({
-        cacheKey: props.cacheKey,
-        file: props.file
-      });
-    }
-  }
-}];
-
-var FileContainer = (_dec = (0, _reactRedux.connect)(stateToProps, dispatchToProps), _dec2 = (0, _FetchDataHoc2.default)(fetchConfigs), _dec(_class = _dec2(_class = function (_Component) {
-  (0, _inherits3.default)(FileContainer, _Component);
-
-  function FileContainer() {
-    (0, _classCallCheck3.default)(this, FileContainer);
-    return (0, _possibleConstructorReturn3.default)(this, (FileContainer.__proto__ || (0, _getPrototypeOf2.default)(FileContainer)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(FileContainer, [{
-    key: 'render',
-    value: function render() {
-      var file = this.props.file;
-
-
-      return file && file.data ? _react2.default.createElement(_File2.default, this.props) : null;
-    }
-  }]);
-  return FileContainer;
-}(_react.Component)) || _class) || _class);
-exports.default = FileContainer;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(FileContainer, 'FileContainer', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.container.js');
-
-  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.container.js');
-
-  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.container.js');
-
-  __REACT_HOT_LOADER__.register(fetchConfigs, 'fetchConfigs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.container.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "4uMU":
 /***/ function(module, exports) {
 
@@ -672,6 +255,150 @@ var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "6DBV":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TogglePanel = undefined;
+
+var _defineProperty2 = __webpack_require__("bOdI");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _TogglePanelActions = __webpack_require__("z53e");
+
+var _TogglePanel = __webpack_require__("vVr8");
+
+var _TogglePanel2 = _interopRequireDefault(_TogglePanel);
+
+var _chevronRight = __webpack_require__("raO4");
+
+var _chevronRight2 = _interopRequireDefault(_chevronRight);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**************************************************************
+  <TogglePanel cacheKey="some-cache-id">
+    <div className="layout-row flex layout-align-start-center">
+      <div className="flex">Header Content</div>
+    </div>
+    <div>
+      Panel Content
+    </div>
+  </TogglePanel>
+**************************************************************/
+
+var TogglePanel = exports.TogglePanel = _react2.default.createClass({
+  displayName: 'TogglePanel',
+
+  propTypes: {
+    cacheKey: _react.PropTypes.string.isRequired },
+  toggle: function toggle(toState) {
+    this.props.dispatch((0, _TogglePanelActions.toggle)({
+      cacheKey: this.props.cacheKey,
+      value: toState
+    }));
+  },
+  render: function render() {
+    var _this = this;
+
+    var _props = this.props,
+        toggleState = _props.toggleState,
+        className = _props.className;
+
+    var getContent = function getContent() {
+      if (toggleState) {
+        return _react2.default.createElement(
+          'div',
+          { className: _TogglePanel2.default.content },
+          _this.props.children[2]
+        );
+      }
+    };
+    return _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'div',
+        { className: (0, _classnames2.default)(_TogglePanel2.default.titleBar, 'layout-row layout-align-start-center', className) },
+        _react2.default.createElement(_chevronRight2.default, { onClick: function onClick() {
+            return _this.toggle(null);
+          }, className: (0, _classnames2.default)(_TogglePanel2.default.toggleIcon, (0, _defineProperty3.default)({}, _TogglePanel2.default.toggleIconActive, toggleState)), size: '22' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'flex layout-row layout-align-start-center' },
+          _react2.default.createElement(
+            'div',
+            { className: 'flex', onClick: function onClick() {
+                return _this.toggle(null);
+              } },
+            this.props.children[0]
+          ),
+          this.props.children[1]
+        )
+      ),
+      getContent()
+    );
+  }
+});
+
+var mapStateToProps = function mapStateToProps(_ref, _ref2) {
+  var togglePanel = _ref.togglePanel;
+  var cacheKey = _ref2.cacheKey;
+
+  return {
+    toggleState: togglePanel[cacheKey]
+  };
+};
+
+var _default = (0, _reactRedux.connect)(mapStateToProps)(TogglePanel);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(TogglePanel, 'TogglePanel', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.jsx');
+
+  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.jsx');
 }();
 
 ;
@@ -848,11 +575,65 @@ module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","
 
 /***/ },
 
-/***/ "6pkq":
-/***/ function(module, exports) {
+/***/ "6wP3":
+/***/ function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
-module.exports = {"header":"File_header-30wvx","timeline":"File_timeline-Nlzyc","sidebar":"File_sidebar-1LU3u","isOpen":"File_isOpen-2Wbgw","sidebarButton":"File_sidebarButton-2j1de","preview":"File_preview-1TZKZ","sidebarTitle":"File_sidebarTitle-kfk1D"};
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.groupRevisions = undefined;
+
+var _assign = __webpack_require__("woOf");
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _sortBy2 = __webpack_require__("KBYM");
+
+var _sortBy3 = _interopRequireDefault(_sortBy2);
+
+var _values2 = __webpack_require__("L8MQ");
+
+var _values3 = _interopRequireDefault(_values2);
+
+var _groupBy2 = __webpack_require__("swUc");
+
+var _groupBy3 = _interopRequireDefault(_groupBy2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var groupRevisions = exports.groupRevisions = function groupRevisions(revisions) {
+  // Group revisions by FileId - add the other revisions to an array
+  var grouped = (0, _values3.default)((0, _groupBy3.default)(revisions, 'data.fileId')).map(function (file) {
+    return (0, _assign2.default)({}, file[0], { revisions: file });
+  });
+  // Sort by path - items not in folders should appear first
+  return (0, _sortBy3.default)(grouped, [function (item) {
+    return item.data.path.split('/').length == 1 ? 1 : 2;
+  }, 'data.path']);
+};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(groupRevisions, 'groupRevisions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Timeline/Timeline.utils.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -900,6 +681,119 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/assets/icons/compare/single.js');
 
   __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/assets/icons/compare/single.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "7acK":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__("+6Bu");
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Crumb = __webpack_require__("Ase/");
+
+var _Crumb2 = _interopRequireDefault(_Crumb);
+
+var _stringConcat = __webpack_require__("19Kw");
+
+var _Link = __webpack_require__("GeCl");
+
+var _Link2 = _interopRequireDefault(_Link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Crumb = function (_Component) {
+  (0, _inherits3.default)(Crumb, _Component);
+
+  function Crumb() {
+    (0, _classCallCheck3.default)(this, Crumb);
+    return (0, _possibleConstructorReturn3.default)(this, (Crumb.__proto__ || (0, _getPrototypeOf2.default)(Crumb)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(Crumb, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          text = _props.text,
+          otherProps = (0, _objectWithoutProperties3.default)(_props, ['text']);
+
+      return _react2.default.createElement(
+        _Link2.default,
+        (0, _extends3.default)({ className: (0, _classnames2.default)(_Crumb2.default.crumb, 'link-primary') }, otherProps),
+        _react2.default.createElement(
+          'span',
+          { className: _Crumb2.default.slash },
+          '/'
+        ),
+        (0, _stringConcat.middle)(text, 20, 0.6)
+      );
+    }
+  }]);
+  return Crumb;
+}(_react.Component);
+
+exports.default = Crumb;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Crumb, 'Crumb', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Breadcrumbs/Crumb.jsx');
 }();
 
 ;
@@ -1217,6 +1111,21 @@ module.exports = intersection;
 
 /***/ },
 
+/***/ "ApCO":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ "Ase/":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"crumb":"Crumb_crumb-3HqzC","slash":"Crumb_slash-NK-9h"};
+
+/***/ },
+
 /***/ "Cc65":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1278,6 +1187,14 @@ var _temp2 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "DDgy":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"header":"SubSubHeader_header-3_JRv","headerBorder":"SubSubHeader_headerBorder-3N5ww"};
 
 /***/ },
 
@@ -1854,7 +1771,7 @@ exports.default = clickDrag;
 
 /***/ },
 
-/***/ "G/eK":
+/***/ "FTSl":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1865,13 +1782,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _TimelineVertical = __webpack_require__("/jJV");
+var _ProjectCommit = __webpack_require__("h5iT");
 
-var _TimelineVertical2 = _interopRequireDefault(_TimelineVertical);
+var _ProjectCommit2 = _interopRequireDefault(_ProjectCommit);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _TimelineVertical2.default;
+exports.default = _ProjectCommit2.default;
 ;
 
 var _temp = function () {
@@ -1893,7 +1810,7 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "Hsn5":
+/***/ "Ia4n":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1904,44 +1821,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _Comment = __webpack_require__("ipaV");
+var _extends2 = __webpack_require__("Dd8w");
 
-var _Comment2 = _interopRequireDefault(_Comment);
+var _extends3 = _interopRequireDefault(_extends2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _objectWithoutProperties2 = __webpack_require__("+6Bu");
 
-exports.default = _Comment2.default;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "KRjC":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 var _getPrototypeOf = __webpack_require__("Zx67");
 
@@ -1969,266 +1855,52 @@ var _react = __webpack_require__("U7vG");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Link = __webpack_require__("GeCl");
+var _SubSubHeader = __webpack_require__("DDgy");
 
-var _Link2 = _interopRequireDefault(_Link);
+var _SubSubHeader2 = _interopRequireDefault(_SubSubHeader);
 
-var _TaskLabelDots = __webpack_require__("mZaw");
+var _classnames = __webpack_require__("HW6M");
 
-var _TaskLabelDots2 = _interopRequireDefault(_TaskLabelDots);
+var _classnames2 = _interopRequireDefault(_classnames);
 
-var _pluralise = __webpack_require__("LPSb");
-
-var _pluralise2 = _interopRequireDefault(_pluralise);
+var _Layout = __webpack_require__("PjCM");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var eventTextMap = {
-  uncompleted: function uncompleted(item, type, entity) {
-    return _react2.default.createElement(
-      'span',
-      null,
-      're-opened this task'
-    );
-  },
-  addAsignee: function addAsignee(item, type, entity) {
-    return _react2.default.createElement(
-      'span',
-      null,
-      'was assigned to this task'
-    );
-  },
-  removeAsignee: function removeAsignee(item, type, entity) {
-    return _react2.default.createElement(
-      'span',
-      null,
-      'was removed from assignees'
-    );
-  },
-  revision: function revision(item, type, entity) {
-    var fileRouteParams = {
-      projectId: item.data.project._id,
-      fileId: item.data.fileId,
-      revisionId: item.data.revisionId
-    };
-    if (type === 'file') {
-      return _react2.default.createElement(
-        'span',
-        null,
-        !item.data.revisionNumber || item.data.revisionNumber === 0 ? 'created this file' : 'added rev.' + item.data.revisionNumber
-      );
-    } else {
-      return _react2.default.createElement(
-        'span',
-        null,
-        !item.data.revisionNumber || item.data.revisionNumber === 0 ? 'created' : 'added revision ' + item.data.revisionNumber + ' to',
-        _react2.default.createElement(
-          _Link2.default,
-          { name: 'fileRoute', params: fileRouteParams },
-          item.data.name
-        )
-      );
-    }
-  },
-  task: function task(item, type, entity) {
-    var params = {
-      projectId: item.data.project,
-      taskId: item._id
-    };
-    return _react2.default.createElement(
-      'span',
-      null,
-      'added a new thread:',
-      _react2.default.createElement(
-        _Link2.default,
-        { name: 'taskRoute', params: params },
-        item.data.name
-      )
-    );
-  },
-  commit: function commit(item, type, entity) {
-    var params = {
-      projectId: item.data.project._id,
-      commitId: item._id
-    };
-    if (type === 'file') {
-      return _react2.default.createElement(
-        'span',
-        null,
-        'added this file to commit:',
-        _react2.default.createElement(
-          _Link2.default,
-          { name: 'commitRoute', params: params },
-          item.data.summary
-        )
-      );
-    } else if (type === 'feed') {
-      return _react2.default.createElement(
-        'span',
-        null,
-        'added a commit',
-        _react2.default.createElement(
-          _Link2.default,
-          { name: 'commitRoute', params: params },
-          item.data.summary
-        ),
-        'to',
-        _react2.default.createElement(
-          _Link2.default,
-          { name: 'projectRoute', params: params },
-          item.data.project.name || 'Untitled Project'
-        )
-      );
-    } else if (type === 'project' || type === 'user') {
-      return _react2.default.createElement(
-        'span',
-        null,
-        'added a commit',
-        _react2.default.createElement(
-          _Link2.default,
-          { name: 'commitRoute', params: params },
-          item.data.summary
-        ),
-        'containing ',
-        (0, _pluralise2.default)(item.data.items.length, 'revision')
-      );
-    } else if (type === 'task') {
-      return _react2.default.createElement(
-        'span',
-        null,
-        'referenced this thread in commit',
-        _react2.default.createElement(
-          _Link2.default,
-          { name: 'commitRoute', params: params },
-          item.data.summary
-        )
-      );
-    }
-  },
-  completed: function completed(item, type, entity) {
-    if (item.data.summary) {
-      var params = {
-        projectId: item.data.project._id,
-        commitId: item.commit._id
-      };
-      return _react2.default.createElement(
-        'span',
-        null,
-        'marked this as complete in commit',
-        _react2.default.createElement(
-          _Link2.default,
-          {
-            className: 'link-primary',
-            closeModals: true,
-            name: 'commitRoute',
-            params: params,
-            scope: 'main',
-            show: true
-          },
-          '\xA0',
-          item.data.summary
-        )
-      );
-    } else {
-      return _react2.default.createElement(
-        'span',
-        null,
-        'marked this as complete'
-      );
-    }
-  },
-  changedLabels: function changedLabels(item, type, entity) {
-    console.log(item);
-    if (type === 'task' || type === 'project') {
-      var hasAddedLabels = item.data.addedLabels && item.data.addedLabels.length > 0;
-      var hasRemovedLabels = item.data.removedLabels && item.data.removedLabels.length > 0;
-      var params = {
-        projectId: entity.data.project,
-        taskId: item.task._id
-      };
-      return _react2.default.createElement(
-        'span',
-        null,
-        hasAddedLabels && _react2.default.createElement(
-          'span',
-          null,
-          'added the\xA0',
-          _react2.default.createElement(_TaskLabelDots2.default, {
-            labels: item.data.addedLabels,
-            labelInfo: entity.data.labels,
-            tag: true
-          }),
-          (0, _pluralise2.default)(item.data.addedLabels.length, 'label', true)
-        ),
-        hasAddedLabels && hasRemovedLabels && _react2.default.createElement(
-          'span',
-          null,
-          '\xA0and\xA0'
-        ),
-        hasRemovedLabels && _react2.default.createElement(
-          'span',
-          null,
-          'removed the\xA0',
-          _react2.default.createElement(_TaskLabelDots2.default, {
-            labels: item.data.removedLabels,
-            labelInfo: entity.data.labels,
-            tag: true
-          }),
-          (0, _pluralise2.default)(item.data.removedLabels.length, 'label', true)
-        ),
-        type === 'project' && _react2.default.createElement(
-          'span',
-          null,
-          hasRemovedLabels ? ' from' : ' to',
-          _react2.default.createElement(
-            _Link2.default,
-            { name: 'taskRoute', params: params },
-            item.task.name || 'Untitled Thread'
-          )
-        )
-      );
-    } else {
-      return _react2.default.createElement(
-        'span',
-        null,
-        'Changed Labels'
-      );
-    }
-  }
-};
+var SubHeader = (_temp = _class = function (_Component) {
+  (0, _inherits3.default)(SubHeader, _Component);
 
-var TimelineItemText = (_temp = _class = function (_Component) {
-  (0, _inherits3.default)(TimelineItemText, _Component);
-
-  function TimelineItemText() {
-    (0, _classCallCheck3.default)(this, TimelineItemText);
-    return (0, _possibleConstructorReturn3.default)(this, (TimelineItemText.__proto__ || (0, _getPrototypeOf2.default)(TimelineItemText)).apply(this, arguments));
+  function SubHeader() {
+    (0, _classCallCheck3.default)(this, SubHeader);
+    return (0, _possibleConstructorReturn3.default)(this, (SubHeader.__proto__ || (0, _getPrototypeOf2.default)(SubHeader)).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(TimelineItemText, [{
+  (0, _createClass3.default)(SubHeader, [{
     key: 'render',
     value: function render() {
       var _props = this.props,
-          item = _props.item,
-          type = _props.type,
-          entity = _props.entity;
+          title = _props.title,
+          children = _props.children,
+          className = _props.className,
+          otherProps = (0, _objectWithoutProperties3.default)(_props, ['title', 'children', 'className']);
 
-      return eventTextMap[item.event] ? eventTextMap[item.event](item, type, entity) : _react2.default.createElement(
-        'span',
-        null,
-        'Unknown Event Type: ',
-        item.event
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({ className: (0, _classnames2.default)(_SubSubHeader2.default.header, className) }, otherProps),
+        _react2.default.createElement(
+          _Layout.Container,
+          null,
+          _react2.default.createElement('div', { className: _SubSubHeader2.default.headerBorder }),
+          children
+        )
       );
     }
   }]);
-  return TimelineItemText;
+  return SubHeader;
 }(_react.Component), _class.propTypes = {
-  type: _react.PropTypes.oneOf(['feed', 'user', 'file', 'task', 'project']),
-  item: _react.PropTypes.object,
-  entity: _react.PropTypes.object
+  children: _react.PropTypes.node
 }, _temp);
-exports.default = TimelineItemText;
-;
+exports.default = SubHeader;
 ;
 
 var _temp2 = function () {
@@ -2236,9 +1908,7 @@ var _temp2 = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(TimelineItemText, 'TimelineItemText', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/TimelineVertical/TimelineItem/TimelineItemText.jsx');
-
-  __REACT_HOT_LOADER__.register(eventTextMap, 'eventTextMap', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/TimelineVertical/TimelineItem/TimelineItemText.jsx');
+  __REACT_HOT_LOADER__.register(SubHeader, 'SubHeader', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/modules/SubSubHeader/SubSubHeader.jsx');
 }();
 
 ;
@@ -2251,6 +1921,66 @@ var _temp3 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "KBYM":
+/***/ function(module, exports, __webpack_require__) {
+
+var baseFlatten = __webpack_require__("1C79"),
+    baseOrderBy = __webpack_require__("6kJs"),
+    baseRest = __webpack_require__("YkxI"),
+    isIterateeCall = __webpack_require__("zBOP");
+
+/**
+ * Creates an array of elements, sorted in ascending order by the results of
+ * running each element in a collection thru each iteratee. This method
+ * performs a stable sort, that is, it preserves the original sort order of
+ * equal elements. The iteratees are invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {...(Function|Function[])} [iteratees=[_.identity]]
+ *  The iteratees to sort by.
+ * @returns {Array} Returns the new sorted array.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'fred',   'age': 48 },
+ *   { 'user': 'barney', 'age': 36 },
+ *   { 'user': 'fred',   'age': 40 },
+ *   { 'user': 'barney', 'age': 34 }
+ * ];
+ *
+ * _.sortBy(users, function(o) { return o.user; });
+ * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+ *
+ * _.sortBy(users, ['user', 'age']);
+ * // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+ *
+ * _.sortBy(users, 'user', function(o) {
+ *   return Math.floor(o.age / 10);
+ * });
+ * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+ */
+var sortBy = baseRest(function(collection, iteratees) {
+  if (collection == null) {
+    return [];
+  }
+  var length = iteratees.length;
+  if (length > 1 && isIterateeCall(collection, iteratees[0], iteratees[1])) {
+    iteratees = [];
+  } else if (length > 2 && isIterateeCall(iteratees[0], iteratees[1], iteratees[2])) {
+    iteratees = [iteratees[0]];
+  }
+  return baseOrderBy(collection, baseFlatten(iteratees, 1), []);
+});
+
+module.exports = sortBy;
+
 
 /***/ },
 
@@ -2401,144 +2131,6 @@ module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","
 
 /***/ },
 
-/***/ "MQME":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _Reactions = __webpack_require__("ikO5");
-
-var _Reactions2 = _interopRequireDefault(_Reactions);
-
-var _Popover = __webpack_require__("Erdv");
-
-var _Popover2 = _interopRequireDefault(_Popover);
-
-var _SimpleIconButton = __webpack_require__("D2fa");
-
-var _SimpleIconButton2 = _interopRequireDefault(_SimpleIconButton);
-
-var _insertEmoticon = __webpack_require__("nAhW");
-
-var _insertEmoticon2 = _interopRequireDefault(_insertEmoticon);
-
-var _UserAvatar = __webpack_require__("vs4/");
-
-var _UserAvatar2 = _interopRequireDefault(_UserAvatar);
-
-var _ReactionsUtils = __webpack_require__("laYF");
-
-var _Link = __webpack_require__("GeCl");
-
-var _Link2 = _interopRequireDefault(_Link);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = _react2.default.createClass({
-  displayName: '_default',
-  render: function render() {
-    var reactions = this.props.reactions;
-
-    var groupedReactions = reactions && reactions.length > 0 ? (0, _ReactionsUtils.groupAndOrderReactions)(reactions, _ReactionsUtils.options) : [];
-    return _react2.default.createElement(
-      'span',
-      null,
-      groupedReactions.map(function (reaction) {
-        return _react2.default.createElement(
-          _Popover2.default,
-          { key: reaction.type,
-            preferPlace: 'below',
-            trigger: 'click' },
-          _react2.default.createElement(
-            'a',
-            { className: _Reactions2.default.icon },
-            reaction.icon,
-            _react2.default.createElement(
-              'span',
-              null,
-              reaction.list.length
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'PopoverMenu' },
-            reaction.list.map(function (userReaction) {
-              return _react2.default.createElement(
-                _Link2.default,
-                {
-                  name: 'userRoute',
-                  params: { userId: userReaction.owner._id },
-                  className: (0, _classnames2.default)(_Reactions2.default.listPopoverRow),
-                  key: userReaction.owner._id
-                },
-                _react2.default.createElement(_UserAvatar2.default, {
-                  name: userReaction.owner.name,
-                  picture: userReaction.owner.picture,
-                  size: 20,
-                  shape: 'square'
-                }),
-                _react2.default.createElement(
-                  'div',
-                  { style: { marginLeft: '10px' } },
-                  userReaction.owner.name
-                )
-              );
-            })
-          )
-        );
-      })
-    );
-  }
-});
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Reactions/Reactions.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Reactions/Reactions.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "Mc/w":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"part":"AssemblyParts_part-F2k26","time":"AssemblyParts_time-3aeZi"};
-
-/***/ },
-
 /***/ "Mh/p":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2671,110 +2263,6 @@ var _temp2 = function () {
 ;
 
 var _temp3 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "Na9I":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _Reactions = __webpack_require__("ikO5");
-
-var _Reactions2 = _interopRequireDefault(_Reactions);
-
-var _Popover = __webpack_require__("Erdv");
-
-var _Popover2 = _interopRequireDefault(_Popover);
-
-var _SimpleIconButton = __webpack_require__("D2fa");
-
-var _SimpleIconButton2 = _interopRequireDefault(_SimpleIconButton);
-
-var _insertEmoticon = __webpack_require__("nAhW");
-
-var _insertEmoticon2 = _interopRequireDefault(_insertEmoticon);
-
-var _ReactionsUtils = __webpack_require__("laYF");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Styles
-var _default = _react2.default.createClass({
-  displayName: '_default',
-  render: function render() {
-    var _props = this.props,
-        submitFn = _props.submitFn,
-        reactions = _props.reactions;
-
-
-    return _react2.default.createElement(
-      _Popover2.default,
-      { preferPlace: this.props.preferPlace },
-      _react2.default.createElement(
-        _SimpleIconButton2.default,
-        { style: { padding: '0' } },
-        _react2.default.createElement(_insertEmoticon2.default, { size: '20px' })
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'PopoverMenu' },
-        _ReactionsUtils.options.map(function (option) {
-          return _react2.default.createElement(
-            'span',
-            {
-              title: option.type,
-              onClick: function onClick() {
-                return submitFn(option.type);
-              },
-              key: option.type,
-              className: _Reactions2.default.popupIcon
-            },
-            option.icon
-          );
-        })
-      )
-    );
-  }
-});
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Reactions/ReactionPopup.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Reactions/ReactionPopup.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -3135,15 +2623,7 @@ module.exports = (staticPath) => {
 
 /***/ },
 
-/***/ "Oygz":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"table":"SimpleTable_table-osN4P"};
-
-/***/ },
-
-/***/ "P7zP":
+/***/ "P1+L":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3152,57 +2632,21 @@ module.exports = {"table":"SimpleTable_table-osN4P"};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
 
-var _react = __webpack_require__("U7vG");
+var _SubSubHeader = __webpack_require__("Ia4n");
 
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _SectionTitle = __webpack_require__("hue9");
-
-var _SectionTitle2 = _interopRequireDefault(_SectionTitle);
+var _SubSubHeader2 = _interopRequireDefault(_SubSubHeader);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-///////////////////////////////// COMPONENT /////////////////////////////////
-
-// Styles
-var _default = _react2.default.createClass({
-  displayName: '_default',
-  render: function render() {
-    var _props = this.props,
-        children = _props.children,
-        style = _props.style,
-        className = _props.className;
-
-    return _react2.default.createElement(
-      'div',
-      { className: (0, _classnames2.default)(_SectionTitle2.default.section, 'layout-row', className), style: style },
-      _react2.default.createElement(
-        'div',
-        { className: _SectionTitle2.default.text },
-        children
-      )
-    );
-  }
-}); // Component Core
-
-
-var _default2 = _default;
-exports.default = _default2;
+exports.default = _SubSubHeader2.default;
 ;
 
 var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Titles/SectionTitle/SectionTitle.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Titles/SectionTitle/SectionTitle.jsx');
 }();
 
 ;
@@ -3361,6 +2805,140 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "PcgJ":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _get2 = __webpack_require__("Q7hp");
+
+var _get3 = _interopRequireDefault(_get2);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _FileCompare = __webpack_require__("lHlc");
+
+var _FileCompare2 = _interopRequireDefault(_FileCompare);
+
+var _FetchDataHoc = __webpack_require__("YapR");
+
+var _FetchDataHoc2 = _interopRequireDefault(_FetchDataHoc);
+
+var _redux = __webpack_require__("c9Fv");
+
+var _SyncTimelineActions = __webpack_require__("frFe");
+
+var _actions = __webpack_require__("Khps");
+
+var _TogglePanel = __webpack_require__("z53e");
+
+var _FileCompare3 = __webpack_require__("tDaj");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var stateToProps = function stateToProps(_ref, _ref2) {
+  var syncTimeline = _ref.syncTimeline,
+      fileCompare = _ref.fileCompare;
+  var file = _ref2.file;
+
+  var syncTimelineCacheKey = '' + file.data.fileId;
+  var togglePanelCacheKey = file.data.fileId + '-' + file.data.revisionId;
+  return {
+    //    timeline: syncTimeline[syncTimelineCacheKey],
+    compare: (0, _get3.default)(fileCompare, syncTimelineCacheKey, {}),
+    syncTimelineCacheKey: syncTimelineCacheKey,
+    togglePanelCacheKey: togglePanelCacheKey
+  };
+};
+
+var dispatchToProps = {
+  fetchTimeline: _SyncTimelineActions.fetchTimeline,
+  toggle: _TogglePanel.toggle,
+  initCompare: _FileCompare3.initCompare,
+  changeMode: _FileCompare3.changeMode,
+  select: _FileCompare3.select
+};
+
+var fetchConfigs = [{
+  hasChanged: 'syncTimelineCacheKey',
+  onChange: function onChange(props) {
+    //    props.fetchTimeline({
+    //      entityType: 'file',
+    //      entityId: props.file.data.fileId,
+    //      cacheKey: props.syncTimelineCacheKey,
+    //    })
+    props.initCompare({
+      cacheKey: props.syncTimelineCacheKey,
+      file: props.file
+    });
+  }
+}, {
+  hasChanged: 'togglePanelCacheKey',
+  onChange: function onChange(props) {
+    if (props.isOpen) {
+      props.toggle({
+        cacheKey: props.togglePanelCacheKey,
+        value: true
+      });
+    }
+  }
+}];
+
+var withFetchData = (0, _FetchDataHoc2.default)(fetchConfigs)(_FileCompare2.default);
+var withRedux = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(withFetchData);
+var _default = withRedux;
+var _default2 = _default;
+exports.default = _default2;
+
+//    // Join the File room
+//    nextProps.dispatch(websocketJoinFile({
+//      fileId: nextProps.file.data.fileId
+//    }))
+//    // Join the File room
+//    this.props.dispatch(websocketLeaveFile({
+//      fileId: this.props.file.data.fileId
+//    }))
+
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(fetchConfigs, 'fetchConfigs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(withFetchData, 'withFetchData', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(withRedux, 'withRedux', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "PozI":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -3430,7 +3008,7 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "R5fW":
+/***/ "TMNS":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3440,49 +3018,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = undefined;
-
-var _TimelineWrapper = __webpack_require__("TBWG");
-
-var _TimelineWrapper2 = _interopRequireDefault(_TimelineWrapper);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _TimelineWrapper2.default;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "Sm6U":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _defineProperty2 = __webpack_require__("bOdI");
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 var _getPrototypeOf = __webpack_require__("Zx67");
 
@@ -3504,10 +3039,6 @@ var _inherits2 = __webpack_require__("Pf15");
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _get2 = __webpack_require__("Q7hp");
-
-var _get3 = _interopRequireDefault(_get2);
-
 var _react = __webpack_require__("U7vG");
 
 var _react2 = _interopRequireDefault(_react);
@@ -3516,332 +3047,149 @@ var _classnames = __webpack_require__("HW6M");
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _File = __webpack_require__("6pkq");
+var _ProjectCommit = __webpack_require__("ieBU");
 
-var _File2 = _interopRequireDefault(_File);
+var _ProjectCommit2 = _interopRequireDefault(_ProjectCommit);
 
-var _routeActions = __webpack_require__("B98q");
+var _TimelineUtils = __webpack_require__("6wP3");
 
-var _FileCompareUtils = __webpack_require__("L5gr");
+var _Breadcrumbs = __webpack_require__("37Zr");
 
-var _utils = __webpack_require__("CzcJ");
+var _Layout = __webpack_require__("PjCM");
 
-var _SyncTimelineUtils = __webpack_require__("ilh4");
+var _UserAvatar = __webpack_require__("vs4/");
 
-var _moment = __webpack_require__("PJh5");
+var _UserAvatar2 = _interopRequireDefault(_UserAvatar);
 
-var _moment2 = _interopRequireDefault(_moment);
+var _FileCompare = __webpack_require__("X4Gv");
 
-var _AssemblyParts = __webpack_require__("dLrU");
+var _FileCompare2 = _interopRequireDefault(_FileCompare);
 
-var _AssemblyParts2 = _interopRequireDefault(_AssemblyParts);
+var _SubSubHeader = __webpack_require__("P1+L");
 
-var _DragResize = __webpack_require__("xWsN");
+var _SubSubHeader2 = _interopRequireDefault(_SubSubHeader);
 
-var _DragResize2 = _interopRequireDefault(_DragResize);
+var _EditorDisplay = __webpack_require__("i0X4");
 
-var _FileBreadCrumbs = __webpack_require__("I3IC");
-
-var _FileBreadCrumbs2 = _interopRequireDefault(_FileBreadCrumbs);
-
-var _SectionTitle = __webpack_require__("P7zP");
-
-var _SectionTitle2 = _interopRequireDefault(_SectionTitle);
-
-var _SimpleTable = __webpack_require__("0jvu");
-
-var _SimpleTable2 = _interopRequireDefault(_SimpleTable);
-
-var _Timeline = __webpack_require__("ewRW");
-
-var _Timeline2 = _interopRequireDefault(_Timeline);
-
-var _TimelineVertical = __webpack_require__("G/eK");
-
-var _TimelineVertical2 = _interopRequireDefault(_TimelineVertical);
-
-var _FileCompareInner = __webpack_require__("jjFu");
-
-var _FileCompareInner2 = _interopRequireDefault(_FileCompareInner);
-
-var _FileCompareMenu = __webpack_require__("66lh");
-
-var _FileCompareMenu2 = _interopRequireDefault(_FileCompareMenu);
-
-var _SimpleIconButton = __webpack_require__("D2fa");
-
-var _SimpleIconButton2 = _interopRequireDefault(_SimpleIconButton);
-
-var _menu = __webpack_require__("IOYW");
-
-var _menu2 = _interopRequireDefault(_menu);
-
-var _close = __webpack_require__("J9Lb");
-
-var _close2 = _interopRequireDefault(_close);
-
-var _reactHelmet = __webpack_require__("PIAa");
+var _EditorDisplay2 = _interopRequireDefault(_EditorDisplay);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var File = function (_Component) {
-  (0, _inherits3.default)(File, _Component);
+var ProjectCommit = function (_Component) {
+  (0, _inherits3.default)(ProjectCommit, _Component);
 
-  function File(props) {
-    (0, _classCallCheck3.default)(this, File);
-
-    var _this = (0, _possibleConstructorReturn3.default)(this, (File.__proto__ || (0, _getPrototypeOf2.default)(File)).call(this, props));
-
-    _this.toggleOpen = function () {
-      return _this.__toggleOpen__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.clickFileOrFolder = function () {
-      return _this.__clickFileOrFolder__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.onSelect = function () {
-      return _this.__onSelect__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.changeMode = function () {
-      return _this.__changeMode__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.isSelected = function () {
-      return _this.__isSelected__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.state = {
-      isOpen: false
-    };
-    return _this;
+  function ProjectCommit() {
+    (0, _classCallCheck3.default)(this, ProjectCommit);
+    return (0, _possibleConstructorReturn3.default)(this, (ProjectCommit.__proto__ || (0, _getPrototypeOf2.default)(ProjectCommit)).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(File, [{
-    key: '__toggleOpen__REACT_HOT_LOADER__',
-    value: function __toggleOpen__REACT_HOT_LOADER__() {
-      this.setState({
-        isOpen: !this.state.isOpen
-      });
-    }
-  }, {
-    key: '__clickFileOrFolder__REACT_HOT_LOADER__',
-    value: function __clickFileOrFolder__REACT_HOT_LOADER__(_ref) {
-      var file = _ref.file;
-      var fileId = file.fileId,
-          revisionId = file.revisionId;
-      var pushRoute = this.props.pushRoute;
-
-      var projectId = this.props.file.data.project._id;
-      if (file.type == 'file') {
-        pushRoute((0, _routeActions.fileRoute)({ fileId: fileId, projectId: projectId, revisionId: revisionId }));
-      } else if (projectId) {
-        pushRoute((0, _routeActions.projectRoute)({ projectId: projectId }));
-      }
-    }
-  }, {
-    key: '__onSelect__REACT_HOT_LOADER__',
-    value: function __onSelect__REACT_HOT_LOADER__(file) {
+  (0, _createClass3.default)(ProjectCommit, [{
+    key: 'renderLoaded',
+    value: function renderLoaded() {
       var _props = this.props,
-          select = _props.select,
-          cacheKey = _props.cacheKey,
-          _props$compare = _props.compare,
-          mode = _props$compare.mode,
-          lastSelected = _props$compare.lastSelected;
+          commit = _props.commit.data,
+          project = _props.project;
 
-      select({ file: file, mode: mode, lastSelected: lastSelected, cacheKey: cacheKey });
-    }
-  }, {
-    key: '__changeMode__REACT_HOT_LOADER__',
-    value: function __changeMode__REACT_HOT_LOADER__(mode) {
-      var _props2 = this.props,
-          changeMode = _props2.changeMode,
-          cacheKey = _props2.cacheKey;
 
-      changeMode({ cacheKey: cacheKey, mode: mode });
-    }
-  }, {
-    key: '__isSelected__REACT_HOT_LOADER__',
-    value: function __isSelected__REACT_HOT_LOADER__(item) {
-      var _props$compare2 = this.props.compare,
-          selected1 = _props$compare2.selected1,
-          selected2 = _props$compare2.selected2,
-          mode = _props$compare2.mode;
+      var groupedRevisions = (0, _TimelineUtils.groupRevisions)(commit.data.items);
 
-      return (0, _FileCompareUtils.isSelected)({ item: item, selected1: selected1, selected2: selected2, mode: mode });
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _SubSubHeader2.default,
+          null,
+          _react2.default.createElement(
+            _Breadcrumbs.Breadcrumbs,
+            null,
+            _react2.default.createElement(_Breadcrumbs.Crumb, { name: 'projectCommitsRoute', params: { projectId: project.data._id }, text: 'History' }),
+            _react2.default.createElement(_Breadcrumbs.Crumb, { name: 'projectCommitsRoute', params: { projectId: project.data._id }, query: { type: 'commits' }, text: 'Commits' }),
+            _react2.default.createElement(_Breadcrumbs.Crumb, { text: commit.data.summary })
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'h2',
+            { className: _ProjectCommit2.default.title },
+            _react2.default.createElement(
+              'span',
+              null,
+              commit.data.summary
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: _ProjectCommit2.default.number },
+              '\xA0#C',
+              commit.data.commitNumber
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: _ProjectCommit2.default.blurb },
+            _react2.default.createElement(_EditorDisplay2.default, { value: commit.data.description })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: (0, _classnames2.default)('layout-row layout-align-start-center', _ProjectCommit2.default.meta) },
+            _react2.default.createElement(_UserAvatar2.default, {
+              className: _ProjectCommit2.default.avatar,
+              name: commit.user.name,
+              picture: commit.user.picture,
+              size: 20,
+              shape: 'square'
+            }),
+            _react2.default.createElement(
+              'div',
+              { className: 'text-ellipsis' },
+              _react2.default.createElement(
+                'b',
+                null,
+                commit.user.name
+              ),
+              '\xA0commited ',
+              groupedRevisions.length,
+              ' files containing a total of ',
+              commit.data.items.length,
+              ' revisions.'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _Layout.Container,
+          { className: _ProjectCommit2.default.files },
+          _react2.default.createElement(
+            'div',
+            { className: 'text-mini-caps' },
+            'Files updated:'
+          ),
+          groupedRevisions.map(function (file, index) {
+            return _react2.default.createElement(_FileCompare2.default, {
+              className: _ProjectCommit2.default.file,
+              project: project,
+              file: file,
+              type: 'collapse',
+              isOpen: index === 0,
+              key: file._id
+            });
+          })
+        )
+      );
     }
   }, {
     key: 'render',
     value: function render() {
-      var _props3 = this.props,
-          _props3$compare = _props3.compare,
-          mode = _props3$compare.mode,
-          selected1 = _props3$compare.selected1,
-          selected2 = _props3$compare.selected2,
-          file = _props3.file,
-          timeline = _props3.timeline,
-          relatedTasks = _props3.relatedTasks;
-      var isOpen = this.state.isOpen;
-
-      var items = (0, _FileCompareUtils.orderItemsByTime)(mode, selected1, selected2);
-      var file1 = (0, _get3.default)(items, [0, 'data']);
-      var file2 = (0, _get3.default)(items, [1, 'data']);
-      var timelineData = (0, _get3.default)(timeline, 'data', []);
-      var revisions = (0, _SyncTimelineUtils.getRevisions)(timelineData);
-      var displayFileHeader = ['sideBySide', 'aboveAndBelow'].includes(mode);
+      var commit = this.props.commit;
 
       return _react2.default.createElement(
         'div',
-        { className: 'layout-column flex', style: { overflow: 'hidden', maxHeight: '100vh' } },
-        _react2.default.createElement(
-          _reactHelmet.Helmet,
-          null,
-          _react2.default.createElement(
-            'title',
-            null,
-            file.data.project.name + ' - ' + file.data.path
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: _File2.default.header },
-          _react2.default.createElement(_FileBreadCrumbs2.default, {
-            className: 'text-ellipsis',
-            meta: file.data,
-            link: true,
-            popup: true
-          }),
-          _react2.default.createElement('div', { className: 'flex' }),
-          _react2.default.createElement(_FileCompareMenu2.default, {
-            file1: file1,
-            file2: file2,
-            revisions: revisions,
-            mode: mode,
-            changeMode: this.changeMode
-          }),
-          _react2.default.createElement(
-            _SimpleIconButton2.default,
-            {
-              className: _File2.default.sidebarButton,
-              onClick: this.toggleOpen,
-              title: isOpen ? 'Close Sidebar' : 'Open Sidebar'
-            },
-            isOpen ? _react2.default.createElement(_close2.default, { size: 20 }) : _react2.default.createElement(_menu2.default, { size: 20 })
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'layout-row flex rel-box' },
-          _react2.default.createElement(
-            'div',
-            { className: (0, _classnames2.default)(_File2.default.preview, 'layout-column flex') },
-            _react2.default.createElement(_FileCompareInner2.default, {
-              className: 'layout-column flex',
-              project: file.data.project,
-              file1: file1,
-              file2: file2,
-              mode: mode,
-              header: displayFileHeader
-            }),
-            _react2.default.createElement(_Timeline2.default, {
-              className: _File2.default.timeline,
-              items: timelineData,
-              onSelect: this.onSelect,
-              isSelected: this.isSelected,
-              preferPlace: 'above'
-            })
-          ),
-          _react2.default.createElement(
-            'aside',
-            { className: (0, _classnames2.default)(_File2.default.sidebar, (0, _defineProperty3.default)({}, _File2.default.isOpen, isOpen)) },
-            _react2.default.createElement(
-              _SectionTitle2.default,
-              { className: _File2.default.sidebarTitle },
-              'Meta'
-            ),
-            _react2.default.createElement(
-              _SimpleTable2.default,
-              null,
-              _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  'Name'
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  file.data.name
-                )
-              ),
-              _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  'Size'
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  (0, _utils.formatBytes)(file.data.size)
-                )
-              ),
-              _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  'Last modified'
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  (0, _moment2.default)(file.data.modified).fromNow()
-                )
-              ),
-              revisions.length > 0 && _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  'Revisions'
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  revisions.length
-                )
-              )
-            ),
-            _react2.default.createElement(_AssemblyParts2.default, {
-              fileMeta: file,
-              clickFn: this.clickFileOrFolder
-            }),
-            _react2.default.createElement(
-              _SectionTitle2.default,
-              { className: _File2.default.sidebarTitle },
-              'Timeline'
-            ),
-            _react2.default.createElement(_TimelineVertical2.default, {
-              items: timelineData,
-              type: 'file'
-            })
-          )
-        )
+        { className: _ProjectCommit2.default.content },
+        commit && commit.data ? this.renderLoaded() : null
       );
     }
   }]);
-  return File;
+  return ProjectCommit;
 }(_react.Component);
 
-exports.default = File;
+exports.default = ProjectCommit;
 ;
 
 var _temp = function () {
@@ -3849,80 +3197,7 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(File, 'File', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "TBWG":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _TimelineWrapper = __webpack_require__("2aAI");
-
-var _TimelineWrapper2 = _interopRequireDefault(_TimelineWrapper);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Styles
-var _default = _react2.default.createClass({
-  displayName: '_default',
-  render: function render() {
-    return _react2.default.createElement(
-      'div',
-      { className: _TimelineWrapper2.default.item, style: this.props.style },
-      _react2.default.createElement(
-        'div',
-        { className: 'layout-row layout-align-start-center' },
-        _react2.default.createElement('div', { className: _TimelineWrapper2.default.marker }),
-        _react2.default.createElement(
-          'div',
-          { className: 'layout-row layout-align-start-center' },
-          this.props.children
-        )
-      )
-    );
-  }
-}); // Component Core
-
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/TimelineWrapper/TimelineWrapper.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/TimelineWrapper/TimelineWrapper.jsx');
+  __REACT_HOT_LOADER__.register(ProjectCommit, 'ProjectCommit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.js');
 }();
 
 ;
@@ -4462,6 +3737,45 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "X4Gv":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _FileCompare = __webpack_require__("PcgJ");
+
+var _FileCompare2 = _interopRequireDefault(_FileCompare);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _FileCompare2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "XKp3":
 /***/ function(module, exports) {
 
@@ -4589,199 +3903,6 @@ var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "dLrU":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.AssemblyParts = exports.Row = undefined;
-
-var _orderBy2 = __webpack_require__("Ba3q");
-
-var _orderBy3 = _interopRequireDefault(_orderBy2);
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _AssemblyParts = __webpack_require__("Mc/w");
-
-var _AssemblyParts2 = _interopRequireDefault(_AssemblyParts);
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _moment = __webpack_require__("PJh5");
-
-var _moment2 = _interopRequireDefault(_moment);
-
-var _PreviewCadUtils = __webpack_require__("hsss");
-
-var _FilesActions = __webpack_require__("iLLw");
-
-var _SectionTitle = __webpack_require__("P7zP");
-
-var _SectionTitle2 = _interopRequireDefault(_SectionTitle);
-
-var _LoadingOverlay = __webpack_require__("K+/r");
-
-var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var propTypesObject = {
-  fileMeta: _react.PropTypes.object.isRequired, // fileMeta for the assembly
-  clickFn: _react.PropTypes.func.isRequired // clickFn(part) - Run when a part is clicked
-};
-
-var Row = exports.Row = _react2.default.createClass({
-  displayName: 'Row',
-  render: function render() {
-    var _props = this.props,
-        file = _props.file,
-        clickFn = _props.clickFn;
-
-    var timeFromNow = (0, _moment2.default)(file.modified).fromNow();
-    return _react2.default.createElement(
-      'a',
-      { className: _AssemblyParts2.default.part + ' layout-row', onClick: function onClick() {
-          return clickFn({ file: file });
-        } },
-      _react2.default.createElement(
-        'div',
-        { className: 'flex' },
-        file.name
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: _AssemblyParts2.default.time },
-        timeFromNow
-      )
-    );
-  }
-});
-
-var AssemblyParts = exports.AssemblyParts = _react2.default.createClass({
-  displayName: 'AssemblyParts',
-
-  propTypes: propTypesObject,
-  onMount: function onMount(nextProps, prevProps) {
-    if (!prevProps || nextProps.fileMeta != prevProps.fileMeta && nextProps.fileMeta.data) {
-      if ((0, _PreviewCadUtils.isAssembly)(nextProps.fileMeta.data.extension)) {
-        nextProps.dispatch((0, _FilesActions.getAssemblyParts)({
-          fileId: nextProps.fileMeta.data.fileId,
-          projectId: nextProps.fileMeta.data.project._id,
-          revisionId: nextProps.fileMeta.data.revisionId
-        }));
-      }
-      nextProps.dispatch((0, _FilesActions.getAssemblyParents)({
-        fileId: nextProps.fileMeta.data.fileId,
-        projectId: nextProps.fileMeta.data.project._id,
-        revisionId: nextProps.fileMeta.data.revisionId
-      }));
-    }
-  },
-  componentDidMount: function componentDidMount() {
-    this.onMount(this.props);
-  },
-  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    this.onMount(nextProps, this.props);
-  },
-  render: function render() {
-    var _props2 = this.props,
-        parts = _props2.parts,
-        assemblies = _props2.assemblies,
-        clickFn = _props2.clickFn;
-
-
-    var displayRows = function displayRows(items, title) {
-      var itemsOrdrered = (0, _orderBy3.default)(items.data, 'name');
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _SectionTitle2.default,
-          { style: { margin: '30px 0 15px' } },
-          title
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'rel-box', style: items.loading ? { minHeight: '70px' } : {} },
-          itemsOrdrered.map(function (file) {
-            return _react2.default.createElement(Row, { file: file, clickFn: clickFn, key: file._id });
-          }),
-          _react2.default.createElement(_LoadingOverlay2.default, { show: items.loading, size: 'sm' })
-        )
-      );
-    };
-
-    var hasChildParts = parts && parts.data && parts.data.length > 0 || parts && parts.loading;
-    var hasParentAssemblies = assemblies && assemblies.data && assemblies.data.length > 0 || assemblies && assemblies.loading;
-
-    if (hasChildParts || hasParentAssemblies) {
-      return _react2.default.createElement(
-        'div',
-        null,
-        hasParentAssemblies ? displayRows(assemblies, 'Parent Assemblies') : null,
-        hasChildParts ? displayRows(parts, 'Assembly Parts') : null
-      );
-    } else {
-      return null;
-    }
-  }
-});
-
-var mapStateToProps = function mapStateToProps(_ref, _ref2) {
-  var files = _ref.files;
-  var fileMeta = _ref2.fileMeta;
-
-  var cacheKey = fileMeta.data.fileId + '-' + fileMeta.data.revisionId;
-  return {
-    parts: files.fileAssemblyParts[cacheKey],
-    assemblies: files.fileAssemblyParents[cacheKey]
-  };
-};
-
-var _default = (0, _reactRedux.connect)(mapStateToProps)(AssemblyParts);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Row, 'Row', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(AssemblyParts, 'AssemblyParts', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(propTypesObject, 'propTypesObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
 }();
 
 ;
@@ -5131,6 +4252,134 @@ module.exports = baseIntersection;
 
 /***/ },
 
+/***/ "h5iT":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _dec2, _class;
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _FetchDataHoc = __webpack_require__("YapR");
+
+var _FetchDataHoc2 = _interopRequireDefault(_FetchDataHoc);
+
+var _CommitsActions = __webpack_require__("soWG");
+
+var _ProjectCommit = __webpack_require__("TMNS");
+
+var _ProjectCommit2 = _interopRequireDefault(_ProjectCommit);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var stateToProps = function stateToProps(_ref, _ref2) {
+  var projects = _ref.projects,
+      commits = _ref.commits;
+  var params = _ref2.params;
+
+  var projectId = params.stub;
+  var commitId = params.commitId;;
+  var project = projects.data[projectId];
+  var commit = commits[commitId];
+
+  return {
+    project: project,
+    projectId: projectId,
+    commitId: commitId,
+    commit: commit
+  };
+};
+
+var dispatchToProps = {
+  getCommit: _CommitsActions.getCommit
+};
+
+var fetchConfigs = [{
+  hasChanged: 'commitId',
+  onChange: function onChange(_ref3) {
+    var getCommit = _ref3.getCommit,
+        commitId = _ref3.commitId;
+    return getCommit({ commitId: commitId });
+  }
+}];
+
+var ProjectCommitContainer = (_dec = (0, _reactRedux.connect)(stateToProps, dispatchToProps), _dec2 = (0, _FetchDataHoc2.default)(fetchConfigs), _dec(_class = _dec2(_class = function (_Component) {
+  (0, _inherits3.default)(ProjectCommitContainer, _Component);
+
+  function ProjectCommitContainer() {
+    (0, _classCallCheck3.default)(this, ProjectCommitContainer);
+    return (0, _possibleConstructorReturn3.default)(this, (ProjectCommitContainer.__proto__ || (0, _getPrototypeOf2.default)(ProjectCommitContainer)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(ProjectCommitContainer, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(_ProjectCommit2.default, this.props);
+    }
+  }]);
+  return ProjectCommitContainer;
+}(_react.Component)) || _class) || _class);
+exports.default = ProjectCommitContainer;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(ProjectCommitContainer, 'ProjectCommitContainer', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.container.js');
+
+  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.container.js');
+
+  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.container.js');
+
+  __REACT_HOT_LOADER__.register(fetchConfigs, 'fetchConfigs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "hfFu":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -5243,72 +4492,7 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "hue9":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"secondary":"rgba(0, 0, 0, 0.7)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","section":"SectionTitle_section-mtOg6","text":"SectionTitle_text-1DCVp"};
-
-/***/ },
-
-/***/ "ikO5":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"icon":"Reactions_icon-3roI-","listPopoverRow":"Reactions_listPopoverRow-3O-rG","popupIcon":"Reactions_popupIcon-jffhL"};
-
-/***/ },
-
-/***/ "ilh4":
-/***/ function(module, exports) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var getRevisions = exports.getRevisions = function getRevisions(syncTimeline) {
-  // syncTimeline contains revision and commit events
-  // This will look inside commits and create an array of revisions.
-  var result = [];
-
-  syncTimeline.forEach(function (item) {
-    if (item.event == 'revision') {
-      result.push(item);
-    } else if (item.event == 'commit') {
-      item.data.items.forEach(function (subItem) {
-        result.push(subItem);
-      });
-    }
-  });
-
-  return result;
-};
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(getRevisions, 'getRevisions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.utils.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "ipaV":
+/***/ "iMBo":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5317,56 +4501,64 @@ var _temp2 = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
 
-var _reactRedux = __webpack_require__("4n+p");
+var _getPrototypeOf = __webpack_require__("Zx67");
 
-var _Comment = __webpack_require__("wa5U");
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-var _Comment2 = _interopRequireDefault(_Comment);
+var _classCallCheck2 = __webpack_require__("Zrlr");
 
-var _FetchDataHoc = __webpack_require__("YapR");
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _FetchDataHoc2 = _interopRequireDefault(_FetchDataHoc);
+var _createClass2 = __webpack_require__("wxAW");
 
-var _CommentsActions = __webpack_require__("KX+g");
+var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _ModalActions = __webpack_require__("u2h7");
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Breadcrumbs = __webpack_require__("ApCO");
+
+var _Breadcrumbs2 = _interopRequireDefault(_Breadcrumbs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var stateToProps = function stateToProps(_ref, _ref2) {
-  var comments = _ref.comments;
-  var commentId = _ref2.commentId;
-  return {
-    comment: comments.data[commentId],
-    entityModel: 'comments.data.' + commentId
-  };
-};
+var Breadcrumbs = function (_Component) {
+  (0, _inherits3.default)(Breadcrumbs, _Component);
 
-var dispatchToProps = {
-  showConfirm: _ModalActions.showConfirm,
-  deleteComment: _CommentsActions.deleteComment,
-  finishEdit: _CommentsActions.finishEdit,
-  getComment: _CommentsActions.getComment,
-  startEdit: _CommentsActions.startEdit,
-  toggleReaction: _CommentsActions.toggleReaction,
-  updateComment: _CommentsActions.updateComment
-};
-
-var fetchConfigs = [{
-  hasChanged: 'commentId',
-  onChange: function onChange(props) {
-    props.getComment({
-      commentId: props.commentId
-    });
+  function Breadcrumbs() {
+    (0, _classCallCheck3.default)(this, Breadcrumbs);
+    return (0, _possibleConstructorReturn3.default)(this, (Breadcrumbs.__proto__ || (0, _getPrototypeOf2.default)(Breadcrumbs)).apply(this, arguments));
   }
-}];
 
-var withFetchData = (0, _FetchDataHoc2.default)(fetchConfigs)(_Comment2.default);
-var withRedux = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(withFetchData);
-var _default = withRedux;
-var _default2 = _default;
-exports.default = _default2;
+  (0, _createClass3.default)(Breadcrumbs, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'layout-row' },
+        this.props.children
+      );
+    }
+  }]);
+  return Breadcrumbs;
+}(_react.Component);
+
+exports.default = Breadcrumbs;
 ;
 
 var _temp = function () {
@@ -5374,19 +4566,7 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/Comment/Comment.container.js');
-
-  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/Comment/Comment.container.js');
-
-  __REACT_HOT_LOADER__.register(fetchConfigs, 'fetchConfigs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/Comment/Comment.container.js');
-
-  __REACT_HOT_LOADER__.register(withFetchData, 'withFetchData', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/Comment/Comment.container.js');
-
-  __REACT_HOT_LOADER__.register(withRedux, 'withRedux', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/Comment/Comment.container.js');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/Comment/Comment.container.js');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/Comment/Comment.container.js');
+  __REACT_HOT_LOADER__.register(Breadcrumbs, 'Breadcrumbs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Breadcrumbs/Breadcrumbs.jsx');
 }();
 
 ;
@@ -5399,6 +4579,14 @@ var _temp2 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "ieBU":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"title":"ProjectCommit_title-3AUjC","blurb":"ProjectCommit_blurb-34vNQ","number":"ProjectCommit_number-2glNA","meta":"ProjectCommit_meta-1_t40","avatar":"ProjectCommit_avatar-1vjY7","files":"ProjectCommit_files-3IAEU","file":"ProjectCommit_file-1Zg86"};
 
 /***/ },
 
@@ -5718,45 +4906,6 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "jvCS":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _File = __webpack_require__("3xiL");
-
-var _File2 = _interopRequireDefault(_File);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _File2.default;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "kgZQ":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -5798,7 +4947,7 @@ var systemImport = function systemImport() {
   return __webpack_require__.e/* System.import */(59).then(__webpack_require__.bind(null, "3h54"));
 };
 
-var _default = function _default(props) {
+exports.default = function (props) {
   return _react2.default.createElement(_LoadSplitCode2.default, (0, _extends3.default)({
     cacheKey: 'PreviewCad',
     systemImport: systemImport,
@@ -5806,39 +4955,18 @@ var _default = function _default(props) {
   }, props));
 };
 
-var _default2 = _default;
-exports.default = _default2;
-;
+/***/ },
 
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
+/***/ "ktek":
+/***/ function(module, exports) {
 
-  __REACT_HOT_LOADER__.register(otherModules, 'otherModules', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCadLoader/PreviewCadLoader.jsx');
-
-  __REACT_HOT_LOADER__.register(systemImport, 'systemImport', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCadLoader/PreviewCadLoader.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCadLoader/PreviewCadLoader.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCadLoader/PreviewCadLoader.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
+// removed by extract-text-webpack-plugin
+module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","timeline":"FileCompare_timeline-3Xl0F","header":"FileCompare_header-3dcTo"};
 
 /***/ },
 
-/***/ "laYF":
-/***/ function(module, exports) {
+/***/ "lHlc":
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
@@ -5846,146 +4974,287 @@ var _temp2 = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var options = exports.options = [{
-  type: 'up',
-  icon: '👍'
-}, {
-  type: 'down',
-  icon: '👎'
-}, {
-  type: 'party',
-  icon: '🎉'
-}, {
-  type: 'heart',
-  icon: '❤️'
-}, {
-  type: 'confused',
-  icon: '😕'
-}];
+exports.default = undefined;
 
-var groupAndOrderReactions = exports.groupAndOrderReactions = function groupAndOrderReactions(reactions, options) {
-  return orderReactions(groupReactions(reactions), options);
-};
+var _getPrototypeOf = __webpack_require__("Zx67");
 
-//////////////////////////////////////////////////////////////////
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-function groupReactions(reactions) {
-  var groupedReactions = {};
-  reactions.forEach(function (reaction) {
-    if (!groupedReactions[reaction.type] || !groupedReactions[reaction.type].list) {
-      groupedReactions[reaction.type] = {
-        list: [reaction]
-      };
-    } else {
-      groupedReactions[reaction.type] = groupedReactions[reaction.type].list.push(reaction);
-    }
-  });
-  return groupedReactions;
-}
+var _classCallCheck2 = __webpack_require__("Zrlr");
 
-function orderReactions(groupedReactions, options) {
-  // Orders reactions by the options array
-  var orderedReactions = [];
-  options.forEach(function (option) {
-    if (groupedReactions[option.type] && groupedReactions[option.type].list && groupedReactions[option.type].list.length > 0) {
-      orderedReactions.push({
-        type: option.type,
-        icon: option.icon,
-        list: groupedReactions[option.type].list
-      });
-    }
-  });
-  return orderedReactions;
-}
-;
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
+var _createClass2 = __webpack_require__("wxAW");
 
-  __REACT_HOT_LOADER__.register(options, 'options', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Reactions/Reactions.utils.js');
+var _createClass3 = _interopRequireDefault(_createClass2);
 
-  __REACT_HOT_LOADER__.register(groupAndOrderReactions, 'groupAndOrderReactions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Reactions/Reactions.utils.js');
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
 
-  __REACT_HOT_LOADER__.register(groupReactions, 'groupReactions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Reactions/Reactions.utils.js');
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-  __REACT_HOT_LOADER__.register(orderReactions, 'orderReactions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Reactions/Reactions.utils.js');
-}();
+var _inherits2 = __webpack_require__("Pf15");
 
-;
-;
+var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
+var _get2 = __webpack_require__("Q7hp");
 
-;
+var _get3 = _interopRequireDefault(_get2);
 
-/***/ },
-
-/***/ "nAhW":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends2 = __webpack_require__("Dd8w");
-
-var _extends3 = _interopRequireDefault(_extends2);
+var _class, _temp2;
 
 var _react = __webpack_require__("U7vG");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactIconBase = __webpack_require__("aSqn");
+var _classnames = __webpack_require__("HW6M");
 
-var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _FileCompare = __webpack_require__("ktek");
+
+var _FileCompare2 = _interopRequireDefault(_FileCompare);
+
+var _FileCompareUtils = __webpack_require__("L5gr");
+
+var _TogglePanel = __webpack_require__("6DBV");
+
+var _TogglePanel2 = _interopRequireDefault(_TogglePanel);
+
+var _DragResize = __webpack_require__("xWsN");
+
+var _DragResize2 = _interopRequireDefault(_DragResize);
+
+var _FileCompareMenu = __webpack_require__("66lh");
+
+var _FileCompareMenu2 = _interopRequireDefault(_FileCompareMenu);
+
+var _FileCompareInner = __webpack_require__("jjFu");
+
+var _FileCompareInner2 = _interopRequireDefault(_FileCompareInner);
+
+var _Timeline = __webpack_require__("ewRW");
+
+var _Timeline2 = _interopRequireDefault(_Timeline);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MdInsertEmoticon = function MdInsertEmoticon(props) {
-    return _react2.default.createElement(
-        _reactIconBase2.default,
-        (0, _extends3.default)({ viewBox: '0 0 40 40' }, props),
-        _react2.default.createElement(
-            'g',
-            null,
-            _react2.default.createElement('path', { d: 'm20 29.1q-2.9 0-5.2-1.6t-3.3-4.1h17q-1 2.5-3.3 4.1t-5.2 1.6z m-5.9-10.7q-1 0-1.7-0.8t-0.8-1.7 0.8-1.8 1.7-0.7 1.8 0.7 0.7 1.8-0.7 1.7-1.8 0.8z m11.8 0q-1.1 0-1.8-0.8t-0.7-1.7 0.7-1.8 1.8-0.7 1.7 0.7 0.8 1.8-0.8 1.7-1.7 0.8z m-5.9 15q5.5 0 9.4-4t4-9.4-4-9.4-9.4-4-9.4 4-4 9.4 4 9.4 9.4 4z m0-30q6.9 0 11.8 4.8t4.8 11.8-4.8 11.8-11.8 4.8-11.8-4.8-4.8-11.8 4.8-11.8 11.8-4.8z' })
-        )
-    );
-};
+var FileCompare = (_temp2 = _class = function (_Component) {
+  (0, _inherits3.default)(FileCompare, _Component);
 
-var _default = MdInsertEmoticon;
-var _default2 = _default;
-exports.default = _default2;
-;
+  function FileCompare() {
+    var _ref;
 
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, FileCompare);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    __REACT_HOT_LOADER__.register(MdInsertEmoticon, 'MdInsertEmoticon', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/react-icons/md/insert-emoticon.js');
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = FileCompare.__proto__ || (0, _getPrototypeOf2.default)(FileCompare)).call.apply(_ref, [this].concat(args))), _this), _this.onSelect = function () {
+      var _this2;
 
-    __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/react-icons/md/insert-emoticon.js');
+      return (_this2 = _this).__onSelect__REACT_HOT_LOADER__.apply(_this2, arguments);
+    }, _this.changeMode = function () {
+      var _this3;
 
-    __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/react-icons/md/insert-emoticon.js');
+      return (_this3 = _this).__changeMode__REACT_HOT_LOADER__.apply(_this3, arguments);
+    }, _this.isSelected = function () {
+      var _this4;
+
+      return (_this4 = _this).__isSelected__REACT_HOT_LOADER__.apply(_this4, arguments);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(FileCompare, [{
+    key: '__onSelect__REACT_HOT_LOADER__',
+    value: function __onSelect__REACT_HOT_LOADER__(file) {
+      var _props = this.props,
+          select = _props.select,
+          syncTimelineCacheKey = _props.syncTimelineCacheKey,
+          _props$compare = _props.compare,
+          mode = _props$compare.mode,
+          lastSelected = _props$compare.lastSelected;
+
+      select({
+        file: file,
+        mode: mode,
+        lastSelected: lastSelected,
+        cacheKey: syncTimelineCacheKey
+      });
+    }
+  }, {
+    key: '__changeMode__REACT_HOT_LOADER__',
+    value: function __changeMode__REACT_HOT_LOADER__(mode, revisions) {
+      var _props2 = this.props,
+          changeMode = _props2.changeMode,
+          syncTimelineCacheKey = _props2.syncTimelineCacheKey;
+
+      changeMode({
+        cacheKey: syncTimelineCacheKey,
+        mode: mode
+      });
+    }
+  }, {
+    key: '__isSelected__REACT_HOT_LOADER__',
+    value: function __isSelected__REACT_HOT_LOADER__(item) {
+      var _props$compare2 = this.props.compare,
+          selected1 = _props$compare2.selected1,
+          selected2 = _props$compare2.selected2,
+          mode = _props$compare2.mode;
+
+      return (0, _FileCompareUtils.isSelected)({
+        item: item,
+        selected1: selected1,
+        selected2: selected2,
+        mode: mode
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this5 = this;
+
+      var _props3 = this.props,
+          _props3$compare = _props3.compare,
+          mode = _props3$compare.mode,
+          selected1 = _props3$compare.selected1,
+          selected2 = _props3$compare.selected2,
+          file = _props3.file,
+          project = _props3.project,
+          togglePanelCacheKey = _props3.togglePanelCacheKey,
+          type = _props3.type,
+          className = _props3.className;
+
+      var items = (0, _FileCompareUtils.orderItemsByTime)(mode, selected1, selected2);
+      var file1 = (0, _get3.default)(items, [0, 'data']);
+      var file2 = (0, _get3.default)(items, [1, 'data']);
+
+      var collapseTemplate = function collapseTemplate() {
+        return _react2.default.createElement(
+          'div',
+          { className: className },
+          _react2.default.createElement(
+            _TogglePanel2.default,
+            { cacheKey: togglePanelCacheKey },
+            _react2.default.createElement(
+              'div',
+              { className: 'text-ellipsis text-grey-4' },
+              file.data.path
+            ),
+            _react2.default.createElement(_FileCompareMenu2.default, {
+              file1: file1,
+              file2: file2,
+              revisions: file.revisions,
+              mode: mode,
+              changeMode: _this5.changeMode,
+              enablePreview: true
+            }),
+            _react2.default.createElement(
+              _DragResize2.default,
+              {
+                side: 'bottom',
+                height: '500',
+                heightRange: [0, 1000],
+                className: 'layout-column flex'
+              },
+              _react2.default.createElement(_FileCompareInner2.default, {
+                project: project.data,
+                event: selected1,
+                file1: file1,
+                file2: file2,
+                mode: mode
+              }),
+              file.revisions.length > 1 ? _react2.default.createElement(_Timeline2.default, {
+                className: _FileCompare2.default.timeline,
+                size: 'sm',
+                onSelect: _this5.onSelect,
+                isSelected: _this5.isSelected,
+                items: file.revisions,
+                preferPlace: 'above'
+              }) : null
+            )
+          )
+        );
+      };
+
+      var standardTemplate = function standardTemplate() {
+        return _react2.default.createElement(
+          'div',
+          { className: (0, _classnames2.default)('layout-column flex', className) },
+          _react2.default.createElement(
+            'div',
+            { className: _FileCompare2.default.header + ' layout-row layout-align-start-center' },
+            _react2.default.createElement(
+              'div',
+              { className: 'flex' },
+              file.data.path
+            ),
+            _react2.default.createElement(_FileCompareMenu2.default, {
+              file1: file1,
+              file2: file2,
+              revisions: file.revisions,
+              mode: mode,
+              changeMode: _this5.changeMode,
+              enablePreview: true
+            })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'layout-column flex' },
+            _react2.default.createElement(_FileCompareInner2.default, {
+              project: project,
+              event: selected1,
+              file1: file1,
+              file2: file2,
+              mode: mode,
+              header: ['sideBySide', 'aboveAndBelow'].includes(mode)
+            })
+          ),
+          _react2.default.createElement(_Timeline2.default, {
+            className: _FileCompare2.default.timeline,
+            size: 'sm',
+            onSelect: _this5.onSelect,
+            isSelected: _this5.isSelected,
+            items: file.revisions,
+            preferPlace: 'above'
+          })
+        );
+      };
+
+      if (!file1) {
+        return null;
+      }
+      return type == 'collapse' ? collapseTemplate() : standardTemplate();
+    }
+  }]);
+  return FileCompare;
+}(_react.Component), _class.propTypes = {
+  className: _react.PropTypes.string,
+  project: _react.PropTypes.object.isRequired,
+  file: _react.PropTypes.object.isRequired,
+  isOpen: _react.PropTypes.bool, // Is it open ( to be used with collapse )
+  type: _react.PropTypes.oneOf(['collapse', undefined])
+}, _temp2);
+exports.default = FileCompare;
+;
+
+var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(FileCompare, 'FileCompare', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.jsx');
 }();
 
 ;
 ;
 
-var _temp2 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
+var _temp4 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
 }();
 
 ;
@@ -6523,7 +5792,7 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "rxMF":
+/***/ "soWG":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6532,140 +5801,34 @@ var _temp2 = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+exports.getCommit = undefined;
 
-var _getPrototypeOf = __webpack_require__("Zx67");
+var _axios = __webpack_require__("mtWM");
 
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("Zrlr");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("wxAW");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("zwoO");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("Pf15");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _class, _temp;
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _moment = __webpack_require__("PJh5");
-
-var _moment2 = _interopRequireDefault(_moment);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _TimelineItem = __webpack_require__("1PO8");
-
-var _TimelineItem2 = _interopRequireDefault(_TimelineItem);
-
-var _UserAvatar = __webpack_require__("vs4/");
-
-var _UserAvatar2 = _interopRequireDefault(_UserAvatar);
-
-var _Comment = __webpack_require__("Hsn5");
-
-var _Comment2 = _interopRequireDefault(_Comment);
-
-var _TimelineWrapper = __webpack_require__("R5fW");
-
-var _TimelineWrapper2 = _interopRequireDefault(_TimelineWrapper);
-
-var _Link = __webpack_require__("GeCl");
-
-var _Link2 = _interopRequireDefault(_Link);
-
-var _TimelineItemText = __webpack_require__("KRjC");
-
-var _TimelineItemText2 = _interopRequireDefault(_TimelineItemText);
+var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import TaskTimelinePanel   from '../TaskTimelinePanel/TaskTimelinePanel.jsx'
+var getCommit = exports.getCommit = function getCommit(_ref) {
+  var commitId = _ref.commitId;
+  return {
+    type: 'COMMITS/GET_COMMIT',
+    payload: (0, _axios2.default)('api/v1/commits/' + commitId),
+    meta: {
+      cacheKey: commitId
+    }
+  };
+};
+;
 
-
-var TimelineItem = (_temp = _class = function (_Component) {
-  (0, _inherits3.default)(TimelineItem, _Component);
-
-  function TimelineItem() {
-    (0, _classCallCheck3.default)(this, TimelineItem);
-    return (0, _possibleConstructorReturn3.default)(this, (TimelineItem.__proto__ || (0, _getPrototypeOf2.default)(TimelineItem)).apply(this, arguments));
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
   }
 
-  (0, _createClass3.default)(TimelineItem, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          item = _props.item,
-          type = _props.type,
-          entity = _props.entity;
+  __REACT_HOT_LOADER__.register(getCommit, 'getCommit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Commits/Commits.actions.js');
+}();
 
-      var userRouteParams = { userId: item.user._id };
-      var eventStyles = type === 'task' ? { marginLeft: '60px' } : {};
-
-      // If it is a comment, we use the comment component to display
-      if (item.event === 'comment' && type === 'task') {
-        return _react2.default.createElement(_Comment2.default, { commentId: item.data.comment });
-      }
-      // Else, we add a text event
-      else {
-          return _react2.default.createElement(
-            _TimelineWrapper2.default,
-            { className: eventStyles },
-            _react2.default.createElement(
-              'div',
-              { className: (0, _classnames2.default)('layout-row layout-align-start-center flex') },
-              _react2.default.createElement(
-                _Link2.default,
-                { name: 'userRoute', params: userRouteParams, className: _TimelineItem2.default.avatar },
-                _react2.default.createElement(_UserAvatar2.default, {
-                  picture: item.user.picture,
-                  size: 25,
-                  shape: 'square',
-                  name: item.user.name
-                })
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
-                type === 'user' ? null : _react2.default.createElement(
-                  'b',
-                  null,
-                  item.user.name,
-                  '\xA0'
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: _TimelineItem2.default.item },
-                  _react2.default.createElement(_TimelineItemText2.default, { item: item, type: type, entity: entity }),
-                  ' - ',
-                  (0, _moment2.default)(item.timestamp).fromNow()
-                )
-              )
-            )
-          );
-        }
-    }
-  }]);
-  return TimelineItem;
-}(_react.Component), _class.propTypes = {
-  type: _react.PropTypes.oneOf(['feed', 'user', 'file', 'task', 'project']),
-  item: _react.PropTypes.object
-}, _temp);
-exports.default = TimelineItem;
 ;
 ;
 
@@ -6673,28 +5836,9 @@ var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
-
-  __REACT_HOT_LOADER__.register(TimelineItem, 'TimelineItem', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/TimelineVertical/TimelineItem/TimelineItem.jsx');
 }();
 
 ;
-;
-
-var _temp3 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "t9it":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"groupTitle":"TimelineVertical_groupTitle-29uxd","group":"TimelineVertical_group-2ZhAu"};
 
 /***/ },
 
@@ -6803,6 +5947,14 @@ var _temp2 = function () {
 /***/ function(module, exports) {
 
 module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSIxNTBweCIgaGVpZ2h0PSIxNTBweCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDE1MCAxNTAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxyZWN0IHg9IjY5Mi4yNyIgeT0iMjAxMS4yMzMiIGZpbGw9IiNCN0JFQzAiIHdpZHRoPSI3MC41MTgiIGhlaWdodD0iNDMuMDY1Ii8+Cgk8Zz4KCQk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNjczLjk3NywyMDYwLjExOXY1LjA2MmMwLDAsMy43MDMsMi43NjUsNi40MjMsMi43NjVoMzQuMDczaDI2LjExMWgzNC4wNzIKCQkJYzIuNzIxLDAsNi40MjQtMi43NjUsNi40MjQtMi43NjV2LTUuMDYySDY3My45Nzd6Ii8+CgkJPHBhdGggZmlsbD0iIzI4MkQzMyIgZD0iTTc3NC42NTYsMjA2OS45NDVoLTk0LjI1N2MtMy4yOSwwLTcuMTg3LTIuODM4LTcuNjItMy4xNjJsLTAuODAzLTAuNnYtOC4wNjRINzgzLjA4djguMDY0bC0wLjgwNCwwLjYKCQkJQzc4MS44NDQsMjA2Ny4xMDcsNzc3Ljk0NywyMDY5Ljk0NSw3NzQuNjU2LDIwNjkuOTQ1eiBNNjc1Ljk3NywyMDY0LjEzMWMxLjMyNCwwLjg1MiwzLjIxMywxLjgxNCw0LjQyMywxLjgxNGg5NC4yNTcKCQkJYzEuMjQsMCwzLjE2OS0xLjAxNSw0LjQyNC0xLjgxNnYtMi4wMUg2NzUuOTc3VjIwNjQuMTMxeiIvPgoJPC9nPgoJPGc+CgkJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTcwMi4xNjIsMjAzOS44MThoOC43NjRoMzMuMjA1aDguNzY0YzIuMDI5LDMuNzc5LDYuMDE2LDYuMzU0LDEwLjYwNSw2LjM1NAoJCQljNC44MzYsMCw4Ljk5NC0yLjg2MiwxMC45MDQtNi45NzloLTEwLjI0NmwtMi45MTgtNS4wNTFsMi45MTgtNS4wNTFoMTAuMjQ2Yy0xLjkxLTQuMTE2LTYuMDY4LTYuOTc4LTEwLjkwNC02Ljk3OAoJCQljLTQuNTksMC04LjU3NiwyLjU3Mi0xMC42MDUsNi4zNTRsLTguNzY0LTAuMDAybC0zMy4yMDUsMC4wMDJoLTguNzY0Yy0yLjAyNy0zLjc4MS02LjAxNi02LjM1NC0xMC42MDQtNi4zNTQKCQkJYy00LjgzNiwwLTguOTk2LDIuODYxLTEwLjkwNiw2Ljk3OGgxMC4yNDdsMi45MTUsNS4wNTFsLTIuOTE1LDUuMDUxaC0xMC4yNDdjMS45MSw0LjExNiw2LjA3LDYuOTc5LDEwLjkwNCw2Ljk3OQoJCQlDNjk2LjE0OCwyMDQ2LjE3Miw3MDAuMTM1LDIwNDMuNTk4LDcwMi4xNjIsMjAzOS44MTh6Ii8+CgkJPHBhdGggZmlsbD0iIzI4MkQzMyIgZD0iTTc2My41LDIwNDguMTcyYy00Ljc2NiwwLTkuMTYtMi40MDYtMTEuNzQxLTYuMzU0aC00OC40NmMtMi41OCwzLjk0Ny02Ljk3Niw2LjM1NC0xMS43NDIsNi4zNTQKCQkJYy01LjQzNCwwLTEwLjQyNi0zLjE5NC0xMi43MTktOC4xMzdsLTEuMzE3LTIuODQyaDEyLjIyNGwxLjc2Mi0zLjA1MWwtMS43NjItMy4wNTFoLTEyLjIyNGwxLjMxNy0yLjg0MgoJCQljMi4yOTMtNC45NDIsNy4yODYtOC4xMzYsMTIuNzIxLTguMTM2YzQuNzY2LDAsOS4xNiwyLjQwNSwxMS43NCw2LjM1NGw0OC40Ni0wLjAwMWMyLjU4LTMuOTQ3LDYuOTc1LTYuMzUzLDExLjc0MS02LjM1MwoJCQljNS40MzIsMCwxMC40MjQsMy4xOTMsMTIuNzE4LDguMTM2bDEuMzE5LDIuODQyaC0xMi4yMjVsLTEuNzYyLDMuMDUxbDEuNzYyLDMuMDUxaDEyLjIyNWwtMS4zMTksMi44NDIKCQkJQzc3My45MjQsMjA0NC45NzgsNzY4LjkzMiwyMDQ4LjE3Miw3NjMuNSwyMDQ4LjE3MnogTTcwMC45NjcsMjAzNy44MThoNTMuMTI1bDAuNTY1LDEuMDU1YzEuNzU0LDMuMjY4LDUuMTQyLDUuMjk5LDguODQzLDUuMjk5CgkJCWMyLjcwNCwwLDUuMjU2LTEuMTEsNy4xMS0yLjk3OWgtNy42MDZsLTQuMDcyLTcuMDUxbDQuMDcyLTcuMDUxaDcuNjA2Yy0xLjg1NC0xLjg2OC00LjQwNi0yLjk3OC03LjExLTIuOTc4CgkJCWMtMy43MDEsMC03LjA5LDIuMDMtOC44NDMsNS4yOTlsLTAuNTY1LDEuMDU1bC05Ljk2Mi0wLjAwMmwtNDMuMTY0LDAuMDAybC0wLjU2NS0xLjA1NWMtMS43NTQtMy4yNjktNS4xNDItNS4yOTktOC44NDItNS4yOTkKCQkJYy0yLjcwNiwwLTUuMjU5LDEuMTA5LTcuMTEzLDIuOTc4aDcuNjA5bDQuMDY5LDcuMDUxbC00LjA2OSw3LjA1MWgtNy42MDljMS44NTQsMS44NjksNC40MDYsMi45NzksNy4xMTEsMi45NzkKCQkJYzMuNzAxLDAsNy4wOS0yLjAzMSw4Ljg0NC01LjI5OUw3MDAuOTY3LDIwMzcuODE4eiIvPgoJPC9nPgoJPGc+CgkJPHBhdGggZmlsbD0iIzI4MkQzMyIgZD0iTTc3MC43ODcsMjAxNy4yOTloLTR2LTkuMjQ2YzAtMC40NTItMC4zNjgtMC44MTktMC44Mi0wLjgxOWgtNzYuODc5Yy0wLjQ1MSwwLTAuODE4LDAuMzY3LTAuODE4LDAuODE5CgkJCXY5LjI0NmgtNHYtOS4yNDZjMC0yLjY1NywyLjE2Mi00LjgxOSw0LjgxOC00LjgxOWg3Ni44NzljMi42NTgsMCw0LjgyLDIuMTYyLDQuODIsNC44MTlWMjAxNy4yOTl6Ii8+Cgk8L2c+Cgk8Zz4KCQk8Zz4KCQkJPHJlY3QgeD0iNzY2Ljc4NyIgeT0iMjA1MC41NDkiIGZpbGw9IiMyODJEMzMiIHdpZHRoPSI0IiBoZWlnaHQ9IjkuODMxIi8+CgkJPC9nPgoJCTxnPgoJCQk8cmVjdCB4PSI2ODQuMjciIHk9IjIwNTAuNTQ5IiBmaWxsPSIjMjgyRDMzIiB3aWR0aD0iNCIgaGVpZ2h0PSI5LjgzMSIvPgoJCTwvZz4KCTwvZz4KPC9nPgo8Zz4KCTxyZWN0IHg9IjM5LjI3IiB5PSI1Mi4yMzMiIGZpbGw9IiNCN0JFQzAiIHdpZHRoPSI3MC41MTgiIGhlaWdodD0iNDMuMDY1Ii8+Cgk8Zz4KCQk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjAuOTc3LDEwMS4xMTl2NS4wNjJjMCwwLDMuNzAzLDIuNzY1LDYuNDIzLDIuNzY1aDM0LjA3M2gyNi4xMTFoMzQuMDcyYzIuNzIxLDAsNi40MjQtMi43NjUsNi40MjQtMi43NjUKCQkJdi01LjA2MkgyMC45Nzd6Ii8+CgkJPHBhdGggZmlsbD0iIzI4MkQzMyIgZD0iTTEyMS42NTYsMTEwLjk0NUgyNy4zOTljLTMuMjksMC03LjE4Ny0yLjgzOC03LjYyLTMuMTYybC0wLjgwMy0wLjZ2LTguMDY0SDEzMC4wOHY4LjA2NGwtMC44MDQsMC42CgkJCUMxMjguODQ0LDEwOC4xMDcsMTI0Ljk0NywxMTAuOTQ1LDEyMS42NTYsMTEwLjk0NXogTTIyLjk3NywxMDUuMTMxYzEuMzI0LDAuODUyLDMuMjEzLDEuODE0LDQuNDIzLDEuODE0aDk0LjI1NwoJCQljMS4yNCwwLDMuMTY5LTEuMDE1LDQuNDI0LTEuODE2di0yLjAxSDIyLjk3N1YxMDUuMTMxeiIvPgoJPC9nPgoJPGc+CgkJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTQ5LjE2Miw4MC44MThoOC43NjRoMzMuMjA1aDguNzY0YzIuMDI5LDMuNzc5LDYuMDE2LDYuMzU0LDEwLjYwNSw2LjM1NAoJCQljNC44MzYsMCw4Ljk5NC0yLjg2MiwxMC45MDQtNi45NzloLTEwLjI0NmwtMi45MTgtNS4wNTFsMi45MTgtNS4wNTFoMTAuMjQ2Yy0xLjkxLTQuMTE2LTYuMDY4LTYuOTc4LTEwLjkwNC02Ljk3OAoJCQljLTQuNTksMC04LjU3NiwyLjU3Mi0xMC42MDUsNi4zNTRsLTguNzY0LTAuMDAybC0zMy4yMDUsMC4wMDJoLTguNzY0Yy0yLjAyNy0zLjc4MS02LjAxNi02LjM1NC0xMC42MDQtNi4zNTQKCQkJYy00LjgzNiwwLTguOTk2LDIuODYxLTEwLjkwNiw2Ljk3OGgxMC4yNDdsMi45MTUsNS4wNTFsLTIuOTE1LDUuMDUxSDI3LjY1MmMxLjkxLDQuMTE2LDYuMDcsNi45NzksMTAuOTA0LDYuOTc5CgkJCUM0My4xNDgsODcuMTcyLDQ3LjEzNSw4NC41OTgsNDkuMTYyLDgwLjgxOHoiLz4KCQk8cGF0aCBmaWxsPSIjMjgyRDMzIiBkPSJNMTEwLjUsODkuMTcyYy00Ljc2NiwwLTkuMTYtMi40MDYtMTEuNzQxLTYuMzU0aC00OC40NmMtMi41OCwzLjk0Ny02Ljk3Niw2LjM1NC0xMS43NDIsNi4zNTQKCQkJYy01LjQzNCwwLTEwLjQyNi0zLjE5NC0xMi43MTktOC4xMzdsLTEuMzE3LTIuODQyaDEyLjIyNGwxLjc2Mi0zLjA1MWwtMS43NjItMy4wNTFIMjQuNTIxbDEuMzE3LTIuODQyCgkJCWMyLjI5My00Ljk0Miw3LjI4Ni04LjEzNiwxMi43MjEtOC4xMzZjNC43NjYsMCw5LjE2LDIuNDA1LDExLjc0LDYuMzU0bDQ4LjQ2LTAuMDAxYzIuNTgtMy45NDcsNi45NzUtNi4zNTMsMTEuNzQxLTYuMzUzCgkJCWM1LjQzMiwwLDEwLjQyNCwzLjE5MywxMi43MTgsOC4xMzZsMS4zMTksMi44NDJoLTEyLjIyNWwtMS43NjIsMy4wNTFsMS43NjIsMy4wNTFoMTIuMjI1bC0xLjMxOSwyLjg0MgoJCQlDMTIwLjkyNCw4NS45NzgsMTE1LjkzMiw4OS4xNzIsMTEwLjUsODkuMTcyeiBNNDcuOTY3LDc4LjgxOGg1My4xMjVsMC41NjUsMS4wNTVjMS43NTQsMy4yNjgsNS4xNDIsNS4yOTksOC44NDMsNS4yOTkKCQkJYzIuNzA0LDAsNS4yNTYtMS4xMSw3LjExLTIuOTc5aC03LjYwNmwtNC4wNzItNy4wNTFsNC4wNzItNy4wNTFoNy42MDZjLTEuODU0LTEuODY4LTQuNDA2LTIuOTc4LTcuMTEtMi45NzgKCQkJYy0zLjcwMSwwLTcuMDksMi4wMy04Ljg0Myw1LjI5OWwtMC41NjUsMS4wNTVsLTkuOTYyLTAuMDAybC00My4xNjQsMC4wMDJMNDcuNCw3MC40MTNjLTEuNzU0LTMuMjY5LTUuMTQyLTUuMjk5LTguODQyLTUuMjk5CgkJCWMtMi43MDYsMC01LjI1OSwxLjEwOS03LjExMywyLjk3OGg3LjYwOWw0LjA2OSw3LjA1MWwtNC4wNjksNy4wNTFoLTcuNjA5YzEuODU0LDEuODY5LDQuNDA2LDIuOTc5LDcuMTExLDIuOTc5CgkJCWMzLjcwMSwwLDcuMDktMi4wMzEsOC44NDQtNS4yOTlMNDcuOTY3LDc4LjgxOHoiLz4KCTwvZz4KCTxnPgoJCTxwYXRoIGZpbGw9IiMyODJEMzMiIGQ9Ik0xMTcuNzg3LDU4LjI5OWgtNHYtOS4yNDZjMC0wLjQ1Mi0wLjM2OC0wLjgxOS0wLjgyLTAuODE5SDM2LjA4OGMtMC40NTEsMC0wLjgxOCwwLjM2Ny0wLjgxOCwwLjgxOXY5LjI0NgoJCQloLTR2LTkuMjQ2YzAtMi42NTcsMi4xNjItNC44MTksNC44MTgtNC44MTloNzYuODc5YzIuNjU4LDAsNC44MiwyLjE2Miw0LjgyLDQuODE5VjU4LjI5OXoiLz4KCTwvZz4KCTxnPgoJCTxnPgoJCQk8cmVjdCB4PSIxMTMuNzg3IiB5PSI5MS41NDkiIGZpbGw9IiMyODJEMzMiIHdpZHRoPSI0IiBoZWlnaHQ9IjkuODMxIi8+CgkJPC9nPgoJCTxnPgoJCQk8cmVjdCB4PSIzMS4yNyIgeT0iOTEuNTQ5IiBmaWxsPSIjMjgyRDMzIiB3aWR0aD0iNCIgaGVpZ2h0PSI5LjgzMSIvPgoJCTwvZz4KCTwvZz4KPC9nPgo8L3N2Zz4K"
+
+/***/ },
+
+/***/ "vVr8":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"border1":"rgba(0, 0, 0, 0.1)","titleBar":"TogglePanel_titleBar-37a0p","toggleIcon":"TogglePanel_toggleIcon-3Bjck","toggleIconActive":"TogglePanel_toggleIconActive-2cHXc","content":"TogglePanel_content-ksKiC"};
 
 /***/ },
 
@@ -7131,367 +6283,6 @@ var _temp = function () {
 ;
 
 var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "wa5U":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _getPrototypeOf = __webpack_require__("Zx67");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("Zrlr");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("wxAW");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("zwoO");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("Pf15");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _redux = __webpack_require__("c9Fv");
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _moment = __webpack_require__("PJh5");
-
-var _moment2 = _interopRequireDefault(_moment);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _Comment = __webpack_require__("2h8Z");
-
-var _Comment2 = _interopRequireDefault(_Comment);
-
-var _UserAvatar = __webpack_require__("vs4/");
-
-var _UserAvatar2 = _interopRequireDefault(_UserAvatar);
-
-var _EditorNew = __webpack_require__("6DPZ");
-
-var _EditorNew2 = _interopRequireDefault(_EditorNew);
-
-var _EditorDisplay = __webpack_require__("i0X4");
-
-var _EditorDisplay2 = _interopRequireDefault(_EditorDisplay);
-
-var _ReactionPopup = __webpack_require__("Na9I");
-
-var _ReactionPopup2 = _interopRequireDefault(_ReactionPopup);
-
-var _Reactions = __webpack_require__("MQME");
-
-var _Reactions2 = _interopRequireDefault(_Reactions);
-
-var _Popover = __webpack_require__("Erdv");
-
-var _Popover2 = _interopRequireDefault(_Popover);
-
-var _SimpleIconButton = __webpack_require__("D2fa");
-
-var _SimpleIconButton2 = _interopRequireDefault(_SimpleIconButton);
-
-var _moreHoriz = __webpack_require__("O8U9");
-
-var _moreHoriz2 = _interopRequireDefault(_moreHoriz);
-
-var _IsOwner = __webpack_require__("fgbE");
-
-var _IsOwner2 = _interopRequireDefault(_IsOwner);
-
-var _LoadingPlaceholder = __webpack_require__("LZKX");
-
-var _LoadingPlaceholder2 = _interopRequireDefault(_LoadingPlaceholder);
-
-var _LoadingAnimation = __webpack_require__("tYm5");
-
-var _LoadingAnimation2 = _interopRequireDefault(_LoadingAnimation);
-
-var _Form = __webpack_require__("hpuc");
-
-var _Form2 = _interopRequireDefault(_Form);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Comment = function (_Component) {
-  (0, _inherits3.default)(Comment, _Component);
-
-  function Comment() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, Comment);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Comment.__proto__ || (0, _getPrototypeOf2.default)(Comment)).call.apply(_ref, [this].concat(args))), _this), _this.confirmDelete = function () {
-      var _this2;
-
-      return (_this2 = _this).__confirmDelete__REACT_HOT_LOADER__.apply(_this2, arguments);
-    }, _this.submitReaction = function () {
-      var _this3;
-
-      return (_this3 = _this).__submitReaction__REACT_HOT_LOADER__.apply(_this3, arguments);
-    }, _this.startEdit = function () {
-      var _this4;
-
-      return (_this4 = _this).__startEdit__REACT_HOT_LOADER__.apply(_this4, arguments);
-    }, _this.finishEdit = function () {
-      var _this5;
-
-      return (_this5 = _this).__finishEdit__REACT_HOT_LOADER__.apply(_this5, arguments);
-    }, _this.updateComment = function () {
-      var _this6;
-
-      return (_this6 = _this).__updateComment__REACT_HOT_LOADER__.apply(_this6, arguments);
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(Comment, [{
-    key: '__confirmDelete__REACT_HOT_LOADER__',
-    value: function __confirmDelete__REACT_HOT_LOADER__() {
-      var _props = this.props,
-          showConfirm = _props.showConfirm,
-          deleteComment = _props.deleteComment,
-          comment = _props.comment;
-
-      showConfirm().then(function () {
-        return deleteComment({ comment: comment.data });
-      });
-    }
-  }, {
-    key: '__submitReaction__REACT_HOT_LOADER__',
-    value: function __submitReaction__REACT_HOT_LOADER__(reactionType) {
-      var _props2 = this.props,
-          commentId = _props2.commentId,
-          toggleReaction = _props2.toggleReaction;
-
-      toggleReaction({ commentId: commentId, reactionType: reactionType });
-    }
-  }, {
-    key: '__startEdit__REACT_HOT_LOADER__',
-    value: function __startEdit__REACT_HOT_LOADER__() {
-      var _props3 = this.props,
-          startEdit = _props3.startEdit,
-          comment = _props3.comment;
-
-      startEdit({ commentId: comment.data._id });
-    }
-  }, {
-    key: '__finishEdit__REACT_HOT_LOADER__',
-    value: function __finishEdit__REACT_HOT_LOADER__() {
-      var _props4 = this.props,
-          finishEdit = _props4.finishEdit,
-          comment = _props4.comment;
-
-      finishEdit({ commentId: comment.data._id });
-    }
-  }, {
-    key: '__updateComment__REACT_HOT_LOADER__',
-    value: function __updateComment__REACT_HOT_LOADER__() {
-      var _props5 = this.props,
-          updateComment = _props5.updateComment,
-          comment = _props5.comment;
-
-      updateComment({ comment: comment.form });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props6 = this.props,
-          item = _props6.item,
-          comment = _props6.comment,
-          entityModel = _props6.entityModel,
-          commentsActions = _props6.commentsActions,
-          style = _props6.style;
-
-
-      if (!comment || !comment.data) {
-        return _react2.default.createElement(
-          _LoadingAnimation2.default,
-          { className: _Comment2.default.comment + ' layout-row', style: style },
-          _react2.default.createElement(
-            'div',
-            { className: _Comment2.default.commentBody + ' flex' },
-            _react2.default.createElement(
-              'div',
-              { className: _Comment2.default.commentHeader + ' layout-row layout-align-start-center' },
-              _react2.default.createElement(_UserAvatar2.default, {
-                size: 25,
-                shape: 'square',
-                className: _Comment2.default.commentAvatar
-              }),
-              _react2.default.createElement(_LoadingPlaceholder2.default, { width: 200, className: _Comment2.default.link })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: _Comment2.default.commentContent },
-              _react2.default.createElement(_LoadingPlaceholder2.default, { width: 600 }),
-              _react2.default.createElement('br', null),
-              _react2.default.createElement(_LoadingPlaceholder2.default, { width: 300 }),
-              _react2.default.createElement('br', null),
-              _react2.default.createElement(_LoadingPlaceholder2.default, { width: 400 })
-            )
-          )
-        );
-      }
-
-      var hasReactions = !comment.editActive && comment.data.reactions && comment.data.reactions.length > 0;
-
-      return _react2.default.createElement(
-        'div',
-        { className: _Comment2.default.comment + ' layout-row', style: style },
-        _react2.default.createElement(
-          'div',
-          { className: _Comment2.default.commentBody + ' flex' },
-          _react2.default.createElement(
-            'div',
-            { className: _Comment2.default.commentHeader + ' layout-row layout-align-start-center' },
-            _react2.default.createElement(_UserAvatar2.default, {
-              picture: comment.data.owner.picture,
-              size: 25,
-              shape: 'square',
-              className: _Comment2.default.commentAvatar
-            }),
-            _react2.default.createElement(
-              'b',
-              null,
-              comment.data.owner.name
-            ),
-            _react2.default.createElement(
-              'span',
-              { className: _Comment2.default.date },
-              '\xA0',
-              _react2.default.createElement('b', { className: 'text-interpunct' }),
-              ' ',
-              (0, _moment2.default)(comment.data.timestamp).fromNow()
-            ),
-            _react2.default.createElement('div', { className: 'flex' }),
-            _react2.default.createElement(_ReactionPopup2.default, {
-              reactions: comment.data.reactions,
-              preferPlace: 'above',
-              submitFn: this.submitReaction
-            }),
-            _react2.default.createElement(
-              _IsOwner2.default,
-              { ownerId: comment.data.owner._id },
-              _react2.default.createElement(
-                _Popover2.default,
-                { preferPlace: 'right' },
-                _react2.default.createElement(
-                  _SimpleIconButton2.default,
-                  { style: { padding: '0 0 0 5px' } },
-                  _react2.default.createElement(_moreHoriz2.default, { size: '20px' })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'PopoverMenu' },
-                  !comment.editActive && _react2.default.createElement(
-                    'a',
-                    { onClick: this.startEdit },
-                    'Edit'
-                  ),
-                  _react2.default.createElement(
-                    'a',
-                    { onClick: this.confirmDelete },
-                    'Delete'
-                  )
-                )
-              )
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: _Comment2.default.commentContent },
-            comment.editActive ? _react2.default.createElement(
-              _Form2.default,
-              {
-                model: entityModel + '.form',
-                value: comment.data
-              },
-              comment.form ? _react2.default.createElement(_EditorNew2.default, {
-                model: entityModel + '.form.body',
-                value: comment.form.body
-              }) : null
-            ) : _react2.default.createElement(_EditorDisplay2.default, { value: comment.data.body })
-          ),
-          comment.editActive ? _react2.default.createElement(
-            'div',
-            { className: _Comment2.default.commentFooter },
-            _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(
-                'a',
-                { className: 'link-primary', onClick: this.finishEdit },
-                'Cancel'
-              ),
-              '\xA0',
-              _react2.default.createElement('b', { className: 'text-interpunct text-grey-3' }),
-              '\xA0',
-              _react2.default.createElement(
-                'a',
-                { className: 'link-primary', onClick: this.updateComment },
-                'Save'
-              )
-            )
-          ) : '',
-          hasReactions && _react2.default.createElement(
-            'div',
-            { className: _Comment2.default.reactions },
-            _react2.default.createElement(_Reactions2.default, { reactions: comment.data.reactions })
-          )
-        )
-      );
-    }
-  }]);
-  return Comment;
-}(_react.Component);
-
-exports.default = Comment;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Comment, 'Comment', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/Comment/Comment.jsx');
-}();
-
-;
-;
-
-var _temp3 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -7944,6 +6735,73 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "z53e":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var toggle = exports.toggle = function toggle(_ref) {
+  var cacheKey = _ref.cacheKey,
+      value = _ref.value;
+
+  return function (dispatch, getState) {
+    var currentValue = getState().togglePanel[cacheKey];
+
+    // If value == null - we toggle.
+    // Otherwise, we set it to the value.
+
+    dispatch({
+      type: 'TOGGLE_PANEL/TOGGLE',
+      payload: {
+        cacheKey: cacheKey,
+        value: value === null ? !currentValue : value
+      }
+    });
+  };
+};
+var toggleMulti = exports.toggleMulti = function toggleMulti(_ref2) {
+  var cacheKeys = _ref2.cacheKeys;
+
+  return function (dispatch, getState) {
+    var newValue = cacheKeys && cacheKeys[0] ? !getState().togglePanel[cacheKeys[0]] : false;
+    dispatch({
+      type: 'TOGGLE_PANEL/TOGGLE_MULTI',
+      payload: {
+        cacheKeys: cacheKeys,
+        value: newValue
+      }
+    });
+  };
+};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(toggle, 'toggle', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.actions.js');
+
+  __REACT_HOT_LOADER__.register(toggleMulti, 'toggleMulti', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.actions.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "z7Ks":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -7984,4 +6842,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=6.5b990598ca57de2ef405.js.map
+//# sourceMappingURL=7.fb3768ea2a49e2826662.js.map

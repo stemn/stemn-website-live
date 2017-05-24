@@ -50158,13 +50158,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _FilesActions = __webpack_require__("iLLw");
 
-var _default = function _default(store, action) {
+exports.default = function (store, action) {
   var dispatch = store.dispatch,
       getState = store.getState;
 
 
   switch (action.type) {
-    case 'RENDER/RENDER_COMPLETE':
+    //    case 'RENDER/RENDER_COMPLETE':
+    //      return dispatch(renderFileDownload({
+    //        projectId   : action.payload.projectId,
+    //        fileId      : action.payload.fileId,
+    //        revisionId  : action.payload.revisionId,
+    //        provider    : action.payload.provider,
+    //        timestamp   : action.payload.timestamp,
+    //      }))
+    case 'RENDER/RENDER_DOWNLOAD':
       return dispatch((0, _FilesActions.renderFileDownload)({
         projectId: action.payload.projectId,
         fileId: action.payload.fileId,
@@ -50185,31 +50193,6 @@ var _default = function _default(store, action) {
       }));
   }
 };
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Websocket/eventMap/render.js');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Websocket/eventMap/render.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -70547,6 +70530,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var classes =  true ? __webpack_require__("0QDE") : require('./Toasts.desktop.css');
 
+var _ref = _react2.default.createElement('div', { className: 'flex' });
+
+var _ref2 = _react2.default.createElement(_close2.default, { size: '20' });
+
 var Toast = _react2.default.createClass({
   displayName: 'Toast',
 
@@ -70620,11 +70607,11 @@ var Toast = _react2.default.createClass({
         getIcon(),
         toast.title,
         getActions(),
-        _react2.default.createElement('div', { className: 'flex' }),
+        _ref,
         _react2.default.createElement(
           'a',
           { className: classes.close, onClick: this.closeToast },
-          _react2.default.createElement(_close2.default, { size: '20' })
+          _ref2
         )
       )
     );
@@ -70670,48 +70657,15 @@ var Component = exports.Component = _react2.default.createClass({
   }
 });
 
-function mapStateToProps(_ref) {
-  var toasts = _ref.toasts;
+function mapStateToProps(_ref3) {
+  var toasts = _ref3.toasts;
 
   return {
     toasts: toasts
   };
 }
 
-var _default = (0, _reactRedux.connect)(mapStateToProps)(Component);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Toasts/Toasts.jsx');
-
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Toasts/Toasts.jsx');
-
-  __REACT_HOT_LOADER__.register(classes, 'classes', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Toasts/Toasts.jsx');
-
-  __REACT_HOT_LOADER__.register(Toast, 'Toast', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Toasts/Toasts.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Toasts/Toasts.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Toasts/Toasts.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Component);
 
 /***/ },
 
@@ -88025,4 +87979,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.bfca1ced85c2868fc484.js.map
+//# sourceMappingURL=application.7046ef42a9ea647b2441.js.map
