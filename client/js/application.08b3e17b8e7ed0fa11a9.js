@@ -4292,17 +4292,20 @@ var LinkComponent = function LinkComponent(props) {
   var routePath = (0, _Link.getRoutePath)(name, params);
   var routePathIsObject = (typeof routePath === 'undefined' ? 'undefined' : (0, _typeof3.default)(routePath)) === 'object';
 
+  // Get the isExternal bool (if the route object has external:true)
+  var isExternal = routePathIsObject && routePath.external;
+
   // Get the route state from the scope
   // We include the scope on the state.meta
   // This state.meta is moved up to the root action object
-  // inside the Router.middleware
-  // this is only used on desktop
+  // inside the Router.middleware (this is only used on desktop)
   var routeState = {
     meta: {
       scope: [scope]
     }
   };
 
+  // Construct the function to get the 'to'
   var getToPath = function getToPath() {
     if (routePath && routePathIsObject) {
       return {
@@ -4325,6 +4328,15 @@ var LinkComponent = function LinkComponent(props) {
     }
   };
 
+  // Construct the function to get the 'href'
+  var getHref = function getHref() {
+    if (routePath.pathname.startsWith('http')) {
+      return routePath.pathname;
+    } else {
+      return '' + "https://stemn.com" + routePath.pathname;
+    }
+  };
+
   var additionalClickFunction = function additionalClickFunction() {
     // Dispatch the show event if required
     if (scope && show) showWindow(scope);
@@ -4339,11 +4351,19 @@ var LinkComponent = function LinkComponent(props) {
 
   var allClassNames = (0, _classnames2.default)(className, { 'active': (0, _Link.isActive)(activeIf, params) });
 
-  return _react2.default.createElement(_reactRouter.Link, (0, _extends3.default)({
-    to: getToPath(),
-    className: allClassNames,
-    onClick: extendedOnClick
-  }, otherProps));
+  if (isExternal) {
+    return _react2.default.createElement('a', (0, _extends3.default)({
+      href: getHref(),
+      className: allClassNames,
+      onClick: extendedOnClick
+    }, otherProps));
+  } else {
+    return _react2.default.createElement(_reactRouter.Link, (0, _extends3.default)({
+      to: getToPath(),
+      className: allClassNames,
+      onClick: extendedOnClick
+    }, otherProps));
+  }
 };
 
 LinkComponent.propTypes = propTypesObject;
@@ -12463,7 +12483,7 @@ var Component = exports.Component = _react2.default.createClass({
         entityModel = _props.entityModel,
         toggleComplete = _props.toggleComplete,
         toggleRelated = _props.toggleRelated,
-        mention = _props.mention;
+        status = _props.status;
 
 
     if (!task || !task.data) {
@@ -12498,7 +12518,7 @@ var Component = exports.Component = _react2.default.createClass({
       _react2.default.createElement(
         _Button2.default,
         {
-          className: (0, _classnames2.default)('xs', _TaskRow2.default.button, (0, _defineProperty3.default)({}, _TaskRow2.default.active, mention && mention.complete)),
+          className: (0, _classnames2.default)('xs', _TaskRow2.default.button, (0, _defineProperty3.default)({}, _TaskRow2.default.active, status === 'complete')),
           title: 'Mark as Complete',
           onClick: toggleComplete },
         'Complete'
@@ -12506,7 +12526,7 @@ var Component = exports.Component = _react2.default.createClass({
       _react2.default.createElement(
         _Button2.default,
         {
-          className: (0, _classnames2.default)('xs', _TaskRow2.default.button, (0, _defineProperty3.default)({}, _TaskRow2.default.active, mention && mention.related)),
+          className: (0, _classnames2.default)('xs', _TaskRow2.default.button, (0, _defineProperty3.default)({}, _TaskRow2.default.active, status === 'related')),
           title: 'Mark as related',
           onClick: toggleRelated },
         'Related'
@@ -17123,6 +17143,9 @@ var organisationRoute = exports.organisationRoute = function organisationRoute(_
   var organisationId = _ref4.organisationId;
   return '/organisaitons/' + organisationId;
 };
+var passwordLostRoute = exports.passwordLostRoute = function passwordLostRoute() {
+  return '/password-lost';
+};
 var pricingRoute = exports.pricingRoute = function pricingRoute() {
   return '/pricing';
 };
@@ -17165,6 +17188,9 @@ var projectTasksRoute = exports.projectTasksRoute = function projectTasksRoute(_
 var projectTeamRoute = exports.projectTeamRoute = function projectTeamRoute(_ref13) {
   var projectId = _ref13.projectId;
   return '/project/' + projectId + '/team';
+};
+var registerRoute = exports.registerRoute = function registerRoute() {
+  return '/register';
 };
 var securityRoute = exports.securityRoute = function securityRoute() {
   return '/security';
@@ -17246,6 +17272,8 @@ var _temp = function () {
 
   __REACT_HOT_LOADER__.register(organisationRoute, 'organisationRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
+  __REACT_HOT_LOADER__.register(passwordLostRoute, 'passwordLostRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+
   __REACT_HOT_LOADER__.register(pricingRoute, 'pricingRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(privacyRoute, 'privacyRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
@@ -17267,6 +17295,8 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(projectTasksRoute, 'projectTasksRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(projectTeamRoute, 'projectTeamRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+
+  __REACT_HOT_LOADER__.register(registerRoute, 'registerRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(securityRoute, 'securityRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
@@ -17339,12 +17369,26 @@ var _default = function _default() {
       return _icepick2.default.assocIn(state, [action.meta.cacheKey, 'selected'], action.payload.selected);
     case 'TIMELINE/DESELECT_ITEM':
       return _icepick2.default.assocIn(state, [action.meta.cacheKey, 'selected'], {});
+
     case 'TIMELINE/FETCH_TIMELINE_PENDING':
       return _icepick2.default.assocIn(state, [action.meta.cacheKey, 'loading'], true);
     case 'TIMELINE/FETCH_TIMELINE_REJECTED':
       return _icepick2.default.assocIn(state, [action.meta.cacheKey, 'loading'], false);
     case 'TIMELINE/FETCH_TIMELINE_FULFILLED':
       return _icepick2.default.chain(state).assocIn([action.meta.cacheKey, 'data'], action.payload.data).assocIn([action.meta.cacheKey, 'loading'], false).value();
+
+    case 'TIMELINE/ADD_EVENT':
+      return _icepick2.default.updateIn(state, [action.payload.cacheKey, 'data'], function (events) {
+        return _icepick2.default.push(events, action.payload.event);
+      });
+    case 'TIMELINE/DELETE_EVENT':
+      return _icepick2.default.updateIn(state, [action.payload.cacheKey, 'data'], function (events) {
+        var eventIndex = events.findIndex(function (event) {
+          return event._id === action.payload.eventId;
+        });
+        return eventIndex !== -1 ? _icepick2.default.splice(events, eventIndex, 1) : events;
+      });
+
     default:
       return state;
   }
@@ -21229,7 +21273,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(20), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "XFbw")), cb);
   };
   var getFile = function getFile(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(6), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "jvCS")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(7), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "jvCS")), cb);
   };
   var getFlow = function getFlow(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(45).then(__webpack_require__.bind(null, "rtAa")), cb);
@@ -21274,7 +21318,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(36)]).then(__webpack_require__.bind(null, "cs2g")), cb);
   };
   var getProjectCommit = function getProjectCommit(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(7), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "FTSl")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(8), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "FTSl")), cb);
   };
   var getProjectCommits = function getProjectCommits(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(4), __webpack_require__.e(3), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "S8ZU")), cb);
@@ -21292,7 +21336,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, "PAeO")), cb);
   };
   var getProjectSettingsTags = function getProjectSettingsTags(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(11), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "QmIC")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(12), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "QmIC")), cb);
   };
   var getProjectSettingsTasks = function getProjectSettingsTasks(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(35)]).then(__webpack_require__.bind(null, "6Y9n")), cb);
@@ -21301,10 +21345,10 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(15), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "ar6m")), cb);
   };
   var getProjectTask = function getProjectTask(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(8), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "NL4z")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(9), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "NL4z")), cb);
   };
   var getProjectTasks = function getProjectTasks(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(9), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "YzX6")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(6), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "YzX6")), cb);
   };
   var getProjectTeam = function getProjectTeam(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(5), __webpack_require__.e(3), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "knNm")), cb);
@@ -21355,7 +21399,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(33), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "JoCH")), cb);
   };
   var getUserOverview = function getUserOverview(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(12), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "VTvy")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(11), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "VTvy")), cb);
   };
   var getUserProjects = function getUserProjects(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(30), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "2k9P")), cb);
@@ -21406,10 +21450,10 @@ exports.default = function (_ref) {
       _reactRouter.Route,
       { component: _AppUnAuthed2.default },
       _react2.default.createElement(_reactRouter.Route, { path: 'login', getComponent: getLogin }),
-      _react2.default.createElement(_reactRouter.Route, { path: 'register', getComponent: getRegister }),
-      _react2.default.createElement(_reactRouter.Route, { path: 'password-lost', getComponent: getPasswordLost })
+      _react2.default.createElement(_reactRouter.Route, { path: 'register', getComponent: getRegister })
     ),
     _react2.default.createElement(_reactRouter.Route, { path: '/', getComponent: getHome }),
+    _react2.default.createElement(_reactRouter.Route, { path: 'password-lost', getComponent: getPasswordLost }),
     _react2.default.createElement(_reactRouter.Route, { path: '/password-reset', getComponent: getPasswordSet }),
     _react2.default.createElement(
       _reactRouter.Route,
@@ -26750,8 +26794,6 @@ var _assign2 = _interopRequireDefault(_assign);
 exports.newTask = newTask;
 exports.getBoards = getBoards;
 exports.getBoard = getBoard;
-exports.newEvent = newEvent;
-exports.deleteEvent = deleteEvent;
 exports.getTask = getTask;
 exports.updateTask = updateTask;
 exports.getGroup = getGroup;
@@ -26849,34 +26891,6 @@ function getBoard(_ref3) {
   };
 }
 
-function newEvent(_ref4) {
-  var taskId = _ref4.taskId,
-      event = _ref4.event;
-
-  var eventObject = (0, _assign2.default)({}, {
-    _id: (0, _getUuid2.default)()
-  }, event);
-  return {
-    type: 'TASKS/NEW_EVENT',
-    payload: {
-      event: eventObject,
-      taskId: taskId
-    }
-  };
-}
-function deleteEvent(_ref5) {
-  var taskId = _ref5.taskId,
-      eventId = _ref5.eventId;
-
-  return {
-    type: 'TASKS/DELETE_EVENT',
-    payload: {
-      taskId: taskId,
-      eventId: eventId
-    }
-  };
-}
-
 //export function getEvents({taskId}){
 //  return {
 //    type: 'TASKS/GET_EVENTS',
@@ -26890,8 +26904,8 @@ function deleteEvent(_ref5) {
 //  }
 //}
 
-var updateBoard = exports.updateBoard = function updateBoard(_ref6) {
-  var board = _ref6.board;
+var updateBoard = exports.updateBoard = function updateBoard(_ref4) {
+  var board = _ref4.board;
   return {
     type: 'TASKS/UPDATE_BOARD',
     payload: (0, _axios2.default)({
@@ -26905,17 +26919,17 @@ var updateBoard = exports.updateBoard = function updateBoard(_ref6) {
   };
 };
 
-var editBoard = exports.editBoard = function editBoard(_ref7) {
-  var model = _ref7.model,
-      value = _ref7.value;
+var editBoard = exports.editBoard = function editBoard(_ref5) {
+  var model = _ref5.model,
+      value = _ref5.value;
   return {
     type: 'TASKS/EDIT_BOARD',
     payload: board
   };
 };
 
-function getTask(_ref8) {
-  var taskId = _ref8.taskId;
+function getTask(_ref6) {
+  var taskId = _ref6.taskId;
 
   return {
     type: 'TASKS/GET_TASK',
@@ -26932,8 +26946,8 @@ function getTask(_ref8) {
   };
 }
 
-function updateTask(_ref9) {
-  var task = _ref9.task;
+function updateTask(_ref7) {
+  var task = _ref7.task;
 
   return {
     type: 'TASKS/UPDATE_TASK',
@@ -26953,9 +26967,9 @@ function updateTask(_ref9) {
   };
 }
 
-function getGroup(_ref10) {
-  var boardId = _ref10.boardId,
-      groupId = _ref10.groupId;
+function getGroup(_ref8) {
+  var boardId = _ref8.boardId,
+      groupId = _ref8.groupId;
 
   return {
     type: 'TASKS/GET_GROUP',
@@ -26970,8 +26984,8 @@ function getGroup(_ref10) {
   };
 }
 
-function updateGroup(_ref11) {
-  var group = _ref11.group;
+function updateGroup(_ref9) {
+  var group = _ref9.group;
 
   return {
     type: 'TASKS/UPDATE_GROUP',
@@ -26991,9 +27005,9 @@ function updateGroup(_ref11) {
   };
 }
 
-function deleteTask(_ref12) {
-  var boardId = _ref12.boardId,
-      taskId = _ref12.taskId;
+function deleteTask(_ref10) {
+  var boardId = _ref10.boardId,
+      taskId = _ref10.taskId;
 
   return {
     type: 'TASKS/DELETE_TASK',
@@ -27008,13 +27022,13 @@ function deleteTask(_ref12) {
   };
 }
 
-function moveTask(_ref13) {
-  var boardId = _ref13.boardId,
-      task = _ref13.task,
-      destinationTask = _ref13.destinationTask,
-      destinationGroup = _ref13.destinationGroup,
-      after = _ref13.after,
-      save = _ref13.save;
+function moveTask(_ref11) {
+  var boardId = _ref11.boardId,
+      task = _ref11.task,
+      destinationTask = _ref11.destinationTask,
+      destinationGroup = _ref11.destinationGroup,
+      after = _ref11.after,
+      save = _ref11.save;
 
   // To move a task you must have either hoverItem or destinationGroup
   // destinationGroup is used if the group is empty
@@ -27048,9 +27062,9 @@ function moveTask(_ref13) {
   };
 }
 
-function beginDrag(_ref14) {
-  var boardId = _ref14.boardId,
-      taskId = _ref14.taskId;
+function beginDrag(_ref12) {
+  var boardId = _ref12.boardId,
+      taskId = _ref12.taskId;
 
   return {
     type: 'TASKS/BEGIN_DRAG',
@@ -27063,9 +27077,9 @@ function beginDrag(_ref14) {
   };
 }
 
-function endDrag(_ref15) {
-  var boardId = _ref15.boardId,
-      taskId = _ref15.taskId;
+function endDrag(_ref13) {
+  var boardId = _ref13.boardId,
+      taskId = _ref13.taskId;
 
   return {
     type: 'TASKS/END_DRAG',
@@ -27078,12 +27092,12 @@ function endDrag(_ref15) {
   };
 }
 
-function moveGroup(_ref16) {
-  var boardId = _ref16.boardId,
-      group = _ref16.group,
-      destinationGroup = _ref16.destinationGroup,
-      after = _ref16.after,
-      save = _ref16.save;
+function moveGroup(_ref14) {
+  var boardId = _ref14.boardId,
+      group = _ref14.group,
+      destinationGroup = _ref14.destinationGroup,
+      after = _ref14.after,
+      save = _ref14.save;
 
   return function (dispatch) {
     if (save) {
@@ -27111,10 +27125,10 @@ function moveGroup(_ref16) {
   };
 }
 
-function toggleComplete(_ref17) {
-  var taskId = _ref17.taskId,
-      model = _ref17.model,
-      value = _ref17.value;
+function toggleComplete(_ref15) {
+  var taskId = _ref15.taskId,
+      model = _ref15.model,
+      value = _ref15.value;
 
   return function (dispatch) {
     dispatch((0, _ToastsActions.show)({
@@ -27133,10 +27147,10 @@ function toggleComplete(_ref17) {
     }));
   };
 }
-function toggleCompleteUndo(_ref18) {
-  var taskId = _ref18.taskId,
-      model = _ref18.model,
-      value = _ref18.value;
+function toggleCompleteUndo(_ref16) {
+  var taskId = _ref16.taskId,
+      model = _ref16.model,
+      value = _ref16.value;
 
   return function (dispatch, getState) {
     dispatch((0, _Store.storeChange)(model, !value));
@@ -27146,9 +27160,9 @@ function toggleCompleteUndo(_ref18) {
   };
 }
 
-function newGroup(_ref19) {
-  var boardId = _ref19.boardId,
-      group = _ref19.group;
+function newGroup(_ref17) {
+  var boardId = _ref17.boardId,
+      group = _ref17.group;
 
   return function (dispatch) {
     if (group.name.length > 1) {
@@ -27169,9 +27183,9 @@ function newGroup(_ref19) {
   };
 }
 
-var deleteGroupConfirm = exports.deleteGroupConfirm = function deleteGroupConfirm(_ref20) {
-  var boardId = _ref20.boardId,
-      groupId = _ref20.groupId;
+var deleteGroupConfirm = exports.deleteGroupConfirm = function deleteGroupConfirm(_ref18) {
+  var boardId = _ref18.boardId,
+      groupId = _ref18.groupId;
   return function (dispatch) {
     return dispatch((0, _ModalActions.showConfirm)({
       message: 'Deleting a group is permanent. All tasks which belong to this group will be deleted (even archived tasks).'
@@ -27181,9 +27195,9 @@ var deleteGroupConfirm = exports.deleteGroupConfirm = function deleteGroupConfir
   };
 };
 
-function deleteGroup(_ref21) {
-  var boardId = _ref21.boardId,
-      groupId = _ref21.groupId;
+function deleteGroup(_ref19) {
+  var boardId = _ref19.boardId,
+      groupId = _ref19.groupId;
 
   return {
     type: 'TASKS/DELETE_GROUP',
@@ -27198,8 +27212,8 @@ function deleteGroup(_ref21) {
   };
 }
 
-function showLabelEditModal(_ref22) {
-  var boardId = _ref22.boardId;
+function showLabelEditModal(_ref20) {
+  var boardId = _ref20.boardId;
 
   return function (dispatch) {
     dispatch((0, _ModalActions.showModal)({
@@ -27211,9 +27225,9 @@ function showLabelEditModal(_ref22) {
   };
 }
 
-function changeLayout(_ref23) {
-  var boardId = _ref23.boardId,
-      layout = _ref23.layout;
+function changeLayout(_ref21) {
+  var boardId = _ref21.boardId,
+      layout = _ref21.layout;
 
   return {
     type: 'TASKS/CHANGE_LAYOUT',
@@ -27224,8 +27238,8 @@ function changeLayout(_ref23) {
   };
 }
 
-function websocketJoinBoard(_ref24) {
-  var boardId = _ref24.boardId;
+function websocketJoinBoard(_ref22) {
+  var boardId = _ref22.boardId;
 
   return {
     type: 'TASKS/WEBSOCKET_JOIN_BOARD',
@@ -27239,8 +27253,8 @@ function websocketJoinBoard(_ref24) {
     }
   };
 }
-function websocketLeaveBoard(_ref25) {
-  var boardId = _ref25.boardId;
+function websocketLeaveBoard(_ref23) {
+  var boardId = _ref23.boardId;
 
   return {
     type: 'TASKS/WEBSOCKET_LEAVE_BOARD',
@@ -27266,10 +27280,6 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(getBoards, 'getBoards', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
 
   __REACT_HOT_LOADER__.register(getBoard, 'getBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(newEvent, 'newEvent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(deleteEvent, 'deleteEvent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
 
   __REACT_HOT_LOADER__.register(updateBoard, 'updateBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
 
@@ -30396,10 +30406,35 @@ module.exports = cloneMap;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _keys = __webpack_require__("fZjL");
 
 var _keys2 = _interopRequireDefault(_keys);
+
+var _values2 = __webpack_require__("L8MQ");
+
+var _values3 = _interopRequireDefault(_values2);
 
 var _react = __webpack_require__("U7vG");
 
@@ -30447,221 +30482,249 @@ var _LoadingOverlay = __webpack_require__("K+/r");
 
 var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
 
+var _Mentions = __webpack_require__("b/J2");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = _react2.default.createClass({
-  displayName: '_default',
-
-
-  // Mounting
-  onMount: function onMount(nextProps, prevProps) {
-    if (!nextProps.board || !nextProps.board.data) {
-      nextProps.getBoards({ projectId: nextProps.projectId });
-    }
-  },
-  componentWillMount: function componentWillMount() {
-    this.onMount(this.props);
-  },
-  submit: function submit() {
-    // Get the mentions
-    var mentions = getMentionsFromObject(this.props.mentions, this.props.tasks);
-    // Clear props.mentions;
-    this.props.storeChange(this.props.mentionsModel, {});
-
-    this.props.modalConfirm({ mentions: mentions });
-  },
-  cancel: function cancel() {
-    this.props.modalCancel();
-  },
-  toggle: function toggle(_ref) {
-    var _this = this;
-
-    var type = _ref.type,
-        taskId = _ref.taskId,
-        mention = _ref.mention;
-
-    // type == 'complete' || 'related'
-    var toggleField = function toggleField(type1, type2) {
-      var value = mention ? !mention[type1] : true;
-      if (value) {
-        _this.props.storeChange(_this.props.mentionsModel + '.' + taskId + '.' + type1, value);
-        _this.props.storeChange(_this.props.mentionsModel + '.' + taskId + '.' + type2, !value);
-      } else {
-        _this.props.storeChange(_this.props.mentionsModel + '.' + taskId + '.' + type1, value);
-      }
-    };
-    return type == 'complete' ? toggleField('complete', 'related') : toggleField('related', 'complete');
-  },
-  render: function render() {
-    var _this2 = this;
-
-    var _props = this.props,
-        tasks = _props.tasks,
-        board = _props.board,
-        mentions = _props.mentions,
-        boardModel = _props.boardModel;
-
-
-    var getTasks = function getTasks() {
-      var filteredBoard = (0, _TasksUtils.filterBoard)(board, tasks, board.searchString);
-      var numTasks = (0, _TasksUtils.getAllTasks)(board.data.groups).length;
-      var numFilteredTasks = (0, _TasksUtils.getAllTasks)(filteredBoard.data.groups).length;
-
-      if (numTasks == 0 || numFilteredTasks == 0) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'flex layout-column layout-align-center-center text-center' },
-          numTasks == 0 ? _react2.default.createElement(
-            'div',
-            { style: { width: '100%' } },
-            'This project has no tasks. Add some.'
-          ) : _react2.default.createElement(
-            'div',
-            { style: { width: '100%' } },
-            'No results, ',
-            _react2.default.createElement(
-              'a',
-              { className: 'text-primary', onClick: function onClick() {
-                  return _this2.props.storeChange(boardModel + '.searchString', '');
-                } },
-              'clear search filter.'
-            )
-          )
-        );
-      } else {
-        return _react2.default.createElement(
-          'div',
-          { className: 'flex scroll-box' },
-          filteredBoard.data.groups.map(function (group) {
-            return _react2.default.createElement(
-              'div',
-              null,
-              group.tasks.map(function (taskId) {
-                return _react2.default.createElement(_TaskRow2.default, {
-                  key: taskId,
-                  taskId: taskId,
-                  mention: mentions[taskId],
-                  toggleComplete: function toggleComplete() {
-                    return _this2.toggle({ type: 'complete', taskId: taskId, mention: mentions[taskId] });
-                  },
-                  toggleRelated: function toggleRelated() {
-                    return _this2.toggle({ type: 'related', taskId: taskId, mention: mentions[taskId] });
-                  }
-                });
-              })
-            );
-          })
-        );
-      }
-    };
-
-    return _react2.default.createElement(
-      'div',
-      { className: _TaskMentionModal2.default.modal + ' layout-column' },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-title' },
-        'Add tasks to a commit:'
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: _TaskMentionModal2.default.header + ' layout-row layout-align-start-center' },
-        _react2.default.createElement(
-          'div',
-          { className: 'flex' },
-          (0, _howMany2.default)({ count: filterMentions(mentions, 'complete').length, adj: 'complete' }, { count: filterMentions(mentions, 'related').length, adj: 'related' }, 'task')
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: _TaskMentionModal2.default.search },
-          _react2.default.createElement(_Input2.default, {
-            model: boardModel + '.searchString',
-            value: board.searchString,
-            className: 'dr-input',
-            placeholder: 'Search tasks'
-          }),
-          _react2.default.createElement(
-            _Popover2.default,
-            { preferPlace: 'right', trigger: 'hoverDelay' },
-            _react2.default.createElement(_search2.default, { size: '20' }),
-            _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(_TasksFilterMenu2.default, { model: boardModel + '.searchString', value: board.searchString })
-            )
-          )
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'layout-column flex rel-box' },
-        _react2.default.createElement(_LoadingOverlay2.default, { show: !board || !board.data }),
-        board && board.data ? getTasks() : null
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer layout-row layout-align-start-center' },
-        _react2.default.createElement('div', { className: 'flex text-description-1' }),
-        _react2.default.createElement(
-          _Button2.default,
-          { style: { marginRight: '10px' }, onClick: this.cancel },
-          'Cancel'
-        ),
-        _react2.default.createElement(
-          _Button2.default,
-          { className: 'primary', onClick: this.submit },
-          'Add Tasks'
-        )
-      )
-    );
-  }
-});
-
-var _default2 = _default;
-exports.default = _default2;
-
-
-function filterMentions(mentions, type) {
-  var mentionsArray = mentions ? (0, _keys2.default)(mentions).map(function (taskId) {
-    return mentions[taskId];
-  }) : [];
-  // type == 'complete' || 'related'
-  return mentionsArray.length > 0 ? mentionsArray.filter(function (mention) {
-    return mention[type];
-  }) : [];
-}
-
-function getMentionsFromObject(mentionsObject, tasks) {
-  var mentions = [];
-  (0, _keys2.default)(mentionsObject).forEach(function (taskId) {
-    if (mentionsObject[taskId].complete) {
-      mentions.push(newMention({ entityId: taskId, display: tasks[taskId].data.name, mentionType: 'task-complete' }));
-    } else if (mentionsObject[taskId].related) {
-      mentions.push(newMention({ entityId: taskId, display: tasks[taskId].data.name, mentionType: 'task' }));
-    }
+var getMentionsFromObject = function getMentionsFromObject(mentionsObject, tasks) {
+  return (0, _keys2.default)(mentionsObject).map(function (taskId) {
+    return (0, _Mentions.newMention)({
+      entityId: taskId,
+      display: tasks[taskId].data.name,
+      mentionType: mentionsObject[taskId] === 'complete' ? 'task-complete' : 'task'
+    });
   });
-  return mentions;
-}
+};
+
+var countMentions = function countMentions(mentions, type) {
+  return (0, _values3.default)(mentions).filter(function (mentionType) {
+    return mentionType === type;
+  }).length;
+};
+
+var TaskMentionModal = function (_Component) {
+  (0, _inherits3.default)(TaskMentionModal, _Component);
+
+  function TaskMentionModal() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, TaskMentionModal);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TaskMentionModal.__proto__ || (0, _getPrototypeOf2.default)(TaskMentionModal)).call.apply(_ref, [this].concat(args))), _this), _this.submit = function () {
+      var _this2;
+
+      return (_this2 = _this).__submit__REACT_HOT_LOADER__.apply(_this2, arguments);
+    }, _this.cancel = function () {
+      var _this3;
+
+      return (_this3 = _this).__cancel__REACT_HOT_LOADER__.apply(_this3, arguments);
+    }, _this.setMention = function () {
+      var _this4;
+
+      return (_this4 = _this).__setMention__REACT_HOT_LOADER__.apply(_this4, arguments);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(TaskMentionModal, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      if (!this.props.board || !this.props.board.data) {
+        this.props.getBoards({
+          projectId: this.props.projectId
+        });
+      }
+    }
+  }, {
+    key: '__submit__REACT_HOT_LOADER__',
+    value: function __submit__REACT_HOT_LOADER__() {
+      var _props = this.props,
+          mentions = _props.mentions,
+          mentionsModel = _props.mentionsModel,
+          tasks = _props.tasks;
+      // Get the mentions
+
+      var mentionArray = getMentionsFromObject(mentions, tasks);
+      // Clear mentions
+      this.props.storeChange(mentionsModel, {});
+      // Return the results
+      this.props.modalConfirm({ mentions: mentionArray });
+    }
+  }, {
+    key: '__cancel__REACT_HOT_LOADER__',
+    value: function __cancel__REACT_HOT_LOADER__() {
+      this.props.modalCancel();
+    }
+  }, {
+    key: '__setMention__REACT_HOT_LOADER__',
+    value: function __setMention__REACT_HOT_LOADER__(_ref2) {
+      var status = _ref2.status,
+          taskId = _ref2.taskId;
+      var _props2 = this.props,
+          mentions = _props2.mentions,
+          storeChange = _props2.storeChange,
+          mentionsModel = _props2.mentionsModel;
+
+      var currentStatus = mentions[taskId];
+      if (status === currentStatus) {
+        storeChange(mentionsModel + '.' + taskId, '');
+      } else {
+        storeChange(mentionsModel + '.' + taskId, status);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this5 = this;
+
+      var _props3 = this.props,
+          tasks = _props3.tasks,
+          board = _props3.board,
+          mentions = _props3.mentions,
+          boardModel = _props3.boardModel;
+
+
+      var getTasks = function getTasks() {
+        var filteredBoard = (0, _TasksUtils.filterBoard)(board, tasks, board.searchString);
+        var numTasks = (0, _TasksUtils.getAllTasks)(board.data.groups).length;
+        var numFilteredTasks = (0, _TasksUtils.getAllTasks)(filteredBoard.data.groups).length;
+
+        if (numTasks == 0 || numFilteredTasks == 0) {
+          return _react2.default.createElement(
+            'div',
+            { className: 'flex layout-column layout-align-center-center text-center' },
+            numTasks == 0 ? _react2.default.createElement(
+              'div',
+              { style: { width: '100%' } },
+              'This project has no tasks. Add some.'
+            ) : _react2.default.createElement(
+              'div',
+              { style: { width: '100%' } },
+              'No results, ',
+              _react2.default.createElement(
+                'a',
+                { className: 'text-primary', onClick: function onClick() {
+                    return _this5.props.storeChange(boardModel + '.searchString', '');
+                  } },
+                'clear search filter.'
+              )
+            )
+          );
+        } else {
+          return _react2.default.createElement(
+            'div',
+            { className: 'flex scroll-box' },
+            filteredBoard.data.groups.map(function (group, idx) {
+              return _react2.default.createElement(
+                'div',
+                { key: idx },
+                group.tasks.map(function (taskId) {
+                  return _react2.default.createElement(_TaskRow2.default, {
+                    key: taskId,
+                    taskId: taskId,
+                    status: mentions[taskId],
+                    toggleComplete: function toggleComplete() {
+                      return _this5.setMention({ status: 'complete', taskId: taskId });
+                    },
+                    toggleRelated: function toggleRelated() {
+                      return _this5.setMention({ status: 'related', taskId: taskId });
+                    }
+                  });
+                })
+              );
+            })
+          );
+        }
+      };
+
+      return _react2.default.createElement(
+        'div',
+        { className: _TaskMentionModal2.default.modal + ' layout-column' },
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-title' },
+          'Add tasks to a commit:'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: _TaskMentionModal2.default.header + ' layout-row layout-align-start-center' },
+          _react2.default.createElement(
+            'div',
+            { className: 'flex' },
+            (0, _howMany2.default)({ count: countMentions(mentions, 'complete'), adj: 'complete' }, { count: countMentions(mentions, 'related'), adj: 'related' }, 'task')
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: _TaskMentionModal2.default.search },
+            _react2.default.createElement(_Input2.default, {
+              model: boardModel + '.searchString',
+              value: board.searchString,
+              className: 'dr-input',
+              placeholder: 'Search tasks'
+            }),
+            _react2.default.createElement(
+              _Popover2.default,
+              { preferPlace: 'right', trigger: 'hoverDelay' },
+              _react2.default.createElement(_search2.default, { size: '20' }),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_TasksFilterMenu2.default, { model: boardModel + '.searchString', value: board.searchString })
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'layout-column flex rel-box' },
+          _react2.default.createElement(_LoadingOverlay2.default, { show: !board || !board.data }),
+          board && board.data ? getTasks() : null
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-footer layout-row layout-align-start-center' },
+          _react2.default.createElement('div', { className: 'flex text-description-1' }),
+          _react2.default.createElement(
+            _Button2.default,
+            { style: { marginRight: '10px' }, onClick: this.cancel },
+            'Cancel'
+          ),
+          _react2.default.createElement(
+            _Button2.default,
+            { className: 'primary', onClick: this.submit },
+            'Add Tasks'
+          )
+        )
+      );
+    }
+  }]);
+  return TaskMentionModal;
+}(_react.Component);
+
+exports.default = TaskMentionModal;
 ;
 
-var _temp = function () {
+var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(filterMentions, 'filterMentions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.jsx');
+  __REACT_HOT_LOADER__.register(TaskMentionModal, 'TaskMentionModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.jsx');
 
   __REACT_HOT_LOADER__.register(getMentionsFromObject, 'getMentionsFromObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.jsx');
+  __REACT_HOT_LOADER__.register(countMentions, 'countMentions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.jsx');
 }();
 
 ;
 ;
 
-var _temp2 = function () {
+var _temp3 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -31947,6 +32010,8 @@ var _TasksActions = __webpack_require__("Htxf");
 
 var TasksActions = _interopRequireWildcard(_TasksActions);
 
+var _SyncTimeline = __webpack_require__("frFe");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -31970,9 +32035,10 @@ function getComment(_ref) {
 }
 
 function newComment(_ref2) {
-  var comment = _ref2.comment;
+  var comment = _ref2.comment,
+      timelineCacheKey = _ref2.timelineCacheKey;
 
-  return function (dispatch) {
+  return function (dispatch, getState) {
     if (comment && comment.body && comment.body.length > 0) {
       return dispatch({
         type: 'COMMENTS/NEW_COMMENT',
@@ -31984,13 +32050,22 @@ function newComment(_ref2) {
         meta: {
           taskId: comment.task
         }
-      }).then(function (response) {
-        return dispatch(TasksActions.newEvent({
-          taskId: comment.task,
+      }).then(function (_ref3) {
+        var value = _ref3.value;
+
+        var currentUser = getState().auth.user;
+        return dispatch((0, _SyncTimeline.addEvent)({
+          cacheKey: timelineCacheKey,
           event: {
             event: 'comment',
+            timestamp: value.data.timestamp,
+            user: {
+              name: currentUser.name,
+              _id: currentUser._id,
+              picture: currentUser.picture
+            },
             data: {
-              comment: response.value.data._id
+              comment: value.data._id
             }
           }
         }));
@@ -31999,9 +32074,9 @@ function newComment(_ref2) {
   };
 }
 
-function toggleReaction(_ref3) {
-  var commentId = _ref3.commentId,
-      reactionType = _ref3.reactionType;
+function toggleReaction(_ref4) {
+  var commentId = _ref4.commentId,
+      reactionType = _ref4.reactionType;
 
   return function (dispatch, getState) {
     var reactions = getState().comments.data[commentId].data.reactions;
@@ -32018,9 +32093,9 @@ function toggleReaction(_ref3) {
   };
 }
 
-function newReaction(_ref4) {
-  var commentId = _ref4.commentId,
-      reactionType = _ref4.reactionType;
+function newReaction(_ref5) {
+  var commentId = _ref5.commentId,
+      reactionType = _ref5.reactionType;
 
   return function (dispatch) {
 
@@ -32043,9 +32118,9 @@ function newReaction(_ref4) {
   };
 }
 
-function deleteReaction(_ref5) {
-  var commentId = _ref5.commentId,
-      reactionType = _ref5.reactionType;
+function deleteReaction(_ref6) {
+  var commentId = _ref6.commentId,
+      reactionType = _ref6.reactionType;
 
   return function (dispatch, getState) {
     dispatch({
@@ -32064,8 +32139,8 @@ function deleteReaction(_ref5) {
   };
 }
 
-function startEdit(_ref6) {
-  var commentId = _ref6.commentId;
+function startEdit(_ref7) {
+  var commentId = _ref7.commentId;
 
   return {
     type: 'COMMENTS/START_EDIT',
@@ -32075,8 +32150,8 @@ function startEdit(_ref6) {
   };
 }
 
-function finishEdit(_ref7) {
-  var commentId = _ref7.commentId;
+function finishEdit(_ref8) {
+  var commentId = _ref8.commentId;
 
   return {
     type: 'COMMENTS/FINISH_EDIT',
@@ -32086,8 +32161,9 @@ function finishEdit(_ref7) {
   };
 }
 
-function deleteComment(_ref8) {
-  var comment = _ref8.comment;
+function deleteComment(_ref9) {
+  var comment = _ref9.comment,
+      timelineCacheKey = _ref9.timelineCacheKey;
 
   return function (dispatch, getState) {
     dispatch({
@@ -32102,12 +32178,13 @@ function deleteComment(_ref8) {
       }
     }).then(function (response) {
       // Get the eventId of the comment
-      var event = getState().tasks.events[comment.task].data.find(function (event) {
-        return event.comment == comment._id;
+      console.log(getState().syncTimeline[timelineCacheKey]);
+      var event = getState().syncTimeline[timelineCacheKey].data.find(function (event) {
+        return event.data.comment === comment._id;
       });
       if (event) {
-        dispatch(TasksActions.deleteEvent({
-          taskId: comment.task,
+        dispatch((0, _SyncTimeline.deleteEvent)({
+          cacheKey: timelineCacheKey,
           eventId: event._id
         }));
       }
@@ -32115,8 +32192,8 @@ function deleteComment(_ref8) {
   };
 }
 
-function updateComment(_ref9) {
-  var comment = _ref9.comment;
+function updateComment(_ref10) {
+  var comment = _ref10.comment;
 
   return {
     type: 'COMMENTS/UPDATE',
@@ -40921,6 +40998,44 @@ var Landing = function (_Component) {
               )
             )
           )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: _Landing2.default.cta },
+          _react2.default.createElement(
+            _Layout.Container,
+            { className: 'layout-column layout-align-center-center text-center' },
+            _react2.default.createElement(
+              'h4',
+              { className: 'text-title-2' },
+              'Ready?'
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'text-title-4' },
+              'Get started for free. Download the desktop app and sign up.'
+            ),
+            (0, _isMobile2.default)() ? _react2.default.createElement(
+              _Button2.default,
+              { className: _Landing2.default.downloadButton + ' secondary lg', name: 'loginRoute' },
+              _react2.default.createElement(_input2.default, { size: 20, style: { marginRight: '10px' } }),
+              'Get Started'
+            ) : _react2.default.createElement(
+              'div',
+              { className: 'layout-row layout-xs-column layout-align-center' },
+              _react2.default.createElement(
+                _DownloadButton2.default,
+                { className: _Landing2.default.downloadButton + ' secondary lg', platform: 'auto' },
+                'Download Now'
+              ),
+              _react2.default.createElement(
+                _Button2.default,
+                { className: _Landing2.default.downloadButton + ' primary lg', name: 'loginRoute' },
+                _react2.default.createElement(_input2.default, { size: 20, style: { marginRight: '10px' } }),
+                'Sign up'
+              )
+            )
+          )
         )
       );
     }
@@ -42267,17 +42382,13 @@ var _icepick2 = _interopRequireDefault(_icepick);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var initialState = {
-  tasks: {}
-};
+var initialState = {};
 
 var _default = function _default() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
   switch (action.type) {
-    case 'MENTIONS/':
-      return state;
     default:
       return state;
   }
@@ -44471,6 +44582,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _get2 = __webpack_require__("Q7hp");
+
+var _get3 = _interopRequireDefault(_get2);
+
 var _redux = __webpack_require__("c9Fv");
 
 var _reactRedux = __webpack_require__("4n+p");
@@ -44490,7 +44605,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function mapStateToProps(_ref, _ref2) {
   var tasks = _ref.tasks,
       mentions = _ref.mentions;
-  var projectId = _ref2.projectId;
+  var projectId = _ref2.projectId,
+      cacheKey = _ref2.cacheKey;
 
   var projectBoards = tasks.projects && tasks.projects[projectId] ? tasks.projects[projectId].boards : null;
   var board = projectBoards ? tasks.boards[projectBoards[0]] : {};
@@ -44498,8 +44614,8 @@ function mapStateToProps(_ref, _ref2) {
     tasks: tasks.data,
     board: board,
     boardModel: board && board.data && board.data._id ? 'tasks.boards.' + board.data._id : '',
-    mentions: mentions.tasks[projectId] || {},
-    mentionsModel: 'mentions.tasks.' + projectId
+    mentions: (0, _get3.default)(mentions, cacheKey, {}),
+    mentionsModel: 'mentions.' + cacheKey
   };
 }
 
@@ -46329,7 +46445,7 @@ module.exports = initCloneArray;
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"banner":"Landing_banner-sJKnA","screenshot":"Landing_screenshot-pqx4Z","screen":"Landing_screen-1CNin","downloadButton":"Landing_downloadButton-2UB5A","timeline":"Landing_timeline-2-lC3","historyTimeline":"Landing_historyTimeline-3PXil","fileIcons":"Landing_fileIcons-D2pK_","section":"Landing_section-3oxT_","bgWhite":"Landing_bgWhite-zMu9O"};
+module.exports = {"banner":"Landing_banner-sJKnA","screenshot":"Landing_screenshot-pqx4Z","screen":"Landing_screen-1CNin","downloadButton":"Landing_downloadButton-2UB5A","timeline":"Landing_timeline-2-lC3","historyTimeline":"Landing_historyTimeline-3PXil","fileIcons":"Landing_fileIcons-D2pK_","section":"Landing_section-3oxT_","bgWhite":"Landing_bgWhite-zMu9O","cta":"Landing_cta-DLaQ6"};
 
 /***/ },
 
@@ -54527,7 +54643,11 @@ var FileList = (_temp2 = _class = function (_Component) {
             },
             _react2.default.createElement(
               _reactFlipMove2.default,
-              { duration: 300, enterAnimation: 'fade', leaveAnimation: 'fade' },
+              {
+                duration: 300,
+                enterAnimation: 'fade',
+                leaveAnimation: 'fade'
+              },
               fileRowHistoric
             )
           ),
@@ -54591,7 +54711,7 @@ module.exports = function(key){
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getMentionInfo = exports.mentionTypeFromWord = exports.mentionTriggers = exports.addMentionsToText = exports.removeExistingMentions = exports.parseMentions = exports.getMentionString = exports.validateMention = undefined;
+exports.getMentionInfo = exports.mentionTypeFromWord = exports.mentionTriggers = exports.addMentionsToText = exports.removeExistingMentions = exports.parseMentions = exports.getMentionString = exports.validateMention = exports.newMention = undefined;
 
 var _slicedToArray2 = __webpack_require__("d7EF");
 
@@ -54600,6 +54720,10 @@ var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
 var _isUuid = __webpack_require__("iaQ2");
 
 var _isUuid2 = _interopRequireDefault(_isUuid);
+
+var _getUuid = __webpack_require__("FmOC");
+
+var _getUuid2 = _interopRequireDefault(_getUuid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54637,6 +54761,18 @@ text = text.match(/
 /g);
 */
 var markdownLinkRegex = /(\[((?:\[[^\]]*\]|[^\[\]])*)\]\([ \t]*()<?((?:\([^)]*\)|[^()\s])*?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g;
+
+var newMention = exports.newMention = function newMention(_ref) {
+  var mentionType = _ref.mentionType,
+      display = _ref.display,
+      entityId = _ref.entityId;
+  return {
+    display: display,
+    entityId: entityId,
+    mentionType: mentionType,
+    mentionId: (0, _getUuid2.default)()
+  };
+};
 
 var validateMention = exports.validateMention = function validateMention(href) {
   // mention should be of the form 'entityId:entityType:mentionId'
@@ -54726,7 +54862,7 @@ var mentionTriggers = exports.mentionTriggers = [{
   type: 'user'
 }, {
   trigger: '#',
-  type: 'thread'
+  type: 'task'
 }];
 
 var mentionTypeFromWord = exports.mentionTypeFromWord = function mentionTypeFromWord(word) {
@@ -54746,14 +54882,14 @@ var getMentionInfo = exports.getMentionInfo = function getMentionInfo(mentionTyp
         userId: entityId
       }
     },
-    thread: {
+    task: {
       display: '#' + display,
       route: 'taskRoute',
       params: {
         taskId: entityId
       }
     },
-    'thread-complete': {
+    'task-complete': {
       display: '#' + display + ' (complete)',
       route: 'taskRoute',
       params: {
@@ -54774,6 +54910,8 @@ var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+
+  __REACT_HOT_LOADER__.register(newMention, 'newMention', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/Mentions.utils.js');
 
   __REACT_HOT_LOADER__.register(validateMention, 'validateMention', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/Mentions.utils.js');
 
@@ -54817,6 +54955,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__("+6Bu");
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
 var _getPrototypeOf = __webpack_require__("Zx67");
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -54855,33 +55001,48 @@ var Component = function (_React$Component) {
   (0, _inherits3.default)(Component, _React$Component);
 
   function Component() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     (0, _classCallCheck3.default)(this, Component);
-    return (0, _possibleConstructorReturn3.default)(this, (Component.__proto__ || (0, _getPrototypeOf2.default)(Component)).apply(this, arguments));
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Component.__proto__ || (0, _getPrototypeOf2.default)(Component)).call.apply(_ref, [this].concat(args))), _this), _this.getTextareaRef = function () {
+      var _this2;
+
+      return (_this2 = _this).__getTextareaRef__REACT_HOT_LOADER__.apply(_this2, arguments);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
   (0, _createClass3.default)(Component, [{
+    key: '__getTextareaRef__REACT_HOT_LOADER__',
+    value: function __getTextareaRef__REACT_HOT_LOADER__(ref) {
+      if (ref) {
+        ref.focus();
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
           model = _props.model,
-          value = _props.value,
           dispatch = _props.dispatch,
-          className = _props.className,
-          placeholder = _props.placeholder,
-          style = _props.style,
-          _onChange = _props.onChange;
+          _onChange = _props.onChange,
+          otherProps = (0, _objectWithoutProperties3.default)(_props, ['model', 'dispatch', 'onChange']);
 
-      return _react2.default.createElement(_reactTextareaAutosize2.default, { style: style,
-        className: className,
+      return _react2.default.createElement(_reactTextareaAutosize2.default, (0, _extends3.default)({
+        ref: this.getTextareaRef,
         onChange: function onChange(event) {
           dispatch((0, _Store.storeChange)(model, event.target.value));
           if (_onChange) {
             _onChange();
           };
-        },
-        value: value,
-        placeholder: placeholder
-      });
+        }
+      }, otherProps));
     }
   }]);
   return Component;
@@ -54895,7 +55056,7 @@ var _default2 = _default;
 exports.default = _default2;
 ;
 
-var _temp = function () {
+var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -54910,7 +55071,7 @@ var _temp = function () {
 ;
 ;
 
-var _temp2 = function () {
+var _temp3 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -61996,7 +62157,12 @@ module.exports = __webpack_require__.p + "images/brd.svg?df0a261f2680a9540b6e1cd
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getFeed = undefined;
+exports.getFeed = exports.deleteEvent = exports.addEvent = undefined;
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 exports.deselect = deselect;
 exports.selectTimelineItem = selectTimelineItem;
 exports.fetchTimeline = fetchTimeline;
@@ -62004,6 +62170,10 @@ exports.fetchTimeline = fetchTimeline;
 var _axios = __webpack_require__("mtWM");
 
 var _axios2 = _interopRequireDefault(_axios);
+
+var _getUuid = __webpack_require__("FmOC");
+
+var _getUuid2 = _interopRequireDefault(_getUuid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62067,16 +62237,45 @@ function fetchTimeline(_ref3) {
     },
     throttle: {
       time: 500,
-      endpoint: '$fetch-timeline/' + entityType
+      endpoint: 'fetch-timeline/' + entityType
     }
   };
 }
 
-var getFeed = exports.getFeed = function getFeed() {
-  var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref4$feedType = _ref4.feedType,
-      feedType = _ref4$feedType === undefined ? 'followed-projects' : _ref4$feedType;
+var addEvent = exports.addEvent = function addEvent(_ref4) {
+  var cacheKey = _ref4.cacheKey,
+      event = _ref4.event;
 
+  var eventObject = (0, _extends3.default)({}, event, {
+    _id: (0, _getUuid2.default)()
+  });
+  return {
+    type: 'TIMELINE/ADD_EVENT',
+    payload: {
+      event: eventObject,
+      cacheKey: cacheKey
+    }
+  };
+};
+
+var deleteEvent = exports.deleteEvent = function deleteEvent(_ref5) {
+  var cacheKey = _ref5.cacheKey,
+      eventId = _ref5.eventId;
+
+  return {
+    type: 'TIMELINE/DELETE_EVENT',
+    payload: {
+      cacheKey: cacheKey,
+      eventId: eventId
+    }
+  };
+};
+
+var getFeed = exports.getFeed = function getFeed(_ref6) {
+  var feedType = _ref6.feedType,
+      page = _ref6.page,
+      size = _ref6.size,
+      cacheKey = _ref6.cacheKey;
   return {
     // This will get the feed for all items the current user is interested in
     type: 'TIMELINE/FETCH_TIMELINE',
@@ -62084,12 +62283,13 @@ var getFeed = exports.getFeed = function getFeed() {
       method: 'GET',
       url: '/api/v1/feed',
       params: {
-        size: 50,
+        size: size,
+        page: page,
         //      types: ['commits'],
         feedType: feedType }
     }),
     meta: {
-      cacheKey: feedType
+      cacheKey: cacheKey
     }
   };
 };
@@ -62105,6 +62305,10 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(selectTimelineItem, 'selectTimelineItem', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
 
   __REACT_HOT_LOADER__.register(fetchTimeline, 'fetchTimeline', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
+
+  __REACT_HOT_LOADER__.register(addEvent, 'addEvent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
+
+  __REACT_HOT_LOADER__.register(deleteEvent, 'deleteEvent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
 
   __REACT_HOT_LOADER__.register(getFeed, 'getFeed', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
 }();
@@ -69846,7 +70050,8 @@ var mainReducer = function mainReducer(state, action) {
       return _icepick2.default.updateIn(state, [action.payload.projectId, 'description'], function (description) {
         var existingMentions = (0, _MentionsUtils.parseMentions)(description);
         var uniqueNewMentions = (0, _MentionsUtils.removeExistingMentions)(action.payload.mentions, existingMentions);
-        return (0, _MentionsUtils.addMentionsToText)(state[action.payload.projectId].description, uniqueNewMentions);
+        var textWithMentions = (0, _MentionsUtils.addMentionsToText)(state[action.payload.projectId].description, uniqueNewMentions);
+        return textWithMentions;
       });
     case 'CHANGES/TOGGLE_ALL_CHANGED_FILES':
       return _icepick2.default.updateIn(state, [action.payload.projectId], function (changes) {
@@ -73429,24 +73634,23 @@ function mentionTasksModal(_ref5) {
     dispatch((0, _ModalActions.showModal)({
       modalType: _TaskMentionModal2.default,
       modalProps: {
-        projectId: projectId
+        projectId: projectId,
+        cacheKey: projectId
       }
-    })).then(function () {
-      dispatch({
-        type: 'ALIASED',
-        aliased: 'true',
-        payload: {
-          functionAlias: 'ChangesActions.mentionTasks',
-          functionInputs: { projectId: projectId, mentions: mentions }
-        }
-      });
+    })).then(function (_ref6) {
+      var mentions = _ref6.value.mentions;
+
+      dispatch(mentionTasks({
+        projectId: projectId,
+        mentions: mentions
+      }));
     });
   };
 }
 
-function mentionTasks(_ref6) {
-  var projectId = _ref6.projectId,
-      mentions = _ref6.mentions;
+function mentionTasks(_ref7) {
+  var projectId = _ref7.projectId,
+      mentions = _ref7.mentions;
 
   return {
     type: 'CHANGES/MENTION_TASKS',
@@ -73457,10 +73661,10 @@ function mentionTasks(_ref6) {
   };
 }
 
-function commit(_ref7) {
-  var projectId = _ref7.projectId,
-      summary = _ref7.summary,
-      description = _ref7.description;
+function commit(_ref8) {
+  var projectId = _ref8.projectId,
+      summary = _ref8.summary,
+      description = _ref8.description;
 
   return function (dispatch, getState) {
     var changes = getState().changes[projectId];
@@ -73516,9 +73720,9 @@ function commit(_ref7) {
   };
 }
 
-function deleteCommit(_ref8) {
-  var commitId = _ref8.commitId,
-      projectId = _ref8.projectId;
+function deleteCommit(_ref9) {
+  var commitId = _ref9.commitId,
+      projectId = _ref9.projectId;
 
   return function (dispatch) {
     dispatch({
@@ -75130,12 +75334,13 @@ var processLocalError = function processLocalError(store, action) {
 
 var processServerError = function processServerError(store, action) {
   // Get the toast message and error type
-  var _action$payload$respo = action.payload.response.data.error,
-      message = _action$payload$respo.message,
-      type = _action$payload$respo.type,
-      data = _action$payload$respo.data;
+  var _ref = action.payload.response.data.error || action.payload.response.data,
+      message = _ref.message,
+      type = _ref.type,
+      data = _ref.data;
 
   // Get the message
+
 
   var toastMessage = void 0;
   if (message && typeof message === 'string') {
@@ -87979,4 +88184,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.7046ef42a9ea647b2441.js.map
+//# sourceMappingURL=application.08b3e17b8e7ed0fa11a9.js.map

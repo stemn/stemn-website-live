@@ -1,4 +1,4 @@
-webpackJsonp([6,61],{
+webpackJsonp([7,61],{
 
 /***/ "/jJV":
 /***/ function(module, exports, __webpack_require__) {
@@ -111,8 +111,16 @@ var TimelineVertical = (_temp2 = _class = function (_Component) {
     value: function __renderItems__REACT_HOT_LOADER__(items) {
       var _this3 = this;
 
-      return items.map(function (item) {
-        return _react2.default.createElement(_TimelineItem2.default, { key: item._id, item: item, type: _this3.props.type, entity: _this3.props.entity });
+      return items.map(function (item, idx) {
+        return _react2.default.createElement(_TimelineItem2.default, {
+          key: item._id,
+          item: item,
+          type: _this3.props.type,
+          entity: _this3.props.entity,
+          isFirst: idx === 0,
+          isLast: idx + 1 === items.length,
+          timelineCacheKey: _this3.props.timelineCacheKey
+        });
       });
     }
   }, {
@@ -125,7 +133,8 @@ var TimelineVertical = (_temp2 = _class = function (_Component) {
           type = _props.type,
           group = _props.group,
           entity = _props.entity,
-          otherProps = (0, _objectWithoutProperties3.default)(_props, ['items', 'type', 'group', 'entity']);
+          timelineCacheKey = _props.timelineCacheKey,
+          otherProps = (0, _objectWithoutProperties3.default)(_props, ['items', 'type', 'group', 'entity', 'timelineCacheKey']);
 
 
       if (!items || items.length === 0) return _react2.default.createElement(
@@ -167,7 +176,8 @@ var TimelineVertical = (_temp2 = _class = function (_Component) {
   type: _react.PropTypes.oneOf(['feed', 'user', 'file', 'task', 'project']),
   items: _react.PropTypes.array,
   group: _react.PropTypes.bool,
-  entity: _react.PropTypes.object
+  entity: _react.PropTypes.object,
+  timelineCacheKey: _react.PropTypes.string
 }, _temp2);
 exports.default = TimelineVertical;
 ;
@@ -338,7 +348,7 @@ var _temp2 = function () {
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"primary":"rgb(68, 154, 211)","primary-2":"rgb(64, 129, 173)","item":"TimelineItem_item-1mj4k","avatar":"TimelineItem_avatar-1EiVH"};
+module.exports = {"primary":"rgb(68, 154, 211)","primary-2":"rgb(64, 129, 173)","item":"TimelineItem_item-1mj4k","avatar":"TimelineItem_avatar-1EiVH","startMarker":"TimelineItem_startMarker-2EBEL","endMarker":"TimelineItem_endMarker-39gQI"};
 
 /***/ },
 
@@ -346,7 +356,7 @@ module.exports = {"primary":"rgb(68, 154, 211)","primary-2":"rgb(64, 129, 173)",
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","item":"TimelineWrapper_item-14OBh","marker":"TimelineWrapper_marker-26RGT"};
+module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","item":"TimelineWrapper_item-14OBh","marker":"TimelineWrapper_marker-26RGT","extra":"TimelineWrapper_extra-2lNs7"};
 
 /***/ },
 
@@ -1074,6 +1084,92 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCode/PreviewCode.jsx');
 
   __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCode/PreviewCode.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "90oI":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _CommentBody = __webpack_require__("WPiK");
+
+var _CommentBody2 = _interopRequireDefault(_CommentBody);
+
+var _FetchDataHoc = __webpack_require__("YapR");
+
+var _FetchDataHoc2 = _interopRequireDefault(_FetchDataHoc);
+
+var _CommentsActions = __webpack_require__("KX+g");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var stateToProps = function stateToProps(_ref, _ref2) {
+  var comments = _ref.comments;
+  var commentId = _ref2.commentId;
+  return {
+    comment: comments.data[commentId],
+    entityModel: 'comments.data.' + commentId
+  };
+};
+
+var dispatchToProps = {
+  getComment: _CommentsActions.getComment
+};
+
+var fetchConfigs = [{
+  hasChanged: 'commentId',
+  onChange: function onChange(props) {
+    props.getComment({
+      commentId: props.commentId
+    });
+  }
+}];
+
+var withFetchData = (0, _FetchDataHoc2.default)(fetchConfigs)(_CommentBody2.default);
+var withRedux = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(withFetchData);
+var _default = withRedux;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/CommentBody/CommentBody.container.js');
+
+  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/CommentBody/CommentBody.container.js');
+
+  __REACT_HOT_LOADER__.register(fetchConfigs, 'fetchConfigs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/CommentBody/CommentBody.container.js');
+
+  __REACT_HOT_LOADER__.register(withFetchData, 'withFetchData', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/CommentBody/CommentBody.container.js');
+
+  __REACT_HOT_LOADER__.register(withRedux, 'withRedux', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/CommentBody/CommentBody.container.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/CommentBody/CommentBody.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/CommentBody/CommentBody.container.js');
 }();
 
 ;
@@ -2032,9 +2128,27 @@ var eventTextMap = {
   },
   task: function task(item, type, entity) {
     var params = {
-      projectId: item.data.project,
+      projectId: item.data.project._id,
       taskId: item._id
     };
+    if (['feed', 'user'].includes(type)) {
+      return _react2.default.createElement(
+        'span',
+        null,
+        'added a new thread:',
+        _react2.default.createElement(
+          _Link2.default,
+          { name: 'taskRoute', params: params },
+          item.data.name
+        ),
+        'to',
+        _react2.default.createElement(
+          _Link2.default,
+          { name: 'projectRoute', params: params },
+          item.data.project.name || 'Untitled Project'
+        )
+      );
+    }
     return _react2.default.createElement(
       'span',
       null,
@@ -2043,6 +2157,40 @@ var eventTextMap = {
         _Link2.default,
         { name: 'taskRoute', params: params },
         item.data.name
+      )
+    );
+  },
+  comment: function comment(item, type, entity) {
+    var params = {
+      projectId: item.data.project,
+      taskId: item._id
+    };
+    if (['feed', 'user'].includes(type)) {
+      return _react2.default.createElement(
+        'span',
+        null,
+        'commented on',
+        _react2.default.createElement(
+          _Link2.default,
+          { name: 'taskRoute', params: params },
+          'Thread Link'
+        ),
+        'in',
+        _react2.default.createElement(
+          _Link2.default,
+          { name: 'projectRoute', params: params },
+          'Project Link'
+        )
+      );
+    }
+    return _react2.default.createElement(
+      'span',
+      null,
+      'commented on',
+      _react2.default.createElement(
+        _Link2.default,
+        { name: 'taskRoute', params: params },
+        'Thread Link'
       )
     );
   },
@@ -2138,7 +2286,6 @@ var eventTextMap = {
     }
   },
   changedLabels: function changedLabels(item, type, entity) {
-    console.log(item);
     if (type === 'task' || type === 'project') {
       var hasAddedLabels = item.data.addedLabels && item.data.addedLabels.length > 0;
       var hasRemovedLabels = item.data.removedLabels && item.data.removedLabels.length > 0;
@@ -3430,6 +3577,14 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "QE1F":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"comment":"CommentBody_comment-UKjyS"};
+
+/***/ },
+
 /***/ "R5fW":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -3902,9 +4057,14 @@ var _default = _react2.default.createClass({
         _react2.default.createElement('div', { className: _TimelineWrapper2.default.marker }),
         _react2.default.createElement(
           'div',
-          { className: 'layout-row layout-align-start-center' },
-          this.props.children
+          { className: 'layout-column' },
+          this.props.children[0]
         )
+      ),
+      this.props.children[1] && _react2.default.createElement(
+        'div',
+        { className: _TimelineWrapper2.default.extra },
+        this.props.children[1]
       )
     );
   }
@@ -4403,6 +4563,123 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "WPiK":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _redux = __webpack_require__("c9Fv");
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _CommentBody = __webpack_require__("QE1F");
+
+var _CommentBody2 = _interopRequireDefault(_CommentBody);
+
+var _EditorDisplay = __webpack_require__("i0X4");
+
+var _EditorDisplay2 = _interopRequireDefault(_EditorDisplay);
+
+var _LoadingPlaceholder = __webpack_require__("LZKX");
+
+var _LoadingPlaceholder2 = _interopRequireDefault(_LoadingPlaceholder);
+
+var _LoadingAnimation = __webpack_require__("tYm5");
+
+var _LoadingAnimation2 = _interopRequireDefault(_LoadingAnimation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Comment = function (_Component) {
+  (0, _inherits3.default)(Comment, _Component);
+
+  function Comment() {
+    (0, _classCallCheck3.default)(this, Comment);
+    return (0, _possibleConstructorReturn3.default)(this, (Comment.__proto__ || (0, _getPrototypeOf2.default)(Comment)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(Comment, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          comment = _props.comment,
+          style = _props.style;
+
+
+      if (!comment || !comment.data) {
+        return _react2.default.createElement(
+          _LoadingAnimation2.default,
+          { className: _CommentBody2.default.comment + ' layout-column', style: style },
+          _react2.default.createElement(_LoadingPlaceholder2.default, { width: 200 })
+        );
+      }
+
+      return _react2.default.createElement(
+        'div',
+        { className: _CommentBody2.default.comment + ' layout-column', style: style },
+        _react2.default.createElement(_EditorDisplay2.default, { value: comment.data.body })
+      );
+    }
+  }]);
+  return Comment;
+}(_react.Component);
+
+exports.default = Comment;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Comment, 'Comment', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Comments/CommentBody/CommentBody.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "WWpa":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -4815,6 +5092,45 @@ var _LoadSplitCode2 = _interopRequireDefault(_LoadSplitCode);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _LoadSplitCode2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "dip7":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _CommentBody = __webpack_require__("90oI");
+
+var _CommentBody2 = _interopRequireDefault(_CommentBody);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _CommentBody2.default;
 ;
 
 var _temp = function () {
@@ -6551,6 +6867,10 @@ var _Comment = __webpack_require__("Hsn5");
 
 var _Comment2 = _interopRequireDefault(_Comment);
 
+var _CommentBody = __webpack_require__("dip7");
+
+var _CommentBody2 = _interopRequireDefault(_CommentBody);
+
 var _TimelineWrapper = __webpack_require__("R5fW");
 
 var _TimelineWrapper2 = _interopRequireDefault(_TimelineWrapper);
@@ -6564,9 +6884,6 @@ var _TimelineItemText = __webpack_require__("KRjC");
 var _TimelineItemText2 = _interopRequireDefault(_TimelineItemText);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import TaskTimelinePanel   from '../TaskTimelinePanel/TaskTimelinePanel.jsx'
-
 
 var TimelineItem = (_temp = _class = function (_Component) {
   (0, _inherits3.default)(TimelineItem, _Component);
@@ -6582,59 +6899,80 @@ var TimelineItem = (_temp = _class = function (_Component) {
       var _props = this.props,
           item = _props.item,
           type = _props.type,
-          entity = _props.entity;
+          entity = _props.entity,
+          isLast = _props.isLast,
+          isFirst = _props.isFirst,
+          timelineCacheKey = _props.timelineCacheKey;
 
       var userRouteParams = { userId: item.user._id };
-      var eventStyles = type === 'task' ? { marginLeft: '60px' } : {};
+
+      var eventStyles = type === 'task' ? { marginLeft: '30px' } : {};
 
       // If it is a comment, we use the comment component to display
       if (item.event === 'comment' && type === 'task') {
-        return _react2.default.createElement(_Comment2.default, { commentId: item.data.comment });
-      }
-      // Else, we add a text event
-      else {
-          return _react2.default.createElement(
-            _TimelineWrapper2.default,
-            { className: eventStyles },
+        return _react2.default.createElement(
+          _Comment2.default,
+          {
+            commentId: item.data.comment,
+            timelineCacheKey: timelineCacheKey,
+            showMeta: type !== 'task'
+          },
+          _react2.default.createElement(
+            'span',
+            { className: _TimelineItem2.default.item },
+            _react2.default.createElement(_TimelineItemText2.default, { item: item, type: type, entity: entity })
+          )
+        );
+      } else {
+        return _react2.default.createElement(
+          _TimelineWrapper2.default,
+          { style: eventStyles },
+          _react2.default.createElement(
+            'div',
+            { className: 'layout-row layout-align-start-center flex' },
+            _react2.default.createElement(
+              _Link2.default,
+              { name: 'userRoute', params: userRouteParams, className: _TimelineItem2.default.avatar },
+              _react2.default.createElement(_UserAvatar2.default, {
+                picture: item.user.picture,
+                size: 25,
+                shape: 'square',
+                name: item.user.name
+              })
+            ),
             _react2.default.createElement(
               'div',
-              { className: (0, _classnames2.default)('layout-row layout-align-start-center flex') },
-              _react2.default.createElement(
-                _Link2.default,
-                { name: 'userRoute', params: userRouteParams, className: _TimelineItem2.default.avatar },
-                _react2.default.createElement(_UserAvatar2.default, {
-                  picture: item.user.picture,
-                  size: 25,
-                  shape: 'square',
-                  name: item.user.name
-                })
+              null,
+              type === 'user' ? null : _react2.default.createElement(
+                'b',
+                null,
+                item.user.name,
+                '\xA0'
               ),
               _react2.default.createElement(
-                'div',
-                null,
-                type === 'user' ? null : _react2.default.createElement(
-                  'b',
-                  null,
-                  item.user.name,
-                  '\xA0'
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: _TimelineItem2.default.item },
-                  _react2.default.createElement(_TimelineItemText2.default, { item: item, type: type, entity: entity }),
-                  ' - ',
-                  (0, _moment2.default)(item.timestamp).fromNow()
-                )
+                'span',
+                { className: _TimelineItem2.default.item },
+                _react2.default.createElement(_TimelineItemText2.default, { item: item, type: type, entity: entity }),
+                ' - ',
+                (0, _moment2.default)(item.timestamp).fromNow()
               )
-            )
-          );
-        }
+            ),
+            isFirst && _react2.default.createElement('div', { className: _TimelineItem2.default.startMarker }),
+            isLast && _react2.default.createElement('div', { className: _TimelineItem2.default.endMarker })
+          ),
+          item.event === 'comment' && _react2.default.createElement(_CommentBody2.default, {
+            commentId: item.data.comment
+          })
+        );
+      }
     }
   }]);
   return TimelineItem;
 }(_react.Component), _class.propTypes = {
   type: _react.PropTypes.oneOf(['feed', 'user', 'file', 'task', 'project']),
-  item: _react.PropTypes.object
+  item: _react.PropTypes.object,
+  isFirst: _react.PropTypes.bool,
+  isLast: _react.PropTypes.bool
 }, _temp);
 exports.default = TimelineItem;
 ;
@@ -7253,10 +7591,14 @@ var Comment = function (_Component) {
       var _props = this.props,
           showConfirm = _props.showConfirm,
           deleteComment = _props.deleteComment,
-          comment = _props.comment;
+          comment = _props.comment,
+          timelineCacheKey = _props.timelineCacheKey;
 
       showConfirm().then(function () {
-        return deleteComment({ comment: comment.data });
+        return deleteComment({
+          comment: comment.data,
+          timelineCacheKey: timelineCacheKey
+        });
       });
     }
   }, {
@@ -7301,6 +7643,8 @@ var Comment = function (_Component) {
       var _props6 = this.props,
           item = _props6.item,
           comment = _props6.comment,
+          showMeta = _props6.showMeta,
+          children = _props6.children,
           entityModel = _props6.entityModel,
           commentsActions = _props6.commentsActions,
           style = _props6.style;
@@ -7309,7 +7653,7 @@ var Comment = function (_Component) {
       if (!comment || !comment.data) {
         return _react2.default.createElement(
           _LoadingAnimation2.default,
-          { className: _Comment2.default.comment + ' layout-row', style: style },
+          { className: _Comment2.default.comment + ' layout-column', style: style },
           _react2.default.createElement(
             'div',
             { className: _Comment2.default.commentBody + ' flex' },
@@ -7340,7 +7684,7 @@ var Comment = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: _Comment2.default.comment + ' layout-row', style: style },
+        { className: _Comment2.default.comment + ' layout-column', style: style },
         _react2.default.createElement(
           'div',
           { className: _Comment2.default.commentBody + ' flex' },
@@ -7358,21 +7702,21 @@ var Comment = function (_Component) {
               null,
               comment.data.owner.name
             ),
+            '\xA0',
+            showMeta && children,
             _react2.default.createElement(
               'span',
               { className: _Comment2.default.date },
-              '\xA0',
-              _react2.default.createElement('b', { className: 'text-interpunct' }),
-              ' ',
+              '\xA0- ',
               (0, _moment2.default)(comment.data.timestamp).fromNow()
             ),
             _react2.default.createElement('div', { className: 'flex' }),
-            _react2.default.createElement(_ReactionPopup2.default, {
+            !showMeta && _react2.default.createElement(_ReactionPopup2.default, {
               reactions: comment.data.reactions,
               preferPlace: 'above',
               submitFn: this.submitReaction
             }),
-            _react2.default.createElement(
+            !showMeta && _react2.default.createElement(
               _IsOwner2.default,
               { ownerId: comment.data.owner._id },
               _react2.default.createElement(
@@ -7955,4 +8299,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=6.9ba9ce29d9e735b709df.js.map
+//# sourceMappingURL=7.a94a18e4a51c02f93208.js.map
