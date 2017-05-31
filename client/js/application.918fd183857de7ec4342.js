@@ -1115,8 +1115,6 @@ var FileRow = (_temp2 = _class = function (_Component) {
             {
               name: 'commitRoute',
               params: { projectId: file.project._id, commitId: file.commit._id },
-              show: true,
-              scope: 'main',
               className: (0, _classnames2.default)(_FileRow2.default.commit, _FileRow2.default.clickable, 'link-primary text-ellipsis')
             },
             file.commit.summary
@@ -1529,6 +1527,124 @@ module.exports = isKeyable;
 
 module.exports = __webpack_require__("cSWu").PassThrough
 
+
+/***/ },
+
+/***/ "/Ogz":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Component = undefined;
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _StringFilterUtils = __webpack_require__("rv25");
+
+var _StringFilterMenu = __webpack_require__("AKpV");
+
+var _StringFilterMenu2 = _interopRequireDefault(_StringFilterMenu);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var statusFilter = [{
+  text: 'Status: Complete',
+  value: 'is:complete'
+}, {
+  text: 'Status: Incomplete',
+  value: 'is:incomplete'
+}, {
+  text: 'Status: All',
+  value: ''
+}];
+
+var Component = exports.Component = _react2.default.createClass({
+  displayName: 'Component',
+  render: function render() {
+    var _props = this.props,
+        model = _props.model,
+        value = _props.value,
+        dispatch = _props.dispatch,
+        auth = _props.auth;
+
+
+    var ownerFilter = [{
+      text: 'My Threads',
+      value: 'assignee:' + auth.user.stub
+    }, {
+      text: 'All Threads',
+      value: ''
+    }];
+
+    /****************************************************
+    model: the model representing the search string:
+         : 'threads.boards.123456789.searchString'
+    value: the value of the search string
+         : board.searchString
+    ****************************************************/
+
+    return _react2.default.createElement(
+      'div',
+      { className: 'PopoverMenu' },
+      _react2.default.createElement(_StringFilterMenu2.default, { filter: statusFilter, model: model, value: value }),
+      _react2.default.createElement('div', { className: 'divider' }),
+      _react2.default.createElement(_StringFilterMenu2.default, { filter: ownerFilter, model: model, value: value })
+    );
+  }
+});
+
+function mapStateToProps(_ref) {
+  var auth = _ref.auth;
+
+  return {
+    auth: auth
+  };
+}
+
+var _default = (0, _reactRedux.connect)(mapStateToProps)(Component);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadsFilterMenu/ThreadsFilterMenu.jsx');
+
+  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadsFilterMenu/ThreadsFilterMenu.jsx');
+
+  __REACT_HOT_LOADER__.register(statusFilter, 'statusFilter', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadsFilterMenu/ThreadsFilterMenu.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadsFilterMenu/ThreadsFilterMenu.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadsFilterMenu/ThreadsFilterMenu.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -3070,6 +3186,14 @@ module.exports = baseFlatten;
 
 /***/ },
 
+/***/ "1Mqx":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"sampleOuter":"ColorSelect_sampleOuter-3eW2O","sampleSwatch":"ColorSelect_sampleSwatch-30jDP"};
+
+/***/ },
+
 /***/ "1NlD":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -4263,10 +4387,6 @@ var propTypesObject = {
   name: _react.PropTypes.string, // Router path name, eg -> 'userRoute'
   params: _react.PropTypes.object, // Query param object
   activeIf: _react.PropTypes.object, // Object user to determine if the link is active
-  // Options used for the desktop app
-  scope: _react.PropTypes.string, // The renderer window to change, eg -> 'main' || 'menubar'
-  show: _react.PropTypes.bool, // Should the window show/focus?
-  closeModals: _react.PropTypes.bool, // Should all the modals close?
   // Functions used in desktop
   closeAll: _react.PropTypes.func,
   showWindow: _react.PropTypes.func
@@ -4280,12 +4400,12 @@ var LinkComponent = function LinkComponent(props) {
       onClick = props.onClick,
       params = props.params,
       query = props.query,
-      scope = props.scope,
       show = props.show,
       to = props.to,
       closeAll = props.closeAll,
       showWindow = props.showWindow,
-      otherProps = (0, _objectWithoutProperties3.default)(props, ['activeIf', 'className', 'closeModals', 'name', 'onClick', 'params', 'query', 'scope', 'show', 'to', 'closeAll', 'showWindow']);
+      dispatch = props.dispatch,
+      otherProps = (0, _objectWithoutProperties3.default)(props, ['activeIf', 'className', 'closeModals', 'name', 'onClick', 'params', 'query', 'show', 'to', 'closeAll', 'showWindow', 'dispatch']);
 
   // Get the path from the route name
 
@@ -4295,35 +4415,30 @@ var LinkComponent = function LinkComponent(props) {
   // Get the isExternal bool (if the route object has external:true)
   var isExternal = routePathIsObject && routePath.external;
 
-  // Get the route state from the scope
-  // We include the scope on the state.meta
-  // This state.meta is moved up to the root action object
-  // inside the Router.middleware (this is only used on desktop)
-  var routeState = {
-    meta: {
-      scope: [scope]
-    }
-  };
-
   // Construct the function to get the 'to'
   var getToPath = function getToPath() {
     if (routePath && routePathIsObject) {
       return {
         pathname: routePath.pathname,
         query: (0, _assign2.default)({}, query, routePath.query),
-        state: routeState
+        // We include the scope on the state.meta
+        // This state.meta is moved up to the root action object
+        // inside the Router.middleware (this is only used on desktop)
+        state: {
+          meta: {
+            scope: [routePath.scope]
+          }
+        }
       };
     } else if (routePath) {
       return {
         pathname: routePath,
-        query: query,
-        state: routeState
+        query: query
       };
     } else {
       return {
         pathname: to,
-        query: query,
-        state: routeState
+        query: query
       };
     }
   };
@@ -4339,9 +4454,13 @@ var LinkComponent = function LinkComponent(props) {
 
   var additionalClickFunction = function additionalClickFunction() {
     // Dispatch the show event if required
-    if (scope && show) showWindow(scope);
+    if (routePath.scope && routePath.show) showWindow(routePath.scope);
     // dispatch the closeModals
-    if (closeModals) closeAll();
+    if (routePath.closeModals) closeAll();
+
+    if (routePath.clickDispatch) {
+      dispatch(routePath.clickDispatch);
+    }
   };
 
   var extendedOnClick = function extendedOnClick() {
@@ -4358,11 +4477,19 @@ var LinkComponent = function LinkComponent(props) {
       onClick: extendedOnClick
     }, otherProps));
   } else {
-    return _react2.default.createElement(_reactRouter.Link, (0, _extends3.default)({
-      to: getToPath(),
-      className: allClassNames,
-      onClick: extendedOnClick
-    }, otherProps));
+    var toPath = getToPath();
+    if (toPath && toPath.pathname) {
+      return _react2.default.createElement(_reactRouter.Link, (0, _extends3.default)({
+        to: getToPath(),
+        className: allClassNames,
+        onClick: extendedOnClick
+      }, otherProps));
+    } else {
+      return _react2.default.createElement('a', (0, _extends3.default)({
+        className: allClassNames,
+        onClick: extendedOnClick
+      }, otherProps));
+    }
   }
 };
 
@@ -7359,6 +7486,56 @@ module.exports = function(){ /* empty */ };
 
 /***/ },
 
+/***/ "4nd+":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ModalRegistry = __webpack_require__("p8CK");
+
+var _ConnectionModal = __webpack_require__("mShd");
+
+var _ConnectionModal2 = _interopRequireDefault(_ConnectionModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(modalName) {
+  (0, _ModalRegistry.registerModal)(modalName, _ConnectionModal2.default);
+  return modalName;
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConnectionModal/ConnectionModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConnectionModal/ConnectionModal.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "4noE":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -8255,6 +8432,256 @@ function toInteger(value) {
 
 module.exports = toInteger;
 
+
+/***/ },
+
+/***/ "5byU":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _getUuid = __webpack_require__("FmOC");
+
+var _getUuid2 = _interopRequireDefault(_getUuid);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _ThreadLabelsEdit = __webpack_require__("dbvd");
+
+var _ThreadLabelsEdit2 = _interopRequireDefault(_ThreadLabelsEdit);
+
+var _Store = __webpack_require__("+I1Y");
+
+var _ModalActions = __webpack_require__("u2h7");
+
+var _Popover = __webpack_require__("Erdv");
+
+var _Popover2 = _interopRequireDefault(_Popover);
+
+var _Input = __webpack_require__("xwNf");
+
+var _Input2 = _interopRequireDefault(_Input);
+
+var _SimpleIconButton = __webpack_require__("D2fa");
+
+var _SimpleIconButton2 = _interopRequireDefault(_SimpleIconButton);
+
+var _moreHoriz = __webpack_require__("O8U9");
+
+var _moreHoriz2 = _interopRequireDefault(_moreHoriz);
+
+var _ColorSelect = __webpack_require__("Ix2d");
+
+var _ColorSelect2 = _interopRequireDefault(_ColorSelect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Component Core
+var ThreadLabelsEdit = function (_Component) {
+  (0, _inherits3.default)(ThreadLabelsEdit, _Component);
+
+  function ThreadLabelsEdit() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, ThreadLabelsEdit);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = ThreadLabelsEdit.__proto__ || (0, _getPrototypeOf2.default)(ThreadLabelsEdit)).call.apply(_ref, [this].concat(args))), _this), _this.onMount = function () {
+      var _this2;
+
+      return (_this2 = _this).__onMount__REACT_HOT_LOADER__.apply(_this2, arguments);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(ThreadLabelsEdit, [{
+    key: 'confirmDelete',
+    value: function confirmDelete(model, index) {
+      var _this3 = this;
+
+      this.props.dispatch((0, _ModalActions.showConfirm)({
+        message: 'If you delete this label it will be removed from all assigned threads.'
+      })).then(function () {
+        _this3.props.dispatch((0, _Store.storeRemove)(model, index));
+      });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(props) {
+      this.onMount(props);
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.onMount(this.props);
+    }
+  }, {
+    key: '__onMount__REACT_HOT_LOADER__',
+    value: function __onMount__REACT_HOT_LOADER__(props) {
+      var dispatch = props.dispatch,
+          value = props.value,
+          model = props.model;
+      // If it is empty, push on a label
+
+      if (value.length === 0) {
+        dispatch((0, _Store.storePush)(model, {
+          _id: (0, _getUuid2.default)(),
+          color: '',
+          name: ''
+        }));
+      }
+      // Else, if the name of the last label exists, add another
+      else if (value[value.length - 1].name.length >= 1) {
+          dispatch((0, _Store.storePush)(model, {
+            _id: (0, _getUuid2.default)(),
+            color: '',
+            name: ''
+          }));
+        }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      var _props = this.props,
+          model = _props.model,
+          value = _props.value,
+          dispatch = _props.dispatch;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        value.map(function (label, index) {
+          return _react2.default.createElement(
+            'div',
+            { key: label._id, className: _ThreadLabelsEdit2.default.row + ' layout-row layout-align-start-center' },
+            _react2.default.createElement(
+              'div',
+              { className: _ThreadLabelsEdit2.default.colorSelect },
+              _react2.default.createElement(
+                _Popover2.default,
+                { preferPlace: 'above' },
+                _react2.default.createElement('label', { htmlFor: label._id, className: _ThreadLabelsEdit2.default.swatch, style: { background: label.color } }),
+                _react2.default.createElement(_ColorSelect2.default, {
+                  model: model + '[' + index + '].color',
+                  value: label.color
+                })
+              ),
+              _react2.default.createElement(_Input2.default, {
+                model: model + '[' + index + '].color',
+                value: label.color,
+                className: _ThreadLabelsEdit2.default.colorSelectInput + ' dr-input',
+                type: 'text',
+                placeholder: 'Color Code',
+                id: label._id
+              })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: _ThreadLabelsEdit2.default.name + ' flex' },
+              _react2.default.createElement(_Input2.default, {
+                model: model + '[' + index + '].name',
+                value: label.name,
+                className: 'dr-input',
+                type: 'text',
+                placeholder: 'Label Name'
+              })
+            ),
+            _react2.default.createElement(
+              _Popover2.default,
+              { preferPlace: 'right' },
+              _react2.default.createElement(
+                _SimpleIconButton2.default,
+                null,
+                _react2.default.createElement(_moreHoriz2.default, { size: '20px' })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'PopoverMenu' },
+                _react2.default.createElement(
+                  'a',
+                  { onClick: function onClick() {
+                      return _this4.confirmDelete(model, index);
+                    } },
+                  'Remove Label'
+                )
+              )
+            )
+          );
+        })
+      );
+    }
+  }]);
+  return ThreadLabelsEdit;
+}(_react.Component);
+
+var _default = (0, _reactRedux.connect)()(ThreadLabelsEdit);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(ThreadLabelsEdit, 'ThreadLabelsEdit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEdit/ThreadLabelsEdit.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEdit/ThreadLabelsEdit.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEdit/ThreadLabelsEdit.jsx');
+}();
+
+;
+;
+
+var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -11656,251 +12083,6 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "5uwe":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _StandardTable = __webpack_require__("kS0c");
-
-var _StandardTable2 = _interopRequireDefault(_StandardTable);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Component Core
-var Component = _react2.default.createClass({
-  displayName: 'Component',
-
-  render: function render() {
-    var _props = this.props,
-        modalCancel = _props.modalCancel,
-        modalConfirm = _props.modalConfirm;
-    var provider = this.props.provider;
-
-    var providerText = provider == 'drive' ? 'Google Drive' : 'Dropbox';
-    return _react2.default.createElement(
-      'div',
-      { style: { width: '600px' } },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-title' },
-        'This revision has expired'
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-body', style: { lineHeight: '1.4em' } },
-        _react2.default.createElement(
-          'div',
-          null,
-          providerText,
-          ' only stores a 30 day file history for accounts on their free plan.'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          _StandardTable2.default,
-          null,
-          _react2.default.createElement(
-            'thead',
-            null,
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
-                { style: { width: '33%' } },
-                'Cloud Provider'
-              ),
-              _react2.default.createElement(
-                'td',
-                { style: { width: '33%' } },
-                'Plan: Free'
-              ),
-              _react2.default.createElement(
-                'td',
-                { style: { width: '33%' } },
-                'Plan: Pro'
-              )
-            )
-          ),
-          _react2.default.createElement(
-            'tbody',
-            null,
-            provider == 'drive' ? _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
-                null,
-                'Google Drive'
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                '30 days'
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                'Infinite'
-              )
-            ) : _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
-                null,
-                'Dropbox'
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                '30 days'
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                '30 days (Infinite on a ',
-                _react2.default.createElement(
-                  'a',
-                  { href: 'https://www.dropbox.com/plans', className: 'link-primary' },
-                  'business plan'
-                ),
-                ')'
-              )
-            )
-          )
-        ),
-        _react2.default.createElement('br', null),
-        'There are 3 ways to access infinite revision history.',
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          _StandardTable2.default,
-          null,
-          _react2.default.createElement(
-            'tbody',
-            null,
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
-                null,
-                _react2.default.createElement(
-                  'b',
-                  null,
-                  'Method 1 (coming soon)'
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                'Change your project to an open-source \'Public\' project.'
-              )
-            ),
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
-                null,
-                _react2.default.createElement(
-                  'b',
-                  null,
-                  'Method 2 (coming soon)'
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                'Upgrade to Stemn Pro.'
-              )
-            ),
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
-                null,
-                _react2.default.createElement(
-                  'b',
-                  null,
-                  'Method 3'
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                'Upgrade ',
-                providerText,
-                ' to a pro account.'
-              )
-            )
-          )
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer-no-line layout-row layout-align-end' },
-        _react2.default.createElement(
-          _Button2.default,
-          {
-            className: 'primary',
-            onClick: modalConfirm },
-          'Ok'
-        )
-      )
-    );
-  }
-});
-
-var _default = Component;
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/Messages/PreviewExpired/PreviewExpiredModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/Messages/PreviewExpired/PreviewExpiredModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/Messages/PreviewExpired/PreviewExpiredModal.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "5zde":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12378,194 +12560,6 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/RelatedFields/RelatedFields.reducer.js');
 
   __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/RelatedFields/RelatedFields.reducer.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "6d2N":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Component = undefined;
-
-var _defineProperty2 = __webpack_require__("bOdI");
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _redux = __webpack_require__("c9Fv");
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _moment = __webpack_require__("PJh5");
-
-var _moment2 = _interopRequireDefault(_moment);
-
-var _TasksActions = __webpack_require__("Htxf");
-
-var TasksActions = _interopRequireWildcard(_TasksActions);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _TaskRow = __webpack_require__("aOuj");
-
-var _TaskRow2 = _interopRequireDefault(_TaskRow);
-
-var _LoadingPlaceholders = __webpack_require__("IqZ3");
-
-var _LoadingPlaceholders2 = _interopRequireDefault(_LoadingPlaceholders);
-
-var _Checkbox = __webpack_require__("FQX5");
-
-var _Checkbox2 = _interopRequireDefault(_Checkbox);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-///////////////////////////////// COMPONENT /////////////////////////////////
-
-// Sub Components
-
-
-// Container Actions
-
-
-// Component Core
-// Container Core
-var Component = exports.Component = _react2.default.createClass({
-  displayName: 'Component',
-
-  // Mounting
-  onMount: function onMount(nextProps, prevProps) {
-    if (!prevProps || prevProps.taskId != nextProps.taskId) {
-      if (!nextProps.task || !nextProps.task.data) {
-        nextProps.dispatch(TasksActions.getTask({
-          taskId: nextProps.taskId
-        }));
-      }
-    }
-  },
-  componentWillMount: function componentWillMount() {
-    this.onMount(this.props);
-  },
-  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    this.onMount(nextProps, this.props);
-  },
-  render: function render() {
-    var _props = this.props,
-        task = _props.task,
-        entityModel = _props.entityModel,
-        toggleComplete = _props.toggleComplete,
-        toggleRelated = _props.toggleRelated,
-        status = _props.status;
-
-
-    if (!task || !task.data) {
-      return _react2.default.createElement(
-        'div',
-        { className: (0, _classnames2.default)(_TaskRow2.default.row, _LoadingPlaceholders2.default.loading, 'layout-row', 'layout-align-start-center') },
-        _react2.default.createElement(
-          'div',
-          { className: 'flex text-ellipsis' },
-          'The task namelongword goes here'
-        ),
-        _react2.default.createElement(
-          _Button2.default,
-          { className: (0, _classnames2.default)('xs', _TaskRow2.default.button), style: { width: '60px' } },
-          '\xA0'
-        ),
-        _react2.default.createElement(
-          _Button2.default,
-          { className: (0, _classnames2.default)('xs', _TaskRow2.default.button), style: { width: '60px' } },
-          '\xA0'
-        )
-      );
-    }
-    return _react2.default.createElement(
-      'div',
-      { className: _TaskRow2.default.row + ' layout-row layout-align-start-center' },
-      _react2.default.createElement(
-        'div',
-        { className: 'flex text-ellipsis' },
-        task.data.name
-      ),
-      _react2.default.createElement(
-        _Button2.default,
-        {
-          className: (0, _classnames2.default)('xs', _TaskRow2.default.button, (0, _defineProperty3.default)({}, _TaskRow2.default.active, status === 'complete')),
-          title: 'Mark as Complete',
-          onClick: toggleComplete },
-        'Complete'
-      ),
-      _react2.default.createElement(
-        _Button2.default,
-        {
-          className: (0, _classnames2.default)('xs', _TaskRow2.default.button, (0, _defineProperty3.default)({}, _TaskRow2.default.active, status === 'related')),
-          title: 'Mark as related',
-          onClick: toggleRelated },
-        'Related'
-      )
-    );
-  }
-});
-
-///////////////////////////////// CONTAINER /////////////////////////////////
-
-// Styles
-function mapStateToProps(_ref, _ref2) {
-  var tasks = _ref.tasks;
-  var taskId = _ref2.taskId;
-
-  return {
-    task: tasks.data[taskId],
-    entityModel: 'tasks.data[' + taskId + ']'
-  };
-}
-
-var _default = (0, _reactRedux.connect)(mapStateToProps)(Component);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskRow/TaskRow.jsx');
-
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskRow/TaskRow.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskRow/TaskRow.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskRow/TaskRow.jsx');
 }();
 
 ;
@@ -13076,7 +13070,7 @@ module.exports = baseRandom;
 
 /***/ },
 
-/***/ "7TxZ":
+/***/ "7OnP":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13086,92 +13080,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = __webpack_require__("U7vG");
+var _ModalRegistry = __webpack_require__("p8CK");
 
-var _react2 = _interopRequireDefault(_react);
+var _ConfirmModal = __webpack_require__("Yc28");
 
-var _reactRedux = __webpack_require__("4n+p");
-
-var _AuthActions = __webpack_require__("+z2A");
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
+var _ConfirmModal2 = _interopRequireDefault(_ConfirmModal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Component = _react2.default.createClass({
-  displayName: 'Component',
-  getInitialState: function getInitialState() {
-    return { value: '' };
-  },
-  onChange: function onChange(event) {
-    this.setState({ value: event.target.value });
-  },
-  submitCode: function submitCode() {
-    var _this = this;
-
-    this.props.dispatch((0, _AuthActions.submitBetaCode)(this.state.value)).then(function () {
-      _this.props.modalConfirm();
-    });
-  },
-  submitRequest: function submitRequest() {
-    this.props.dispatch((0, _AuthActions.requestBetaCode)());
-  },
-
-  render: function render() {
-    var value = this.state.value;
-
-
-    return _react2.default.createElement(
-      'div',
-      { style: { width: '400px' } },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-title' },
-        'Request Beta Access'
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-body', style: { lineHeight: '1.4em' } },
-        'You have not yet been granted access to Stemn Desktop Beta. Please enter your access code or submit an access code request.',
-        _react2.default.createElement('input', {
-          type: 'text',
-          style: { marginTop: '15px' },
-          className: 'dr-input',
-          placeholder: 'Beta Access Code',
-          onChange: this.onChange
-        })
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer-no-line layout-row layout-align-end' },
-        _react2.default.createElement(
-          _Button2.default,
-          { style: { marginRight: '10px' },
-            onClick: this.submitRequest },
-          'Request Code'
-        ),
-        _react2.default.createElement(
-          _Button2.default,
-          {
-            className: 'primary',
-            onClick: this.submitCode },
-          'Submit Code'
-        )
-      )
-    );
-  }
-});
-
-// Styles
-// Component Core
-
-var _default = (0, _reactRedux.connect)()(Component);
+var _default = function _default(modalName) {
+  (0, _ModalRegistry.registerModal)(modalName, _ConfirmModal2.default);
+  return modalName;
+};
 
 var _default2 = _default;
 exports.default = _default2;
@@ -13182,11 +13102,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/BetaModal.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConfirmModal/ConfirmModal.container.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/BetaModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/BetaModal.jsx');
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConfirmModal/ConfirmModal.container.js');
 }();
 
 ;
@@ -13949,125 +13867,6 @@ exports.hash = hash;
 
 /***/ },
 
-/***/ "7iFk":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Component = _react2.default.createClass({
-  displayName: 'Component',
-  getInitialState: function getInitialState() {
-    return {
-      value: ''
-    };
-  },
-  onChange: function onChange(event) {
-    this.setState({ value: event.target.value });
-  },
-
-  render: function render() {
-    var _props = this.props,
-        title = _props.title,
-        message = _props.message,
-        confirmValue = _props.confirmValue,
-        confirmPlaceholder = _props.confirmPlaceholder,
-        modalCancel = _props.modalCancel,
-        modalConfirm = _props.modalConfirm;
-    var value = this.state.value;
-
-
-    return _react2.default.createElement(
-      'div',
-      { style: { width: '400px' } },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-title' },
-        title || 'Are you sure you want to do this?'
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-body', style: { lineHeight: '1.4em' } },
-        _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: message || 'There will be no turning back.' } }),
-        confirmValue ? _react2.default.createElement('input', {
-          type: 'text',
-          style: { marginTop: '15px' },
-          className: 'dr-input',
-          placeholder: confirmPlaceholder,
-          onChange: this.onChange
-        }) : null
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer-no-line layout-row layout-align-end' },
-        _react2.default.createElement(
-          _Button2.default,
-          { style: { marginRight: '10px' }, onClick: modalCancel },
-          'Cancel'
-        ),
-        _react2.default.createElement(
-          _Button2.default,
-          {
-            className: 'warn',
-            disabled: confirmValue && value.toLowerCase() != confirmValue.toLowerCase(),
-            onClick: modalConfirm },
-          'Confirm'
-        )
-      )
-    );
-  }
-});
-
-// Styles
-// Component Core
-var _default = Component;
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ConfirmModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ConfirmModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ConfirmModal.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "7jYp":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -14352,6 +14151,573 @@ module.exports = __webpack_require__("hJx8");
 
 /***/ },
 
+/***/ "88Vw":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.deleteGroupConfirm = exports.editBoard = exports.updateBoard = undefined;
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _assign = __webpack_require__("woOf");
+
+var _assign2 = _interopRequireDefault(_assign);
+
+exports.newThread = newThread;
+exports.getBoards = getBoards;
+exports.getBoard = getBoard;
+exports.getThread = getThread;
+exports.updateThread = updateThread;
+exports.getGroup = getGroup;
+exports.updateGroup = updateGroup;
+exports.deleteThread = deleteThread;
+exports.moveThread = moveThread;
+exports.beginDrag = beginDrag;
+exports.endDrag = endDrag;
+exports.moveGroup = moveGroup;
+exports.toggleComplete = toggleComplete;
+exports.toggleCompleteUndo = toggleCompleteUndo;
+exports.newGroup = newGroup;
+exports.deleteGroup = deleteGroup;
+exports.showLabelEditModal = showLabelEditModal;
+exports.changeLayout = changeLayout;
+exports.websocketJoinBoard = websocketJoinBoard;
+exports.websocketLeaveBoard = websocketLeaveBoard;
+
+var _axios = __webpack_require__("mtWM");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _getUuid = __webpack_require__("FmOC");
+
+var _getUuid2 = _interopRequireDefault(_getUuid);
+
+var _ToastsActions = __webpack_require__("CWMx");
+
+var _ModalActions = __webpack_require__("u2h7");
+
+var _Store = __webpack_require__("+I1Y");
+
+var _ThreadLabelsEditModal = __webpack_require__("hKDs");
+
+var _ThreadLabelsEditModal2 = _interopRequireDefault(_ThreadLabelsEditModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function newThread(_ref) {
+  var projectId = _ref.projectId,
+      thread = _ref.thread;
+
+  return function (dispatch, getState) {
+    var threadDefault = {
+      users: [{
+        _id: getState().auth.user._id,
+        name: getState().auth.user.name,
+        picture: getState().auth.user.picture
+      }]
+    };
+    return dispatch({
+      type: 'THREADS/NEW_TASK',
+      payload: (0, _axios2.default)({
+        method: 'POST',
+        url: '/api/v1/boards/' + projectId + '/threads',
+        data: (0, _assign2.default)({}, threadDefault, thread)
+      }),
+      meta: {
+        cacheKey: projectId
+      }
+    });
+  };
+}
+
+function getBoards(_ref2) {
+  var projectId = _ref2.projectId,
+      populate = _ref2.populate;
+
+  return {
+    type: 'THREADS/GET_BOARDS',
+    payload: (0, _axios2.default)({
+      method: 'GET',
+      url: '/api/v1/projects/' + projectId + '/boards',
+      params: {
+        populate: populate || false
+      }
+    }),
+    meta: {
+      cacheKey: projectId
+    }
+  };
+}
+
+function getBoard(_ref3) {
+  var boardId = _ref3.boardId;
+
+  return {
+    type: 'THREADS/GET_BOARD',
+    payload: (0, _axios2.default)({
+      method: 'GET',
+      url: '/api/v1/boards/' + boardId,
+      params: {
+        populate: false
+      }
+    }),
+    meta: {
+      cacheKey: boardId
+    }
+  };
+}
+
+//export function getEvents({threadId}){
+//  return {
+//    type: 'THREADS/GET_EVENTS',
+//    payload: http({
+//      method: 'GET',
+//      url: `/api/v1/threads/${threadId}/events`,
+//    }),
+//    meta: {
+//      cacheKey: threadId
+//    }
+//  }
+//}
+
+var updateBoard = exports.updateBoard = function updateBoard(_ref4) {
+  var board = _ref4.board;
+  return {
+    type: 'THREADS/UPDATE_BOARD',
+    payload: (0, _axios2.default)({
+      method: 'PUT',
+      url: '/api/v1/boards/' + board._id,
+      data: board
+    }),
+    meta: {
+      cacheKey: board._id
+    }
+  };
+};
+
+var editBoard = exports.editBoard = function editBoard(_ref5) {
+  var model = _ref5.model,
+      value = _ref5.value;
+  return {
+    type: 'THREADS/EDIT_BOARD',
+    payload: board
+  };
+};
+
+function getThread(_ref6) {
+  var threadId = _ref6.threadId;
+
+  return {
+    type: 'THREADS/GET_TASK',
+    httpPackage: {
+      url: '/api/v1/threads',
+      method: 'GET',
+      params: {
+        'ids': threadId
+      }
+    },
+    meta: {
+      cacheKey: threadId
+    }
+  };
+}
+
+function updateThread(_ref7) {
+  var thread = _ref7.thread;
+
+  return {
+    type: 'THREADS/UPDATE_TASK',
+    http: true,
+    throttle: {
+      time: 2000,
+      endpoint: 'THREADS/UPDATE_TASK-' + thread._id
+    },
+    payload: {
+      method: 'PUT',
+      url: '/api/v1/threads/' + thread._id,
+      data: thread
+    },
+    meta: {
+      cacheKey: thread._id
+    }
+  };
+}
+
+function getGroup(_ref8) {
+  var boardId = _ref8.boardId,
+      groupId = _ref8.groupId;
+
+  return {
+    type: 'THREADS/GET_GROUP',
+    http: true,
+    payload: {
+      method: 'GET',
+      url: 'api/v1/boards/' + boardId + '/groups/' + groupId
+    },
+    meta: {
+      boardId: boardId
+    }
+  };
+}
+
+function updateGroup(_ref9) {
+  var group = _ref9.group;
+
+  return {
+    type: 'THREADS/UPDATE_GROUP',
+    http: true,
+    throttle: {
+      time: 2000,
+      endpoint: 'THREADS/UPDATE_GROUP-' + group._id
+    },
+    payload: {
+      method: 'PUT',
+      url: '/api/v1/groups/' + group._id,
+      data: group
+    },
+    meta: {
+      cacheKey: group._id
+    }
+  };
+}
+
+function deleteThread(_ref10) {
+  var boardId = _ref10.boardId,
+      threadId = _ref10.threadId;
+
+  return {
+    type: 'THREADS/DELETE_TASK',
+    payload: (0, _axios2.default)({
+      method: 'DELETE',
+      url: '/api/v1/threads/' + threadId
+    }),
+    meta: {
+      threadId: threadId,
+      boardId: boardId
+    }
+  };
+}
+
+function moveThread(_ref11) {
+  var boardId = _ref11.boardId,
+      thread = _ref11.thread,
+      destinationThread = _ref11.destinationThread,
+      destinationGroup = _ref11.destinationGroup,
+      after = _ref11.after,
+      save = _ref11.save;
+
+  // To move a thread you must have either hoverItem or destinationGroup
+  // destinationGroup is used if the group is empty
+  return function (dispatch) {
+    if (save) {
+      dispatch({
+        type: 'THREADS/MOVE_TASK',
+        payload: (0, _axios2.default)({
+          method: 'POST',
+          url: '/api/v1/threads/move',
+          data: {
+            board: boardId,
+            thread: thread,
+            destinationGroup: destinationGroup,
+            destinationThread: destinationThread,
+            after: after
+          }
+        })
+      });
+    } else {
+      dispatch({
+        type: 'THREADS/MOVE_TASK',
+        payload: {
+          thread: thread,
+          destinationGroup: destinationGroup,
+          destinationThread: destinationThread,
+          boardId: boardId
+        }
+      });
+    }
+  };
+}
+
+function beginDrag(_ref12) {
+  var boardId = _ref12.boardId,
+      threadId = _ref12.threadId;
+
+  return {
+    type: 'THREADS/BEGIN_DRAG',
+    payload: {
+      threadId: threadId
+    },
+    meta: {
+      cacheKey: boardId
+    }
+  };
+}
+
+function endDrag(_ref13) {
+  var boardId = _ref13.boardId,
+      threadId = _ref13.threadId;
+
+  return {
+    type: 'THREADS/END_DRAG',
+    payload: {
+      threadId: threadId
+    },
+    meta: {
+      cacheKey: boardId
+    }
+  };
+}
+
+function moveGroup(_ref14) {
+  var boardId = _ref14.boardId,
+      group = _ref14.group,
+      destinationGroup = _ref14.destinationGroup,
+      after = _ref14.after,
+      save = _ref14.save;
+
+  return function (dispatch) {
+    if (save) {
+      dispatch({
+        type: 'THREADS/MOVE_GROUP',
+        payload: (0, _axios2.default)({
+          method: 'POST',
+          url: '/api/v1/groups/move',
+          data: {
+            board: boardId,
+            group: group,
+            destinationGroup: destinationGroup,
+            after: after
+          }
+        })
+      });
+    } else {
+      dispatch({
+        type: 'THREADS/MOVE_GROUP',
+        payload: {
+          group: group, destinationGroup: destinationGroup, boardId: boardId
+        }
+      });
+    }
+  };
+}
+
+function toggleComplete(_ref15) {
+  var threadId = _ref15.threadId,
+      model = _ref15.model,
+      value = _ref15.value;
+
+  return function (dispatch) {
+    dispatch((0, _ToastsActions.show)({
+      title: 'This thread was marked ' + (value ? 'complete' : 'incomplete') + '.',
+      actions: [{
+        text: 'Undo',
+        action: {
+          type: 'ALIASED',
+          aliased: true,
+          payload: {
+            functionAlias: 'ThreadsActions.toggleCompleteUndo',
+            functionInputs: { threadId: threadId, model: model, value: value }
+          }
+        }
+      }]
+    }));
+  };
+}
+function toggleCompleteUndo(_ref16) {
+  var threadId = _ref16.threadId,
+      model = _ref16.model,
+      value = _ref16.value;
+
+  return function (dispatch, getState) {
+    dispatch((0, _Store.storeChange)(model, !value));
+    setTimeout(function () {
+      return updateThread({ thread: getState().threads.data[threadId].data });
+    }, 1);
+  };
+}
+
+function newGroup(_ref17) {
+  var boardId = _ref17.boardId,
+      group = _ref17.group;
+
+  return function (dispatch) {
+    if (group.name.length > 1) {
+      dispatch({
+        type: 'THREADS/NEW_GROUP',
+        payload: (0, _axios2.default)({
+          method: 'POST',
+          url: '/api/v1/groups',
+          data: (0, _extends3.default)({}, group, {
+            board: boardId
+          })
+        }),
+        meta: {
+          boardId: boardId
+        }
+      });
+    }
+  };
+}
+
+var deleteGroupConfirm = exports.deleteGroupConfirm = function deleteGroupConfirm(_ref18) {
+  var boardId = _ref18.boardId,
+      groupId = _ref18.groupId;
+  return function (dispatch) {
+    return dispatch((0, _ModalActions.showConfirm)({
+      message: 'Deleting a group is permanent. All threads which belong to this group will be deleted (even archived threads).'
+    })).then(function () {
+      dispatch(deleteGroup({ boardId: boardId, groupId: groupId }));
+    });
+  };
+};
+
+function deleteGroup(_ref19) {
+  var boardId = _ref19.boardId,
+      groupId = _ref19.groupId;
+
+  return {
+    type: 'THREADS/DELETE_GROUP',
+    payload: (0, _axios2.default)({
+      method: 'DELETE',
+      url: '/api/v1/boards/' + boardId + '/groups/' + groupId
+    }),
+    meta: {
+      groupId: groupId,
+      boardId: boardId
+    }
+  };
+}
+
+function showLabelEditModal(_ref20) {
+  var boardId = _ref20.boardId;
+
+  return function (dispatch) {
+    dispatch((0, _ModalActions.showModal)({
+      modalType: _ThreadLabelsEditModal2.default,
+      modalProps: {
+        boardId: boardId
+      }
+    }));
+  };
+}
+
+function changeLayout(_ref21) {
+  var boardId = _ref21.boardId,
+      layout = _ref21.layout;
+
+  return {
+    type: 'THREADS/CHANGE_LAYOUT',
+    payload: {
+      boardId: boardId,
+      layout: layout
+    }
+  };
+}
+
+function websocketJoinBoard(_ref22) {
+  var boardId = _ref22.boardId;
+
+  return {
+    type: 'THREADS/WEBSOCKET_JOIN_BOARD',
+    websocket: true,
+    payload: {
+      type: 'ROOM/JOIN',
+      payload: {
+        room: boardId,
+        type: 'board'
+      }
+    }
+  };
+}
+function websocketLeaveBoard(_ref23) {
+  var boardId = _ref23.boardId;
+
+  return {
+    type: 'THREADS/WEBSOCKET_LEAVE_BOARD',
+    websocket: true,
+    payload: {
+      type: 'ROOM/LEAVE',
+      payload: {
+        room: boardId,
+        type: 'board'
+      }
+    }
+  };
+}
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(newThread, 'newThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(getBoards, 'getBoards', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(getBoard, 'getBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(updateBoard, 'updateBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(editBoard, 'editBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(getThread, 'getThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(updateThread, 'updateThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(getGroup, 'getGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(updateGroup, 'updateGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(deleteThread, 'deleteThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(moveThread, 'moveThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(beginDrag, 'beginDrag', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(endDrag, 'endDrag', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(moveGroup, 'moveGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(toggleComplete, 'toggleComplete', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(toggleCompleteUndo, 'toggleCompleteUndo', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(newGroup, 'newGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(deleteGroupConfirm, 'deleteGroupConfirm', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(deleteGroup, 'deleteGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(showLabelEditModal, 'showLabelEditModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(changeLayout, 'changeLayout', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(websocketJoinBoard, 'websocketJoinBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+
+  __REACT_HOT_LOADER__.register(websocketLeaveBoard, 'websocketLeaveBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "8AZL":
 /***/ function(module, exports) {
 
@@ -14377,102 +14743,6 @@ function apply(func, thisArg, args) {
 
 module.exports = apply;
 
-
-/***/ },
-
-/***/ "8LSG":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _magnifyInternet = __webpack_require__("sDHq");
-
-var _magnifyInternet2 = _interopRequireDefault(_magnifyInternet);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Component Core
-var Component = _react2.default.createClass({
-  displayName: 'Component',
-
-  render: function render() {
-    var _props = this.props,
-        title = _props.title,
-        message = _props.message,
-        modalCancel = _props.modalCancel,
-        modalConfirm = _props.modalConfirm;
-
-    return _react2.default.createElement(
-      'div',
-      { style: { width: '100vw', padding: '30px' } },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-body', style: { lineHeight: '1.4em' } },
-        _react2.default.createElement(
-          'div',
-          { className: 'text-center text-title-3' },
-          'Connection Error'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'layout-row layout-align-center' },
-          _react2.default.createElement('img', { src: _magnifyInternet2.default })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'text-center text-title-5' },
-          'Could not connect to the remote server. Either the server or your internet is down.'
-        )
-      )
-    );
-  }
-});
-
-// Styles
-var _default = Component;
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ConnectionModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ConnectionModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ConnectionModal.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -14549,6 +14819,136 @@ module.exports = nativeKeysIn;
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = { "default": __webpack_require__("B0bq"), __esModule: true };
+
+/***/ },
+
+/***/ "8iCz":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Button = __webpack_require__("Yrew");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _reactRouter = __webpack_require__("Zfgq");
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Component Core
+var Component = _react2.default.createClass({
+  displayName: 'Component',
+
+  render: function render() {
+    var _props = this.props,
+        title = _props.title,
+        message = _props.message,
+        modalCancel = _props.modalCancel,
+        modalConfirm = _props.modalConfirm;
+
+    return _react2.default.createElement(
+      'div',
+      { style: { width: '500px' } },
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-title' },
+        'Google Authentication Error'
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-body', style: { lineHeight: '1.4em' } },
+        _react2.default.createElement(
+          'p',
+          null,
+          'There is a problem with STEMN\'s access to your Google Account. Please follow these steps to re-connect your account.'
+        ),
+        _react2.default.createElement(
+          'p',
+          { className: 'text-mini-caps' },
+          'Step 1:'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'Visit Google\'s Permissions page ',
+          _react2.default.createElement(
+            'a',
+            { className: 'link-primary', href: 'https://security.google.com/settings/security/permissions' },
+            'here'
+          ),
+          '. Find STEMN in the list and click \'Remove\' to revoke access.'
+        ),
+        _react2.default.createElement(
+          'p',
+          { className: 'text-mini-caps' },
+          'Step 2:'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'After you have fully revoked STEMN\'s access to your google account, vist your ',
+          _react2.default.createElement(
+            _reactRouter.Link,
+            { to: '/settings/account', className: 'link-primary' },
+            'account settings page'
+          ),
+          ' and re-connect your google account. '
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-footer-no-line layout-row layout-align-end' },
+        _react2.default.createElement(
+          _Button2.default,
+          { className: 'primary', onClick: modalConfirm },
+          'Continue'
+        )
+      )
+    );
+  }
+});
+
+// Styles
+var _default = Component;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessErrorModal/ProviderAccessErrorModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessErrorModal/ProviderAccessErrorModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessErrorModal/ProviderAccessErrorModal.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -15010,49 +15410,6 @@ var _off2 = _interopRequireDefault(_off);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];
-
-/***/ },
-
-/***/ "9a2P":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-// If we are in the electron main thread, we don't want to register the modal
-var modalName = 'THREAD_COMMIT';
-
-var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("TPI8").default(modalName);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/index.js');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/index.js');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/index.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -15858,6 +16215,56 @@ module.exports = {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/xlsx.svg?1d33d7907e97b4702c3ac7b4c650bf00";
+
+/***/ },
+
+/***/ "9gQX":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ModalRegistry = __webpack_require__("p8CK");
+
+var _ProviderAccessErrorModal = __webpack_require__("8iCz");
+
+var _ProviderAccessErrorModal2 = _interopRequireDefault(_ProviderAccessErrorModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(modalName) {
+  (0, _ModalRegistry.registerModal)(modalName, _ProviderAccessErrorModal2.default);
+  return modalName;
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessErrorModal/ProviderAccessErrorModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessErrorModal/ProviderAccessErrorModal.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -17181,7 +17588,7 @@ var projectSettingsThreadsRoute = exports.projectSettingsThreadsRoute = function
   var projectId = _ref11.projectId;
   return '/project/' + projectId + '/settings/threads';
 };
-var projectTasksRoute = exports.projectTasksRoute = function projectTasksRoute(_ref12) {
+var projectThreadsRoute = exports.projectThreadsRoute = function projectThreadsRoute(_ref12) {
   var projectId = _ref12.projectId;
   return '/project/' + projectId + '/threads';
 };
@@ -17198,15 +17605,15 @@ var securityRoute = exports.securityRoute = function securityRoute() {
 var settingsRoute = exports.settingsRoute = function settingsRoute() {
   return '/settings';
 };
-var taskEditRoute = exports.taskEditRoute = function taskEditRoute(_ref14) {
-  var taskId = _ref14.taskId,
+var threadEditRoute = exports.threadEditRoute = function threadEditRoute(_ref14) {
+  var threadId = _ref14.threadId,
       projectId = _ref14.projectId;
-  return '/project/' + projectId + '/threads/' + taskId + '/edit';
+  return '/project/' + projectId + '/threads/' + threadId + '/edit';
 };
-var taskRoute = exports.taskRoute = function taskRoute(_ref15) {
-  var taskId = _ref15.taskId,
+var threadRoute = exports.threadRoute = function threadRoute(_ref15) {
+  var threadId = _ref15.threadId,
       projectId = _ref15.projectId;
-  return '/project/' + projectId + '/threads/' + taskId;
+  return '/project/' + projectId + '/threads/' + threadId;
 };
 var termsRoute = exports.termsRoute = function termsRoute() {
   return '/terms';
@@ -17292,7 +17699,7 @@ var _temp = function () {
 
   __REACT_HOT_LOADER__.register(projectSettingsThreadsRoute, 'projectSettingsThreadsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
-  __REACT_HOT_LOADER__.register(projectTasksRoute, 'projectTasksRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+  __REACT_HOT_LOADER__.register(projectThreadsRoute, 'projectThreadsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(projectTeamRoute, 'projectTeamRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
@@ -17302,9 +17709,9 @@ var _temp = function () {
 
   __REACT_HOT_LOADER__.register(settingsRoute, 'settingsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
-  __REACT_HOT_LOADER__.register(taskEditRoute, 'taskEditRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+  __REACT_HOT_LOADER__.register(threadEditRoute, 'threadEditRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
-  __REACT_HOT_LOADER__.register(taskRoute, 'taskRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+  __REACT_HOT_LOADER__.register(threadRoute, 'threadRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(termsRoute, 'termsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
@@ -20655,6 +21062,60 @@ module.exports = __webpack_require__.p + "images/xlr.svg?87e5a1df4634e529e4183ec
 
 /***/ },
 
+/***/ "DrTP":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _default = function _default(_ref) {
+  var projectId = _ref.projectId,
+      fileId = _ref.fileId;
+
+  return {
+    type: 'FILES/GET_RELATED_THREADS',
+    http: true,
+    payload: {
+      method: 'GET',
+      url: '/api/v1/sync/files/' + projectId + '/' + fileId + '/threads'
+    },
+    meta: {
+      fileId: fileId
+    }
+  };
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/actions/getRelatedThreads.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/actions/getRelatedThreads.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "DsFX":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -21264,7 +21725,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(46).then(__webpack_require__.bind(null, "lHpz")), cb);
   };
   var getExplore = function getExplore(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(18), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "wMHT")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(17), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "wMHT")), cb);
   };
   var getField = function getField(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(37)]).then(__webpack_require__.bind(null, "GXbu")), cb);
@@ -21273,13 +21734,13 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(20), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "XFbw")), cb);
   };
   var getFile = function getFile(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(7), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "jvCS")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(8), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "jvCS")), cb);
   };
   var getFlow = function getFlow(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(45).then(__webpack_require__.bind(null, "rtAa")), cb);
   };
   var getHome = function getHome(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(10), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "MhFa")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, "MhFa")), cb);
   };
   var getLogin = function getLogin(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(53).then(__webpack_require__.bind(null, "WTdZ")), cb);
@@ -21318,37 +21779,37 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(36)]).then(__webpack_require__.bind(null, "cs2g")), cb);
   };
   var getProjectCommit = function getProjectCommit(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(8), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "FTSl")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(7), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "FTSl")), cb);
   };
   var getProjectCommits = function getProjectCommits(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(4), __webpack_require__.e(3), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "S8ZU")), cb);
   };
   var getProjectOverview = function getProjectOverview(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(17), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "E16q")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(16), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "E16q")), cb);
   };
   var getProjectSettings = function getProjectSettings(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(28).then(__webpack_require__.bind(null, "WnvL")), cb);
   };
   var getProjectSettingsGeneral = function getProjectSettingsGeneral(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(14), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "NH44")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(12), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "NH44")), cb);
   };
   var getProjectSettingsPermissions = function getProjectSettingsPermissions(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, "PAeO")), cb);
   };
   var getProjectSettingsTags = function getProjectSettingsTags(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(12), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "QmIC")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(10), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "QmIC")), cb);
   };
-  var getProjectSettingsTasks = function getProjectSettingsTasks(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(35)]).then(__webpack_require__.bind(null, "6Y9n")), cb);
+  var getProjectSettingsThreads = function getProjectSettingsThreads(loc, cb) {
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(35), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "85CU")), cb);
   };
   var getProjectSettingsTeam = function getProjectSettingsTeam(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(15), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "ar6m")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(13), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "ar6m")), cb);
   };
-  var getProjectTask = function getProjectTask(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(9), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "NL4z")), cb);
+  var getProjectThread = function getProjectThread(loc, cb) {
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(9), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "KhNV")), cb);
   };
-  var getProjectTasks = function getProjectTasks(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(6), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "YzX6")), cb);
+  var getProjectThreads = function getProjectThreads(loc, cb) {
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(6), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "UH7x")), cb);
   };
   var getProjectTeam = function getProjectTeam(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(5), __webpack_require__.e(3), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "knNm")), cb);
@@ -21366,7 +21827,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(22), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "qkLM")), cb);
   };
   var getSettingsAccount = function getSettingsAccount(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(16), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "P8VH")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(14), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "P8VH")), cb);
   };
   var getSettingsBilling = function getSettingsBilling(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(24)]).then(__webpack_require__.bind(null, "nAtR")), cb);
@@ -21375,7 +21836,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(23), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "vwLr")), cb);
   };
   var getSettingsProfile = function getSettingsProfile(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(13), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "WMt1")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(11), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "WMt1")), cb);
   };
   var getSettingsProfileDetails = function getSettingsProfileDetails(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, "q8Uh")), cb);
@@ -21399,7 +21860,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(33), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "JoCH")), cb);
   };
   var getUserOverview = function getUserOverview(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(11), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "VTvy")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, "VTvy")), cb);
   };
   var getUserProjects = function getUserProjects(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(30), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "2k9P")), cb);
@@ -21477,9 +21938,9 @@ exports.default = function (_ref) {
       _react2.default.createElement(_reactRouter.IndexRoute, { getComponent: getProjectOverview }),
       _react2.default.createElement(_reactRouter.Route, { path: 'team', getComponent: getProjectTeam }),
       _react2.default.createElement(_reactRouter.Route, { path: 'files/:path', getComponent: getProjectOverview }),
-      _react2.default.createElement(_reactRouter.Route, { path: 'threads', getComponent: getProjectTasks }),
-      _react2.default.createElement(_reactRouter.Route, { path: 'threads/:taskId', getComponent: getProjectTask }),
-      _react2.default.createElement(_reactRouter.Route, { path: 'threads/:taskId/edit', getComponent: getProjectTask }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'threads', getComponent: getProjectThreads }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'threads/:threadId', getComponent: getProjectThread }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'threads/:threadId/edit', getComponent: getProjectThread }),
       _react2.default.createElement(_reactRouter.Route, { path: 'history', getComponent: getProjectCommits }),
       _react2.default.createElement(_reactRouter.Route, { path: 'history/:commitId', getComponent: getProjectCommit }),
       _react2.default.createElement(
@@ -21487,7 +21948,7 @@ exports.default = function (_ref) {
         { path: 'settings', getComponent: getProjectSettings },
         _react2.default.createElement(_reactRouter.IndexRoute, { getComponent: getProjectSettingsGeneral }),
         _react2.default.createElement(_reactRouter.Route, { path: 'permissions', getComponent: getProjectSettingsPermissions }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'threads', getComponent: getProjectSettingsTasks }),
+        _react2.default.createElement(_reactRouter.Route, { path: 'threads', getComponent: getProjectSettingsThreads }),
         _react2.default.createElement(_reactRouter.Route, { path: 'team', getComponent: getProjectSettingsTeam }),
         _react2.default.createElement(_reactRouter.Route, { path: 'tags', getComponent: getProjectSettingsTags })
       )
@@ -25362,6 +25823,14 @@ module.exports = stackHas;
 
 /***/ },
 
+/***/ "G4ri":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","modal":"ThreadMentionModal_modal-2XzWk","header":"ThreadMentionModal_header-2zKhh","search":"ThreadMentionModal_search-3xZrD"};
+
+/***/ },
+
 /***/ "G8ar":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25394,316 +25863,6 @@ function baseIndexOf(array, value, fromIndex) {
 
 module.exports = baseIndexOf;
 
-
-/***/ },
-
-/***/ "GHE4":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__("Dd8w");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _defineProperty2 = __webpack_require__("bOdI");
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _has2 = __webpack_require__("umy1");
-
-var _has3 = _interopRequireDefault(_has2);
-
-var _cloneDeep2 = __webpack_require__("kvU2");
-
-var _cloneDeep3 = _interopRequireDefault(_cloneDeep2);
-
-var _icepick = __webpack_require__("PgM/");
-
-var _icepick2 = _interopRequireDefault(_icepick);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var initialState = {
-  data: {},
-  projects: {},
-  //  events: {},
-  boards: {
-    /********************************
-    boardId: {
-      data: {the board data},
-      newThread: {
-       }
-      forms: {}
-      searchString: 'Some search string'
-      layout: 'board' || 'list'
-      loading: true || false
-    }
-    ********************************/
-  }
-};
-
-var mainReducer = function mainReducer(state, action) {
-  switch (action.type) {
-    case 'TASKS/NEW_TASK_FULFILLED':
-      return _icepick2.default.chain(state).assocIn(['data', action.payload.data._id, 'data'], action.payload.data) // Add to data
-      .assocIn(['boards', action.payload.data.board, 'newTaskString', action.payload.data.group], '') // Clear string
-      .updateIn(['boards', action.payload.data.board, 'data', 'groups'], function (groups) {
-        // Add to groups.tasks array
-        var groupIndex = groups.findIndex(function (group) {
-          return group._id === action.payload.data.group;
-        });
-        return _icepick2.default.updateIn(groups, [groupIndex, 'tasks'], function (tasks) {
-          return _icepick2.default.push(tasks, action.payload.data._id);
-        });
-      }).value();
-
-    case 'TASKS/GET_BOARDS_PENDING':
-      return _icepick2.default.assocIn(state, ['projects', action.meta.cacheKey, 'loading'], true);
-    case 'TASKS/GET_BOARDS_REJECTED':
-      return _icepick2.default.assocIn(state, ['projects', action.meta.cacheKey, 'loading'], false);
-    case 'TASKS/GET_BOARDS_FULFILLED':
-      if ((0, _has3.default)(action, 'payload.data[0]._id')) {
-        return _icepick2.default.merge(state, {
-          projects: (0, _defineProperty3.default)({}, action.meta.cacheKey, {
-            boards: [action.payload.data[0]._id],
-            loading: false
-          }),
-          boards: (0, _defineProperty3.default)({}, action.payload.data[0]._id, {
-            data: action.payload.data[0]
-          })
-        });
-      } else {
-        return _icepick2.default.assocIn(state, ['projects', action.meta.cacheKey], {
-          boards: [],
-          loading: false
-        });
-      }
-
-    case 'TASKS/GET_BOARD_PENDING':
-      return _icepick2.default.assocIn(state, ['boards', action.meta.cacheKey, 'loading'], true);
-    case 'TASKS/GET_BOARD_REJECTED':
-      return _icepick2.default.assocIn(state, ['boards', action.meta.cacheKey, 'loading'], false);
-    case 'TASKS/GET_BOARD_FULFILLED':
-      return _icepick2.default.chain(state).assocIn(['boards', action.meta.cacheKey, 'loading'], true).assocIn(['boards', action.meta.cacheKey, 'data'], action.payload.data).value();
-
-    case 'TASKS/GET_GROUP_FULFILLED':
-      return _icepick2.default.updateIn(state, ['boards', action.meta.boardId, 'data', 'groups'], function (groups) {
-        var groupsIndex = groups.findIndex(function (group) {
-          return group._id === action.payload.data._id;
-        });
-        return _icepick2.default.assoc(groups, groupsIndex, action.payload.data);
-      });
-
-    case 'TASKS/GET_TASK_PENDING':
-      return _icepick2.default.assocIn(state, ['data', action.meta.cacheKey, 'loading'], true);
-    case 'TASKS/GET_TASK_REJECTED':
-      return _icepick2.default.assocIn(state, ['data', action.meta.cacheKey, 'loading'], false);
-    case 'TASKS/GET_TASK_FULFILLED':
-      return _icepick2.default.assocIn(state, ['data', action.meta.cacheKey], {
-        data: action.payload.data,
-        loading: false
-      });
-
-    //    case 'TASKS/GET_EVENTS_PENDING':
-    //      return i.assocIn(state, ['events', action.meta.cacheKey, 'loading'], true)
-    //    case 'TASKS/GET_EVENTS_REJECTED':
-    //      return i.assocIn(state, ['events', action.meta.cacheKey, 'loading'], false)
-    //    case 'TASKS/GET_EVENTS_FULFILLED':
-    //      return i.assocIn(state, ['events', action.meta.cacheKey], {
-    //        data: action.payload.data,
-    //        loading: false
-    //      })
-    //    case 'TASKS/NEW_EVENT':
-    //      return i.updateIn(state, ['events', action.payload.taskId, 'data'], events => {
-    //        return i.push(events, action.payload.event)
-    //      })
-    //    case 'TASKS/DELETE_EVENT':
-    //      return i.updateIn(state, ['events', action.payload.taskId, 'data'], events => {
-    //        const eventIndex = events.findIndex(event => event._id === action.payload.eventId)
-    //        return eventIndex !== -1 ? i.splice(events, eventIndex, 1) : events
-    //      })
-
-    case 'TASKS/UPDATE_BOARD_PENDING':
-      return _icepick2.default.assocIn(state, ['boards', action.meta.cacheKey, 'savePending'], true);
-    case 'TASKS/UPDATE_BOARD_REJECTED':
-      return _icepick2.default.assocIn(state, ['boards', action.meta.cacheKey, 'savePending'], false);
-    case 'TASKS/UPDATE_BOARD_FULFILLED':
-      return _icepick2.default.chain(state).assocIn(['boards', action.meta.cacheKey, 'savePending'], false).assocIn(['boards', action.meta.cacheKey, 'data'], action.payload.data).value();
-
-    case 'TASKS/NEW_GROUP_FULFILLED':
-      return _icepick2.default.chain(state)
-      // Reset the newGroupString to empty
-      .assocIn(['boards', action.meta.boardId, 'newGroupString'], '')
-      // Push the new group onto the groups array
-      .updateIn(['boards', action.meta.boardId, 'data', 'groups'], function (groups) {
-        return _icepick2.default.push(groups, action.payload.data);
-      }).value();
-
-    case 'TASKS/DELETE_GROUP_FULFILLED':
-      return _icepick2.default.updateIn(state, ['boards', action.meta.boardId, 'data', 'groups'], function (groups) {
-        var groupIndex = groups.findIndex(function (group) {
-          return group._id === action.meta.groupId;
-        }); // Find the index of the group
-        return _icepick2.default.splice(groups, groupIndex, 1); // Delete the group from the groups array
-      });
-
-    case 'TASKS/DELETE_TASK_FULFILLED':
-      return _icepick2.default.chain(state).assocIn(['data', action.meta.taskId], undefined).updateIn(['boards', action.meta.boardId, 'data', 'groups'], function (groups) {
-        var location = getLocationIndex(groups, action.meta.taskId);
-        return _icepick2.default.updateIn(groups, [location.groupIndex, 'tasks'], function (tasks) {
-          return _icepick2.default.splice(tasks, location.taskIndex, 1);
-        });
-      }).value();
-
-    case 'TASKS/MOVE_TASK':
-      return _icepick2.default.chain(state).assocIn(['data', action.payload.task, 'data', 'group'], action.payload.destinationGroup) // Update the group property
-      .updateIn(['boards', action.payload.boardId, 'data', 'groups'], function (groups) {
-        // Move the task in the groups array
-        var from = getLocationIndex(groups, action.payload.task);
-        var to = action.payload.destinationTask ? getLocationIndex(groups, action.payload.destinationTask) : { groupIndex: getGroupIndex(groups, action.payload.destinationGroup), taskIndex: 0 };
-        return moveTask({
-          groups: groups,
-          lastX: from.groupIndex,
-          nextX: to.groupIndex,
-          lastY: from.taskIndex,
-          nextY: to.taskIndex
-        });
-      }).value();
-    case 'TASKS/MOVE_TASK_FULFILLED':
-      return state;
-
-    case 'TASKS/MOVE_GROUP':
-      return _icepick2.default.updateIn(state, ['boards', action.payload.boardId, 'data', 'groups'], function (groups) {
-        var groupFrom = groups.findIndex(function (group) {
-          return group._id === action.payload.group;
-        });
-        var groupTo = groups.findIndex(function (group) {
-          return group._id === action.payload.destinationGroup;
-        });
-        return moveGroup(groups, groupFrom, groupTo);
-      });
-
-    case 'TASKS/BEGIN_DRAG':
-      return _icepick2.default.assocIn(state, ['data', action.payload.taskId, 'isDragging'], true);
-    case 'TASKS/END_DRAG':
-      return _icepick2.default.assocIn(state, ['data', action.payload.taskId, 'isDragging'], false);
-
-    case 'TASKS/CHANGE_LAYOUT':
-      return _icepick2.default.assocIn(state, ['boards', action.payload.boardId, 'layout'], action.payload.layout);
-
-    default:
-      return state;
-  }
-};
-
-function getLocationIndex(groups, id) {
-  // This will return the group and task index inside the structure object.
-  var groupIndex = null;
-  var taskIndex = null;
-  groupIndex = groups.findIndex(function (group, groupIndex) {
-    var foundTaskIndex = group.tasks.findIndex(function (taskId) {
-      return taskId === id;
-    });
-    // If the task index is found, we return it
-    if (foundTaskIndex !== -1) {
-      taskIndex = foundTaskIndex;
-      return true;
-    }
-  });
-  return {
-    groupIndex: groupIndex,
-    taskIndex: taskIndex
-  };
-}
-
-function getGroupIndex(groups, groupId) {
-  return groups.findIndex(function (group) {
-    return group._id === groupId;
-  });
-}
-
-function moveTask(_ref) {
-  var groups = _ref.groups,
-      lastX = _ref.lastX,
-      nextX = _ref.nextX,
-      lastY = _ref.lastY,
-      nextY = _ref.nextY;
-
-  var cloneItems = (0, _cloneDeep3.default)(groups);
-  if (lastX === nextX) {
-    cloneItems[lastX].tasks.splice(nextY, 0, cloneItems[lastX].tasks.splice(lastY, 1)[0]);
-  } else {
-    cloneItems[nextX].tasks.splice(nextY, 0, cloneItems[lastX].tasks[lastY]); // move element to new place
-    cloneItems[lastX].tasks.splice(lastY, 1); // delete element from old place
-  }
-  return cloneItems;
-}
-
-function moveGroup(groups, fromIndex, toIndex) {
-  var cloneItems = (0, _cloneDeep3.default)(groups);
-  var t = cloneItems.splice(fromIndex, 1)[0];
-  cloneItems.splice(toIndex, 0, t);
-  return cloneItems;
-}
-
-function addItem(keyItems, item) {
-  return [].concat(keyItems, [item]);
-}
-
-var _default = function _default() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments[1];
-
-  if (!state.hydrated) {
-    state = (0, _extends3.default)({}, initialState, state, { hydrated: true });
-  }
-  return mainReducer(state, action);
-};
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(getLocationIndex, 'getLocationIndex', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.reducer.js');
-
-  __REACT_HOT_LOADER__.register(getGroupIndex, 'getGroupIndex', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.reducer.js');
-
-  __REACT_HOT_LOADER__.register(moveTask, 'moveTask', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.reducer.js');
-
-  __REACT_HOT_LOADER__.register(moveGroup, 'moveGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.reducer.js');
-
-  __REACT_HOT_LOADER__.register(addItem, 'addItem', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.reducer.js');
-
-  __REACT_HOT_LOADER__.register(initialState, 'initialState', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.reducer.js');
-
-  __REACT_HOT_LOADER__.register(mainReducer, 'mainReducer', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.reducer.js');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.reducer.js');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.reducer.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -25830,6 +25989,56 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/modules/Footer/Footer.js');
 
   __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/modules/Footer/Footer.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "GQlt":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ModalRegistry = __webpack_require__("p8CK");
+
+var _ThreadLabelsEditModal = __webpack_require__("o7FV");
+
+var _ThreadLabelsEditModal2 = _interopRequireDefault(_ThreadLabelsEditModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(modalName) {
+  (0, _ModalRegistry.registerModal)(modalName, _ThreadLabelsEditModal2.default);
+  return modalName;
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/ThreadLabelsEditModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/ThreadLabelsEditModal.container.js');
 }();
 
 ;
@@ -26765,14 +26974,7 @@ var _temp3 = function () {
 
 /***/ },
 
-/***/ "Hsef":
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/gslides.svg?dcfc91273c9cda5874d39382d51c0c8b";
-
-/***/ },
-
-/***/ "Htxf":
+/***/ "HnJp":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26781,493 +26983,12 @@ module.exports = __webpack_require__.p + "images/gslides.svg?dcfc91273c9cda5874d
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteGroupConfirm = exports.editBoard = exports.updateBoard = undefined;
+var modalName = 'PROVIDER_ACCESS_REVOKED';
 
-var _extends2 = __webpack_require__("Dd8w");
+var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("icR4").default(modalName);
 
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _assign = __webpack_require__("woOf");
-
-var _assign2 = _interopRequireDefault(_assign);
-
-exports.newTask = newTask;
-exports.getBoards = getBoards;
-exports.getBoard = getBoard;
-exports.getTask = getTask;
-exports.updateTask = updateTask;
-exports.getGroup = getGroup;
-exports.updateGroup = updateGroup;
-exports.deleteTask = deleteTask;
-exports.moveTask = moveTask;
-exports.beginDrag = beginDrag;
-exports.endDrag = endDrag;
-exports.moveGroup = moveGroup;
-exports.toggleComplete = toggleComplete;
-exports.toggleCompleteUndo = toggleCompleteUndo;
-exports.newGroup = newGroup;
-exports.deleteGroup = deleteGroup;
-exports.showLabelEditModal = showLabelEditModal;
-exports.changeLayout = changeLayout;
-exports.websocketJoinBoard = websocketJoinBoard;
-exports.websocketLeaveBoard = websocketLeaveBoard;
-
-var _axios = __webpack_require__("mtWM");
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _getUuid = __webpack_require__("FmOC");
-
-var _getUuid2 = _interopRequireDefault(_getUuid);
-
-var _ToastsActions = __webpack_require__("CWMx");
-
-var _ModalActions = __webpack_require__("u2h7");
-
-var _Store = __webpack_require__("+I1Y");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function newTask(_ref) {
-  var boardId = _ref.boardId,
-      task = _ref.task;
-
-  return function (dispatch, getState) {
-    var taskDefault = {
-      users: [{
-        _id: getState().auth.user._id,
-        name: getState().auth.user.name,
-        picture: getState().auth.user.picture
-      }]
-    };
-    return dispatch({
-      type: 'TASKS/NEW_TASK',
-      payload: (0, _axios2.default)({
-        method: 'POST',
-        url: '/api/v1/boards/' + boardId + '/tasks',
-        data: (0, _assign2.default)({}, taskDefault, task)
-      }),
-      meta: {
-        cacheKey: boardId
-      }
-    });
-  };
-}
-
-function getBoards(_ref2) {
-  var projectId = _ref2.projectId,
-      populate = _ref2.populate;
-
-  return {
-    type: 'TASKS/GET_BOARDS',
-    payload: (0, _axios2.default)({
-      method: 'GET',
-      url: '/api/v1/projects/' + projectId + '/boards',
-      params: {
-        populate: populate || false
-      }
-    }),
-    meta: {
-      cacheKey: projectId
-    }
-  };
-}
-
-function getBoard(_ref3) {
-  var boardId = _ref3.boardId;
-
-  return {
-    type: 'TASKS/GET_BOARD',
-    payload: (0, _axios2.default)({
-      method: 'GET',
-      url: '/api/v1/boards/' + boardId,
-      params: {
-        populate: false
-      }
-    }),
-    meta: {
-      cacheKey: boardId
-    }
-  };
-}
-
-//export function getEvents({taskId}){
-//  return {
-//    type: 'TASKS/GET_EVENTS',
-//    payload: http({
-//      method: 'GET',
-//      url: `/api/v1/tasks/${taskId}/events`,
-//    }),
-//    meta: {
-//      cacheKey: taskId
-//    }
-//  }
-//}
-
-var updateBoard = exports.updateBoard = function updateBoard(_ref4) {
-  var board = _ref4.board;
-  return {
-    type: 'TASKS/UPDATE_BOARD',
-    payload: (0, _axios2.default)({
-      method: 'PUT',
-      url: '/api/v1/boards/' + board._id,
-      data: board
-    }),
-    meta: {
-      cacheKey: board._id
-    }
-  };
-};
-
-var editBoard = exports.editBoard = function editBoard(_ref5) {
-  var model = _ref5.model,
-      value = _ref5.value;
-  return {
-    type: 'TASKS/EDIT_BOARD',
-    payload: board
-  };
-};
-
-function getTask(_ref6) {
-  var taskId = _ref6.taskId;
-
-  return {
-    type: 'TASKS/GET_TASK',
-    httpPackage: {
-      url: '/api/v1/tasks',
-      method: 'GET',
-      params: {
-        'ids': taskId
-      }
-    },
-    meta: {
-      cacheKey: taskId
-    }
-  };
-}
-
-function updateTask(_ref7) {
-  var task = _ref7.task;
-
-  return {
-    type: 'TASKS/UPDATE_TASK',
-    http: true,
-    throttle: {
-      time: 2000,
-      endpoint: 'TASKS/UPDATE_TASK-' + task._id
-    },
-    payload: {
-      method: 'PUT',
-      url: '/api/v1/tasks/' + task._id,
-      data: task
-    },
-    meta: {
-      cacheKey: task._id
-    }
-  };
-}
-
-function getGroup(_ref8) {
-  var boardId = _ref8.boardId,
-      groupId = _ref8.groupId;
-
-  return {
-    type: 'TASKS/GET_GROUP',
-    http: true,
-    payload: {
-      method: 'GET',
-      url: 'api/v1/boards/' + boardId + '/groups/' + groupId
-    },
-    meta: {
-      boardId: boardId
-    }
-  };
-}
-
-function updateGroup(_ref9) {
-  var group = _ref9.group;
-
-  return {
-    type: 'TASKS/UPDATE_GROUP',
-    http: true,
-    throttle: {
-      time: 2000,
-      endpoint: 'TASKS/UPDATE_GROUP-' + group._id
-    },
-    payload: {
-      method: 'PUT',
-      url: '/api/v1/groups/' + group._id,
-      data: group
-    },
-    meta: {
-      cacheKey: group._id
-    }
-  };
-}
-
-function deleteTask(_ref10) {
-  var boardId = _ref10.boardId,
-      taskId = _ref10.taskId;
-
-  return {
-    type: 'TASKS/DELETE_TASK',
-    payload: (0, _axios2.default)({
-      method: 'DELETE',
-      url: '/api/v1/tasks/' + taskId
-    }),
-    meta: {
-      taskId: taskId,
-      boardId: boardId
-    }
-  };
-}
-
-function moveTask(_ref11) {
-  var boardId = _ref11.boardId,
-      task = _ref11.task,
-      destinationTask = _ref11.destinationTask,
-      destinationGroup = _ref11.destinationGroup,
-      after = _ref11.after,
-      save = _ref11.save;
-
-  // To move a task you must have either hoverItem or destinationGroup
-  // destinationGroup is used if the group is empty
-  return function (dispatch) {
-    if (save) {
-      dispatch({
-        type: 'TASKS/MOVE_TASK',
-        payload: (0, _axios2.default)({
-          method: 'POST',
-          url: '/api/v1/tasks/move',
-          data: {
-            board: boardId,
-            task: task,
-            destinationGroup: destinationGroup,
-            destinationTask: destinationTask,
-            after: after
-          }
-        })
-      });
-    } else {
-      dispatch({
-        type: 'TASKS/MOVE_TASK',
-        payload: {
-          task: task,
-          destinationGroup: destinationGroup,
-          destinationTask: destinationTask,
-          boardId: boardId
-        }
-      });
-    }
-  };
-}
-
-function beginDrag(_ref12) {
-  var boardId = _ref12.boardId,
-      taskId = _ref12.taskId;
-
-  return {
-    type: 'TASKS/BEGIN_DRAG',
-    payload: {
-      taskId: taskId
-    },
-    meta: {
-      cacheKey: boardId
-    }
-  };
-}
-
-function endDrag(_ref13) {
-  var boardId = _ref13.boardId,
-      taskId = _ref13.taskId;
-
-  return {
-    type: 'TASKS/END_DRAG',
-    payload: {
-      taskId: taskId
-    },
-    meta: {
-      cacheKey: boardId
-    }
-  };
-}
-
-function moveGroup(_ref14) {
-  var boardId = _ref14.boardId,
-      group = _ref14.group,
-      destinationGroup = _ref14.destinationGroup,
-      after = _ref14.after,
-      save = _ref14.save;
-
-  return function (dispatch) {
-    if (save) {
-      dispatch({
-        type: 'TASKS/MOVE_GROUP',
-        payload: (0, _axios2.default)({
-          method: 'POST',
-          url: '/api/v1/groups/move',
-          data: {
-            board: boardId,
-            group: group,
-            destinationGroup: destinationGroup,
-            after: after
-          }
-        })
-      });
-    } else {
-      dispatch({
-        type: 'TASKS/MOVE_GROUP',
-        payload: {
-          group: group, destinationGroup: destinationGroup, boardId: boardId
-        }
-      });
-    }
-  };
-}
-
-function toggleComplete(_ref15) {
-  var taskId = _ref15.taskId,
-      model = _ref15.model,
-      value = _ref15.value;
-
-  return function (dispatch) {
-    dispatch((0, _ToastsActions.show)({
-      title: 'This task was marked ' + (value ? 'complete' : 'incomplete') + '.',
-      actions: [{
-        text: 'Undo',
-        action: {
-          type: 'ALIASED',
-          aliased: true,
-          payload: {
-            functionAlias: 'TasksActions.toggleCompleteUndo',
-            functionInputs: { taskId: taskId, model: model, value: value }
-          }
-        }
-      }]
-    }));
-  };
-}
-function toggleCompleteUndo(_ref16) {
-  var taskId = _ref16.taskId,
-      model = _ref16.model,
-      value = _ref16.value;
-
-  return function (dispatch, getState) {
-    dispatch((0, _Store.storeChange)(model, !value));
-    setTimeout(function () {
-      return updateTask({ task: getState().tasks.data[taskId].data });
-    }, 1);
-  };
-}
-
-function newGroup(_ref17) {
-  var boardId = _ref17.boardId,
-      group = _ref17.group;
-
-  return function (dispatch) {
-    if (group.name.length > 1) {
-      dispatch({
-        type: 'TASKS/NEW_GROUP',
-        payload: (0, _axios2.default)({
-          method: 'POST',
-          url: '/api/v1/groups',
-          data: (0, _extends3.default)({}, group, {
-            board: boardId
-          })
-        }),
-        meta: {
-          boardId: boardId
-        }
-      });
-    }
-  };
-}
-
-var deleteGroupConfirm = exports.deleteGroupConfirm = function deleteGroupConfirm(_ref18) {
-  var boardId = _ref18.boardId,
-      groupId = _ref18.groupId;
-  return function (dispatch) {
-    return dispatch((0, _ModalActions.showConfirm)({
-      message: 'Deleting a group is permanent. All tasks which belong to this group will be deleted (even archived tasks).'
-    })).then(function () {
-      dispatch(deleteGroup({ boardId: boardId, groupId: groupId }));
-    });
-  };
-};
-
-function deleteGroup(_ref19) {
-  var boardId = _ref19.boardId,
-      groupId = _ref19.groupId;
-
-  return {
-    type: 'TASKS/DELETE_GROUP',
-    payload: (0, _axios2.default)({
-      method: 'DELETE',
-      url: '/api/v1/boards/' + boardId + '/groups/' + groupId
-    }),
-    meta: {
-      groupId: groupId,
-      boardId: boardId
-    }
-  };
-}
-
-function showLabelEditModal(_ref20) {
-  var boardId = _ref20.boardId;
-
-  return function (dispatch) {
-    dispatch((0, _ModalActions.showModal)({
-      modalType: 'TASK_LABELS',
-      modalProps: {
-        boardId: boardId
-      }
-    }));
-  };
-}
-
-function changeLayout(_ref21) {
-  var boardId = _ref21.boardId,
-      layout = _ref21.layout;
-
-  return {
-    type: 'TASKS/CHANGE_LAYOUT',
-    payload: {
-      boardId: boardId,
-      layout: layout
-    }
-  };
-}
-
-function websocketJoinBoard(_ref22) {
-  var boardId = _ref22.boardId;
-
-  return {
-    type: 'TASKS/WEBSOCKET_JOIN_BOARD',
-    websocket: true,
-    payload: {
-      type: 'ROOM/JOIN',
-      payload: {
-        room: boardId,
-        type: 'board'
-      }
-    }
-  };
-}
-function websocketLeaveBoard(_ref23) {
-  var boardId = _ref23.boardId;
-
-  return {
-    type: 'TASKS/WEBSOCKET_LEAVE_BOARD',
-    websocket: true,
-    payload: {
-      type: 'ROOM/LEAVE',
-      payload: {
-        room: boardId,
-        type: 'board'
-      }
-    }
-  };
-}
+var _default2 = _default;
+exports.default = _default2;
 ;
 
 var _temp = function () {
@@ -27275,51 +26996,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(newTask, 'newTask', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
+  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/index.js');
 
-  __REACT_HOT_LOADER__.register(getBoards, 'getBoards', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/index.js');
 
-  __REACT_HOT_LOADER__.register(getBoard, 'getBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(updateBoard, 'updateBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(editBoard, 'editBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(getTask, 'getTask', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(updateTask, 'updateTask', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(getGroup, 'getGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(updateGroup, 'updateGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(deleteTask, 'deleteTask', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(moveTask, 'moveTask', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(beginDrag, 'beginDrag', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(endDrag, 'endDrag', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(moveGroup, 'moveGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(toggleComplete, 'toggleComplete', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(toggleCompleteUndo, 'toggleCompleteUndo', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(newGroup, 'newGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(deleteGroupConfirm, 'deleteGroupConfirm', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(deleteGroup, 'deleteGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(showLabelEditModal, 'showLabelEditModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(changeLayout, 'changeLayout', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(websocketJoinBoard, 'websocketJoinBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
-
-  __REACT_HOT_LOADER__.register(websocketLeaveBoard, 'websocketLeaveBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.actions.js');
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/index.js');
 }();
 
 ;
@@ -27332,6 +27013,13 @@ var _temp2 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "Hsef":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/gslides.svg?dcfc91273c9cda5874d39382d51c0c8b";
 
 /***/ },
 
@@ -28371,6 +28059,104 @@ module.exports = {"border2":"rgba(0, 0, 0, 0.3)","border1":"rgba(0, 0, 0, 0.1)",
 
 // removed by extract-text-webpack-plugin
 module.exports = {"loading":"LoadingPlaceholders_loading-2M_jz","pulse":"LoadingPlaceholders_pulse-mOUMu"};
+
+/***/ },
+
+/***/ "Ix2d":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _ColorSelect = __webpack_require__("1Mqx");
+
+var _ColorSelect2 = _interopRequireDefault(_ColorSelect);
+
+var _Store = __webpack_require__("+I1Y");
+
+var _SimpleIconButton = __webpack_require__("D2fa");
+
+var _SimpleIconButton2 = _interopRequireDefault(_SimpleIconButton);
+
+var _moreHoriz = __webpack_require__("O8U9");
+
+var _moreHoriz2 = _interopRequireDefault(_moreHoriz);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Component = _react2.default.createClass({
+  displayName: 'Component',
+  render: function render() {
+    var _props = this.props,
+        dispatch = _props.dispatch,
+        model = _props.model,
+        value = _props.value;
+
+
+    var niceColors = ['#001F3F', '#0074D9', '#7FDBFF', '#39CCCC', '#3D9970', '#2ECC40', '#01FF70', '#FFDC00', '#FF851B', '#FF4136', '#F012BE', '#B10DC9', '#85144B', '#FFFFFF', '#DDDDDD', '#AAAAAA'];
+
+    return _react2.default.createElement(
+      'div',
+      { className: _ColorSelect2.default.sampleOuter + ' layout-row layout-wrap' },
+      niceColors.map(function (color) {
+        return _react2.default.createElement('div', {
+          key: color,
+          onClick: function onClick() {
+            return dispatch((0, _Store.storeChange)(model, color));
+          },
+          className: _ColorSelect2.default.sampleSwatch,
+          style: { background: color }
+        });
+      })
+    );
+  }
+});
+
+// Styles
+// Component Core
+
+var _default = (0, _reactRedux.connect)()(Component);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEdit/ColorSelect/ColorSelect.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEdit/ColorSelect/ColorSelect.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEdit/ColorSelect/ColorSelect.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -30220,9 +30006,9 @@ var _SyncTimelineReducer = __webpack_require__("BC0V");
 
 var _SyncTimelineReducer2 = _interopRequireDefault(_SyncTimelineReducer);
 
-var _TasksReducer = __webpack_require__("GHE4");
+var _ThreadsReducer = __webpack_require__("UNUW");
 
-var _TasksReducer2 = _interopRequireDefault(_TasksReducer);
+var _ThreadsReducer2 = _interopRequireDefault(_ThreadsReducer);
 
 var _ToastsReducer = __webpack_require__("oMHc");
 
@@ -30306,7 +30092,7 @@ var splitReducers = (0, _redux.combineReducers)({
   search: _SearchReducer2.default,
   sidebar: _SidebarReducer2.default,
   syncTimeline: _SyncTimelineReducer2.default,
-  tasks: _TasksReducer2.default,
+  threads: _ThreadsReducer2.default,
   toasts: _ToastsReducer2.default,
   togglePanel: _TogglePanelReducer2.default,
   upload: _UploadReducer2.default,
@@ -30320,10 +30106,37 @@ var splitReducers = (0, _redux.combineReducers)({
   stringFilter: _StringFilterReducer2.default
 });
 
-exports.default = function (state, action) {
+var _default = function _default(state, action) {
   var isStoreAction = action && action.type && action.type.startsWith('STORE/');
   return isStoreAction ? (0, _StoreReducer2.default)(state, action) : splitReducers(state, action);
 };
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(splitReducers, 'splitReducers', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/app/reducer.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/app/reducer.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/app/reducer.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -30397,528 +30210,10 @@ module.exports = cloneMap;
 
 /***/ },
 
-/***/ "Jqnu":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _getPrototypeOf = __webpack_require__("Zx67");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("Zrlr");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("wxAW");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("zwoO");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("Pf15");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _keys = __webpack_require__("fZjL");
-
-var _keys2 = _interopRequireDefault(_keys);
-
-var _values2 = __webpack_require__("L8MQ");
-
-var _values3 = _interopRequireDefault(_values2);
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _TaskMentionModal = __webpack_require__("qLYE");
-
-var _TaskMentionModal2 = _interopRequireDefault(_TaskMentionModal);
-
-var _howMany = __webpack_require__("Il84");
-
-var _howMany2 = _interopRequireDefault(_howMany);
-
-var _Input = __webpack_require__("xwNf");
-
-var _Input2 = _interopRequireDefault(_Input);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _TaskRow = __webpack_require__("6d2N");
-
-var _TaskRow2 = _interopRequireDefault(_TaskRow);
-
-var _search = __webpack_require__("Et8k");
-
-var _search2 = _interopRequireDefault(_search);
-
-var _TasksUtils = __webpack_require__("W0Uq");
-
-var _TasksFilterMenu = __webpack_require__("obW0");
-
-var _TasksFilterMenu2 = _interopRequireDefault(_TasksFilterMenu);
-
-var _Popover = __webpack_require__("Erdv");
-
-var _Popover2 = _interopRequireDefault(_Popover);
-
-var _LoadingOverlay = __webpack_require__("K+/r");
-
-var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
-
-var _Mentions = __webpack_require__("b/J2");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var getMentionsFromObject = function getMentionsFromObject(mentionsObject, tasks) {
-  return (0, _keys2.default)(mentionsObject).map(function (taskId) {
-    return (0, _Mentions.newMention)({
-      entityId: taskId,
-      display: tasks[taskId].data.name,
-      mentionType: mentionsObject[taskId] === 'complete' ? 'task-complete' : 'task'
-    });
-  });
-};
-
-var countMentions = function countMentions(mentions, type) {
-  return (0, _values3.default)(mentions).filter(function (mentionType) {
-    return mentionType === type;
-  }).length;
-};
-
-var TaskMentionModal = function (_Component) {
-  (0, _inherits3.default)(TaskMentionModal, _Component);
-
-  function TaskMentionModal() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, TaskMentionModal);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TaskMentionModal.__proto__ || (0, _getPrototypeOf2.default)(TaskMentionModal)).call.apply(_ref, [this].concat(args))), _this), _this.submit = function () {
-      var _this2;
-
-      return (_this2 = _this).__submit__REACT_HOT_LOADER__.apply(_this2, arguments);
-    }, _this.cancel = function () {
-      var _this3;
-
-      return (_this3 = _this).__cancel__REACT_HOT_LOADER__.apply(_this3, arguments);
-    }, _this.setMention = function () {
-      var _this4;
-
-      return (_this4 = _this).__setMention__REACT_HOT_LOADER__.apply(_this4, arguments);
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(TaskMentionModal, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      if (!this.props.board || !this.props.board.data) {
-        this.props.getBoards({
-          projectId: this.props.projectId
-        });
-      }
-    }
-  }, {
-    key: '__submit__REACT_HOT_LOADER__',
-    value: function __submit__REACT_HOT_LOADER__() {
-      var _props = this.props,
-          mentions = _props.mentions,
-          mentionsModel = _props.mentionsModel,
-          tasks = _props.tasks;
-      // Get the mentions
-
-      var mentionArray = getMentionsFromObject(mentions, tasks);
-      // Clear mentions
-      this.props.storeChange(mentionsModel, {});
-      // Return the results
-      this.props.modalConfirm({ mentions: mentionArray });
-    }
-  }, {
-    key: '__cancel__REACT_HOT_LOADER__',
-    value: function __cancel__REACT_HOT_LOADER__() {
-      this.props.modalCancel();
-    }
-  }, {
-    key: '__setMention__REACT_HOT_LOADER__',
-    value: function __setMention__REACT_HOT_LOADER__(_ref2) {
-      var status = _ref2.status,
-          taskId = _ref2.taskId;
-      var _props2 = this.props,
-          mentions = _props2.mentions,
-          storeChange = _props2.storeChange,
-          mentionsModel = _props2.mentionsModel;
-
-      var currentStatus = mentions[taskId];
-      if (status === currentStatus) {
-        storeChange(mentionsModel + '.' + taskId, '');
-      } else {
-        storeChange(mentionsModel + '.' + taskId, status);
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this5 = this;
-
-      var _props3 = this.props,
-          tasks = _props3.tasks,
-          board = _props3.board,
-          mentions = _props3.mentions,
-          boardModel = _props3.boardModel;
-
-
-      var getTasks = function getTasks() {
-        var filteredBoard = (0, _TasksUtils.filterBoard)(board, tasks, board.searchString);
-        var numTasks = (0, _TasksUtils.getAllTasks)(board.data.groups).length;
-        var numFilteredTasks = (0, _TasksUtils.getAllTasks)(filteredBoard.data.groups).length;
-
-        if (numTasks == 0 || numFilteredTasks == 0) {
-          return _react2.default.createElement(
-            'div',
-            { className: 'flex layout-column layout-align-center-center text-center' },
-            numTasks == 0 ? _react2.default.createElement(
-              'div',
-              { style: { width: '100%' } },
-              'This project has no tasks. Add some.'
-            ) : _react2.default.createElement(
-              'div',
-              { style: { width: '100%' } },
-              'No results, ',
-              _react2.default.createElement(
-                'a',
-                { className: 'text-primary', onClick: function onClick() {
-                    return _this5.props.storeChange(boardModel + '.searchString', '');
-                  } },
-                'clear search filter.'
-              )
-            )
-          );
-        } else {
-          return _react2.default.createElement(
-            'div',
-            { className: 'flex scroll-box' },
-            filteredBoard.data.groups.map(function (group, idx) {
-              return _react2.default.createElement(
-                'div',
-                { key: idx },
-                group.tasks.map(function (taskId) {
-                  return _react2.default.createElement(_TaskRow2.default, {
-                    key: taskId,
-                    taskId: taskId,
-                    status: mentions[taskId],
-                    toggleComplete: function toggleComplete() {
-                      return _this5.setMention({ status: 'complete', taskId: taskId });
-                    },
-                    toggleRelated: function toggleRelated() {
-                      return _this5.setMention({ status: 'related', taskId: taskId });
-                    }
-                  });
-                })
-              );
-            })
-          );
-        }
-      };
-
-      return _react2.default.createElement(
-        'div',
-        { className: _TaskMentionModal2.default.modal + ' layout-column' },
-        _react2.default.createElement(
-          'div',
-          { className: 'modal-title' },
-          'Add tasks to a commit:'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: _TaskMentionModal2.default.header + ' layout-row layout-align-start-center' },
-          _react2.default.createElement(
-            'div',
-            { className: 'flex' },
-            (0, _howMany2.default)({ count: countMentions(mentions, 'complete'), adj: 'complete' }, { count: countMentions(mentions, 'related'), adj: 'related' }, 'task')
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: _TaskMentionModal2.default.search },
-            _react2.default.createElement(_Input2.default, {
-              model: boardModel + '.searchString',
-              value: board.searchString,
-              className: 'dr-input',
-              placeholder: 'Search tasks'
-            }),
-            _react2.default.createElement(
-              _Popover2.default,
-              { preferPlace: 'right', trigger: 'hoverDelay' },
-              _react2.default.createElement(_search2.default, { size: '20' }),
-              _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(_TasksFilterMenu2.default, { model: boardModel + '.searchString', value: board.searchString })
-              )
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'layout-column flex rel-box' },
-          _react2.default.createElement(_LoadingOverlay2.default, { show: !board || !board.data }),
-          board && board.data ? getTasks() : null
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'modal-footer layout-row layout-align-start-center' },
-          _react2.default.createElement('div', { className: 'flex text-description-1' }),
-          _react2.default.createElement(
-            _Button2.default,
-            { style: { marginRight: '10px' }, onClick: this.cancel },
-            'Cancel'
-          ),
-          _react2.default.createElement(
-            _Button2.default,
-            { className: 'primary', onClick: this.submit },
-            'Add Tasks'
-          )
-        )
-      );
-    }
-  }]);
-  return TaskMentionModal;
-}(_react.Component);
-
-exports.default = TaskMentionModal;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(TaskMentionModal, 'TaskMentionModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.jsx');
-
-  __REACT_HOT_LOADER__.register(getMentionsFromObject, 'getMentionsFromObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.jsx');
-
-  __REACT_HOT_LOADER__.register(countMentions, 'countMentions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.jsx');
-}();
-
-;
-;
-
-var _temp3 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "Jtlg":
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/ttf.svg?e4fd7429677f180799cd43aa373d73d2";
-
-/***/ },
-
-/***/ "JuEv":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Component = undefined;
-
-var _has2 = __webpack_require__("umy1");
-
-var _has3 = _interopRequireDefault(_has2);
-
-var _get2 = __webpack_require__("Q7hp");
-
-var _get3 = _interopRequireDefault(_get2);
-
-var _redux = __webpack_require__("c9Fv");
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _TasksActions = __webpack_require__("Htxf");
-
-var TasksActions = _interopRequireWildcard(_TasksActions);
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _moment = __webpack_require__("PJh5");
-
-var _moment2 = _interopRequireDefault(_moment);
-
-var _Store = __webpack_require__("+I1Y");
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _TaskLabelsEdit = __webpack_require__("onR1");
-
-var _TaskLabelsEdit2 = _interopRequireDefault(_TaskLabelsEdit);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/////////////////////////////////////////////////////////////////////////////
-///////////////////////////////// COMPONENT /////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
-
-// Sub Components
-
-
-// Component Core
-var Component = exports.Component = _react2.default.createClass({
-  displayName: 'Component',
-  componentWillMount: function componentWillMount() {
-    if ((0, _has3.default)(this.props, 'board.data.labels')) {
-      this.props.dispatch((0, _Store.storeChange)(this.props.boardModel + '.forms.labels', this.props.board.data.labels));
-    }
-  },
-  submit: function submit() {
-    var _this = this;
-
-    this.props.dispatch((0, _Store.storeChange)(this.props.boardModel + '.data.labels', this.props.board.forms.labels));
-    setTimeout(function () {
-      _this.props.tasksActions.updateBoard({ board: _this.props.board.data }).then(function (response) {
-        _this.props.modalConfirm();
-      });
-    });
-  },
-  render: function render() {
-    var _props = this.props,
-        boardModel = _props.boardModel,
-        board = _props.board,
-        modalCancel = _props.modalCancel,
-        modalConfirm = _props.modalConfirm;
-
-
-    return _react2.default.createElement(
-      'div',
-      { style: { width: '500px' } },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-title' },
-        'Edit Labels'
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-body', style: { maxHeight: '400px', overflowY: 'auto' } },
-        (0, _has3.default)(board, 'forms.labels') ? _react2.default.createElement(_TaskLabelsEdit2.default, { model: boardModel + '.forms.labels', value: board.forms.labels }) : null
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer-no-line layout-row layout-align-end' },
-        _react2.default.createElement(
-          _Button2.default,
-          { style: { marginRight: '10px' }, onClick: modalCancel },
-          'Cancel'
-        ),
-        _react2.default.createElement(
-          _Button2.default,
-          { className: 'primary',
-            onClick: this.submit,
-            loading: board.savePending
-          },
-          'Update Labels'
-        )
-      )
-    );
-  }
-});
-
-/////////////////////////////////////////////////////////////////////////////
-///////////////////////////////// CONTAINER /////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
-
-// Styles
-
-
-// Container Actions
-// Container Core
-function mapStateToProps(state, _ref) {
-  var boardId = _ref.boardId;
-
-  var boardModel = 'tasks.boards.' + boardId;
-  return {
-    board: (0, _get3.default)(state, boardModel), // Get the value from the model
-    boardModel: boardModel
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch: dispatch,
-    tasksActions: (0, _redux.bindActionCreators)(TasksActions, dispatch)
-  };
-}
-
-var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Component);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEditModal/TaskLabelsEditModal.jsx');
-
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEditModal/TaskLabelsEditModal.jsx');
-
-  __REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEditModal/TaskLabelsEditModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEditModal/TaskLabelsEditModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEditModal/TaskLabelsEditModal.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -31543,60 +30838,6 @@ module.exports = __webpack_require__.p + "images/pps.svg?e7427c6cb49fde2662d802e
 
 /***/ },
 
-/***/ "KC90":
-/***/ function(module, exports) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _default = function _default(_ref) {
-  var projectId = _ref.projectId,
-      fileId = _ref.fileId;
-
-  return {
-    type: 'FILES/GET_RELATED_TASKS',
-    http: true,
-    payload: {
-      method: 'GET',
-      url: '/api/v1/sync/files/' + projectId + '/' + fileId + '/tasks'
-    },
-    meta: {
-      fileId: fileId
-    }
-  };
-};
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/actions/getRelatedTasks.js');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/actions/getRelatedTasks.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "KCUl":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -32006,9 +31247,9 @@ var _axios = __webpack_require__("mtWM");
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _TasksActions = __webpack_require__("Htxf");
+var _ThreadsActions = __webpack_require__("88Vw");
 
-var TasksActions = _interopRequireWildcard(_TasksActions);
+var ThreadsActions = _interopRequireWildcard(_ThreadsActions);
 
 var _SyncTimeline = __webpack_require__("frFe");
 
@@ -32043,12 +31284,12 @@ function newComment(_ref2) {
       return dispatch({
         type: 'COMMENTS/NEW_COMMENT',
         payload: (0, _axios2.default)({
-          url: '/api/v1/tasks/' + comment.task + '/comments',
+          url: '/api/v1/threads/' + comment.thread + '/comments',
           method: 'POST',
           data: comment
         }),
         meta: {
-          taskId: comment.task
+          threadId: comment.thread
         }
       }).then(function (_ref3) {
         var value = _ref3.value;
@@ -32174,7 +31415,7 @@ function deleteComment(_ref9) {
       }),
       meta: {
         commentId: comment._id,
-        taskId: comment.task
+        threadId: comment.thread
       }
     }).then(function (response) {
       // Get the eventId of the comment
@@ -33739,11 +32980,275 @@ module.exports = baseForOwn;
 
 /***/ },
 
+/***/ "MAiJ":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__("c9Fv");
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _AuthActions = __webpack_require__("+z2A");
+
+var AuthActions = _interopRequireWildcard(_AuthActions);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Button = __webpack_require__("Yrew");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _reactRouter = __webpack_require__("Zfgq");
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+// Component Core
+var Component = _react2.default.createClass({
+  displayName: 'Component',
+
+  render: function render() {
+    var _props = this.props,
+        owner = _props.owner,
+        auth = _props.auth,
+        authActions = _props.authActions,
+        modalCancel = _props.modalCancel,
+        modalConfirm = _props.modalConfirm;
+
+
+    var isCurrentUser = owner._id == auth.user._id;
+
+    return _react2.default.createElement(
+      'div',
+      { style: { width: '500px' } },
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-title' },
+        'Access to Google Drive has been revoked'
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-body', style: { lineHeight: '1.4em' } },
+        isCurrentUser ? _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'p',
+            null,
+            'Stemn\'s access to your Google Drive has been revoked. To fix this, please re-authenticate with Google.'
+          )
+        ) : _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'p',
+            null,
+            'This project is connected to ',
+            _react2.default.createElement(
+              'b',
+              null,
+              owner.name,
+              '\'s'
+            ),
+            ' Google Drive.'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Access to this drive has been revoked. ',
+            owner.name.split(' ')[0],
+            ' must re-authenticate with Drive for Stemn to work properly. Please contact them and instruct them to re-connect their Stemn account to Google.'
+          )
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-footer-no-line layout-row layout-align-end' },
+        _react2.default.createElement(
+          _Button2.default,
+          { onClick: modalCancel },
+          'Cancel'
+        ),
+        isCurrentUser ? _react2.default.createElement(
+          _Button2.default,
+          {
+            style: { marginLeft: '10px' },
+            className: 'primary',
+            onClick: function onClick() {
+              authActions.authenticate('google');modalConfirm();
+            }
+          },
+          'Authenticate'
+        ) : null
+      )
+    );
+  }
+});
+
+////////////////////////////////////////////////////////////////
+
+// Styles
+
+
+// Container Actions
+// Container Core
+function mapStateToProps(_ref) {
+  var auth = _ref.auth;
+
+  return {
+    auth: auth
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch: dispatch,
+    authActions: (0, _redux.bindActionCreators)(AuthActions, dispatch)
+  };
+}
+
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Component);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/ProviderAccessRevokedModal.jsx');
+
+  __REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/ProviderAccessRevokedModal.jsx');
+
+  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/ProviderAccessRevokedModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/ProviderAccessRevokedModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/ProviderAccessRevokedModal.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "MGr+":
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"react-context-menu":"ContextMenu-global_react-context-menu-2s7mU","react-context-menu-link":"ContextMenu-global_react-context-menu-link-TTo4k","active":"ContextMenu-global_active-1dGPI","react-context-menu-item":"ContextMenu-global_react-context-menu-item-2tXRf","divider":"ContextMenu-global_divider-11qjn","submenu":"ContextMenu-global_submenu-20efu"};
+
+/***/ },
+
+/***/ "MJ1e":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _get2 = __webpack_require__("Q7hp");
+
+var _get3 = _interopRequireDefault(_get2);
+
+var _redux = __webpack_require__("c9Fv");
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _ThreadsActions = __webpack_require__("88Vw");
+
+var _Store = __webpack_require__("+I1Y");
+
+var _ModalRegistry = __webpack_require__("p8CK");
+
+var _ThreadMentionModal = __webpack_require__("vdIW");
+
+var _ThreadMentionModal2 = _interopRequireDefault(_ThreadMentionModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function mapStateToProps(_ref, _ref2) {
+  var threads = _ref.threads,
+      mentions = _ref.mentions;
+  var projectId = _ref2.projectId,
+      cacheKey = _ref2.cacheKey;
+
+  var projectBoards = threads.projects && threads.projects[projectId] ? threads.projects[projectId].boards : null;
+  var board = projectBoards ? threads.boards[projectBoards[0]] : {};
+  return {
+    threads: threads.data,
+    board: board,
+    boardModel: board && board.data && board.data._id ? 'threads.boards.' + board.data._id : '',
+    mentions: (0, _get3.default)(mentions, cacheKey, {}),
+    mentionsModel: 'mentions.' + cacheKey
+  };
+}
+
+var mapDispatchToProps = {
+  storeChange: _Store.storeChange,
+  getBoards: _ThreadsActions.getBoards
+};
+
+var _default = function _default(modalName) {
+  var ModalComponent = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_ThreadMentionModal2.default);
+  (0, _ModalRegistry.registerModal)(modalName, ModalComponent);
+  return modalName;
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadMentionModal.container.js');
+
+  __REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadMentionModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadMentionModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadMentionModal.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -35952,7 +35457,7 @@ var confirmDeleteProject = exports.confirmDeleteProject = function confirmDelete
       name = _ref4.name;
   return function (dispatch) {
     return dispatch(ModalActions.showConfirm({
-      message: 'Deleting a project is permanent. You will not be able to undo this.<br/><br/> Note: All your Stemn data (such as commits and tasks) will be deleted. Your files will remain in your cloud provider.',
+      message: 'Deleting a project is permanent. You will not be able to undo this.<br/><br/> Note: All your Stemn data (such as commits and threads) will be deleted. Your files will remain in your cloud provider.',
       confirmValue: name,
       confirmPlaceholder: 'Please type in the name of this project to confirm.'
     })).then(function () {
@@ -37861,6 +37366,48 @@ function activeElement() {
   } catch (e) {/* ie throws if no active element */}
 }
 module.exports = exports['default'];
+
+/***/ },
+
+/***/ "OFal":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var modalName = 'CONNECTION';
+
+var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("4nd+").default(modalName);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConnectionModal/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConnectionModal/index.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConnectionModal/index.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -40849,7 +40396,7 @@ var Landing = function (_Component) {
           _react2.default.createElement(
             'title',
             null,
-            'Stemn: Seamless Version Control and Task Tracking'
+            'Stemn: Seamless Version Control and Thread Tracking'
           )
         ),
         _react2.default.createElement(
@@ -40858,7 +40405,7 @@ var Landing = function (_Component) {
           _react2.default.createElement(
             'h1',
             null,
-            'Seamless Version Control and Task Tracking'
+            'Seamless Version Control and Thread Tracking'
           ),
           _react2.default.createElement(
             'h3',
@@ -44558,21 +44105,7 @@ module.exports = WebSocket;
 
 /***/ },
 
-/***/ "TD5g":
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/ai.svg?089cf935b8b6ae3822af7849053b5c72";
-
-/***/ },
-
-/***/ "TNlK":
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/bmp.svg?1600ee66ba5070272c8238f95076da11";
-
-/***/ },
-
-/***/ "TPI8":
+/***/ "T60f":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44581,54 +44114,9 @@ module.exports = __webpack_require__.p + "images/bmp.svg?1600ee66ba5070272c8238f
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var modalName = 'CONFIRM';
 
-var _get2 = __webpack_require__("Q7hp");
-
-var _get3 = _interopRequireDefault(_get2);
-
-var _redux = __webpack_require__("c9Fv");
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _TasksActions = __webpack_require__("Htxf");
-
-var _Store = __webpack_require__("+I1Y");
-
-var _ModalRegistry = __webpack_require__("p8CK");
-
-var _TaskMentionModal = __webpack_require__("Jqnu");
-
-var _TaskMentionModal2 = _interopRequireDefault(_TaskMentionModal);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function mapStateToProps(_ref, _ref2) {
-  var tasks = _ref.tasks,
-      mentions = _ref.mentions;
-  var projectId = _ref2.projectId,
-      cacheKey = _ref2.cacheKey;
-
-  var projectBoards = tasks.projects && tasks.projects[projectId] ? tasks.projects[projectId].boards : null;
-  var board = projectBoards ? tasks.boards[projectBoards[0]] : {};
-  return {
-    tasks: tasks.data,
-    board: board,
-    boardModel: board && board.data && board.data._id ? 'tasks.boards.' + board.data._id : '',
-    mentions: (0, _get3.default)(mentions, cacheKey, {}),
-    mentionsModel: 'mentions.' + cacheKey
-  };
-}
-
-var mapDispatchToProps = {
-  storeChange: _Store.storeChange,
-  getBoards: _TasksActions.getBoards
-};
-
-var _default = function _default(modalName) {
-  var ModalComponent = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_TaskMentionModal2.default);
-  (0, _ModalRegistry.registerModal)(modalName, ModalComponent);
-  return modalName;
-};
+var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("7OnP").default(modalName);
 
 var _default2 = _default;
 exports.default = _default2;
@@ -44639,13 +44127,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.container.js');
+  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConfirmModal/index.js');
 
-  __REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.container.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConfirmModal/index.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.container.js');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/TaskMentionModal/TaskMentionModal.container.js');
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConfirmModal/index.js');
 }();
 
 ;
@@ -44658,6 +44144,20 @@ var _temp2 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "TD5g":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/ai.svg?089cf935b8b6ae3822af7849053b5c72";
+
+/***/ },
+
+/***/ "TNlK":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/bmp.svg?1600ee66ba5070272c8238f95076da11";
 
 /***/ },
 
@@ -45323,6 +44823,316 @@ exports['des-ede'] = {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/aif.svg?512e4d727836578ea6851cc13ddfff2e";
+
+/***/ },
+
+/***/ "UNUW":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__("bOdI");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _has2 = __webpack_require__("umy1");
+
+var _has3 = _interopRequireDefault(_has2);
+
+var _cloneDeep2 = __webpack_require__("kvU2");
+
+var _cloneDeep3 = _interopRequireDefault(_cloneDeep2);
+
+var _icepick = __webpack_require__("PgM/");
+
+var _icepick2 = _interopRequireDefault(_icepick);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var initialState = {
+  data: {},
+  projects: {},
+  //  events: {},
+  boards: {
+    /********************************
+    boardId: {
+      data: {the board data},
+      newThread: {
+       }
+      forms: {}
+      searchString: 'Some search string'
+      layout: 'board' || 'list'
+      loading: true || false
+    }
+    ********************************/
+  }
+};
+
+var mainReducer = function mainReducer(state, action) {
+  switch (action.type) {
+    case 'THREADS/NEW_TASK_FULFILLED':
+      return _icepick2.default.chain(state).assocIn(['data', action.payload.data._id, 'data'], action.payload.data) // Add to data
+      .assocIn(['boards', action.payload.data.board, 'newThreadString', action.payload.data.group], '') // Clear string
+      .updateIn(['boards', action.payload.data.board, 'data', 'groups'], function (groups) {
+        // Add to groups.threads array
+        var groupIndex = groups.findIndex(function (group) {
+          return group._id === action.payload.data.group;
+        });
+        return _icepick2.default.updateIn(groups, [groupIndex, 'threads'], function (threads) {
+          return _icepick2.default.push(threads, action.payload.data._id);
+        });
+      }).value();
+
+    case 'THREADS/GET_BOARDS_PENDING':
+      return _icepick2.default.assocIn(state, ['projects', action.meta.cacheKey, 'loading'], true);
+    case 'THREADS/GET_BOARDS_REJECTED':
+      return _icepick2.default.assocIn(state, ['projects', action.meta.cacheKey, 'loading'], false);
+    case 'THREADS/GET_BOARDS_FULFILLED':
+      if ((0, _has3.default)(action, 'payload.data[0]._id')) {
+        return _icepick2.default.merge(state, {
+          projects: (0, _defineProperty3.default)({}, action.meta.cacheKey, {
+            boards: [action.payload.data[0]._id],
+            loading: false
+          }),
+          boards: (0, _defineProperty3.default)({}, action.payload.data[0]._id, {
+            data: action.payload.data[0]
+          })
+        });
+      } else {
+        return _icepick2.default.assocIn(state, ['projects', action.meta.cacheKey], {
+          boards: [],
+          loading: false
+        });
+      }
+
+    case 'THREADS/GET_BOARD_PENDING':
+      return _icepick2.default.assocIn(state, ['boards', action.meta.cacheKey, 'loading'], true);
+    case 'THREADS/GET_BOARD_REJECTED':
+      return _icepick2.default.assocIn(state, ['boards', action.meta.cacheKey, 'loading'], false);
+    case 'THREADS/GET_BOARD_FULFILLED':
+      return _icepick2.default.chain(state).assocIn(['boards', action.meta.cacheKey, 'loading'], true).assocIn(['boards', action.meta.cacheKey, 'data'], action.payload.data).value();
+
+    case 'THREADS/GET_GROUP_FULFILLED':
+      return _icepick2.default.updateIn(state, ['boards', action.meta.boardId, 'data', 'groups'], function (groups) {
+        var groupsIndex = groups.findIndex(function (group) {
+          return group._id === action.payload.data._id;
+        });
+        return _icepick2.default.assoc(groups, groupsIndex, action.payload.data);
+      });
+
+    case 'THREADS/GET_TASK_PENDING':
+      return _icepick2.default.assocIn(state, ['data', action.meta.cacheKey, 'loading'], true);
+    case 'THREADS/GET_TASK_REJECTED':
+      return _icepick2.default.assocIn(state, ['data', action.meta.cacheKey, 'loading'], false);
+    case 'THREADS/GET_TASK_FULFILLED':
+      return _icepick2.default.assocIn(state, ['data', action.meta.cacheKey], {
+        data: action.payload.data,
+        loading: false
+      });
+
+    //    case 'THREADS/GET_EVENTS_PENDING':
+    //      return i.assocIn(state, ['events', action.meta.cacheKey, 'loading'], true)
+    //    case 'THREADS/GET_EVENTS_REJECTED':
+    //      return i.assocIn(state, ['events', action.meta.cacheKey, 'loading'], false)
+    //    case 'THREADS/GET_EVENTS_FULFILLED':
+    //      return i.assocIn(state, ['events', action.meta.cacheKey], {
+    //        data: action.payload.data,
+    //        loading: false
+    //      })
+    //    case 'THREADS/NEW_EVENT':
+    //      return i.updateIn(state, ['events', action.payload.threadId, 'data'], events => {
+    //        return i.push(events, action.payload.event)
+    //      })
+    //    case 'THREADS/DELETE_EVENT':
+    //      return i.updateIn(state, ['events', action.payload.threadId, 'data'], events => {
+    //        const eventIndex = events.findIndex(event => event._id === action.payload.eventId)
+    //        return eventIndex !== -1 ? i.splice(events, eventIndex, 1) : events
+    //      })
+
+    case 'THREADS/UPDATE_BOARD_PENDING':
+      return _icepick2.default.assocIn(state, ['boards', action.meta.cacheKey, 'savePending'], true);
+    case 'THREADS/UPDATE_BOARD_REJECTED':
+      return _icepick2.default.assocIn(state, ['boards', action.meta.cacheKey, 'savePending'], false);
+    case 'THREADS/UPDATE_BOARD_FULFILLED':
+      return _icepick2.default.chain(state).assocIn(['boards', action.meta.cacheKey, 'savePending'], false).assocIn(['boards', action.meta.cacheKey, 'data'], action.payload.data).value();
+
+    case 'THREADS/NEW_GROUP_FULFILLED':
+      return _icepick2.default.chain(state)
+      // Reset the newGroupString to empty
+      .assocIn(['boards', action.meta.boardId, 'newGroupString'], '')
+      // Push the new group onto the groups array
+      .updateIn(['boards', action.meta.boardId, 'data', 'groups'], function (groups) {
+        return _icepick2.default.push(groups, action.payload.data);
+      }).value();
+
+    case 'THREADS/DELETE_GROUP_FULFILLED':
+      return _icepick2.default.updateIn(state, ['boards', action.meta.boardId, 'data', 'groups'], function (groups) {
+        var groupIndex = groups.findIndex(function (group) {
+          return group._id === action.meta.groupId;
+        }); // Find the index of the group
+        return _icepick2.default.splice(groups, groupIndex, 1); // Delete the group from the groups array
+      });
+
+    case 'THREADS/DELETE_TASK_FULFILLED':
+      return _icepick2.default.chain(state).assocIn(['data', action.meta.threadId], undefined).updateIn(['boards', action.meta.boardId, 'data', 'groups'], function (groups) {
+        var location = getLocationIndex(groups, action.meta.threadId);
+        return _icepick2.default.updateIn(groups, [location.groupIndex, 'threads'], function (threads) {
+          return _icepick2.default.splice(threads, location.threadIndex, 1);
+        });
+      }).value();
+
+    case 'THREADS/MOVE_TASK':
+      return _icepick2.default.chain(state).assocIn(['data', action.payload.thread, 'data', 'group'], action.payload.destinationGroup) // Update the group property
+      .updateIn(['boards', action.payload.boardId, 'data', 'groups'], function (groups) {
+        // Move the thread in the groups array
+        var from = getLocationIndex(groups, action.payload.thread);
+        var to = action.payload.destinationThread ? getLocationIndex(groups, action.payload.destinationThread) : { groupIndex: getGroupIndex(groups, action.payload.destinationGroup), threadIndex: 0 };
+        return moveThread({
+          groups: groups,
+          lastX: from.groupIndex,
+          nextX: to.groupIndex,
+          lastY: from.threadIndex,
+          nextY: to.threadIndex
+        });
+      }).value();
+    case 'THREADS/MOVE_TASK_FULFILLED':
+      return state;
+
+    case 'THREADS/MOVE_GROUP':
+      return _icepick2.default.updateIn(state, ['boards', action.payload.boardId, 'data', 'groups'], function (groups) {
+        var groupFrom = groups.findIndex(function (group) {
+          return group._id === action.payload.group;
+        });
+        var groupTo = groups.findIndex(function (group) {
+          return group._id === action.payload.destinationGroup;
+        });
+        return moveGroup(groups, groupFrom, groupTo);
+      });
+
+    case 'THREADS/BEGIN_DRAG':
+      return _icepick2.default.assocIn(state, ['data', action.payload.threadId, 'isDragging'], true);
+    case 'THREADS/END_DRAG':
+      return _icepick2.default.assocIn(state, ['data', action.payload.threadId, 'isDragging'], false);
+
+    case 'THREADS/CHANGE_LAYOUT':
+      return _icepick2.default.assocIn(state, ['boards', action.payload.boardId, 'layout'], action.payload.layout);
+
+    default:
+      return state;
+  }
+};
+
+function getLocationIndex(groups, id) {
+  // This will return the group and thread index inside the structure object.
+  var groupIndex = null;
+  var threadIndex = null;
+  groupIndex = groups.findIndex(function (group, groupIndex) {
+    var foundThreadIndex = group.threads.findIndex(function (threadId) {
+      return threadId === id;
+    });
+    // If the thread index is found, we return it
+    if (foundThreadIndex !== -1) {
+      threadIndex = foundThreadIndex;
+      return true;
+    }
+  });
+  return {
+    groupIndex: groupIndex,
+    threadIndex: threadIndex
+  };
+}
+
+function getGroupIndex(groups, groupId) {
+  return groups.findIndex(function (group) {
+    return group._id === groupId;
+  });
+}
+
+function moveThread(_ref) {
+  var groups = _ref.groups,
+      lastX = _ref.lastX,
+      nextX = _ref.nextX,
+      lastY = _ref.lastY,
+      nextY = _ref.nextY;
+
+  var cloneItems = (0, _cloneDeep3.default)(groups);
+  if (lastX === nextX) {
+    cloneItems[lastX].threads.splice(nextY, 0, cloneItems[lastX].threads.splice(lastY, 1)[0]);
+  } else {
+    cloneItems[nextX].threads.splice(nextY, 0, cloneItems[lastX].threads[lastY]); // move element to new place
+    cloneItems[lastX].threads.splice(lastY, 1); // delete element from old place
+  }
+  return cloneItems;
+}
+
+function moveGroup(groups, fromIndex, toIndex) {
+  var cloneItems = (0, _cloneDeep3.default)(groups);
+  var t = cloneItems.splice(fromIndex, 1)[0];
+  cloneItems.splice(toIndex, 0, t);
+  return cloneItems;
+}
+
+function addItem(keyItems, item) {
+  return [].concat(keyItems, [item]);
+}
+
+var _default = function _default() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  if (!state.hydrated) {
+    state = (0, _extends3.default)({}, initialState, state, { hydrated: true });
+  }
+  return mainReducer(state, action);
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(getLocationIndex, 'getLocationIndex', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.reducer.js');
+
+  __REACT_HOT_LOADER__.register(getGroupIndex, 'getGroupIndex', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.reducer.js');
+
+  __REACT_HOT_LOADER__.register(moveThread, 'moveThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.reducer.js');
+
+  __REACT_HOT_LOADER__.register(moveGroup, 'moveGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.reducer.js');
+
+  __REACT_HOT_LOADER__.register(addItem, 'addItem', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.reducer.js');
+
+  __REACT_HOT_LOADER__.register(initialState, 'initialState', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.reducer.js');
+
+  __REACT_HOT_LOADER__.register(mainReducer, 'mainReducer', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.reducer.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.reducer.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.reducer.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -49367,7 +49177,7 @@ var _default = function _default() {
       return _icepick2.default.assocIn(state, (0, _toPath3.default)(action.payload.model), action.payload.value);
     case 'STORE/PUSH':
       return _icepick2.default.updateIn(state, (0, _toPath3.default)(action.payload.model), function (item) {
-        return _icepick2.default.push(item, action.payload.item);
+        return _icepick2.default.push(item || [], action.payload.item);
       });
     case 'STORE/REMOVE':
       return _icepick2.default.updateIn(state, (0, _toPath3.default)(action.payload.model), function (item) {
@@ -49437,118 +49247,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
   return out.join('\n');
 };
 
-
-/***/ },
-
-/***/ "W0Uq":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getAllTasks = exports.filterBoard = undefined;
-
-var _escapeRegExp2 = __webpack_require__("1kli");
-
-var _escapeRegExp3 = _interopRequireDefault(_escapeRegExp2);
-
-var _every2 = __webpack_require__("Lrp7");
-
-var _every3 = _interopRequireDefault(_every2);
-
-var _icepick = __webpack_require__("PgM/");
-
-var _icepick2 = _interopRequireDefault(_icepick);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var filterBoard = exports.filterBoard = function filterBoard(board, tasks, searchString) {
-  // This will filter the board by the the search string
-  var queryStringArray = searchString ? searchString.split(' ') : [];
-  return _icepick2.default.updateIn(board, ['data', 'groups'], function (groups) {
-    return filterGroups({ groups: groups, tasks: tasks, filterFn: function filterFn(task) {
-        return task && task.data ? (0, _every3.default)(queryStringArray, function (queryString) {
-          return queryByString(task, queryString);
-        }) : true;
-      } });
-  });
-};
-
-var getAllTasks = exports.getAllTasks = function getAllTasks(boardGroups) {
-  var tasks = [];
-  boardGroups.forEach(function (group) {
-    return tasks = tasks.concat(group.tasks);
-  });
-  return tasks;
-};
-
-function queryByString(item, queryString) {
-  /****************************************************
-  This is the main query function. It takes in a string
-  and will filter the task by this string in some way
-  ****************************************************/
-  if (queryString == 'is:complete' || queryString == 'is:!complete') {
-    return item.data.complete;
-  } else if (queryString == 'is:incomplete') {
-    return !item.data.complete;
-  }
-  // Assignee Query
-  else if (queryString.startsWith('assignee:')) {
-      var assignee = queryString.replace('assignee:', '');
-      return item.data.users.find(function (user) {
-        return user.stub == assignee;
-      });
-    }
-    // Filter by the string itself (case independent)
-    else if (queryString && queryString.length > 0) {
-        return new RegExp((0, _escapeRegExp3.default)(queryString), 'i').test(item.data.name);
-      } else {
-        return true;
-      }
-}
-
-function filterGroups(_ref) {
-  var groups = _ref.groups,
-      tasks = _ref.tasks,
-      filterFn = _ref.filterFn;
-
-  return groups ? groups.map(function (group) {
-    return _icepick2.default.updateIn(group, ['tasks'], function (taskIds) {
-      return taskIds.filter(function (taskId) {
-        return filterFn(tasks[taskId]);
-      });
-    });
-  }) : [];
-}
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(filterBoard, 'filterBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.utils.js');
-
-  __REACT_HOT_LOADER__.register(getAllTasks, 'getAllTasks', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.utils.js');
-
-  __REACT_HOT_LOADER__.register(queryByString, 'queryByString', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.utils.js');
-
-  __REACT_HOT_LOADER__.register(filterGroups, 'filterGroups', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/Tasks.utils.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -49705,181 +49403,6 @@ module.exports = {"loadingOverlay":"LoadingOverlay_loadingOverlay-2Iyla","bgWhit
 
 // removed by extract-text-webpack-plugin
 module.exports = {"header":"LandingHeader_header-2v1Bl","headerFilled":"LandingHeader_headerFilled-1EcKg","logo":"LandingHeader_logo-3IwL6","link":"LandingHeader_link-8gW5Q","specialLink":"LandingHeader_specialLink-1sVsO","menuButton":"LandingHeader_menuButton-1RLDX"};
-
-/***/ },
-
-/***/ "WCap":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__("c9Fv");
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _AuthActions = __webpack_require__("+z2A");
-
-var AuthActions = _interopRequireWildcard(_AuthActions);
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _reactRouter = __webpack_require__("Zfgq");
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-// Component Core
-var Component = _react2.default.createClass({
-  displayName: 'Component',
-
-  render: function render() {
-    var _props = this.props,
-        owner = _props.owner,
-        auth = _props.auth,
-        authActions = _props.authActions,
-        modalCancel = _props.modalCancel,
-        modalConfirm = _props.modalConfirm;
-
-
-    var isCurrentUser = owner._id == auth.user._id;
-
-    return _react2.default.createElement(
-      'div',
-      { style: { width: '500px' } },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-title' },
-        'Access to Google Drive has been revoked'
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-body', style: { lineHeight: '1.4em' } },
-        isCurrentUser ? _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'p',
-            null,
-            'Stemn\'s access to your Google Drive has been revoked. To fix this, please re-authenticate with Google.'
-          )
-        ) : _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'p',
-            null,
-            'This project is connected to ',
-            _react2.default.createElement(
-              'b',
-              null,
-              owner.name,
-              '\'s'
-            ),
-            ' Google Drive.'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'Access to this drive has been revoked. ',
-            owner.name.split(' ')[0],
-            ' must re-authenticate with Drive for Stemn to work properly. Please contact them and instruct them to re-connect their Stemn account to Google.'
-          )
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer-no-line layout-row layout-align-end' },
-        _react2.default.createElement(
-          _Button2.default,
-          { onClick: modalCancel },
-          'Cancel'
-        ),
-        isCurrentUser ? _react2.default.createElement(
-          _Button2.default,
-          {
-            style: { marginLeft: '10px' },
-            className: 'primary',
-            onClick: function onClick() {
-              authActions.authenticate('google');modalConfirm();
-            }
-          },
-          'Authenticate'
-        ) : null
-      )
-    );
-  }
-});
-
-////////////////////////////////////////////////////////////////
-
-// Styles
-
-
-// Container Actions
-// Container Core
-function mapStateToProps(_ref) {
-  var auth = _ref.auth;
-
-  return {
-    auth: auth
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch: dispatch,
-    authActions: (0, _redux.bindActionCreators)(AuthActions, dispatch)
-  };
-}
-
-var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Component);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ProviderAccessRevokedModal.jsx');
-
-  __REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ProviderAccessRevokedModal.jsx');
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ProviderAccessRevokedModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ProviderAccessRevokedModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ProviderAccessRevokedModal.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -51045,6 +50568,125 @@ module.exports = __webpack_require__.p + "images/dbf.svg?af6ceb2a9caeaed5e973580
 
 /***/ },
 
+/***/ "Yc28":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Button = __webpack_require__("Yrew");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Component = _react2.default.createClass({
+  displayName: 'Component',
+  getInitialState: function getInitialState() {
+    return {
+      value: ''
+    };
+  },
+  onChange: function onChange(event) {
+    this.setState({ value: event.target.value });
+  },
+
+  render: function render() {
+    var _props = this.props,
+        title = _props.title,
+        message = _props.message,
+        confirmValue = _props.confirmValue,
+        confirmPlaceholder = _props.confirmPlaceholder,
+        modalCancel = _props.modalCancel,
+        modalConfirm = _props.modalConfirm;
+    var value = this.state.value;
+
+
+    return _react2.default.createElement(
+      'div',
+      { style: { width: '400px' } },
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-title' },
+        title || 'Are you sure you want to do this?'
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-body', style: { lineHeight: '1.4em' } },
+        _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: message || 'There will be no turning back.' } }),
+        confirmValue ? _react2.default.createElement('input', {
+          type: 'text',
+          style: { marginTop: '15px' },
+          className: 'dr-input',
+          placeholder: confirmPlaceholder,
+          onChange: this.onChange
+        }) : null
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-footer-no-line layout-row layout-align-end' },
+        _react2.default.createElement(
+          _Button2.default,
+          { style: { marginRight: '10px' }, onClick: modalCancel },
+          'Cancel'
+        ),
+        _react2.default.createElement(
+          _Button2.default,
+          {
+            className: 'warn',
+            disabled: confirmValue && value.toLowerCase() != confirmValue.toLowerCase(),
+            onClick: modalConfirm },
+          'Confirm'
+        )
+      )
+    );
+  }
+});
+
+// Styles
+// Component Core
+var _default = Component;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConfirmModal/ConfirmModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConfirmModal/ConfirmModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConfirmModal/ConfirmModal.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "YcpH":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -51074,12 +50716,12 @@ var timeouts = {}; /************************************************************
                    
                    The action should contain a throttle object such as:
                    
-                   export function getTask({taskId}) {
+                   export function getThread({threadId}) {
                      return {
-                       type: 'TASKS/GET_TASK',
+                       type: 'THREADS/GET_TASK',
                        throttle: {
                          time: 1000,                                   Time period (ms) to throttle to
-                         endpoint:  `TASKS/UPDATE_TASK-${task._id}`    Unique endpoint (used to store the timeout in the timeouts object)
+                         endpoint:  `THREADS/UPDATE_TASK-${thread._id}`    Unique endpoint (used to store the timeout in the timeouts object)
                        },
                        payload: {
                    
@@ -51631,136 +51273,6 @@ var _temp2 = function () {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/mp3.svg?da5142c52e9d4ad8125ffabc98e47dee";
-
-/***/ },
-
-/***/ "Z/s8":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _reactRouter = __webpack_require__("Zfgq");
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Component Core
-var Component = _react2.default.createClass({
-  displayName: 'Component',
-
-  render: function render() {
-    var _props = this.props,
-        title = _props.title,
-        message = _props.message,
-        modalCancel = _props.modalCancel,
-        modalConfirm = _props.modalConfirm;
-
-    return _react2.default.createElement(
-      'div',
-      { style: { width: '500px' } },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-title' },
-        'Google Authentication Error'
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-body', style: { lineHeight: '1.4em' } },
-        _react2.default.createElement(
-          'p',
-          null,
-          'There is a problem with STEMN\'s access to your Google Account. Please follow these steps to re-connect your account.'
-        ),
-        _react2.default.createElement(
-          'p',
-          { className: 'text-mini-caps' },
-          'Step 1:'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'Visit Google\'s Permissions page ',
-          _react2.default.createElement(
-            'a',
-            { className: 'link-primary', href: 'https://security.google.com/settings/security/permissions' },
-            'here'
-          ),
-          '. Find STEMN in the list and click \'Remove\' to revoke access.'
-        ),
-        _react2.default.createElement(
-          'p',
-          { className: 'text-mini-caps' },
-          'Step 2:'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'After you have fully revoked STEMN\'s access to your google account, vist your ',
-          _react2.default.createElement(
-            _reactRouter.Link,
-            { to: '/settings/account', className: 'link-primary' },
-            'account settings page'
-          ),
-          ' and re-connect your google account. '
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer-no-line layout-row layout-align-end' },
-        _react2.default.createElement(
-          _Button2.default,
-          { className: 'primary', onClick: modalConfirm },
-          'Continue'
-        )
-      )
-    );
-  }
-});
-
-// Styles
-var _default = Component;
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ProviderAccessErrorModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ProviderAccessErrorModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ProviderAccessErrorModal.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -53961,14 +53473,6 @@ MillerRabin.prototype.getDivisor = function getDivisor(n, k) {
 
 /***/ },
 
-/***/ "aOuj":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","row":"TaskRow_row-TvNdE","button":"TaskRow_button-2QFgZ","active":"TaskRow_active-cBL3v"};
-
-/***/ },
-
 /***/ "aQOO":
 /***/ function(module, exports) {
 
@@ -54273,6 +53777,194 @@ function mapCacheHas(key) {
 
 module.exports = mapCacheHas;
 
+
+/***/ },
+
+/***/ "ante":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Component = undefined;
+
+var _defineProperty2 = __webpack_require__("bOdI");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _redux = __webpack_require__("c9Fv");
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _moment = __webpack_require__("PJh5");
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _ThreadsActions = __webpack_require__("88Vw");
+
+var ThreadsActions = _interopRequireWildcard(_ThreadsActions);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _ThreadRow = __webpack_require__("rlNs");
+
+var _ThreadRow2 = _interopRequireDefault(_ThreadRow);
+
+var _LoadingPlaceholders = __webpack_require__("IqZ3");
+
+var _LoadingPlaceholders2 = _interopRequireDefault(_LoadingPlaceholders);
+
+var _Checkbox = __webpack_require__("FQX5");
+
+var _Checkbox2 = _interopRequireDefault(_Checkbox);
+
+var _Button = __webpack_require__("Yrew");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+///////////////////////////////// COMPONENT /////////////////////////////////
+
+// Sub Components
+
+
+// Container Actions
+
+
+// Component Core
+// Container Core
+var Component = exports.Component = _react2.default.createClass({
+  displayName: 'Component',
+
+  // Mounting
+  onMount: function onMount(nextProps, prevProps) {
+    if (!prevProps || prevProps.threadId != nextProps.threadId) {
+      if (!nextProps.thread || !nextProps.thread.data) {
+        nextProps.dispatch(ThreadsActions.getThread({
+          threadId: nextProps.threadId
+        }));
+      }
+    }
+  },
+  componentWillMount: function componentWillMount() {
+    this.onMount(this.props);
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    this.onMount(nextProps, this.props);
+  },
+  render: function render() {
+    var _props = this.props,
+        thread = _props.thread,
+        entityModel = _props.entityModel,
+        toggleComplete = _props.toggleComplete,
+        toggleRelated = _props.toggleRelated,
+        status = _props.status;
+
+
+    if (!thread || !thread.data) {
+      return _react2.default.createElement(
+        'div',
+        { className: (0, _classnames2.default)(_ThreadRow2.default.row, _LoadingPlaceholders2.default.loading, 'layout-row', 'layout-align-start-center') },
+        _react2.default.createElement(
+          'div',
+          { className: 'flex text-ellipsis' },
+          'The thread namelongword goes here'
+        ),
+        _react2.default.createElement(
+          _Button2.default,
+          { className: (0, _classnames2.default)('xs', _ThreadRow2.default.button), style: { width: '60px' } },
+          '\xA0'
+        ),
+        _react2.default.createElement(
+          _Button2.default,
+          { className: (0, _classnames2.default)('xs', _ThreadRow2.default.button), style: { width: '60px' } },
+          '\xA0'
+        )
+      );
+    }
+    return _react2.default.createElement(
+      'div',
+      { className: _ThreadRow2.default.row + ' layout-row layout-align-start-center' },
+      _react2.default.createElement(
+        'div',
+        { className: 'flex text-ellipsis' },
+        thread.data.name
+      ),
+      _react2.default.createElement(
+        _Button2.default,
+        {
+          className: (0, _classnames2.default)('xs', _ThreadRow2.default.button, (0, _defineProperty3.default)({}, _ThreadRow2.default.active, status === 'complete')),
+          title: 'Mark as Complete',
+          onClick: toggleComplete },
+        'Complete'
+      ),
+      _react2.default.createElement(
+        _Button2.default,
+        {
+          className: (0, _classnames2.default)('xs', _ThreadRow2.default.button, (0, _defineProperty3.default)({}, _ThreadRow2.default.active, status === 'related')),
+          title: 'Mark as related',
+          onClick: toggleRelated },
+        'Related'
+      )
+    );
+  }
+});
+
+///////////////////////////////// CONTAINER /////////////////////////////////
+
+// Styles
+function mapStateToProps(_ref, _ref2) {
+  var threads = _ref.threads;
+  var threadId = _ref2.threadId;
+
+  return {
+    thread: threads.data[threadId],
+    entityModel: 'threads.data[' + threadId + ']'
+  };
+}
+
+var _default = (0, _reactRedux.connect)(mapStateToProps)(Component);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadRow/ThreadRow.jsx');
+
+  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadRow/ThreadRow.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadRow/ThreadRow.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadRow/ThreadRow.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -54862,7 +54554,7 @@ var mentionTriggers = exports.mentionTriggers = [{
   type: 'user'
 }, {
   trigger: '#',
-  type: 'task'
+  type: 'thread'
 }];
 
 var mentionTypeFromWord = exports.mentionTypeFromWord = function mentionTypeFromWord(word) {
@@ -54882,18 +54574,18 @@ var getMentionInfo = exports.getMentionInfo = function getMentionInfo(mentionTyp
         userId: entityId
       }
     },
-    task: {
+    thread: {
       display: '#' + display,
-      route: 'taskRoute',
+      route: 'threadRoute',
       params: {
-        taskId: entityId
+        threadId: entityId
       }
     },
-    'task-complete': {
+    'thread-complete': {
       display: '#' + display + ' (complete)',
-      route: 'taskRoute',
+      route: 'threadRoute',
       params: {
-        taskId: entityId
+        threadId: entityId
       }
     }
   };
@@ -56900,7 +56592,7 @@ var initialState = {
     }
     *******************************/
   },
-  tasks: {}
+  threads: {}
 };
 
 var mainReducer = function mainReducer(state, action) {
@@ -56921,11 +56613,11 @@ var mainReducer = function mainReducer(state, action) {
       return _icepick2.default.assocIn(state, ['data', action.payload.commentId, 'editActive'], false);
 
     case 'COMMENTS/NEW_COMMENT_PENDING':
-      return _icepick2.default.assocIn(state, ['tasks', action.meta.taskId, 'newComment', 'savePending'], true);
+      return _icepick2.default.assocIn(state, ['threads', action.meta.threadId, 'newComment', 'savePending'], true);
     case 'COMMENTS/NEW_COMMENT_REJECTED':
-      return _icepick2.default.assocIn(state, ['tasks', action.meta.taskId, 'newComment', 'savePending'], false);
+      return _icepick2.default.assocIn(state, ['threads', action.meta.threadId, 'newComment', 'savePending'], false);
     case 'COMMENTS/NEW_COMMENT_FULFILLED':
-      return _icepick2.default.chain(state).assocIn(['tasks', action.meta.taskId, 'newComment'], {}) // Reset the newComment objected
+      return _icepick2.default.chain(state).assocIn(['threads', action.meta.threadId, 'newComment'], {}) // Reset the newComment objected
       .assocIn(['data', action.payload.data._id, 'data'], action.payload.data) // Put the comment in the store
       .value();
 
@@ -57570,6 +57262,14 @@ var _temp2 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "dbvd":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"row":"ThreadLabelsEdit_row-2_VDn","colorSelect":"ThreadLabelsEdit_colorSelect-3vKDb","colorSelectInput":"ThreadLabelsEdit_colorSelectInput-19Z7z","name":"ThreadLabelsEdit_name-378Ll","swatch":"ThreadLabelsEdit_swatch-1Fkk_"};
 
 /***/ },
 
@@ -66633,7 +66333,7 @@ var initialState = {
   fileAssemblyParents: {},
   pathToId: {},
   downloadProgress: {},
-  relatedTasks: {},
+  relatedThreads: {},
   websocketRooms: []
 };
 
@@ -66716,12 +66416,12 @@ function reducer(state, action) {
         loading: false
       });
 
-    case 'FILES/GET_RELATED_TASKS_PENDING':
-      return _icepick2.default.assocIn(state, ['relatedTasks', action.meta.fileId, 'loading'], true);
-    case 'FILES/GET_RELATED_TASKS_REJECTED':
-      return _icepick2.default.assocIn(state, ['relatedTasks', action.meta.fileId, 'loading'], false);
-    case 'FILES/GET_RELATED_TASKS_FULFILLED':
-      return _icepick2.default.assocIn(state, ['relatedTasks', action.meta.fileId], {
+    case 'FILES/GET_RELATED_THREADS_PENDING':
+      return _icepick2.default.assocIn(state, ['relatedThreads', action.meta.fileId, 'loading'], true);
+    case 'FILES/GET_RELATED_THREADS_REJECTED':
+      return _icepick2.default.assocIn(state, ['relatedThreads', action.meta.fileId, 'loading'], false);
+    case 'FILES/GET_RELATED_THREADS_FULFILLED':
+      return _icepick2.default.assocIn(state, ['relatedThreads', action.meta.fileId], {
         data: action.payload.data,
         loading: false
       });
@@ -67572,190 +67272,6 @@ module.exports = ZStream;
 
 /***/ },
 
-/***/ "h95y":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _ColorSelect = __webpack_require__("pD2R");
-
-var _ColorSelect2 = _interopRequireDefault(_ColorSelect);
-
-var _Store = __webpack_require__("+I1Y");
-
-var _SimpleIconButton = __webpack_require__("D2fa");
-
-var _SimpleIconButton2 = _interopRequireDefault(_SimpleIconButton);
-
-var _moreHoriz = __webpack_require__("O8U9");
-
-var _moreHoriz2 = _interopRequireDefault(_moreHoriz);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Component = _react2.default.createClass({
-  displayName: 'Component',
-  render: function render() {
-    var _props = this.props,
-        dispatch = _props.dispatch,
-        model = _props.model,
-        value = _props.value;
-
-
-    var niceColors = ['#001F3F', '#0074D9', '#7FDBFF', '#39CCCC', '#3D9970', '#2ECC40', '#01FF70', '#FFDC00', '#FF851B', '#FF4136', '#F012BE', '#B10DC9', '#85144B', '#FFFFFF', '#DDDDDD', '#AAAAAA'];
-
-    return _react2.default.createElement(
-      'div',
-      { className: _ColorSelect2.default.sampleOuter + ' layout-row layout-wrap' },
-      niceColors.map(function (color) {
-        return _react2.default.createElement('div', {
-          key: color,
-          onClick: function onClick() {
-            return dispatch((0, _Store.storeChange)(model, color));
-          },
-          className: _ColorSelect2.default.sampleSwatch,
-          style: { background: color }
-        });
-      })
-    );
-  }
-});
-
-// Styles
-// Component Core
-
-var _default = (0, _reactRedux.connect)()(Component);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEdit/ColorSelect/ColorSelect.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEdit/ColorSelect/ColorSelect.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEdit/ColorSelect/ColorSelect.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "hBou":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Styles
-var Component = _react2.default.createClass({
-  displayName: 'Component',
-  render: function render() {
-    var _props = this.props,
-        title = _props.title,
-        body = _props.body,
-        modalCancel = _props.modalCancel,
-        modalConfirm = _props.modalConfirm;
-
-
-    return _react2.default.createElement(
-      'div',
-      { style: { width: '500px' } },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-title' },
-        title
-      ),
-      _react2.default.createElement('div', { className: 'modal-body', style: { lineHeight: '1.4em' }, dangerouslySetInnerHTML: { __html: body } }),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer-no-line layout-row layout-align-end' },
-        _react2.default.createElement(
-          _Button2.default,
-          { className: 'warn', onClick: modalConfirm },
-          'OK'
-        )
-      )
-    );
-  }
-}); // Component Core
-var _default = Component;
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ErrorModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ErrorModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/modals/ErrorModal.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "hGXm":
 /***/ function(module, exports) {
 
@@ -67905,6 +67421,48 @@ module.exports = __webpack_require__("+E39") ? function(object, key, value){
   object[key] = value;
   return object;
 };
+
+/***/ },
+
+/***/ "hKDs":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var modalName = 'THREAD_LABELS';
+
+var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("GQlt").default(modalName);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/index.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/index.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -69378,6 +68936,56 @@ module.exports = __webpack_require__.p + "images/raw.svg?e7f274937c45cdc856f19d0
 
 /***/ },
 
+/***/ "icR4":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ModalRegistry = __webpack_require__("p8CK");
+
+var _ProviderAccessRevokedModal = __webpack_require__("MAiJ");
+
+var _ProviderAccessRevokedModal2 = _interopRequireDefault(_ProviderAccessRevokedModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(modalName) {
+  (0, _ModalRegistry.registerModal)(modalName, _ProviderAccessRevokedModal2.default);
+  return modalName;
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/ProviderAccessRevokedModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessRevokedModal/ProviderAccessRevokedModal.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "imBK":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -70046,7 +69654,7 @@ var mainReducer = function mainReducer(state, action) {
       return _icepick2.default.assocIn(state, [action.payload.projectId, 'selected'], {});
     case 'CHANGES/SELECTED_FILE_CHANGE':
       return _icepick2.default.assocIn(state, [action.payload.projectId, 'selected'], action.payload.selected);
-    case 'CHANGES/MENTION_TASKS':
+    case 'CHANGES/MENTION_THREADS':
       return _icepick2.default.updateIn(state, [action.payload.projectId, 'description'], function (description) {
         var existingMentions = (0, _MentionsUtils.parseMentions)(description);
         var uniqueNewMentions = (0, _MentionsUtils.removeExistingMentions)(action.payload.mentions, existingMentions);
@@ -71587,7 +71195,14 @@ var isArray = Array.isArray || function (xs) {
 
 /***/ },
 
-/***/ "kS0c":
+/***/ "kTww":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/sql.svg?71c6d68704591b58ecc00f602f0cbc5b";
+
+/***/ },
+
+/***/ "kaRp":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71596,35 +71211,9 @@ var isArray = Array.isArray || function (xs) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var modalName = 'PROVIDER_ACCESS_ERROR';
 
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _StandardTable = __webpack_require__("pB9t");
-
-var _StandardTable2 = _interopRequireDefault(_StandardTable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-///////////////////////////////// COMPONENT /////////////////////////////////
-
-// Component Core
-var _default = _react2.default.createClass({
-  displayName: '_default',
-  render: function render() {
-    var children = this.props.children;
-
-    return _react2.default.createElement(
-      'table',
-      { className: _StandardTable2.default.table },
-      children
-    );
-  }
-});
-
-// Styles
-
+var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("9gQX").default(modalName);
 
 var _default2 = _default;
 exports.default = _default2;
@@ -71635,9 +71224,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tables/StandardTable/StandardTable.jsx');
+  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessErrorModal/index.js');
 
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tables/StandardTable/StandardTable.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessErrorModal/index.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ProviderAccessErrorModal/index.js');
 }();
 
 ;
@@ -71650,13 +71241,6 @@ var _temp2 = function () {
 }();
 
 ;
-
-/***/ },
-
-/***/ "kTww":
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/sql.svg?71c6d68704591b58ecc00f602f0cbc5b";
 
 /***/ },
 
@@ -71772,7 +71356,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _TasksActions = __webpack_require__("Htxf");
+var _ThreadsActions = __webpack_require__("88Vw");
 
 var _CommentsActions = __webpack_require__("KX+g");
 
@@ -71788,17 +71372,17 @@ var _default = function _default(store, action) {
   // Actions that we DON'T process if user is the actioner
   switch (action.type) {
     case 'BOARD/BOARD_UPDATED':
-      return dispatch((0, _TasksActions.getBoard)({ boardId: action.payload.boardId }));
+      return dispatch((0, _ThreadsActions.getBoard)({ boardId: action.payload.boardId }));
     case 'BOARD/GROUPS_UPDATED':
       return action.payload.groups.map(function (groupId) {
-        return dispatch((0, _TasksActions.getGroup)({ groupId: groupId, boardId: action.payload.boardId }));
+        return dispatch((0, _ThreadsActions.getGroup)({ groupId: groupId, boardId: action.payload.boardId }));
       });
-    case 'BOARD/TASKS_UPDATED':
-      return action.payload.tasks.map(function (taskId) {
-        return dispatch((0, _TasksActions.getTask)({ taskId: taskId }));
+    case 'BOARD/THREADS_UPDATED':
+      return action.payload.threads.map(function (threadId) {
+        return dispatch((0, _ThreadsActions.getThread)({ threadId: threadId }));
       });
     case 'BOARD/TASK_COMPLETED_UPDATED':
-      return dispatch((0, _TasksActions.getTask)({ taskId: action.payload.taskId }));
+      return dispatch((0, _ThreadsActions.getThread)({ threadId: action.payload.threadId }));
     case 'BOARD/COMMENTS_UPDATED':
       return action.payload.comments.map(function (commentId) {
         return dispatch((0, _CommentsActions.getComment)({ commentId: commentId }));
@@ -71916,17 +71500,17 @@ api/v1/entityType?ids[]=12345678901234567890?ids[]=12345678901234567890?ids[]=12
 
 The action should contain a httpPackage object such as:
 
-export function getTask({taskId}) {
+export function getThread({threadId}) {
   return {
-    type: 'TASKS/GET_TASK',
+    type: 'THREADS/GET_TASK',
     httpPackage: {
-      url: `/api/v1/tasks`,  The Api endpoint
+      url: `/api/v1/threads`,  The Api endpoint
       method: 'GET',                                          Http method, this should probably be GET
       staticParams: {                                         Parameters common to all packaged requests
         select : 'name picture blurb'
       }
       params: {                                               Params to be packaged together
-        'ids[]' : taskId
+        'ids[]' : threadId
       }
     }
   }
@@ -73530,8 +73114,8 @@ exports.deselect = deselect;
 exports.selectedFileChange = selectedFileChange;
 exports.toggleAll = toggleAll;
 exports.fetchChanges = fetchChanges;
-exports.mentionTasksModal = mentionTasksModal;
-exports.mentionTasks = mentionTasks;
+exports.mentionThreadsModal = mentionThreadsModal;
+exports.mentionThreads = mentionThreads;
 exports.commit = commit;
 exports.deleteCommit = deleteCommit;
 
@@ -73543,7 +73127,7 @@ var _ModalActions = __webpack_require__("u2h7");
 
 var _MentionsUtils = __webpack_require__("b/J2");
 
-var _TasksActions = __webpack_require__("Htxf");
+var _ThreadsActions = __webpack_require__("88Vw");
 
 var _icepick = __webpack_require__("PgM/");
 
@@ -73553,9 +73137,9 @@ var _axios = __webpack_require__("mtWM");
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _TaskMentionModal = __webpack_require__("9a2P");
+var _ThreadMentionModal = __webpack_require__("qZTG");
 
-var _TaskMentionModal2 = _interopRequireDefault(_TaskMentionModal);
+var _ThreadMentionModal2 = _interopRequireDefault(_ThreadMentionModal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -73626,13 +73210,13 @@ function fetchChanges(_ref4) {
 //  }
 //}
 
-function mentionTasksModal(_ref5) {
+function mentionThreadsModal(_ref5) {
   var projectId = _ref5.projectId,
       mentions = _ref5.mentions;
 
   return function (dispatch) {
     dispatch((0, _ModalActions.showModal)({
-      modalType: _TaskMentionModal2.default,
+      modalType: _ThreadMentionModal2.default,
       modalProps: {
         projectId: projectId,
         cacheKey: projectId
@@ -73640,7 +73224,7 @@ function mentionTasksModal(_ref5) {
     })).then(function (_ref6) {
       var mentions = _ref6.value.mentions;
 
-      dispatch(mentionTasks({
+      dispatch(mentionThreads({
         projectId: projectId,
         mentions: mentions
       }));
@@ -73648,12 +73232,12 @@ function mentionTasksModal(_ref5) {
   };
 }
 
-function mentionTasks(_ref7) {
+function mentionThreads(_ref7) {
   var projectId = _ref7.projectId,
       mentions = _ref7.mentions;
 
   return {
-    type: 'CHANGES/MENTION_TASKS',
+    type: 'CHANGES/MENTION_THREADS',
     payload: {
       projectId: projectId,
       mentions: mentions
@@ -73705,10 +73289,10 @@ function commit(_ref8) {
         }));
         // Get the mentions
         var mentions = (0, _MentionsUtils.parseMentions)(response.data.description);
-        // If mentionType: task-complete, we set the task to complete.
+        // If mentionType: thread-complete, we set the thread to complete.
         mentions.forEach(function (mention) {
-          if (mention.mentionType == 'task-complete') {
-            dispatch((0, _Store.storeChange)('tasks.data.' + mention.entityId + '.data.complete', true));
+          if (mention.mentionType == 'thread-complete') {
+            dispatch((0, _Store.storeChange)('threads.data.' + mention.entityId + '.data.complete', true));
           }
         });
         return response;
@@ -73751,13 +73335,109 @@ var _temp = function () {
 
   __REACT_HOT_LOADER__.register(fetchChanges, 'fetchChanges', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
 
-  __REACT_HOT_LOADER__.register(mentionTasksModal, 'mentionTasksModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+  __REACT_HOT_LOADER__.register(mentionThreadsModal, 'mentionThreadsModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
 
-  __REACT_HOT_LOADER__.register(mentionTasks, 'mentionTasks', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+  __REACT_HOT_LOADER__.register(mentionThreads, 'mentionThreads', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
 
   __REACT_HOT_LOADER__.register(commit, 'commit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
 
   __REACT_HOT_LOADER__.register(deleteCommit, 'deleteCommit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "mShd":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Button = __webpack_require__("Yrew");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _magnifyInternet = __webpack_require__("sDHq");
+
+var _magnifyInternet2 = _interopRequireDefault(_magnifyInternet);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Component Core
+var Component = _react2.default.createClass({
+  displayName: 'Component',
+
+  render: function render() {
+    var _props = this.props,
+        title = _props.title,
+        message = _props.message,
+        modalCancel = _props.modalCancel,
+        modalConfirm = _props.modalConfirm;
+
+    return _react2.default.createElement(
+      'div',
+      { style: { width: '100vw', padding: '30px' } },
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-body', style: { lineHeight: '1.4em' } },
+        _react2.default.createElement(
+          'div',
+          { className: 'text-center text-title-3' },
+          'Connection Error'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'layout-row layout-align-center' },
+          _react2.default.createElement('img', { src: _magnifyInternet2.default })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'text-center text-title-5' },
+          'Could not connect to the remote server. Either the server or your internet is down.'
+        )
+      )
+    );
+  }
+});
+
+// Styles
+var _default = Component;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConnectionModal/ConnectionModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConnectionModal/ConnectionModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ConnectionModal/ConnectionModal.jsx');
 }();
 
 ;
@@ -74802,116 +74482,6 @@ module.exports = toArray;
 
 /***/ },
 
-/***/ "nJ6m":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__("Yrew");
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _StandardTable = __webpack_require__("kS0c");
-
-var _StandardTable2 = _interopRequireDefault(_StandardTable);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Component = _react2.default.createClass({
-  displayName: 'Component',
-
-  render: function render() {
-    var _props = this.props,
-        modalCancel = _props.modalCancel,
-        modalConfirm = _props.modalConfirm;
-    var parts = this.props.parts;
-
-    return _react2.default.createElement(
-      'div',
-      { style: { width: '500px' } },
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-title' },
-        'Assembly part could not be found'
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-body', style: { lineHeight: '1.4em' } },
-        _react2.default.createElement(
-          'p',
-          null,
-          'Assembly rendering is in Beta - we need your help to perfect it. Currently, we can only find sub-parts if they are in the same folder (or a sub-folder) of the main assembly file.'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'If your assembly is not rendering, please add your voice to the ',
-          _react2.default.createElement(
-            'a',
-            { className: 'link-primary', href: 'https://github.com/Stemn/Stemn-Desktop/issues/4' },
-            'assembly part not found issue'
-          ),
-          '.'
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'modal-footer-no-line layout-row layout-align-end' },
-        _react2.default.createElement(
-          _Button2.default,
-          {
-            className: 'primary',
-            onClick: modalConfirm },
-          'OK'
-        )
-      )
-    );
-  }
-});
-
-var _default = Component;
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/Messages/AssemblyPartNotFound/AssemblyPartNotFoundModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/Messages/AssemblyPartNotFound/AssemblyPartNotFoundModal.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/Messages/AssemblyPartNotFound/AssemblyPartNotFoundModal.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "nKfL":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -75286,6 +74856,18 @@ var _ModalActions = __webpack_require__("u2h7");
 
 var _ToastsActions = __webpack_require__("CWMx");
 
+var _ConnectionModal = __webpack_require__("OFal");
+
+var _ConnectionModal2 = _interopRequireDefault(_ConnectionModal);
+
+var _ProviderAccessRevokedModal = __webpack_require__("HnJp");
+
+var _ProviderAccessRevokedModal2 = _interopRequireDefault(_ProviderAccessRevokedModal);
+
+var _ProviderAccessErrorModal = __webpack_require__("kaRp");
+
+var _ProviderAccessErrorModal2 = _interopRequireDefault(_ProviderAccessErrorModal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*********************************************************************
@@ -75307,11 +74889,11 @@ this will be displayed instead of the standard toast.
 var errorMap = {
   GOOGLE_CONNECTION_ERROR: {
     displayType: 'modal',
-    modalType: 'PROVIDER_ACCESS_ERROR'
+    modalType: _ProviderAccessErrorModal2.default
   },
   DRIVE_ACCESS_REVOKED: {
     displayType: 'modal',
-    modalType: 'PROVIDER_ACCESS_REVOKED'
+    modalType: _ProviderAccessRevokedModal2.default
   },
   LINK_FOLDER_CONFLICT: {
     displayType: 'toast',
@@ -75325,7 +74907,7 @@ var processLocalError = function processLocalError(store, action) {
   // Local errors are electron only
   if (action.payload.errno === 'ENETUNREACH') {
     store.dispatch((0, _ModalActions.showModal)({
-      modalType: 'CONNECTION',
+      modalType: _ConnectionModal2.default,
       modalProps: action.payload.data,
       limit: 1
     }));
@@ -75744,6 +75326,187 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "o7FV":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Component = undefined;
+
+var _has2 = __webpack_require__("umy1");
+
+var _has3 = _interopRequireDefault(_has2);
+
+var _get2 = __webpack_require__("Q7hp");
+
+var _get3 = _interopRequireDefault(_get2);
+
+var _redux = __webpack_require__("c9Fv");
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _ThreadsActions = __webpack_require__("88Vw");
+
+var ThreadsActions = _interopRequireWildcard(_ThreadsActions);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _moment = __webpack_require__("PJh5");
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _Store = __webpack_require__("+I1Y");
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _ThreadLabelsEdit = __webpack_require__("5byU");
+
+var _ThreadLabelsEdit2 = _interopRequireDefault(_ThreadLabelsEdit);
+
+var _Button = __webpack_require__("Yrew");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// COMPONENT /////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+// Sub Components
+
+
+// Component Core
+var Component = exports.Component = _react2.default.createClass({
+  displayName: 'Component',
+  componentWillMount: function componentWillMount() {
+    if ((0, _has3.default)(this.props, 'board.data.labels')) {
+      this.props.dispatch((0, _Store.storeChange)(this.props.boardModel + '.forms.labels', this.props.board.data.labels));
+    }
+  },
+  submit: function submit() {
+    var _this = this;
+
+    this.props.dispatch((0, _Store.storeChange)(this.props.boardModel + '.data.labels', this.props.board.forms.labels));
+    setTimeout(function () {
+      _this.props.threadsActions.updateBoard({ board: _this.props.board.data }).then(function (response) {
+        _this.props.modalConfirm();
+      });
+    });
+  },
+  render: function render() {
+    var _props = this.props,
+        boardModel = _props.boardModel,
+        board = _props.board,
+        modalCancel = _props.modalCancel,
+        modalConfirm = _props.modalConfirm;
+
+
+    return _react2.default.createElement(
+      'div',
+      { style: { width: '500px' } },
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-title' },
+        'Edit Labels'
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-body', style: { maxHeight: '400px', overflowY: 'auto' } },
+        (0, _has3.default)(board, 'forms.labels') ? _react2.default.createElement(_ThreadLabelsEdit2.default, { model: boardModel + '.forms.labels', value: board.forms.labels }) : null
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-footer-no-line layout-row layout-align-end' },
+        _react2.default.createElement(
+          _Button2.default,
+          { style: { marginRight: '10px' }, onClick: modalCancel },
+          'Cancel'
+        ),
+        _react2.default.createElement(
+          _Button2.default,
+          { className: 'primary',
+            onClick: this.submit,
+            loading: board.savePending
+          },
+          'Update Labels'
+        )
+      )
+    );
+  }
+});
+
+/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// CONTAINER /////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+// Styles
+
+
+// Container Actions
+// Container Core
+function mapStateToProps(state, _ref) {
+  var boardId = _ref.boardId;
+
+  var boardModel = 'threads.boards.' + boardId;
+  return {
+    board: (0, _get3.default)(state, boardModel), // Get the value from the model
+    boardModel: boardModel
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch: dispatch,
+    threadsActions: (0, _redux.bindActionCreators)(ThreadsActions, dispatch)
+  };
+}
+
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Component);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/ThreadLabelsEditModal.jsx');
+
+  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/ThreadLabelsEditModal.jsx');
+
+  __REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/ThreadLabelsEditModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/ThreadLabelsEditModal.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/ThreadLabelsEditModal/ThreadLabelsEditModal.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "o7rV":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -75875,7 +75638,7 @@ module.exports = __webpack_require__.p + "images/sdf.svg?eccc4c43e742eca18912783
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.renderFileDownload = exports.websocketLeaveFile = exports.websocketJoinFile = exports.renderFileProgress = exports.renderFileError = exports.renderFile = exports.getRelatedTasks = exports.getMeta = exports.getFileProgress = exports.getFile = exports.getAssemblyParts = exports.getAssemblyParents = exports.downloadProgress = undefined;
+exports.renderFileDownload = exports.websocketLeaveFile = exports.websocketJoinFile = exports.renderFileProgress = exports.renderFileError = exports.renderFile = exports.getRelatedThreads = exports.getMeta = exports.getFileProgress = exports.getFile = exports.getAssemblyParts = exports.getAssemblyParents = exports.downloadProgress = undefined;
 
 var _downloadProgress2 = __webpack_require__("V32k");
 
@@ -75901,9 +75664,9 @@ var _getMeta2 = __webpack_require__("mUll");
 
 var _getMeta3 = _interopRequireDefault(_getMeta2);
 
-var _getRelatedTasks2 = __webpack_require__("KC90");
+var _getRelatedThreads2 = __webpack_require__("DrTP");
 
-var _getRelatedTasks3 = _interopRequireDefault(_getRelatedTasks2);
+var _getRelatedThreads3 = _interopRequireDefault(_getRelatedThreads2);
 
 var _renderFile2 = __webpack_require__("2V0G");
 
@@ -75937,7 +75700,7 @@ exports.getAssemblyParts = _getAssemblyParts3.default;
 exports.getFile = _getFile3.default;
 exports.getFileProgress = _getFileProgress3.default;
 exports.getMeta = _getMeta3.default;
-exports.getRelatedTasks = _getRelatedTasks3.default;
+exports.getRelatedThreads = _getRelatedThreads3.default;
 exports.renderFile = _renderFile3.default;
 exports.renderFileError = _renderFileError3.default;
 exports.renderFileProgress = _renderFileProgress3.default;
@@ -76139,124 +75902,6 @@ module.exports = {"primary":"rgb(68, 154, 211)","progress":"LoadingLinear_progre
 
 /***/ },
 
-/***/ "obW0":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Component = undefined;
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _StringFilterUtils = __webpack_require__("rv25");
-
-var _StringFilterMenu = __webpack_require__("AKpV");
-
-var _StringFilterMenu2 = _interopRequireDefault(_StringFilterMenu);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var statusFilter = [{
-  text: 'Status: Complete',
-  value: 'is:complete'
-}, {
-  text: 'Status: Incomplete',
-  value: 'is:incomplete'
-}, {
-  text: 'Status: All',
-  value: ''
-}];
-
-var Component = exports.Component = _react2.default.createClass({
-  displayName: 'Component',
-  render: function render() {
-    var _props = this.props,
-        model = _props.model,
-        value = _props.value,
-        dispatch = _props.dispatch,
-        auth = _props.auth;
-
-
-    var ownerFilter = [{
-      text: 'My Tasks',
-      value: 'assignee:' + auth.user.stub
-    }, {
-      text: 'All Tasks',
-      value: ''
-    }];
-
-    /****************************************************
-    model: the model representing the search string:
-         : 'tasks.boards.123456789.searchString'
-    value: the value of the search string
-         : board.searchString
-    ****************************************************/
-
-    return _react2.default.createElement(
-      'div',
-      { className: 'PopoverMenu' },
-      _react2.default.createElement(_StringFilterMenu2.default, { filter: statusFilter, model: model, value: value }),
-      _react2.default.createElement('div', { className: 'divider' }),
-      _react2.default.createElement(_StringFilterMenu2.default, { filter: ownerFilter, model: model, value: value })
-    );
-  }
-});
-
-function mapStateToProps(_ref) {
-  var auth = _ref.auth;
-
-  return {
-    auth: auth
-  };
-}
-
-var _default = (0, _reactRedux.connect)(mapStateToProps)(Component);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Component, 'Component', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TasksFilterMenu/TasksFilterMenu.jsx');
-
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TasksFilterMenu/TasksFilterMenu.jsx');
-
-  __REACT_HOT_LOADER__.register(statusFilter, 'statusFilter', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TasksFilterMenu/TasksFilterMenu.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TasksFilterMenu/TasksFilterMenu.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TasksFilterMenu/TasksFilterMenu.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "octw":
 /***/ function(module, exports) {
 
@@ -76312,256 +75957,6 @@ var invalidEnterLeavePreset = exports.invalidEnterLeavePreset = function invalid
       defaultValue = _ref2.defaultValue;
   return "\n>> Error, via react-flip-move <<\n\nThe enter/leave preset you provided is invalid. We don't currently have a '" + value + " preset.'\n\nAcceptable values are " + acceptableValues + ". The default value of '" + defaultValue + "' will be used.\n";
 };
-
-/***/ },
-
-/***/ "onR1":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _getPrototypeOf = __webpack_require__("Zx67");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("Zrlr");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("wxAW");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("zwoO");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("Pf15");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _getUuid = __webpack_require__("FmOC");
-
-var _getUuid2 = _interopRequireDefault(_getUuid);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _TaskLabelsEdit = __webpack_require__("zkiC");
-
-var _TaskLabelsEdit2 = _interopRequireDefault(_TaskLabelsEdit);
-
-var _Store = __webpack_require__("+I1Y");
-
-var _ModalActions = __webpack_require__("u2h7");
-
-var _Popover = __webpack_require__("Erdv");
-
-var _Popover2 = _interopRequireDefault(_Popover);
-
-var _Input = __webpack_require__("xwNf");
-
-var _Input2 = _interopRequireDefault(_Input);
-
-var _SimpleIconButton = __webpack_require__("D2fa");
-
-var _SimpleIconButton2 = _interopRequireDefault(_SimpleIconButton);
-
-var _moreHoriz = __webpack_require__("O8U9");
-
-var _moreHoriz2 = _interopRequireDefault(_moreHoriz);
-
-var _ColorSelect = __webpack_require__("h95y");
-
-var _ColorSelect2 = _interopRequireDefault(_ColorSelect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Component Core
-var TaskLabelsEdit = function (_Component) {
-  (0, _inherits3.default)(TaskLabelsEdit, _Component);
-
-  function TaskLabelsEdit() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, TaskLabelsEdit);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TaskLabelsEdit.__proto__ || (0, _getPrototypeOf2.default)(TaskLabelsEdit)).call.apply(_ref, [this].concat(args))), _this), _this.onMount = function () {
-      var _this2;
-
-      return (_this2 = _this).__onMount__REACT_HOT_LOADER__.apply(_this2, arguments);
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(TaskLabelsEdit, [{
-    key: 'confirmDelete',
-    value: function confirmDelete(model, index) {
-      var _this3 = this;
-
-      this.props.dispatch((0, _ModalActions.showConfirm)({
-        message: 'If you delete this label it will be removed from all assigned tasks.'
-      })).then(function () {
-        _this3.props.dispatch((0, _Store.storeRemove)(model, index));
-      });
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(props) {
-      this.onMount(props);
-    }
-  }, {
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      this.onMount(this.props);
-    }
-  }, {
-    key: '__onMount__REACT_HOT_LOADER__',
-    value: function __onMount__REACT_HOT_LOADER__(props) {
-      var dispatch = props.dispatch,
-          value = props.value,
-          model = props.model;
-      // If it is empty, push on a label
-
-      if (value.length === 0) {
-        dispatch((0, _Store.storePush)(model, {
-          _id: (0, _getUuid2.default)(),
-          color: '',
-          name: ''
-        }));
-      }
-      // Else, if the name of the last label exists, add another
-      else if (value[value.length - 1].name.length >= 1) {
-          dispatch((0, _Store.storePush)(model, {
-            _id: (0, _getUuid2.default)(),
-            color: '',
-            name: ''
-          }));
-        }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this4 = this;
-
-      var _props = this.props,
-          model = _props.model,
-          value = _props.value,
-          dispatch = _props.dispatch;
-
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        value.map(function (label, index) {
-          return _react2.default.createElement(
-            'div',
-            { key: label._id, className: _TaskLabelsEdit2.default.row + ' layout-row layout-align-start-center' },
-            _react2.default.createElement(
-              'div',
-              { className: _TaskLabelsEdit2.default.colorSelect },
-              _react2.default.createElement(
-                _Popover2.default,
-                { preferPlace: 'above' },
-                _react2.default.createElement('label', { htmlFor: label._id, className: _TaskLabelsEdit2.default.swatch, style: { background: label.color } }),
-                _react2.default.createElement(_ColorSelect2.default, {
-                  model: model + '[' + index + '].color',
-                  value: label.color
-                })
-              ),
-              _react2.default.createElement(_Input2.default, {
-                model: model + '[' + index + '].color',
-                value: label.color,
-                className: _TaskLabelsEdit2.default.colorSelectInput + ' dr-input',
-                type: 'text',
-                placeholder: 'Color Code',
-                id: label._id
-              })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: _TaskLabelsEdit2.default.name + ' flex' },
-              _react2.default.createElement(_Input2.default, {
-                model: model + '[' + index + '].name',
-                value: label.name,
-                className: 'dr-input',
-                type: 'text',
-                placeholder: 'Label Name'
-              })
-            ),
-            _react2.default.createElement(
-              _Popover2.default,
-              { preferPlace: 'right' },
-              _react2.default.createElement(
-                _SimpleIconButton2.default,
-                null,
-                _react2.default.createElement(_moreHoriz2.default, { size: '20px' })
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'PopoverMenu' },
-                _react2.default.createElement(
-                  'a',
-                  { onClick: function onClick() {
-                      return _this4.confirmDelete(model, index);
-                    } },
-                  'Remove Label'
-                )
-              )
-            )
-          );
-        })
-      );
-    }
-  }]);
-  return TaskLabelsEdit;
-}(_react.Component);
-
-var _default = (0, _reactRedux.connect)()(TaskLabelsEdit);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(TaskLabelsEdit, 'TaskLabelsEdit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEdit/TaskLabelsEdit.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEdit/TaskLabelsEdit.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tasks/TaskLabelsEdit/TaskLabelsEdit.jsx');
-}();
-
-;
-;
-
-var _temp3 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -76735,66 +76130,15 @@ module.exports = Modal
 /***/ },
 
 /***/ "p8CK":
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 "use strict";
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getModal = exports.registerModal = undefined;
-
-var _BetaModal = __webpack_require__("7TxZ");
-
-var _BetaModal2 = _interopRequireDefault(_BetaModal);
-
-var _ConfirmModal = __webpack_require__("7iFk");
-
-var _ConfirmModal2 = _interopRequireDefault(_ConfirmModal);
-
-var _ConnectionModal = __webpack_require__("8LSG");
-
-var _ConnectionModal2 = _interopRequireDefault(_ConnectionModal);
-
-var _ErrorModal = __webpack_require__("hBou");
-
-var _ErrorModal2 = _interopRequireDefault(_ErrorModal);
-
-var _AssemblyPartNotFoundModal = __webpack_require__("nJ6m");
-
-var _AssemblyPartNotFoundModal2 = _interopRequireDefault(_AssemblyPartNotFoundModal);
-
-var _PreviewExpiredModal = __webpack_require__("5uwe");
-
-var _PreviewExpiredModal2 = _interopRequireDefault(_PreviewExpiredModal);
-
-var _ProviderAccessErrorModal = __webpack_require__("Z/s8");
-
-var _ProviderAccessErrorModal2 = _interopRequireDefault(_ProviderAccessErrorModal);
-
-var _ProviderAccessRevokedModal = __webpack_require__("WCap");
-
-var _ProviderAccessRevokedModal2 = _interopRequireDefault(_ProviderAccessRevokedModal);
-
-var _TaskLabelsEditModal = __webpack_require__("JuEv");
-
-var _TaskLabelsEditModal2 = _interopRequireDefault(_TaskLabelsEditModal);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var modalRegistry = {
-  'BETA': _BetaModal2.default,
-  'CONFIRM': _ConfirmModal2.default,
-  'CONNECTION': _ConnectionModal2.default,
-  'ERROR': _ErrorModal2.default,
-
-  'ASSEMBLY_PART_NOT_FOUND': _AssemblyPartNotFoundModal2.default,
-  'PREVIEW_EXPIRED': _PreviewExpiredModal2.default,
-  'PROVIDER_ACCESS_ERROR': _ProviderAccessErrorModal2.default,
-  'PROVIDER_ACCESS_REVOKED': _ProviderAccessRevokedModal2.default,
-  'TASK_LABELS': _TaskLabelsEditModal2.default
-};
+var modalRegistry = {};
 
 var registerModal = exports.registerModal = function registerModal(modalType, component) {
   if (!modalRegistry[modalType]) {
@@ -76807,7 +76151,7 @@ var getModal = exports.getModal = function getModal(modalType) {
   if (modalComponent) {
     return modalComponent;
   } else {
-    console.error(modalType + ' Modal could not be found');
+    console.error(modalType + " Modal could not be found");
   }
 };
 ;
@@ -76817,11 +76161,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(registerModal, 'registerModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ModalRegistry.js');
+  __REACT_HOT_LOADER__.register(registerModal, "registerModal", "C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ModalRegistry.js");
 
-  __REACT_HOT_LOADER__.register(getModal, 'getModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ModalRegistry.js');
+  __REACT_HOT_LOADER__.register(getModal, "getModal", "C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ModalRegistry.js");
 
-  __REACT_HOT_LOADER__.register(modalRegistry, 'modalRegistry', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ModalRegistry.js');
+  __REACT_HOT_LOADER__.register(modalRegistry, "modalRegistry", "C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Modal/ModalRegistry.js");
 }();
 
 ;
@@ -76834,22 +76178,6 @@ var _temp2 = function () {
 }();
 
 ;
-
-/***/ },
-
-/***/ "pB9t":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"table":"StandardTable_table-3RaPn"};
-
-/***/ },
-
-/***/ "pD2R":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"sampleOuter":"ColorSelect_sampleOuter-3TnYZ","sampleSwatch":"ColorSelect_sampleSwatch-2aCWi"};
 
 /***/ },
 
@@ -77861,14 +77189,6 @@ module.exports = exports['default'];
 
 /***/ },
 
-/***/ "qLYE":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","modal":"TaskMentionModal_modal-15hfM","header":"TaskMentionModal_header-akpg0","search":"TaskMentionModal_search-1TMR6"};
-
-/***/ },
-
 /***/ "qOJP":
 /***/ function(module, exports) {
 
@@ -77921,6 +77241,49 @@ function logException(ex, context) {
   /*eslint no-console:0*/
   window && window.console && console.error && console.error(ex);
 }
+
+/***/ },
+
+/***/ "qZTG":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// If we are in the electron main thread, we don't want to register the modal
+var modalName = 'THREAD_COMMIT';
+
+var _default = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"}.APP_THREAD === 'electron' ? modalName : __webpack_require__("MJ1e").default(modalName);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/index.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/index.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -78811,6 +78174,14 @@ function derDecodeLen(buf, primitive, fail) {
   return len;
 }
 
+
+/***/ },
+
+/***/ "rlNs":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"primary":"rgb(68, 154, 211)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","row":"ThreadRow_row-35S1U","button":"ThreadRow_button-3p0TL","active":"ThreadRow_active-1YDXe"};
 
 /***/ },
 
@@ -81422,6 +80793,10 @@ var _getUuid2 = _interopRequireDefault(_getUuid);
 
 var _ModalPromises = __webpack_require__("Hgv7");
 
+var _ConfirmModal = __webpack_require__("T60f");
+
+var _ConfirmModal2 = _interopRequireDefault(_ConfirmModal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var DeferredPromise = function DeferredPromise() {
@@ -81474,7 +80849,7 @@ var showConfirm = exports.showConfirm = function showConfirm() {
       confirmPlaceholder = _ref2.confirmPlaceholder;
 
   return showModal({
-    modalType: 'CONFIRM',
+    modalType: _ConfirmModal2.default,
     modalProps: {
       title: title,
       message: message,
@@ -83157,6 +82532,343 @@ function sampleSize(collection, n, guard) {
 
 module.exports = sampleSize;
 
+
+/***/ },
+
+/***/ "vdIW":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _keys = __webpack_require__("fZjL");
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _values2 = __webpack_require__("L8MQ");
+
+var _values3 = _interopRequireDefault(_values2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _ThreadMentionModal = __webpack_require__("G4ri");
+
+var _ThreadMentionModal2 = _interopRequireDefault(_ThreadMentionModal);
+
+var _howMany = __webpack_require__("Il84");
+
+var _howMany2 = _interopRequireDefault(_howMany);
+
+var _Input = __webpack_require__("xwNf");
+
+var _Input2 = _interopRequireDefault(_Input);
+
+var _Button = __webpack_require__("Yrew");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _ThreadRow = __webpack_require__("ante");
+
+var _ThreadRow2 = _interopRequireDefault(_ThreadRow);
+
+var _search = __webpack_require__("Et8k");
+
+var _search2 = _interopRequireDefault(_search);
+
+var _ThreadsUtils = __webpack_require__("wvsJ");
+
+var _ThreadsFilterMenu = __webpack_require__("/Ogz");
+
+var _ThreadsFilterMenu2 = _interopRequireDefault(_ThreadsFilterMenu);
+
+var _Popover = __webpack_require__("Erdv");
+
+var _Popover2 = _interopRequireDefault(_Popover);
+
+var _LoadingOverlay = __webpack_require__("K+/r");
+
+var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
+
+var _Mentions = __webpack_require__("b/J2");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var getMentionsFromObject = function getMentionsFromObject(mentionsObject, threads) {
+  return (0, _keys2.default)(mentionsObject).map(function (threadId) {
+    return (0, _Mentions.newMention)({
+      entityId: threadId,
+      display: threads[threadId].data.name,
+      mentionType: mentionsObject[threadId] === 'complete' ? 'thread-complete' : 'thread'
+    });
+  });
+};
+
+var countMentions = function countMentions(mentions, type) {
+  return (0, _values3.default)(mentions).filter(function (mentionType) {
+    return mentionType === type;
+  }).length;
+};
+
+var ThreadMentionModal = function (_Component) {
+  (0, _inherits3.default)(ThreadMentionModal, _Component);
+
+  function ThreadMentionModal() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, ThreadMentionModal);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = ThreadMentionModal.__proto__ || (0, _getPrototypeOf2.default)(ThreadMentionModal)).call.apply(_ref, [this].concat(args))), _this), _this.submit = function () {
+      var _this2;
+
+      return (_this2 = _this).__submit__REACT_HOT_LOADER__.apply(_this2, arguments);
+    }, _this.cancel = function () {
+      var _this3;
+
+      return (_this3 = _this).__cancel__REACT_HOT_LOADER__.apply(_this3, arguments);
+    }, _this.setMention = function () {
+      var _this4;
+
+      return (_this4 = _this).__setMention__REACT_HOT_LOADER__.apply(_this4, arguments);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(ThreadMentionModal, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      if (!this.props.board || !this.props.board.data) {
+        this.props.getBoards({
+          projectId: this.props.projectId
+        });
+      }
+    }
+  }, {
+    key: '__submit__REACT_HOT_LOADER__',
+    value: function __submit__REACT_HOT_LOADER__() {
+      var _props = this.props,
+          mentions = _props.mentions,
+          mentionsModel = _props.mentionsModel,
+          threads = _props.threads;
+      // Get the mentions
+
+      var mentionArray = getMentionsFromObject(mentions, threads);
+      // Clear mentions
+      this.props.storeChange(mentionsModel, {});
+      // Return the results
+      this.props.modalConfirm({ mentions: mentionArray });
+    }
+  }, {
+    key: '__cancel__REACT_HOT_LOADER__',
+    value: function __cancel__REACT_HOT_LOADER__() {
+      this.props.modalCancel();
+    }
+  }, {
+    key: '__setMention__REACT_HOT_LOADER__',
+    value: function __setMention__REACT_HOT_LOADER__(_ref2) {
+      var status = _ref2.status,
+          threadId = _ref2.threadId;
+      var _props2 = this.props,
+          mentions = _props2.mentions,
+          storeChange = _props2.storeChange,
+          mentionsModel = _props2.mentionsModel;
+
+      var currentStatus = mentions[threadId];
+      if (status === currentStatus) {
+        storeChange(mentionsModel + '.' + threadId, '');
+      } else {
+        storeChange(mentionsModel + '.' + threadId, status);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this5 = this;
+
+      var _props3 = this.props,
+          threads = _props3.threads,
+          board = _props3.board,
+          mentions = _props3.mentions,
+          boardModel = _props3.boardModel;
+
+
+      var getThreads = function getThreads() {
+        var filteredBoard = (0, _ThreadsUtils.filterBoard)(board, threads, board.searchString);
+        var numThreads = (0, _ThreadsUtils.getAllThreads)(board.data.groups).length;
+        var numFilteredThreads = (0, _ThreadsUtils.getAllThreads)(filteredBoard.data.groups).length;
+
+        if (numThreads == 0 || numFilteredThreads == 0) {
+          return _react2.default.createElement(
+            'div',
+            { className: 'flex layout-column layout-align-center-center text-center' },
+            numThreads == 0 ? _react2.default.createElement(
+              'div',
+              { style: { width: '100%' } },
+              'This project has no threads. Add some.'
+            ) : _react2.default.createElement(
+              'div',
+              { style: { width: '100%' } },
+              'No results, ',
+              _react2.default.createElement(
+                'a',
+                { className: 'text-primary', onClick: function onClick() {
+                    return _this5.props.storeChange(boardModel + '.searchString', '');
+                  } },
+                'clear search filter.'
+              )
+            )
+          );
+        } else {
+          return _react2.default.createElement(
+            'div',
+            { className: 'flex scroll-box' },
+            filteredBoard.data.groups.map(function (group, idx) {
+              return _react2.default.createElement(
+                'div',
+                { key: idx },
+                group.threads.map(function (threadId) {
+                  return _react2.default.createElement(_ThreadRow2.default, {
+                    key: threadId,
+                    threadId: threadId,
+                    status: mentions[threadId],
+                    toggleComplete: function toggleComplete() {
+                      return _this5.setMention({ status: 'complete', threadId: threadId });
+                    },
+                    toggleRelated: function toggleRelated() {
+                      return _this5.setMention({ status: 'related', threadId: threadId });
+                    }
+                  });
+                })
+              );
+            })
+          );
+        }
+      };
+
+      return _react2.default.createElement(
+        'div',
+        { className: _ThreadMentionModal2.default.modal + ' layout-column' },
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-title' },
+          'Add threads to a commit:'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: _ThreadMentionModal2.default.header + ' layout-row layout-align-start-center' },
+          _react2.default.createElement(
+            'div',
+            { className: 'flex' },
+            (0, _howMany2.default)({ count: countMentions(mentions, 'complete'), adj: 'complete' }, { count: countMentions(mentions, 'related'), adj: 'related' }, 'thread')
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: _ThreadMentionModal2.default.search },
+            _react2.default.createElement(_Input2.default, {
+              model: boardModel + '.searchString',
+              value: board.searchString,
+              className: 'dr-input',
+              placeholder: 'Search threads'
+            }),
+            _react2.default.createElement(
+              _Popover2.default,
+              { preferPlace: 'right', trigger: 'hoverDelay' },
+              _react2.default.createElement(_search2.default, { size: '20' }),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_ThreadsFilterMenu2.default, { model: boardModel + '.searchString', value: board.searchString })
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'layout-column flex rel-box' },
+          _react2.default.createElement(_LoadingOverlay2.default, { show: !board || !board.data }),
+          board && board.data ? getThreads() : null
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-footer layout-row layout-align-start-center' },
+          _react2.default.createElement('div', { className: 'flex text-description-1' }),
+          _react2.default.createElement(
+            _Button2.default,
+            { style: { marginRight: '10px' }, onClick: this.cancel },
+            'Cancel'
+          ),
+          _react2.default.createElement(
+            _Button2.default,
+            { className: 'primary', onClick: this.submit },
+            'Add Threads'
+          )
+        )
+      );
+    }
+  }]);
+  return ThreadMentionModal;
+}(_react.Component);
+
+exports.default = ThreadMentionModal;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(ThreadMentionModal, 'ThreadMentionModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadMentionModal.jsx');
+
+  __REACT_HOT_LOADER__.register(getMentionsFromObject, 'getMentionsFromObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadMentionModal.jsx');
+
+  __REACT_HOT_LOADER__.register(countMentions, 'countMentions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadMentionModal.jsx');
+}();
+
+;
+;
+
+var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -85894,6 +85606,118 @@ module.exports = exports['default'];
 
 /***/ },
 
+/***/ "wvsJ":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getAllThreads = exports.filterBoard = undefined;
+
+var _escapeRegExp2 = __webpack_require__("1kli");
+
+var _escapeRegExp3 = _interopRequireDefault(_escapeRegExp2);
+
+var _every2 = __webpack_require__("Lrp7");
+
+var _every3 = _interopRequireDefault(_every2);
+
+var _icepick = __webpack_require__("PgM/");
+
+var _icepick2 = _interopRequireDefault(_icepick);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var filterBoard = exports.filterBoard = function filterBoard(board, threads, searchString) {
+  // This will filter the board by the the search string
+  var queryStringArray = searchString ? searchString.split(' ') : [];
+  return _icepick2.default.updateIn(board, ['data', 'groups'], function (groups) {
+    return filterGroups({ groups: groups, threads: threads, filterFn: function filterFn(thread) {
+        return thread && thread.data ? (0, _every3.default)(queryStringArray, function (queryString) {
+          return queryByString(thread, queryString);
+        }) : true;
+      } });
+  });
+};
+
+var getAllThreads = exports.getAllThreads = function getAllThreads(boardGroups) {
+  var threads = [];
+  boardGroups.forEach(function (group) {
+    return threads = threads.concat(group.threads);
+  });
+  return threads;
+};
+
+function queryByString(item, queryString) {
+  /****************************************************
+  This is the main query function. It takes in a string
+  and will filter the thread by this string in some way
+  ****************************************************/
+  if (queryString == 'is:complete' || queryString == 'is:!complete') {
+    return item.data.complete;
+  } else if (queryString == 'is:incomplete') {
+    return !item.data.complete;
+  }
+  // Assignee Query
+  else if (queryString.startsWith('assignee:')) {
+      var assignee = queryString.replace('assignee:', '');
+      return item.data.users.find(function (user) {
+        return user.stub == assignee;
+      });
+    }
+    // Filter by the string itself (case independent)
+    else if (queryString && queryString.length > 0) {
+        return new RegExp((0, _escapeRegExp3.default)(queryString), 'i').test(item.data.name);
+      } else {
+        return true;
+      }
+}
+
+function filterGroups(_ref) {
+  var groups = _ref.groups,
+      threads = _ref.threads,
+      filterFn = _ref.filterFn;
+
+  return groups ? groups.map(function (group) {
+    return _icepick2.default.updateIn(group, ['threads'], function (threadIds) {
+      return threadIds.filter(function (threadId) {
+        return filterFn(threads[threadId]);
+      });
+    });
+  }) : [];
+}
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(filterBoard, 'filterBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.utils.js');
+
+  __REACT_HOT_LOADER__.register(getAllThreads, 'getAllThreads', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.utils.js');
+
+  __REACT_HOT_LOADER__.register(queryByString, 'queryByString', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.utils.js');
+
+  __REACT_HOT_LOADER__.register(filterGroups, 'filterGroups', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.utils.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "wxAW":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -87970,14 +87794,6 @@ try {
 
 /***/ },
 
-/***/ "zkiC":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"row":"TaskLabelsEdit_row-1akTk","colorSelect":"TaskLabelsEdit_colorSelect-24NMc","colorSelectInput":"TaskLabelsEdit_colorSelectInput-u4EXK","name":"TaskLabelsEdit_name-sTCMY","swatch":"TaskLabelsEdit_swatch-20AQt"};
-
-/***/ },
-
 /***/ "zpVT":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -88184,4 +88000,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.08b3e17b8e7ed0fa11a9.js.map
+//# sourceMappingURL=application.918fd183857de7ec4342.js.map
