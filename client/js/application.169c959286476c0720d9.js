@@ -40396,7 +40396,7 @@ var Landing = function (_Component) {
           _react2.default.createElement(
             'title',
             null,
-            'Stemn: Seamless Version Control and Thread Tracking'
+            'Stemn: Seamless Version Control and Task Tracking'
           )
         ),
         _react2.default.createElement(
@@ -40405,7 +40405,7 @@ var Landing = function (_Component) {
           _react2.default.createElement(
             'h1',
             null,
-            'Seamless Version Control and Thread Tracking'
+            'Seamless Version Control and Task Tracking'
           ),
           _react2.default.createElement(
             'h3',
@@ -61985,7 +61985,7 @@ var getFeed = exports.getFeed = function getFeed(_ref6) {
       params: {
         size: size,
         page: page,
-        //      types: ['commits'],
+        types: ['commits', 'threads', 'threadEvents', 'changes'],
         feedType: feedType }
     }),
     meta: {
@@ -82982,8 +82982,6 @@ var colours = ['#D50000', '#FF4081', '#CE93D8', '#AA00FF', '#B39DDB', '#6200EA',
 
 var _default = _react2.default.createClass({
   displayName: '_default',
-
-  default: '/assets/images/default/user-1.png',
   render: function render() {
     // display: 'contain' (Default: 'cover')
     var _props = this.props,
@@ -83009,8 +83007,10 @@ var _default = _react2.default.createClass({
     var resizeType = size && size > 50 ? 'thumb-lg' : 'thumb';
 
     if (picture) {
+      var pictureIsExternal = picture.startsWith('http');
+      var pictureUrl = pictureIsExternal ? picture : '' + "https://dev.stemn.com" + picture + '?size=' + resizeType + '&crop=' + (display === 'contain' ? 'false' : 'true');
       var pictureStyles = {
-        backgroundImage: 'url(' + "https://dev.stemn.com" + (picture || this.default) + '?size=' + resizeType + '&crop=' + (display === 'contain' ? 'false' : 'true') + ')'
+        backgroundImage: 'url(' + pictureUrl + ')'
       };
       return _react2.default.createElement('div', { className: (0, _classnames2.default)(display === 'cover' ? _UserAvatar2.default.cover : _UserAvatar2.default.contain, className),
         title: title,
@@ -88000,4 +88000,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.918fd183857de7ec4342.js.map
+//# sourceMappingURL=application.169c959286476c0720d9.js.map
