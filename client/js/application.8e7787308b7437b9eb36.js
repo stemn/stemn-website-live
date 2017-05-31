@@ -944,8 +944,6 @@ var _inherits2 = __webpack_require__("Pf15");
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _class, _temp2;
-
 var _react = __webpack_require__("U7vG");
 
 var _react2 = _interopRequireDefault(_react);
@@ -1019,7 +1017,7 @@ var ClickFile = function ClickFile(props) {
   }
 };
 
-var FileRow = (_temp2 = _class = function (_Component) {
+var FileRow = function (_Component) {
   (0, _inherits3.default)(FileRow, _Component);
 
   function FileRow() {
@@ -1034,46 +1032,32 @@ var FileRow = (_temp2 = _class = function (_Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = FileRow.__proto__ || (0, _getPrototypeOf2.default)(FileRow)).call.apply(_ref, [this].concat(args))), _this), _this.singleClick = function () {
-      var _this2;
-
-      return (_this2 = _this).__singleClick__REACT_HOT_LOADER__.apply(_this2, arguments);
-    }, _this.doubleClick = function () {
-      var _this3;
-
-      return (_this3 = _this).__doubleClick__REACT_HOT_LOADER__.apply(_this3, arguments);
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(FileRow, [{
-    key: '__singleClick__REACT_HOT_LOADER__',
-    value: function __singleClick__REACT_HOT_LOADER__() {
-      var _props = this.props,
-          singleClick = _props.singleClick,
-          file = _props.file;
+      var _this$props = _this.props,
+          singleClick = _this$props.singleClick,
+          file = _this$props.file;
 
       if (singleClick) {
         singleClick({ file: file });
       }
-    }
-  }, {
-    key: '__doubleClick__REACT_HOT_LOADER__',
-    value: function __doubleClick__REACT_HOT_LOADER__() {
-      var _props2 = this.props,
-          doubleClick = _props2.doubleClick,
-          file = _props2.file;
+    }, _this.doubleClick = function () {
+      var _this$props2 = _this.props,
+          doubleClick = _this$props2.doubleClick,
+          file = _this$props2.file;
 
       if (doubleClick) {
         doubleClick({ file: file });
       }
-    }
-  }, {
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(FileRow, [{
     key: 'render',
     value: function render() {
-      var _props3 = this.props,
-          isActive = _props3.isActive,
-          file = _props3.file,
-          query = _props3.query,
-          link = _props3.link;
+      var _props = this.props,
+          isActive = _props.isActive,
+          file = _props.file,
+          query = _props.query,
+          link = _props.link;
 
 
       var timeFromNow = (0, _moment2.default)(file.modified).fromNow();
@@ -1107,7 +1091,7 @@ var FileRow = (_temp2 = _class = function (_Component) {
             })
           )
         ),
-        file.commit && file.commit.summary && file.commit._id ? _react2.default.createElement(
+        file.commit && file.commit.name && file.commit._id ? _react2.default.createElement(
           'div',
           { className: 'flex' },
           _react2.default.createElement(
@@ -1117,7 +1101,7 @@ var FileRow = (_temp2 = _class = function (_Component) {
               params: { projectId: file.project._id, commitId: file.commit._id },
               className: (0, _classnames2.default)(_FileRow2.default.commit, _FileRow2.default.clickable, 'link-primary text-ellipsis')
             },
-            file.commit.summary
+            file.commit.name
           )
         ) : null,
         _react2.default.createElement(
@@ -1144,37 +1128,9 @@ var FileRow = (_temp2 = _class = function (_Component) {
     }
   }]);
   return FileRow;
-}(_react.Component), _class.propTypes = {
-  singleClick: _react.PropTypes.func,
-  doubleClick: _react.PropTypes.func,
-  file: _react.PropTypes.object.isRequired,
-  query: _react.PropTypes.string,
-  isActive: _react.PropTypes.bool,
-  link: _react.PropTypes.bool
-}, _temp2);
+}(_react.Component);
+
 exports.default = FileRow;
-;
-
-var _temp3 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(FileRow, 'FileRow', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/components/FileRow.jsx');
-
-  __REACT_HOT_LOADER__.register(ClickFile, 'ClickFile', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/components/FileRow.jsx');
-}();
-
-;
-;
-
-var _temp4 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -4454,11 +4410,11 @@ var LinkComponent = function LinkComponent(props) {
 
   var additionalClickFunction = function additionalClickFunction() {
     // Dispatch the show event if required
-    if (routePath.scope && routePath.show) showWindow(routePath.scope);
+    if (routePath && routePath.scope && routePath.show) showWindow(routePath.scope);
     // dispatch the closeModals
-    if (routePath.closeModals) closeAll();
+    if (routePath && routePath.closeModals) closeAll();
 
-    if (routePath.clickDispatch) {
+    if (routePath && routePath.clickDispatch) {
       dispatch(routePath.clickDispatch);
     }
   };
@@ -4493,37 +4449,7 @@ var LinkComponent = function LinkComponent(props) {
   }
 };
 
-LinkComponent.propTypes = propTypesObject;
-
-var _default = LinkComponent;
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(propTypesObject, 'propTypesObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Router/Link/Link.js');
-
-  __REACT_HOT_LOADER__.register(LinkComponent, 'LinkComponent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Router/Link/Link.js');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Router/Link/Link.js');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Router/Link/Link.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
+exports.default = LinkComponent;
 
 /***/ },
 
@@ -14227,7 +14153,7 @@ function newThread(_ref) {
       type: 'THREADS/NEW_TASK',
       payload: (0, _axios2.default)({
         method: 'POST',
-        url: '/api/v1/boards/' + projectId + '/threads',
+        url: '/api/v1/projects/' + projectId + '/threads',
         data: (0, _assign2.default)({}, threadDefault, thread)
       }),
       meta: {
@@ -14651,70 +14577,6 @@ function websocketLeaveBoard(_ref23) {
     }
   };
 }
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(newThread, 'newThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(getBoards, 'getBoards', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(getBoard, 'getBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(updateBoard, 'updateBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(editBoard, 'editBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(getThread, 'getThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(updateThread, 'updateThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(getGroup, 'getGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(updateGroup, 'updateGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(deleteThread, 'deleteThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(moveThread, 'moveThread', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(beginDrag, 'beginDrag', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(endDrag, 'endDrag', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(moveGroup, 'moveGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(toggleComplete, 'toggleComplete', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(toggleCompleteUndo, 'toggleCompleteUndo', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(newGroup, 'newGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(deleteGroupConfirm, 'deleteGroupConfirm', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(deleteGroup, 'deleteGroup', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(showLabelEditModal, 'showLabelEditModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(changeLayout, 'changeLayout', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(websocketJoinBoard, 'websocketJoinBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-
-  __REACT_HOT_LOADER__.register(websocketLeaveBoard, 'websocketLeaveBoard', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Threads/Threads.actions.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -21731,7 +21593,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(37)]).then(__webpack_require__.bind(null, "GXbu")), cb);
   };
   var getFieldOverview = function getFieldOverview(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(20), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "XFbw")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(19), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "XFbw")), cb);
   };
   var getFile = function getFile(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(8), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "jvCS")), cb);
@@ -21740,7 +21602,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(45).then(__webpack_require__.bind(null, "rtAa")), cb);
   };
   var getHome = function getHome(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, "MhFa")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, "MhFa")), cb);
   };
   var getLogin = function getLogin(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(53).then(__webpack_require__.bind(null, "WTdZ")), cb);
@@ -21785,7 +21647,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(4), __webpack_require__.e(3), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "S8ZU")), cb);
   };
   var getProjectOverview = function getProjectOverview(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(16), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "E16q")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(15), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "E16q")), cb);
   };
   var getProjectSettings = function getProjectSettings(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(28).then(__webpack_require__.bind(null, "WnvL")), cb);
@@ -21818,7 +21680,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(50).then(__webpack_require__.bind(null, "WuR6")), cb);
   };
   var getSearch = function getSearch(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(21), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "cf2e")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(20), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "cf2e")), cb);
   };
   var getSecurity = function getSecurity(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(48).then(__webpack_require__.bind(null, "CStl")), cb);
@@ -21839,7 +21701,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(11), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "WMt1")), cb);
   };
   var getSettingsProfileDetails = function getSettingsProfileDetails(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, "q8Uh")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, "q8Uh")), cb);
   };
   var getSettingsProjects = function getSettingsProjects(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(40), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "wTM9")), cb);
@@ -21860,7 +21722,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(33), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "JoCH")), cb);
   };
   var getUserOverview = function getUserOverview(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, "VTvy")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(21)]).then(__webpack_require__.bind(null, "VTvy")), cb);
   };
   var getUserProjects = function getUserProjects(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(30), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "2k9P")), cb);
@@ -61866,6 +61728,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 exports.deselect = deselect;
 exports.selectTimelineItem = selectTimelineItem;
 exports.fetchTimeline = fetchTimeline;
+exports.getCount = getCount;
 
 var _axios = __webpack_require__("mtWM");
 
@@ -61942,9 +61805,33 @@ function fetchTimeline(_ref3) {
   };
 }
 
-var addEvent = exports.addEvent = function addEvent(_ref4) {
-  var cacheKey = _ref4.cacheKey,
-      event = _ref4.event;
+function getCount(_ref4) {
+  var entityType = _ref4.entityType,
+      entityId = _ref4.entityId,
+      types = _ref4.types,
+      cacheKey = _ref4.cacheKey;
+
+  return {
+    type: 'TIMELINE/FETCH_TIMELINE',
+    payload: (0, _axios2.default)({
+      method: 'GET',
+      url: '/api/v1/timeline',
+      params: {
+        entityType: entityType,
+        entityId: entityId,
+        types: types,
+        count: true
+      }
+    }),
+    meta: {
+      cacheKey: cacheKey
+    }
+  };
+}
+
+var addEvent = exports.addEvent = function addEvent(_ref5) {
+  var cacheKey = _ref5.cacheKey,
+      event = _ref5.event;
 
   var eventObject = (0, _extends3.default)({}, event, {
     _id: (0, _getUuid2.default)()
@@ -61958,9 +61845,9 @@ var addEvent = exports.addEvent = function addEvent(_ref4) {
   };
 };
 
-var deleteEvent = exports.deleteEvent = function deleteEvent(_ref5) {
-  var cacheKey = _ref5.cacheKey,
-      eventId = _ref5.eventId;
+var deleteEvent = exports.deleteEvent = function deleteEvent(_ref6) {
+  var cacheKey = _ref6.cacheKey,
+      eventId = _ref6.eventId;
 
   return {
     type: 'TIMELINE/DELETE_EVENT',
@@ -61971,11 +61858,11 @@ var deleteEvent = exports.deleteEvent = function deleteEvent(_ref5) {
   };
 };
 
-var getFeed = exports.getFeed = function getFeed(_ref6) {
-  var feedType = _ref6.feedType,
-      page = _ref6.page,
-      size = _ref6.size,
-      cacheKey = _ref6.cacheKey;
+var getFeed = exports.getFeed = function getFeed(_ref7) {
+  var feedType = _ref7.feedType,
+      page = _ref7.page,
+      size = _ref7.size,
+      cacheKey = _ref7.cacheKey;
   return {
     // This will get the feed for all items the current user is interested in
     type: 'TIMELINE/FETCH_TIMELINE',
@@ -61993,36 +61880,6 @@ var getFeed = exports.getFeed = function getFeed(_ref6) {
     }
   };
 };
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(deselect, 'deselect', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
-
-  __REACT_HOT_LOADER__.register(selectTimelineItem, 'selectTimelineItem', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
-
-  __REACT_HOT_LOADER__.register(fetchTimeline, 'fetchTimeline', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
-
-  __REACT_HOT_LOADER__.register(addEvent, 'addEvent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
-
-  __REACT_HOT_LOADER__.register(deleteEvent, 'deleteEvent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
-
-  __REACT_HOT_LOADER__.register(getFeed, 'getFeed', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/SyncTimeline/SyncTimeline.actions.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -69628,6 +69485,13 @@ var _defineProperty2 = __webpack_require__("bOdI");
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  return mainReducer(state, action);
+};
+
 var _icepick = __webpack_require__("PgM/");
 
 var _icepick2 = _interopRequireDefault(_icepick);
@@ -69642,8 +69506,8 @@ var initialState = {
     data: { changesData },
     selected: { the Selected Change},
     loading: true || false,
-    summary: 'commit summary',
-    description: 'commit description'
+    name: 'commit summary',
+    body: 'commit body'
   }
   **************************************/
 };
@@ -69655,10 +69519,10 @@ var mainReducer = function mainReducer(state, action) {
     case 'CHANGES/SELECTED_FILE_CHANGE':
       return _icepick2.default.assocIn(state, [action.payload.projectId, 'selected'], action.payload.selected);
     case 'CHANGES/MENTION_THREADS':
-      return _icepick2.default.updateIn(state, [action.payload.projectId, 'description'], function (description) {
-        var existingMentions = (0, _MentionsUtils.parseMentions)(description);
+      return _icepick2.default.updateIn(state, [action.payload.projectId, 'body'], function (body) {
+        var existingMentions = (0, _MentionsUtils.parseMentions)(body);
         var uniqueNewMentions = (0, _MentionsUtils.removeExistingMentions)(action.payload.mentions, existingMentions);
-        var textWithMentions = (0, _MentionsUtils.addMentionsToText)(state[action.payload.projectId].description, uniqueNewMentions);
+        var textWithMentions = (0, _MentionsUtils.addMentionsToText)(state[action.payload.projectId].body, uniqueNewMentions);
         return textWithMentions;
       });
     case 'CHANGES/TOGGLE_ALL_CHANGED_FILES':
@@ -69685,8 +69549,8 @@ var mainReducer = function mainReducer(state, action) {
         return !idsToRemove.includes(item._id);
       });
       return _icepick2.default.merge(state, (0, _defineProperty3.default)({}, action.meta.cacheKey, {
-        summary: '',
-        description: '',
+        name: '',
+        body: '',
         data: remainingRevisions,
         checked: {}
       }));
@@ -69694,42 +69558,6 @@ var mainReducer = function mainReducer(state, action) {
       return state;
   }
 };
-
-var _default = function _default() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments[1];
-
-  return mainReducer(state, action);
-};
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(initialState, 'initialState', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.reducer.js');
-
-  __REACT_HOT_LOADER__.register(mainReducer, 'mainReducer', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.reducer.js');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.reducer.js');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.reducer.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -73247,8 +73075,8 @@ function mentionThreads(_ref7) {
 
 function commit(_ref8) {
   var projectId = _ref8.projectId,
-      summary = _ref8.summary,
-      description = _ref8.description;
+      name = _ref8.name,
+      body = _ref8.body;
 
   return function (dispatch, getState) {
     var changes = getState().changes[projectId];
@@ -73267,8 +73095,8 @@ function commit(_ref8) {
         url: '/api/v1/sync/commit/' + projectId,
         data: {
           revisions: revisions,
-          summary: summary,
-          description: description
+          name: name,
+          body: body
         }
       }).then(function (response) {
         dispatch((0, _ToastsActions.show)({
@@ -73288,7 +73116,7 @@ function commit(_ref8) {
           }]
         }));
         // Get the mentions
-        var mentions = (0, _MentionsUtils.parseMentions)(response.data.description);
+        var mentions = (0, _MentionsUtils.parseMentions)(response.data.body);
         // If mentionType: thread-complete, we set the thread to complete.
         mentions.forEach(function (mention) {
           if (mention.mentionType == 'thread-complete') {
@@ -73320,40 +73148,6 @@ function deleteCommit(_ref9) {
     });
   };
 }
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(deselect, 'deselect', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
-
-  __REACT_HOT_LOADER__.register(selectedFileChange, 'selectedFileChange', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
-
-  __REACT_HOT_LOADER__.register(toggleAll, 'toggleAll', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
-
-  __REACT_HOT_LOADER__.register(fetchChanges, 'fetchChanges', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
-
-  __REACT_HOT_LOADER__.register(mentionThreadsModal, 'mentionThreadsModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
-
-  __REACT_HOT_LOADER__.register(mentionThreads, 'mentionThreads', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
-
-  __REACT_HOT_LOADER__.register(commit, 'commit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
-
-  __REACT_HOT_LOADER__.register(deleteCommit, 'deleteCommit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -88000,4 +87794,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.169c959286476c0720d9.js.map
+//# sourceMappingURL=application.8e7787308b7437b9eb36.js.map
