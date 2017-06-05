@@ -49601,6 +49601,72 @@ exports.default = function (store, action) {
 
 /***/ },
 
+/***/ "XChL":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = __webpack_require__("aSqn");
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MdCreateNewFolder = function MdCreateNewFolder(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        (0, _extends3.default)({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm31.6 23.4v-3.4h-5v-5h-3.2v5h-5v3.4h5v5h3.2v-5h5z m1.8-13.4q1.4 0 2.3 1t0.9 2.4v16.6q0 1.4-0.9 2.4t-2.3 1h-26.8q-1.4 0-2.3-1t-0.9-2.4v-20q0-1.4 0.9-2.4t2.3-1h10l3.4 3.4h13.4z' })
+        )
+    );
+};
+
+var _default = MdCreateNewFolder;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+
+    __REACT_HOT_LOADER__.register(MdCreateNewFolder, 'MdCreateNewFolder', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/react-icons/md/create-new-folder.js');
+
+    __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/react-icons/md/create-new-folder.js');
+
+    __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/react-icons/md/create-new-folder.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+}();
+
+;
+
+/***/ },
+
 /***/ "XDK3":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -49942,7 +50008,7 @@ module.exports = __webpack_require__.p + "images/folder.svg?744ee131abf8cffc1011
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"placeholder":"FileSelectInput_placeholder-J9YZh","input":"FileSelectInput_input-3g0y3","text":"FileSelectInput_text-1_RwR"};
+module.exports = {"placeholder":"FileSelectInput_placeholder-J9YZh","input":"FileSelectInput_input-3g0y3","text":"FileSelectInput_text-1_RwR","newFolderIcon":"FileSelectInput_newFolderIcon-1ZCa-"};
 
 /***/ },
 
@@ -81095,6 +81161,8 @@ var _FileSelectModal = __webpack_require__("aGhC");
 
 var _FileSelectModal2 = _interopRequireDefault(_FileSelectModal);
 
+var _Store = __webpack_require__("+I1Y");
+
 var _FileSelectInput = __webpack_require__("Xtm0");
 
 var _FileSelectInput2 = _interopRequireDefault(_FileSelectInput);
@@ -81106,6 +81174,10 @@ var _classnames2 = _interopRequireDefault(_classnames);
 var _folder = __webpack_require__("jwtf");
 
 var _folder2 = _interopRequireDefault(_folder);
+
+var _createNewFolder = __webpack_require__("XChL");
+
+var _createNewFolder2 = _interopRequireDefault(_createNewFolder);
 
 var _SimpleIconButton = __webpack_require__("D2fa");
 
@@ -81148,14 +81220,24 @@ var FileSelectInput = _react2.default.createClass({
       }
     });
   },
+  clearValue: function clearValue() {
+    var _props = this.props,
+        storeChange = _props.storeChange,
+        model = _props.model;
+
+    storeChange(model, {
+      path: undefined,
+      fileId: undefined
+    });
+  },
   render: function render() {
     var _this = this;
 
-    var _props = this.props,
-        provider = _props.provider,
-        model = _props.model,
-        value = _props.value,
-        disabled = _props.disabled;
+    var _props2 = this.props,
+        provider = _props2.provider,
+        model = _props2.model,
+        value = _props2.value,
+        disabled = _props2.disabled;
 
 
     var validatePath = function validatePath(path, fileId, provider) {
@@ -81170,20 +81252,9 @@ var FileSelectInput = _react2.default.createClass({
 
     var path = validatePath(value.path, value.fileId, provider);
 
-    return _react2.default.createElement(
-      _TextDisplayBox2.default,
-      {
-        disabled: disabled,
-        onClick: function onClick() {
-          if (!disabled) {
-            _this.showModal();
-          }
-        }
-      },
-      _react2.default.createElement(
-        'div',
-        { className: 'flex' },
-        path ? _react2.default.createElement(
+    var getInnerText = function getInnerText() {
+      if (path) {
+        return _react2.default.createElement(
           'span',
           null,
           _react2.default.createElement(
@@ -81193,12 +81264,46 @@ var FileSelectInput = _react2.default.createClass({
             '/'
           ),
           path
-        ) : 'Select the project folder'
+        );
+      } else if (value.path === 'undefined' && value.fileId === 'undefined') {
+        return 'A new folder will be created in your ' + provider;
+      } else {
+        return 'Select the project folder';
+      }
+    };
+
+    return _react2.default.createElement(
+      'div',
+      { className: 'rel-box' },
+      _react2.default.createElement(
+        _TextDisplayBox2.default,
+        {
+          disabled: disabled,
+          onClick: function onClick() {
+            if (!disabled) {
+              _this.showModal();
+            }
+          }
+        },
+        _react2.default.createElement(
+          'div',
+          { className: 'flex' },
+          getInnerText
+        ),
+        _react2.default.createElement(
+          _SimpleIconButton2.default,
+          { title: 'Select folder' },
+          _react2.default.createElement(_folder2.default, { size: '22' })
+        )
       ),
       _react2.default.createElement(
         _SimpleIconButton2.default,
-        null,
-        _react2.default.createElement(_folder2.default, { size: '22' })
+        {
+          className: _FileSelectInput2.default.newFolderIcon,
+          onClick: this.clearValue,
+          title: 'New Folder'
+        },
+        _react2.default.createElement(_createNewFolder2.default, { size: '22' })
       )
     );
   }
@@ -81210,7 +81315,8 @@ function mapStateToProps() {
 
 function mapDispatchToProps(dispatch) {
   return {
-    ModalActions: (0, _redux.bindActionCreators)(ModalActions, dispatch)
+    ModalActions: (0, _redux.bindActionCreators)(ModalActions, dispatch),
+    storeChange: (0, _redux.bindActionCreators)(_Store.storeChange, dispatch)
   };
 }
 
@@ -87860,4 +87966,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.19232b25948012b1dee8.js.map
+//# sourceMappingURL=application.0ef4228f4d6deb78e365.js.map
