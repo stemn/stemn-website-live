@@ -325,6 +325,7 @@ var stateToProps = function stateToProps(_ref, _ref2) {
       location = _ref2.location;
   var projectId = params.projectId,
       fileId = params.fileId;
+  //  console.log(params);
 
   var revisionId = location.query.revision;
   var cacheKey = fileId + '-' + revisionId;
@@ -335,8 +336,7 @@ var stateToProps = function stateToProps(_ref, _ref2) {
     file: files.fileMeta[cacheKey],
     projectId: projectId,
     revisonId: revisionId || '',
-    timeline: (0, _get3.default)(syncTimeline, cacheKey, {}),
-    relatedThreads: files.relatedThreads[fileId]
+    timeline: (0, _get3.default)(syncTimeline, cacheKey, {})
   };
 };
 
@@ -344,7 +344,6 @@ var dispatchToProps = {
   changeMode: _FileCompare.changeMode,
   fetchTimeline: _SyncTimelineActions.fetchTimeline,
   getMeta: _FilesActions.getMeta,
-  getRelatedThreads: _FilesActions.getRelatedThreads,
   initCompare: _FileCompare.initCompare,
   pushRoute: _reactRouterRedux.push,
   select: _FileCompare.select
@@ -358,10 +357,6 @@ var fetchConfigs = [{
       revisionId: props.revisionId,
       projectId: props.projectId,
       cacheKey: props.cacheKey
-    });
-    props.getRelatedThreads({
-      fileId: props.fileId,
-      projectId: props.projectId
     });
     props.fetchTimeline({
       entityType: 'file',
@@ -2960,8 +2955,7 @@ var File = function (_Component) {
           selected1 = _props3$compare.selected1,
           selected2 = _props3$compare.selected2,
           file = _props3.file,
-          timeline = _props3.timeline,
-          relatedThreads = _props3.relatedThreads;
+          timeline = _props3.timeline;
       var isOpen = this.state.isOpen;
 
       var items = (0, _FileCompareUtils.orderItemsByTime)(mode, selected1, selected2);
@@ -6813,4 +6807,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=8.29f3869cb08e4d19a958.js.map
+//# sourceMappingURL=8.12f5a968392bd7bdbe3c.js.map

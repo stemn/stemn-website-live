@@ -14237,7 +14237,7 @@ function toggleComplete(_ref15) {
 
   return function (dispatch) {
     dispatch((0, _ToastsActions.show)({
-      title: 'This thread was marked ' + (value ? 'complete' : 'incomplete') + '.',
+      title: 'This thread was marked as ' + (value ? 'closed' : 'open') + '.',
       actions: [{
         text: 'Undo',
         action: {
@@ -54497,48 +54497,76 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Component = function (_React$Component) {
   (0, _inherits3.default)(Component, _React$Component);
 
-  function Component() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
+  function Component(props) {
     (0, _classCallCheck3.default)(this, Component);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Component.__proto__ || (0, _getPrototypeOf2.default)(Component)).call(this, props));
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Component.__proto__ || (0, _getPrototypeOf2.default)(Component)).call.apply(_ref, [this].concat(args))), _this), _this.getTextareaRef = function () {
-      var _this2;
+    _this.getTextareaRef = function () {
+      return _this.__getTextareaRef__REACT_HOT_LOADER__.apply(_this, arguments);
+    };
 
-      return (_this2 = _this).__getTextareaRef__REACT_HOT_LOADER__.apply(_this2, arguments);
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    _this.onChange = function () {
+      return _this.__onChange__REACT_HOT_LOADER__.apply(_this, arguments);
+    };
+
+    _this.state = {
+      value: props.value
+    };
+    return _this;
   }
 
   (0, _createClass3.default)(Component, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      // Update the internal state if it differs from the redux state
+      if (nextProps.value != this.state.value) {
+        this.setState({
+          value: nextProps.value
+        });
+      }
+    }
+  }, {
     key: '__getTextareaRef__REACT_HOT_LOADER__',
     value: function __getTextareaRef__REACT_HOT_LOADER__(ref) {
-      if (ref) {
+      if (ref && this.props.autoFocus) {
         ref.focus();
+      }
+    }
+  }, {
+    key: '__onChange__REACT_HOT_LOADER__',
+    value: function __onChange__REACT_HOT_LOADER__(event) {
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          model = _props.model,
+          onChange = _props.onChange;
+
+      var newValue = event.target.value;
+      // We update our internal state
+      this.setState({
+        value: newValue
+      });
+      // Update the redux value
+      dispatch((0, _Store.storeChange)(model, newValue));
+      if (onChange) {
+        onChange();
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          model = _props.model,
-          dispatch = _props.dispatch,
-          _onChange = _props.onChange,
-          otherProps = (0, _objectWithoutProperties3.default)(_props, ['model', 'dispatch', 'onChange']);
+      var _props2 = this.props,
+          model = _props2.model,
+          dispatch = _props2.dispatch,
+          onChange = _props2.onChange,
+          valueExternal = _props2.value,
+          otherProps = (0, _objectWithoutProperties3.default)(_props2, ['model', 'dispatch', 'onChange', 'value']);
+      var value = this.state.value;
 
       return _react2.default.createElement(_reactTextareaAutosize2.default, (0, _extends3.default)({
         ref: this.getTextareaRef,
-        onChange: function onChange(event) {
-          dispatch((0, _Store.storeChange)(model, event.target.value));
-          if (_onChange) {
-            _onChange();
-          };
-        }
+        onChange: this.onChange,
+        value: value
       }, otherProps));
     }
   }]);
@@ -54553,7 +54581,7 @@ var _default2 = _default;
 exports.default = _default2;
 ;
 
-var _temp2 = function () {
+var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -54568,7 +54596,7 @@ var _temp2 = function () {
 ;
 ;
 
-var _temp3 = function () {
+var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -87832,4 +87860,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.6c63dddc7ae3d376b438.js.map
+//# sourceMappingURL=application.19232b25948012b1dee8.js.map
