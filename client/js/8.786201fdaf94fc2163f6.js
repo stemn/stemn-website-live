@@ -360,6 +360,7 @@ var fetchConfigs = [{
     });
     props.fetchTimeline({
       entityType: 'file',
+      types: ['commits', 'changes'],
       entityId: props.fileId,
       cacheKey: props.cacheKey
     });
@@ -2918,6 +2919,7 @@ var File = function (_Component) {
   }, {
     key: '__onSelect__REACT_HOT_LOADER__',
     value: function __onSelect__REACT_HOT_LOADER__(file) {
+      console.log(file);
       var _props = this.props,
           select = _props.select,
           cacheKey = _props.cacheKey,
@@ -6807,4 +6809,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=8.12f5a968392bd7bdbe3c.js.map
+//# sourceMappingURL=8.786201fdaf94fc2163f6.js.map

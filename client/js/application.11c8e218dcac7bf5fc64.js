@@ -8485,7 +8485,18 @@ var _icepick2 = _interopRequireDefault(_icepick);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var initialState = {};
+var initialState = {
+  /*********************************************
+  This reducer store paginated star data for
+  every user.
+  
+    [userId] : {
+      1: [projectId, projectId]
+      2: [projectId, projectId]
+    }
+  
+  *********************************************/
+};
 
 var _default = function _default() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -8493,11 +8504,11 @@ var _default = function _default() {
 
   switch (action.type) {
     case 'USER_STARS/GET_STARS_PENDING':
-      return _icepick2.default.assocIn(state, [action.meta.userId, 'loading'], true);
+      return _icepick2.default.assocIn(state, [action.meta.userId, action.meta.page, 'loading'], true);
     case 'USER_STARS/GET_STARS_REJECTED':
-      return _icepick2.default.assocIn(state, [action.meta.userId, 'loading'], false);
+      return _icepick2.default.assocIn(state, [action.meta.userId, action.meta.page, 'loading'], false);
     case 'USER_STARS/GET_STARS_FULFILLED':
-      return _icepick2.default.assocIn(state, [action.meta.userId], {
+      return _icepick2.default.assocIn(state, [action.meta.userId, action.meta.page], {
         loading: false,
         data: action.payload.data
       });
@@ -31924,7 +31935,7 @@ var ProjectNewModal = function (_Component) {
           modalConfirm();
         };
 
-        var canLink = value.data._id && newProject.provider && newProject.root.path && newProject.root.fileId;
+        var canLink = value.data._id && newProject.provider && newProject.root;
 
         // Link the provider if we can.
         if (canLink) {
@@ -48907,7 +48918,7 @@ var _default = function _default() {
       });
     case 'STORE/REMOVE':
       return _icepick2.default.updateIn(state, (0, _toPath3.default)(action.payload.model), function (item) {
-        return _icepick2.default.splice(item, action.payload.index);
+        return _icepick2.default.splice(item, action.payload.index, 1);
       });
     default:
       return state;
@@ -53777,9 +53788,9 @@ var Component = exports.Component = _react2.default.createClass({
         _Button2.default,
         {
           className: (0, _classnames2.default)('xs', _ThreadRow2.default.button, (0, _defineProperty3.default)({}, _ThreadRow2.default.active, status === 'complete')),
-          title: 'Mark as Complete',
+          title: 'Mark as closed',
           onClick: toggleComplete },
-        'Complete'
+        'Close'
       ),
       _react2.default.createElement(
         _Button2.default,
@@ -72965,6 +72976,7 @@ function toggleAll(_ref3) {
   var projectId = _ref3.projectId,
       value = _ref3.value;
 
+  console.log(value);
   return function (dispatch, getState) {
     dispatch({
       type: 'CHANGES/TOGGLE_ALL_CHANGED_FILES',
@@ -73115,6 +73127,40 @@ function deleteCommit(_ref9) {
     });
   };
 }
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(deselect, 'deselect', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+
+  __REACT_HOT_LOADER__.register(selectedFileChange, 'selectedFileChange', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+
+  __REACT_HOT_LOADER__.register(toggleAll, 'toggleAll', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+
+  __REACT_HOT_LOADER__.register(fetchChanges, 'fetchChanges', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+
+  __REACT_HOT_LOADER__.register(mentionThreadsModal, 'mentionThreadsModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+
+  __REACT_HOT_LOADER__.register(mentionThreads, 'mentionThreads', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+
+  __REACT_HOT_LOADER__.register(commit, 'commit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+
+  __REACT_HOT_LOADER__.register(deleteCommit, 'deleteCommit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.actions.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -81265,7 +81311,7 @@ var FileSelectInput = _react2.default.createClass({
           ),
           path
         );
-      } else if (value.path === 'undefined' && value.fileId === 'undefined') {
+      } else if (value.path === undefined && value.fileId === undefined) {
         return 'A new folder will be created in your ' + provider;
       } else {
         return 'Select the project folder';
@@ -81273,22 +81319,21 @@ var FileSelectInput = _react2.default.createClass({
     };
 
     return _react2.default.createElement(
-      'div',
-      { className: 'rel-box' },
+      _TextDisplayBox2.default,
+      {
+        disabled: disabled
+      },
       _react2.default.createElement(
-        _TextDisplayBox2.default,
-        {
-          disabled: disabled,
-          onClick: function onClick() {
+        'div',
+        { className: 'layout-row flex layout-align-start-center', onClick: function onClick() {
             if (!disabled) {
               _this.showModal();
             }
-          }
-        },
+          } },
         _react2.default.createElement(
           'div',
           { className: 'flex' },
-          getInnerText
+          getInnerText()
         ),
         _react2.default.createElement(
           _SimpleIconButton2.default,
@@ -87966,4 +88011,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.0ef4228f4d6deb78e365.js.map
+//# sourceMappingURL=application.11c8e218dcac7bf5fc64.js.map
