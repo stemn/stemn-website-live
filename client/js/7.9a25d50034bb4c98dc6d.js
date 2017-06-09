@@ -2364,10 +2364,12 @@ var PreviewCadLoader = (_temp = _class = function (_Component) {
   }]);
   return PreviewCadLoader;
 }(_react.Component), _class.propTypes = {
-  loadCode: _react.PropTypes.func.isRequired, // The loadCode function from the container
-  systemImport: _react.PropTypes.func.isRequired, // The actual system.import
+  systemImport: _react.PropTypes.func, // The actual system.import
   cacheKey: _react.PropTypes.string.isRequired, // The cachekey
-  otherModules: _react.PropTypes.array.isRequired }, _temp);
+  otherModules: _react.PropTypes.array, // This is an array of global modules
+  loadCode: _react.PropTypes.func.isRequired }, _class.defaultProps = {
+  otherModules: []
+}, _temp);
 exports.default = PreviewCadLoader;
 ;
 
@@ -2399,7 +2401,7 @@ var _temp3 = function () {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.getViewerType = exports.viewerFileTypes = undefined;
 
@@ -2424,79 +2426,79 @@ __webpack_require__("+fCR");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getCodeMirrorExts = function getCodeMirrorExts() {
-    var codeExts = [];
-    (0, _forEach3.default)(_codemirror2.default.modeInfo, function (mode) {
-        if (mode.ext) {
-            codeExts = codeExts.concat(mode.ext);
-        }
-    });
-    return codeExts;
+  var codeExts = [];
+  (0, _forEach3.default)(_codemirror2.default.modeInfo, function (mode) {
+    if (mode.ext) {
+      codeExts = codeExts.concat(mode.ext);
+    }
+  });
+  return codeExts;
 };
 
 var viewerFileTypes = exports.viewerFileTypes = {
-    general: {
-        gerber: ['gerber', // Virtual gerber type
-        'drl', 'drd', 'out', 'outline', 'gbl', 'sol', 'gbs', 'sts', 'gbp', 'crs', 'gbo', 'pls', 'gtl', 'cmp', 'gts', 'stc', 'gtp', 'crc', 'gto', 'plc'],
-        pcb: ['brd', 'pcb', 'kicad_pcb'],
-        code: getCodeMirrorExts(),
-        autodesk: ['3dm', '3ds', 'asm', 'cam360', 'catpart', 'catproduct', 'cgr', 'collaboration', 'dae', 'dgn', 'dlv3', 'dwf', 'dwfx', 'dwg', 'dwt', 'dxf', 'exp', 'f3d', 'fbx', 'g', 'gbxml', 'iam', 'idw', 'ifc', 'ige', 'iges', 'igs', 'ipt', 'jt', 'model', 'neu', 'nwc', 'nwd', 'obj', 'prt', 'rcp', 'rvt', 'sab', 'sat', 'session', 'skp', 'sldasm', 'sldprt', 'smb', 'smt', 'ste', 'step', 'stl', 'stla', 'stlb', 'stp', 'wire', 'x_b', 'x_t', 'xas', 'xpr'],
-        google: ['webm', 'mpeg4', '3gpp', 'mov', 'avi', 'mpegps', 'wmv', 'flv', //https://gist.github.com/izazueta/4961650
-        'xls', 'xlsx', 'pages', 'psd', 'tiff', 'eps', 'ps', 'ai', 'ttf', 'xps'],
-        image: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'bmp', 'ico'],
-        pdf: ['pdf']
-    },
-    dropbox: {
-        pdf: ['docx', 'doc', 'docm', 'ppt', 'pps', 'ppsx', 'ppsm', 'pptx', 'pptm', 'rtf']
-    },
-    drive: {
-        google: ['docx', 'doc', 'docm', 'ppt', 'pps', 'ppsx', 'ppsm', 'pptx', 'pptm', 'rtf'],
-        gdoc: ['gdoc', 'gsheet', 'gslides']
-    }
+  general: {
+    gerber: ['gerber', // Virtual gerber type
+    'drl', 'drd', 'out', 'outline', 'gbl', 'sol', 'gbs', 'sts', 'gbp', 'crs', 'gbo', 'pls', 'gtl', 'cmp', 'gts', 'stc', 'gtp', 'crc', 'gto', 'plc'],
+    pcb: ['brd', 'pcb', 'kicad_pcb'],
+    code: getCodeMirrorExts(),
+    autodesk: ['3dm', '3ds', 'asm', 'cam360', 'catpart', 'catproduct', 'cgr', 'collaboration', 'dae', 'dgn', 'dlv3', 'dwf', 'dwfx', 'dwg', 'dwt', 'dxf', 'exp', 'f3d', 'fbx', 'g', 'gbxml', 'iam', 'idw', 'ifc', 'ige', 'iges', 'igs', 'ipt', 'jt', 'model', 'neu', 'nwc', 'nwd', 'obj', 'prt', 'rcp', 'rvt', 'sab', 'sat', 'session', 'skp', 'sldasm', 'sldprt', 'smb', 'smt', 'ste', 'step', 'stl', 'stla', 'stlb', 'stp', 'wire', 'x_b', 'x_t', 'xas', 'xpr'],
+    google: ['webm', 'mpeg4', '3gpp', 'mov', 'avi', 'mpegps', 'wmv', 'flv', //https://gist.github.com/izazueta/4961650
+    'xls', 'xlsx', 'pages', 'psd', 'tiff', 'eps', 'ps', 'ai', 'ttf', 'xps'],
+    image: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'bmp', 'ico'],
+    pdf: ['pdf']
+  },
+  dropbox: {
+    pdf: ['docx', 'doc', 'docm', 'ppt', 'pps', 'ppsx', 'ppsm', 'pptx', 'pptm', 'rtf']
+  },
+  drive: {
+    google: ['docx', 'doc', 'docm', 'ppt', 'pps', 'ppsx', 'ppsm', 'pptx', 'pptm', 'rtf'],
+    gdoc: ['gdoc', 'gsheet', 'gslides']
+  }
 };
 
 var getViewerType = exports.getViewerType = function getViewerType(fileType, provider) {
-    var providers = ['dropbox', 'drive'];
-    if (!providers.includes(provider)) {
-        console.error('Invalid provider type:', provider);
-        return;
-    }
-    var generalFileTypes = viewerFileTypes.general;
-    var providerFileTypes = viewerFileTypes[provider];
+  var providers = ['dropbox', 'drive'];
+  if (!providers.includes(provider)) {
+    console.error('Invalid provider type:', provider);
+    return;
+  }
+  var generalFileTypes = viewerFileTypes.general;
+  var providerFileTypes = viewerFileTypes[provider];
 
-    // This merge resolver concats arrays.
-    var mergeResolver = function mergeResolver(targetVal, sourceVal) {
-        return Array.isArray(targetVal) && sourceVal ? targetVal.concat(sourceVal) : sourceVal;
-    };
-    var mergedFileTypes = _icepick2.default.merge(generalFileTypes, providerFileTypes, mergeResolver);
+  // This merge resolver concats arrays.
+  var mergeResolver = function mergeResolver(targetVal, sourceVal) {
+    return Array.isArray(targetVal) && sourceVal ? targetVal.concat(sourceVal) : sourceVal;
+  };
+  var mergedFileTypes = _icepick2.default.merge(generalFileTypes, providerFileTypes, mergeResolver);
 
-    // Get the viewer type
-    var fileTypeLower = fileType ? fileType.toLowerCase() : '';
-    var viewerType = (0, _keys2.default)(mergedFileTypes).find(function (viewerType) {
-        return mergedFileTypes[viewerType].includes(fileTypeLower);
-    });
-    return viewerType || 'other';
+  // Get the viewer type
+  var fileTypeLower = fileType ? fileType.toLowerCase() : '';
+  var viewerType = (0, _keys2.default)(mergedFileTypes).find(function (viewerType) {
+    return mergedFileTypes[viewerType].includes(fileTypeLower);
+  });
+  return viewerType || 'other';
 };
 ;
 
 var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
 
-    __REACT_HOT_LOADER__.register(viewerFileTypes, 'viewerFileTypes', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewFile.utils.js');
+  __REACT_HOT_LOADER__.register(viewerFileTypes, 'viewerFileTypes', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewFile.utils.js');
 
-    __REACT_HOT_LOADER__.register(getViewerType, 'getViewerType', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewFile.utils.js');
+  __REACT_HOT_LOADER__.register(getViewerType, 'getViewerType', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewFile.utils.js');
 
-    __REACT_HOT_LOADER__.register(getCodeMirrorExts, 'getCodeMirrorExts', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewFile.utils.js');
+  __REACT_HOT_LOADER__.register(getCodeMirrorExts, 'getCodeMirrorExts', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewFile.utils.js');
 }();
 
 ;
 ;
 
 var _temp2 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
 }();
 
 ;
@@ -7442,4 +7444,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=7.77e26add305c0239f1cf.js.map
+//# sourceMappingURL=7.9a25d50034bb4c98dc6d.js.map

@@ -13768,7 +13768,7 @@ module.exports = __webpack_require__("hJx8");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteGroupConfirm = exports.editBoard = exports.updateBoard = undefined;
+exports.deleteGroupConfirm = exports.updateThread = exports.editBoard = exports.updateBoard = undefined;
 
 var _extends2 = __webpack_require__("Dd8w");
 
@@ -13782,7 +13782,6 @@ exports.newThread = newThread;
 exports.getBoards = getBoards;
 exports.getBoard = getBoard;
 exports.getThread = getThread;
-exports.updateThread = updateThread;
 exports.getGroup = getGroup;
 exports.updateGroup = updateGroup;
 exports.deleteThread = deleteThread;
@@ -13815,7 +13814,25 @@ var _ThreadLabelsEditModal = __webpack_require__("hKDs");
 
 var _ThreadLabelsEditModal2 = _interopRequireDefault(_ThreadLabelsEditModal);
 
+var _SyncTimeline = __webpack_require__("frFe");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//        return dispatch(addEvent({
+//          cacheKey: timelineCacheKey,
+//          event: {
+//            event: 'comment',
+//            timestamp: value.data.timestamp,
+//            user: {
+//              name: currentUser.name,
+//              _id: currentUser._id,
+//              picture: currentUser.picture,
+//            },
+//            data: {
+//              comment: value.data._id
+//            }
+//          }
+//        }))
 
 function newThread(_ref) {
   var projectId = _ref.projectId,
@@ -13935,26 +13952,27 @@ function getThread(_ref6) {
   };
 }
 
-function updateThread(_ref7) {
+var updateThread = exports.updateThread = function updateThread(_ref7) {
   var thread = _ref7.thread;
-
-  return {
-    type: 'THREADS/UPDATE_TASK',
-    http: true,
-    throttle: {
-      time: 2000,
-      endpoint: 'THREADS/UPDATE_TASK-' + thread._id
-    },
-    payload: {
-      method: 'PUT',
-      url: '/api/v1/threads/' + thread._id,
-      data: thread
-    },
-    meta: {
-      cacheKey: thread._id
-    }
+  return function (dispatch, getState) {
+    return dispatch({
+      type: 'THREADS/UPDATE_TASK',
+      http: true,
+      throttle: {
+        time: 2000,
+        endpoint: 'THREADS/UPDATE_TASK-' + thread._id
+      },
+      payload: {
+        method: 'PUT',
+        url: '/api/v1/threads/' + thread._id,
+        data: thread
+      },
+      meta: {
+        cacheKey: thread._id
+      }
+    });
   };
-}
+};
 
 function getGroup(_ref8) {
   var boardId = _ref8.boardId,
@@ -14328,7 +14346,7 @@ module.exports = __webpack_require__.p + "images/asx.svg?4f592c1eda7c2c09b41dca2
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"search":"SearchInput_search-37UJQ","icon":"SearchInput_icon-TAKGC"};
+module.exports = {"search":"SearchInput_search-37UJQ","icon":"SearchInput_icon-TAKGC","queryString":"SearchInput_queryString-QAiag"};
 
 /***/ },
 
@@ -27239,7 +27257,7 @@ module.exports = cloneTypedArray;
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"primary-bg":"#4484d3","border2":"rgba(0, 0, 0, 0.3)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","label":"Label_label-3zLvM"};
+module.exports = {"primary":"#4484d3","border2":"rgba(0, 0, 0, 0.3)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","label":"Label_label-3zLvM"};
 
 /***/ },
 
@@ -32326,11 +32344,21 @@ var _ThreadMentionModal2 = _interopRequireDefault(_ThreadMentionModal);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var filterModel = {
-  groups: 'array',
-  labels: 'array',
-  user: 'string',
-  status: 'string',
-  query: 'main'
+  groups: {
+    type: 'array'
+  },
+  labels: {
+    type: 'array'
+  },
+  user: {
+    type: 'string'
+  },
+  status: {
+    type: 'string'
+  },
+  query: {
+    type: 'main'
+  }
 };
 
 function mapStateToProps(_ref, _ref2) {
@@ -45360,8 +45388,6 @@ var _class, _temp2;
 var _react = __webpack_require__("U7vG");
 
 var _react2 = _interopRequireDefault(_react);
-
-var _StringFilterUtils = __webpack_require__("rv25");
 
 var _classnames = __webpack_require__("HW6M");
 
@@ -64858,7 +64884,7 @@ function reducer(state, action) {
       return _icepick2.default.chain(state).assocIn(['pathToId', action.meta.cacheKey], {
         data: action.payload.data.fileId,
         loading: false
-      }).assocIn(['fileMeta', '' + action.payload.data.fileId], {
+      }).assocIn(['fileMeta', action.meta.cacheKey], {
         data: action.payload.data,
         loading: false
       }).value();
@@ -76343,11 +76369,15 @@ module.exports = baseFor;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getFilter = exports.parseFilterString = exports.parseObject = exports.createFilterString = exports.addFilter = exports.isFilterActive = undefined;
+exports.getFilter = exports.parseFilterStringWithPositions = exports.parseFilterString = exports.parseObject = exports.createFilterString = undefined;
 
 var _assign = __webpack_require__("woOf");
 
 var _assign2 = _interopRequireDefault(_assign);
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 var _slicedToArray2 = __webpack_require__("d7EF");
 
@@ -76365,68 +76395,65 @@ var _pick2 = __webpack_require__("w9Mt");
 
 var _pick3 = _interopRequireDefault(_pick2);
 
+var _get2 = __webpack_require__("Q7hp");
+
+var _get3 = _interopRequireDefault(_get2);
+
 var _Store = __webpack_require__("+I1Y");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var isFilterActive = exports.isFilterActive = function isFilterActive(filterArray, filterString, searchString) {
-  if (filterString == '') {
-    // If none of the other keys in this filter are active, set this one to active
-    return filterArray.findIndex(function (filterObject) {
-      return filterObject.value != '' ? stringContainsWord(searchString, filterObject.value) : false;
-    }) == -1;
-  } else {
-    // Check if the search string contains the filterString
-    return stringContainsWord(searchString, filterString);
-  }
-};
-
-var addFilter = exports.addFilter = function addFilter(_ref) {
-  var dispatch = _ref.dispatch,
-      model = _ref.model,
-      value = _ref.value,
-      filterArray = _ref.filterArray,
-      filterString = _ref.filterString;
-
-  /****************************************************
-  This will add the filterString to the model. It will
-  remove the strings in the filter Array which are not
-  active.
-   model: the search string model
-  value: the search string value
-  filterArray: the array of filter options:
-    [{
-      text: 'Status: Complete',
-      value: 'is:complete',
-    },{
-      text: 'Status: Incomplete',
-      value: 'is:incomplete',
-    },{
-      text: 'Status: All',
-      value: ''
-    }];
-  filterString: the selected string:
-    Status: Complete
-   ****************************************************/
-  var newSearchString = value;
-  filterArray.forEach(function (filterObject) {
-    newSearchString = replaceWord(newSearchString, filterObject.value, '');
-  }); // Clear the search string
-  // Add the new filterString
-  if (newSearchString) {
-    newSearchString = filterString ? newSearchString + ' ' + filterString : newSearchString;
-  } else if (filterString) {
-    newSearchString = filterString;
-  }
-  dispatch((0, _Store.storeChange)(model, newSearchString));
-};
-
-function stringContainsWord(fullString, word) {
-  return fullString && fullString.length > 0 ? fullString.match(new RegExp('(^|\\s+)' + word + '(\\s+|$)')) : false;
-}
-function replaceWord(fullString, word, newWord) {
-  return fullString && fullString.length > 0 ? fullString.replace(new RegExp('(^|\\s+)' + word), newWord) : fullString;
-}
+//export const isFilterActive = (filterArray, filterString, searchString) =>{
+//  if(filterString == ''){
+//    // If none of the other keys in this filter are active, set this one to active
+//    return filterArray.findIndex(filterObject => filterObject.value != '' ? stringContainsWord(searchString, filterObject.value) : false) == -1;
+//  }
+//  else{
+//    // Check if the search string contains the filterString
+//    return stringContainsWord(searchString, filterString)
+//  }
+//};
+//
+//export const addFilter = ({dispatch, model, value, filterArray, filterString}) => {
+//  /****************************************************
+//  This will add the filterString to the model. It will
+//  remove the strings in the filter Array which are not
+//  active.
+//
+//  model: the search string model
+//  value: the search string value
+//  filterArray: the array of filter options:
+//    [{
+//      text: 'Status: Complete',
+//      value: 'is:complete',
+//    },{
+//      text: 'Status: Incomplete',
+//      value: 'is:incomplete',
+//    },{
+//      text: 'Status: All',
+//      value: ''
+//    }];
+//  filterString: the selected string:
+//    Status: Complete
+//
+//  ****************************************************/
+//  let newSearchString = value;
+//  filterArray.forEach(filterObject => { newSearchString = replaceWord(newSearchString, filterObject.value, '') }); // Clear the search string
+//  // Add the new filterString
+//  if(newSearchString){
+//    newSearchString = filterString ? `${newSearchString} ${filterString}` : newSearchString;
+//  }else if(filterString){
+//    newSearchString = filterString;
+//  }
+//  dispatch(storeChange(model, newSearchString))
+//};
+//
+//function stringContainsWord(fullString, word){
+//  return fullString && fullString.length > 0 ? fullString.match(new RegExp('(^|\\s+)'+word+'(\\s+|$)')) : false;
+//}
+//function replaceWord(fullString, word, newWord){
+//  return fullString && fullString.length > 0 ? fullString.replace(new RegExp('(^|\\s+)'+word), newWord) : fullString;
+//}
 
 // New functions
 var createFilterString = exports.createFilterString = function createFilterString() {
@@ -76436,7 +76463,7 @@ var createFilterString = exports.createFilterString = function createFilterStrin
   var filterString = '';
   (0, _keys2.default)(filterObject).forEach(function (key) {
     var value = filterObject[key];
-    var type = filterModel[key];
+    var type = filterModel[key].type;
 
     // If there is no value,
     // or if is an array with no value, stop
@@ -76470,7 +76497,7 @@ var parseObject = exports.parseObject = function parseObject() {
     // Replace _ with spaces
     var valueWithSpaces = value.replace('_', ' ');
     // Get the type, bool, array or string
-    var type = filterModel[key];
+    var type = filterModel[key].type;
     // Create cases for each model type
     var cases = {
       bool: function bool() {
@@ -76503,6 +76530,7 @@ var parseFilterString = exports.parseFilterString = function parseFilterString(f
   var filterItems = allItems.filter(function (item) {
     return item.includes(':');
   });
+
   // Split the items and create an object
   var filterItemsObject = filterItems.reduce(function (accum, item) {
     var _item$split = item.split(':'),
@@ -76513,16 +76541,70 @@ var parseFilterString = exports.parseFilterString = function parseFilterString(f
     accum[key] = value;
     return accum;
   }, {});
+
   // The other items are part of the 'main' filter item
   var otherItems = allItems.filter(function (item) {
     return !item.includes(':');
   });
   var mainFilterItemKey = (0, _findKey3.default)(filterModel, function (item) {
-    return item === 'main';
+    return item.type === 'main';
   });
   filterItemsObject[mainFilterItemKey] = otherItems.join(' ');
   var filterObject = parseObject(filterItemsObject, filterModel);
   return filterObject;
+};
+
+var parseFilterStringWithPositions = exports.parseFilterStringWithPositions = function parseFilterStringWithPositions(filterString, filterModel) {
+  // Get all the items in the filterString
+  var allItems = filterString.split(' ');
+
+  // We create an array which contains the from/to indexes
+  var allItemsWithPosition = allItems.reduce(function (accum, item, idx) {
+    // We get idx where the last item ended. We add 1 to account for the space
+    var prevTo = (0, _get3.default)(accum, [idx - 1, 'to', 'ch'], -1) + 1;
+
+    var _item$split3 = item.split(':'),
+        _item$split4 = (0, _slicedToArray3.default)(_item$split3, 2),
+        key = _item$split4[0],
+        value = _item$split4[1];
+
+    accum.push({
+      key: key,
+      value: value,
+      string: item,
+      from: {
+        line: 0,
+        ch: prevTo
+      },
+      to: {
+        line: 0,
+        ch: prevTo + (item.length === 0 ? 1 : item.length)
+      }
+    });
+    return accum;
+  }, []);
+
+  // Filter by items without a key
+  var filteredItems = allItemsWithPosition.filter(function (item) {
+    var validationFn = (0, _get3.default)(filterModel, [item.key, 'validation']);
+    if (validationFn) {
+      // If we find a validation function on the filterModel, use it
+      return validationFn(item.value);
+    } else {
+      // Othwerwise, this is an invalid item
+      return false;
+    }
+  });
+
+  // Transform the value
+  var itemsWithTransformedValue = filteredItems.map(function (item) {
+    var transformFn = (0, _get3.default)(filterModel, [item.key, 'transform']);
+    return (0, _extends3.default)({}, item, {
+      transformedValue: transformFn ? transformFn(item.value) : item.value
+    });
+  });
+
+  return itemsWithTransformedValue;
 };
 
 var getFilter = exports.getFilter = function getFilter(filterDefaults, filterModel, queryParams) {
@@ -76542,19 +76624,13 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(isFilterActive, 'isFilterActive', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/StringFilter/StringFilter.utils.js');
-
-  __REACT_HOT_LOADER__.register(addFilter, 'addFilter', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/StringFilter/StringFilter.utils.js');
-
-  __REACT_HOT_LOADER__.register(stringContainsWord, 'stringContainsWord', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/StringFilter/StringFilter.utils.js');
-
-  __REACT_HOT_LOADER__.register(replaceWord, 'replaceWord', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/StringFilter/StringFilter.utils.js');
-
   __REACT_HOT_LOADER__.register(createFilterString, 'createFilterString', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/StringFilter/StringFilter.utils.js');
 
   __REACT_HOT_LOADER__.register(parseObject, 'parseObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/StringFilter/StringFilter.utils.js');
 
   __REACT_HOT_LOADER__.register(parseFilterString, 'parseFilterString', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/StringFilter/StringFilter.utils.js');
+
+  __REACT_HOT_LOADER__.register(parseFilterStringWithPositions, 'parseFilterStringWithPositions', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/StringFilter/StringFilter.utils.js');
 
   __REACT_HOT_LOADER__.register(getFilter, 'getFilter', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/StringFilter/StringFilter.utils.js');
 }();
@@ -77753,7 +77829,7 @@ var getRoute = exports.getRoute = function getRoute(dispatch, systemImport, cb) 
   // the route cached by the webpack magicical System.import
   var loadingTimeout = setTimeout(function () {
     return dispatch((0, _CodeSplitting.loading)('route'));
-  }, 10);
+  }, 1000);
   return systemImport.then(function (module) {
     clearTimeout(loadingTimeout);
     dispatch((0, _CodeSplitting.complete)('route'));
@@ -81043,7 +81119,7 @@ var ThreadMentionModal = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'flex' },
-            (0, _howMany2.default)({ count: countMentions(mentions, 'complete'), adj: 'complete' }, { count: countMentions(mentions, 'related'), adj: 'related' }, 'thread')
+            (0, _howMany2.default)({ count: countMentions(mentions, 'complete'), adj: 'closed' }, { count: countMentions(mentions, 'related'), adj: 'related' }, 'thread')
           ),
           _react2.default.createElement(_SearchInput2.default, {
             className: _ThreadMentionModal2.default.search,
@@ -86130,4 +86206,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.30b53e8c5c7ae3d252ef.js.map
+//# sourceMappingURL=application.0da85328237c540ea980.js.map
