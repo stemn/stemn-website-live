@@ -891,6 +891,8 @@ var _inherits2 = __webpack_require__("Pf15");
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _class, _temp2;
+
 var _react = __webpack_require__("U7vG");
 
 var _react2 = _interopRequireDefault(_react);
@@ -964,7 +966,7 @@ var ClickFile = function ClickFile(props) {
   }
 };
 
-var FileRow = function (_Component) {
+var FileRow = (_temp2 = _class = function (_Component) {
   (0, _inherits3.default)(FileRow, _Component);
 
   function FileRow() {
@@ -979,32 +981,47 @@ var FileRow = function (_Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = FileRow.__proto__ || (0, _getPrototypeOf2.default)(FileRow)).call.apply(_ref, [this].concat(args))), _this), _this.singleClick = function () {
-      var _this$props = _this.props,
-          singleClick = _this$props.singleClick,
-          file = _this$props.file;
+      var _this2;
 
-      if (singleClick) {
-        singleClick({ file: file });
-      }
+      return (_this2 = _this).__singleClick__REACT_HOT_LOADER__.apply(_this2, arguments);
     }, _this.doubleClick = function () {
-      var _this$props2 = _this.props,
-          doubleClick = _this$props2.doubleClick,
-          file = _this$props2.file;
+      var _this3;
 
-      if (doubleClick) {
-        doubleClick({ file: file });
-      }
+      return (_this3 = _this).__doubleClick__REACT_HOT_LOADER__.apply(_this3, arguments);
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
   (0, _createClass3.default)(FileRow, [{
+    key: '__singleClick__REACT_HOT_LOADER__',
+    value: function __singleClick__REACT_HOT_LOADER__() {
+      var _props = this.props,
+          singleClick = _props.singleClick,
+          file = _props.file;
+
+      if (singleClick) {
+        singleClick({ file: file });
+      }
+    }
+  }, {
+    key: '__doubleClick__REACT_HOT_LOADER__',
+    value: function __doubleClick__REACT_HOT_LOADER__() {
+      var _props2 = this.props,
+          doubleClick = _props2.doubleClick,
+          file = _props2.file;
+
+      if (doubleClick) {
+        doubleClick({ file: file });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          isActive = _props.isActive,
-          file = _props.file,
-          query = _props.query,
-          link = _props.link;
+      var _props3 = this.props,
+          isActive = _props3.isActive,
+          file = _props3.file,
+          query = _props3.query,
+          link = _props3.link,
+          showPath = _props3.showPath;
 
 
       var timeFromNow = (0, _moment2.default)(file.modified).fromNow();
@@ -1033,7 +1050,7 @@ var FileRow = function (_Component) {
             },
             _react2.default.createElement(_Highlight2.default, {
               className: _FileRow2.default.name,
-              text: file.name,
+              text: showPath ? file.path || file.name : file.name,
               query: query
             })
           )
@@ -1075,9 +1092,38 @@ var FileRow = function (_Component) {
     }
   }]);
   return FileRow;
-}(_react.Component);
-
+}(_react.Component), _class.propTypes = {
+  singleClick: _react.PropTypes.func,
+  doubleClick: _react.PropTypes.func,
+  file: _react.PropTypes.object.isRequired,
+  query: _react.PropTypes.string,
+  isActive: _react.PropTypes.bool,
+  link: _react.PropTypes.bool,
+  showPath: _react.PropTypes.bool
+}, _temp2);
 exports.default = FileRow;
+;
+
+var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(FileRow, 'FileRow', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/components/FileRow.jsx');
+
+  __REACT_HOT_LOADER__.register(ClickFile, 'ClickFile', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/components/FileRow.jsx');
+}();
+
+;
+;
+
+var _temp4 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -2561,6 +2607,8 @@ var _routeActions = __webpack_require__("B98q");
 
 var _reactRouterRedux = __webpack_require__("jZgO");
 
+var _StoreActions = __webpack_require__("+I1Y");
+
 var _default = function _default() {
   return function (dispatch, getState) {
     dispatch({ type: 'AUTH/LOGOUT' });
@@ -2569,6 +2617,8 @@ var _default = function _default() {
       room: getState().auth.user._id,
       type: 'user'
     }));
+    // Clear all data
+    dispatch((0, _StoreActions.storeChange)('', undefined));
   };
 };
 
@@ -7963,23 +8013,19 @@ var _promise = __webpack_require__("//Fk");
 
 var _promise2 = _interopRequireDefault(_promise);
 
-var _axios = __webpack_require__("mtWM");
-
-var _axios2 = _interopRequireDefault(_axios);
-
 var _loadUserData = __webpack_require__("PWYc");
 
 var _loadUserData2 = _interopRequireDefault(_loadUserData);
 
-var _setAuthToken = __webpack_require__("VePa");
-
-var _setAuthToken2 = _interopRequireDefault(_setAuthToken);
-
 var _UserSettingsActions = __webpack_require__("6fbs");
+
+var _axios = __webpack_require__("mtWM");
+
+var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (_ref) {
+var _default = function _default(_ref) {
   var email = _ref.email,
       password = _ref.password;
 
@@ -7997,11 +8043,37 @@ exports.default = function (_ref) {
     }).then(function (_ref2) {
       var value = _ref2.value;
 
-      dispatch((0, _setAuthToken2.default)(value.data.token));
-      return _promise2.default.all([dispatch((0, _loadUserData2.default)()), dispatch((0, _UserSettingsActions.getSettings)())]);
+      setTimeout(function () {
+        return _promise2.default.all([dispatch((0, _loadUserData2.default)()), dispatch((0, _UserSettingsActions.getSettings)())]);
+      }, 1);
     });
   };
 };
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/actions/login.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/actions/login.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -11811,6 +11883,71 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "62cI":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getToggleAllStatus = exports.filterSelectedChangesByPossible = undefined;
+
+var _pickBy2 = __webpack_require__("6PBa");
+
+var _pickBy3 = _interopRequireDefault(_pickBy2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var filterSelectedChangesByPossible = exports.filterSelectedChangesByPossible = function filterSelectedChangesByPossible(groupedChanges, selectedChanges) {
+  // Sometimes the selectedChanges contains files that are not in grouped changes...
+  // This is some bug that occurs after items are commited?? Maybe.. I dunno...
+  // This function is used to filter the selectedChanges by the ones which are possible
+  // i.e. the ones in the groupedChanges array
+  var possibleFiles = groupedChanges.map(function (item) {
+    return item.data.fileId;
+  });
+  return (0, _pickBy3.default)(selectedChanges, function (val, key) {
+    return possibleFiles.includes(key);
+  });
+};
+
+var getToggleAllStatus = exports.getToggleAllStatus = function getToggleAllStatus(groupedChanges, selectedChanges) {
+  if (groupedChanges && groupedChanges.length > 0) {
+    return groupedChanges.reduce(function (prev, currentGroup, index) {
+      var current = selectedChanges ? selectedChanges[currentGroup.data.fileId] : false;
+      return index == 0 ? current : current == prev ? current : 'other';
+    }, 'other'); // true || false || 'other'
+  } else {
+    return false;
+  }
+};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(filterSelectedChangesByPossible, 'filterSelectedChangesByPossible', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.utils.js');
+
+  __REACT_HOT_LOADER__.register(getToggleAllStatus, 'getToggleAllStatus', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.utils.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "6Git":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -11830,6 +11967,40 @@ function cloneDataView(dataView, isDeep) {
 }
 
 module.exports = cloneDataView;
+
+
+/***/ },
+
+/***/ "6PBa":
+/***/ function(module, exports, __webpack_require__) {
+
+var baseIteratee = __webpack_require__("JyYQ"),
+    basePickBy = __webpack_require__("CHen"),
+    getAllKeysIn = __webpack_require__("xond");
+
+/**
+ * Creates an object composed of the `object` properties `predicate` returns
+ * truthy for. The predicate is invoked with two arguments: (value, key).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Object
+ * @param {Object} object The source object.
+ * @param {Function} [predicate=_.identity] The function invoked per property.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': '2', 'c': 3 };
+ *
+ * _.pickBy(object, _.isNumber);
+ * // => { 'a': 1, 'c': 3 }
+ */
+function pickBy(object, predicate) {
+  return object == null ? {} : basePickBy(object, getAllKeysIn(object), baseIteratee(predicate));
+}
+
+module.exports = pickBy;
 
 
 /***/ },
@@ -29320,7 +29491,8 @@ var splitReducers = (0, _redux.combineReducers)({
 
 var _default = function _default(state, action) {
   var isStoreAction = action && action.type && action.type.startsWith('STORE/');
-  return isStoreAction ? (0, _StoreReducer2.default)(state, action) : splitReducers(state, action);
+  return isStoreAction ? splitReducers((0, _StoreReducer2.default)(state, action), action) // This is fed into the split reducers so defaults can init if the keys are cleared
+  : splitReducers(state, action);
 };
 
 var _default2 = _default;
@@ -34291,10 +34463,6 @@ var _promise = __webpack_require__("//Fk");
 
 var _promise2 = _interopRequireDefault(_promise);
 
-var _setAuthToken = __webpack_require__("VePa");
-
-var _setAuthToken2 = _interopRequireDefault(_setAuthToken);
-
 var _loadUserData = __webpack_require__("PWYc");
 
 var _loadUserData2 = _interopRequireDefault(_loadUserData);
@@ -34319,8 +34487,9 @@ var _default = function _default(token) {
     }).then(function (_ref) {
       var value = _ref.value;
 
-      dispatch((0, _setAuthToken2.default)(value.data.token));
-      return _promise2.default.all([dispatch((0, _loadUserData2.default)()), dispatch((0, _UserSettingsActions.getSettings)())]);
+      setTimeout(function () {
+        return _promise2.default.all([dispatch((0, _loadUserData2.default)()), dispatch((0, _UserSettingsActions.getSettings)())]);
+      }, 1);
     });
   };
 };
@@ -36390,6 +36559,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _promise = __webpack_require__("//Fk");
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _axios = __webpack_require__("mtWM");
 
 var _axios2 = _interopRequireDefault(_axios);
@@ -36414,8 +36587,9 @@ var _default = function _default(code) {
         }
       })
     }).then(function (response) {
-      dispatch((0, _.loadUserData)());
-      dispatch((0, _UserSettingsActions.getSettings)());
+      setTimeout(function () {
+        return _promise2.default.all([dispatch((0, _.loadUserData)()), dispatch((0, _UserSettingsActions.getSettings)())]);
+      }, 1);
       dispatch((0, _ToastsActions.show)({ title: 'Beta access granted. Welcome to the Stemn Desktop Beta!' }));
     });
   };
@@ -41325,12 +41499,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _Websocket = __webpack_require__("r0iT");
 
-var _axios = __webpack_require__("mtWM");
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var _default = function _default(_ref) {
   var projectId = _ref.projectId,
       fileId = _ref.fileId,
@@ -41338,21 +41506,25 @@ var _default = function _default(_ref) {
       provider = _ref.provider,
       timestamp = _ref.timestamp;
   return function (dispatch) {
+    // The cache key is used as the renderId/roomId
     var cacheKey = timestamp ? fileId + '-' + revisionId + '-' + timestamp : fileId + '-' + revisionId;
+
     // Join the websocket room
     dispatch((0, _Websocket.joinRoom)({
       room: cacheKey,
       type: 'render'
     }));
-    // The cache key is used as the renderId/roomId
+
     dispatch({
       type: 'FILES/RENDER_FILE',
-      http: true,
+      websocket: true,
       payload: {
-        url: projectId ? '/api/v1/sync/render/' + projectId + '/' + fileId : '/api/v1/remote/render/' + provider + '/' + fileId,
-        params: {
+        type: 'RENDER/RENDER_FILE',
+        payload: {
+          fileId: fileId,
           revisionId: revisionId,
           timestamp: timestamp,
+          projectId: projectId,
           roomId: cacheKey
         }
       },
@@ -41365,6 +41537,25 @@ var _default = function _default(_ref) {
 
 var _default2 = _default;
 exports.default = _default2;
+
+//  dispatch({
+//    type: 'FILES/RENDER_FILE',
+//    http: true,
+//    payload: {
+//      url: projectId
+//        ? `/api/v1/sync/render/${projectId}/${fileId}`
+//        : `/api/v1/remote/render/${provider}/${fileId}`,
+//      params: {
+//        revisionId,
+//        timestamp,
+//        roomId: cacheKey
+//      },
+//    },
+//    meta: {
+//      cacheKey,
+//    }
+//  })
+
 ;
 
 var _temp = function () {
@@ -45407,7 +45598,7 @@ var Item = function Item(_ref) {
       onClick: function onClick() {
         return setFilter((0, _defineProperty3.default)({}, objKey, value));
       },
-      className: filterObject[objKey] === value ? 'active' : ''
+      className: filterObject && filterObject[objKey] === value ? 'active' : ''
     },
     children
   );
@@ -48331,50 +48522,6 @@ module.exports = uniqBy;
 
 /***/ },
 
-/***/ "VePa":
-/***/ function(module, exports) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _default = function _default(token) {
-  return {
-    type: 'AUTH/SET_AUTH_TOKEN',
-    payload: token
-  };
-};
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/actions/setAuthToken.js');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/actions/setAuthToken.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "VjCY":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -48463,7 +48610,8 @@ var _default = function _default() {
 
   switch (action.type) {
     case 'STORE/CHANGE':
-      return _icepick2.default.assocIn(state, (0, _toPath3.default)(action.payload.model), action.payload.value);
+      return action.payload.model.length > 0 // This will be 0 if we are clearing the store
+      ? _icepick2.default.assocIn(state, (0, _toPath3.default)(action.payload.model), action.payload.value) : action.payload.value;
     case 'STORE/LOAD':
       return _icepick2.default.assocIn(state, (0, _toPath3.default)(action.payload.model), action.payload.value);
     case 'STORE/PUSH':
@@ -53868,7 +54016,8 @@ var FileList = (_temp2 = _class = function (_Component) {
             file: file,
             singleClick: singleClickFn,
             doubleClick: doubleClickFn,
-            isActive: selected && selected.fileId == file.fileId
+            isActive: selected && selected.fileId == file.fileId,
+            showPath: true
           });
         });
       } else if (isLoading === false) {
@@ -55682,11 +55831,17 @@ var mainReducer = function mainReducer(state, action) {
       });
     case 'AUTH/POST_AUTHENTICATE_FULFILLED':
       return (0, _extends3.default)({}, state, {
+        authToken: action.payload.data.token,
         authLoading: false
       });
     case 'AUTH/POST_AUTHENTICATE_REJECTED':
       return (0, _extends3.default)({}, state, {
         authLoading: false
+      });
+
+    case 'AUTH/GET_TOKEN_FULFILLED':
+      return (0, _extends3.default)({}, state, {
+        authToken: action.payload.data.token
       });
 
     case 'AUTH/UNLINK_FULFILLED':
@@ -55698,7 +55853,8 @@ var mainReducer = function mainReducer(state, action) {
       });
     case 'AUTH/LOGIN_FULFILLED':
       return (0, _extends3.default)({}, state, {
-        authLoading: false
+        authLoading: false,
+        authToken: action.payload.data.token
       });
     case 'AUTH/LOGIN_REJECTED':
       return (0, _extends3.default)({}, state, {
@@ -55743,7 +55899,8 @@ var mainReducer = function mainReducer(state, action) {
       });
     case 'AUTH/REGISTER_FULFILLED':
       return (0, _extends3.default)({}, state, {
-        authLoading: false
+        authLoading: false,
+        authToken: action.payload.data.token
       });
     case 'AUTH/REGISTER_REJECTED':
       return (0, _extends3.default)({}, state, {
@@ -56396,16 +56553,6 @@ var _temp2 = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _getUuid = __webpack_require__("FmOC");
-
-var _getUuid2 = _interopRequireDefault(_getUuid);
-
-var _axios = __webpack_require__("mtWM");
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(_ref) {
   var projectId = _ref.projectId,
@@ -60739,10 +60886,6 @@ var _axios2 = _interopRequireDefault(_axios);
 
 var _AuthConfig = __webpack_require__("RLdI");
 
-var _setAuthToken = __webpack_require__("VePa");
-
-var _setAuthToken2 = _interopRequireDefault(_setAuthToken);
-
 var _loadUserData = __webpack_require__("PWYc");
 
 var _loadUserData2 = _interopRequireDefault(_loadUserData);
@@ -60769,8 +60912,9 @@ var _default = function _default(_ref) {
       }).then(function (_ref2) {
         var value = _ref2.value;
 
-        dispatch((0, _setAuthToken2.default)(value.data.token));
-        return _promise2.default.all([dispatch((0, _loadUserData2.default)()), dispatch((0, _UserSettingsActions.getSettings)())]);
+        setTimeout(function () {
+          return _promise2.default.all([dispatch((0, _loadUserData2.default)()), dispatch((0, _UserSettingsActions.getSettings)())]);
+        }, 1);
       });
     }
   };
@@ -64804,20 +64948,20 @@ function reducer(state, action) {
     case 'FILES/GET_FILE_PROGRESS':
       return _icepick2.default.assocIn(state, ['fileData', action.meta.cacheKey, 'percentage'], action.payload.percentage);
 
-    case 'FILES/RENDER_FILE_PENDING':
-      return _icepick2.default.assocIn(state, ['fileRenders', action.meta.cacheKey, 'loading'], true);
-    case 'FILES/RENDER_FILE_REJECTED':
-      return _icepick2.default.assocIn(state, ['fileRenders', action.meta.cacheKey], {
-        error: action.payload.response.data.error,
-        loading: false
-      });
-    case 'FILES/RENDER_FILE_FULFILLED':
-      var isRenderRequest = action.payload.data && action.payload.data.status;
-      // If this was a render request, we do nothing - we wait for the websocket event to trigger the download
-      return isRenderRequest ? state : _icepick2.default.assocIn(state, ['fileRenders', action.meta.cacheKey], {
-        data: action.payload.data,
-        loading: false
-      });
+    //    case 'FILES/RENDER_FILE_PENDING' :
+    //      return i.assocIn(state, ['fileRenders', action.meta.cacheKey, 'loading'], true)
+    //    case 'FILES/RENDER_FILE_REJECTED' :
+    //      return i.assocIn(state, ['fileRenders', action.meta.cacheKey], {
+    //        error: action.payload.response.data.error,
+    //        loading: false
+    //      })
+    //    case 'FILES/RENDER_FILE_FULFILLED' :
+    //      const isRenderRequest = action.payload.data && action.payload.data.status;
+    //      // If this was a render request, we do nothing - we wait for the websocket event to trigger the download
+    //      return isRenderRequest ? state : i.assocIn(state, ['fileRenders', action.meta.cacheKey], {
+    //        data: action.payload.data,
+    //        loading: false
+    //      })
     case 'FILES/RENDER_FILE_DOWNLOAD_PENDING':
       return _icepick2.default.assocIn(state, ['fileRenders', action.meta.cacheKey, 'loading'], true);
     case 'FILES/RENDER_FILE_DOWNLOAD_REJECTED':
@@ -71444,6 +71588,8 @@ var _ThreadMentionModal = __webpack_require__("qZTG");
 
 var _ThreadMentionModal2 = _interopRequireDefault(_ThreadMentionModal);
 
+var _ChangesUtils = __webpack_require__("62cI");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function deselect(_ref) {
@@ -71473,7 +71619,6 @@ function toggleAll(_ref3) {
   var projectId = _ref3.projectId,
       value = _ref3.value;
 
-  console.log(value);
   return function (dispatch, getState) {
     dispatch({
       type: 'CHANGES/TOGGLE_ALL_CHANGED_FILES',
@@ -71556,10 +71701,11 @@ function commit(_ref8) {
 
   return function (dispatch, getState) {
     var changes = getState().changes[projectId];
+    var possibledSelected = (0, _ChangesUtils.filterSelectedChangesByPossible)(changes.data, changes.checked);
 
     // Get the revisions from the selected files
     var revisions = changes.data.filter(function (item) {
-      return changes.checked[item.data.fileId];
+      return possibledSelected[item.data.fileId];
     }).map(function (item) {
       return item._id;
     });
@@ -77903,7 +78049,7 @@ module.exports = function(O, D){
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getToken = exports.passwordUpdate = exports.requestPasswordReset = exports.confirmAuth = exports.updateUser = exports.setPrimaryEmail = exports.unlink = exports.submitBetaCode = exports.setAuthToken = exports.sendAuthToken = exports.removeAuthToken = exports.register = exports.nextBackground = exports.logout = exports.login = exports.loadUserData = exports.confirmLinkedinImport = exports.authenticate = undefined;
+exports.getToken = exports.passwordUpdate = exports.requestPasswordReset = exports.confirmAuth = exports.updateUser = exports.setPrimaryEmail = exports.unlink = exports.submitBetaCode = exports.sendAuthToken = exports.removeAuthToken = exports.register = exports.nextBackground = exports.logout = exports.login = exports.loadUserData = exports.confirmLinkedinImport = exports.authenticate = undefined;
 
 var _authenticate2 = __webpack_require__("tq/v");
 
@@ -77940,10 +78086,6 @@ var _removeAuthToken3 = _interopRequireDefault(_removeAuthToken2);
 var _sendAuthToken2 = __webpack_require__("6fK/");
 
 var _sendAuthToken3 = _interopRequireDefault(_sendAuthToken2);
-
-var _setAuthToken2 = __webpack_require__("VePa");
-
-var _setAuthToken3 = _interopRequireDefault(_setAuthToken2);
 
 var _submitBetaCode2 = __webpack_require__("O9Hc");
 
@@ -77988,7 +78130,6 @@ exports.nextBackground = _nextBackground3.default;
 exports.register = _register3.default;
 exports.removeAuthToken = _removeAuthToken3.default;
 exports.sendAuthToken = _sendAuthToken3.default;
-exports.setAuthToken = _setAuthToken3.default;
 exports.submitBetaCode = _submitBetaCode3.default;
 exports.unlink = _unlink3.default;
 exports.setPrimaryEmail = _setPrimaryEmail3.default;
@@ -79565,7 +79706,9 @@ var FileSelectInput = _react2.default.createClass({
         projectId: this.props.projectId,
         model: this.props.model,
         path: this.props.value.fileId,
-        storeKey: this.props.model, // We use the model as the storekey
+        storeKey: this.props.model + '-' + this.props.provider,
+        // We use the model + provider as the storekey.
+        // This means items from the last provider don't show in the modal.
         options: {
           allowFolder: true,
           foldersOnly: true,
@@ -79619,7 +79762,7 @@ var FileSelectInput = _react2.default.createClass({
           ),
           path
         );
-      } else if (value.path === undefined && value.fileId === undefined) {
+      } else if (value.path === undefined && value.fileId === undefined && provider) {
         return 'A new folder will be created in your ' + provider;
       } else {
         return 'Select the project folder';
@@ -82468,7 +82611,7 @@ var fetchConfigs = [{
 }, {
   hasChanged: 'fileList.query',
   onChange: function onChange(props) {
-    if (props.fileList.query && props.fileList.query.length > 1) {
+    if (props.fileList.query && props.fileList.query.length > 0) {
       props.getSearchResults({
         folderId: props.path,
         query: props.fileList.query,
@@ -85125,10 +85268,6 @@ var _loadUserData = __webpack_require__("PWYc");
 
 var _loadUserData2 = _interopRequireDefault(_loadUserData);
 
-var _setAuthToken = __webpack_require__("VePa");
-
-var _setAuthToken2 = _interopRequireDefault(_setAuthToken);
-
 var _UserSettingsActions = __webpack_require__("6fbs");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -85155,8 +85294,9 @@ var _default = function _default(_ref) {
     }).then(function (_ref2) {
       var value = _ref2.value;
 
-      dispatch((0, _setAuthToken2.default)(value.data.token));
-      return _promise2.default.all([dispatch((0, _loadUserData2.default)()), dispatch((0, _UserSettingsActions.getSettings)())]);
+      setTimeout(function () {
+        return _promise2.default.all([dispatch((0, _loadUserData2.default)()), dispatch((0, _UserSettingsActions.getSettings)())]);
+      }, 1);
     });
   };
 };
@@ -86206,4 +86346,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.0da85328237c540ea980.js.map
+//# sourceMappingURL=application.9c673bde5e582374a5a5.js.map
