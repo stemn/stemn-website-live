@@ -293,7 +293,7 @@ var Component = _react2.default.createClass({
           'If your assembly is not rendering, please add your voice to the ',
           _react2.default.createElement(
             'a',
-            { className: 'link-primary', href: 'https://github.com/Stemn/Stemn-Desktop/issues/4' },
+            { className: 'link-primary', target: '_blank', href: 'https://github.com/Stemn/Stemn-Desktop/issues/4' },
             'assembly part not found issue'
           ),
           '.'
@@ -7444,4 +7444,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=7.9a25d50034bb4c98dc6d.js.map
+//# sourceMappingURL=7.744df779e93454b22a8d.js.map

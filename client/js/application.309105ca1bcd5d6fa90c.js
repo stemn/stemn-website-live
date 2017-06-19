@@ -16829,6 +16829,14 @@ module.exports = __webpack_require__("FeBl").Object.getOwnPropertySymbols;
 
 /***/ },
 
+/***/ "B3ga":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"orbit":"FileSyncIcon_orbit-25zMW"};
+
+/***/ },
+
 /***/ "B6Bn":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25541,6 +25549,45 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "Gm6i":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _FileSyncUnderway = __webpack_require__("cv3d");
+
+var _FileSyncUnderway2 = _interopRequireDefault(_FileSyncUnderway);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _FileSyncUnderway2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "Gmrq":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -27072,7 +27119,9 @@ var PopoverFit = function (_Component) {
   (0, _createClass3.default)(PopoverFit, [{
     key: '__getTriggerRef__REACT_HOT_LOADER__',
     value: function __getTriggerRef__REACT_HOT_LOADER__(ref) {
-      if (ref) {
+      // If we have ref.props - this is a react component
+      // the childRef prop should be implemented for react components
+      if (ref && !ref.props) {
         this.triggerRef = ref;
         this.setWidth();
       }
@@ -27094,6 +27143,8 @@ var PopoverFit = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var _props = this.props,
           children = _props.children,
           max = _props.max,
@@ -27107,14 +27158,19 @@ var PopoverFit = function (_Component) {
         maxWidth: max ? minWidth + 'px' : 'inherit'
       };
 
+      var triggerWithRefProp = function triggerWithRefProp(element) {
+        // This will add the ref prop to the trigger element
+        var newProps = {
+          childRef: _this2.getTriggerRef, // This childRef prop should be implemented if the child is a component
+          ref: _this2.getTriggerRef
+        };
+        return _react2.default.cloneElement(element, newProps);
+      };
+
       return _react2.default.createElement(
         _Popover2.default,
         (0, _extends3.default)({ preferPlace: 'below', tipSize: 1 }, otherProps),
-        _react2.default.createElement(
-          'div',
-          { ref: this.getTriggerRef },
-          children[0]
-        ),
+        triggerWithRefProp(children[0]),
         _react2.default.createElement(
           'div',
           { style: popoverStyle },
@@ -27125,6 +27181,10 @@ var PopoverFit = function (_Component) {
   }]);
   return PopoverFit;
 }(_react.Component);
+
+//        <div ref={ this.getTriggerRef } className="layout-row flex">
+//        </div>
+
 
 exports.default = PopoverFit;
 ;
@@ -35758,7 +35818,7 @@ module.exports = ReactTransitionEvents;
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"primary":"#4484d3","header":"Header_header-2SQ0c","inner":"Header_inner-1_2aP","logo":"Header_logo-1zmE9","search":"Header_search-_BEi7","badge":"Header_badge-2cGjm","links":"Header_links-3QY6X","link":"Header_link-2GEkx","menuButton":"Header_menuButton-1OvMe"};
+module.exports = {"primary":"#4484d3","header":"Header_header-2SQ0c","inner":"Header_inner-1_2aP","logo":"Header_logo-1zmE9","search":"Header_search-_BEi7","badge":"Header_badge-2cGjm","badgeLarge":"Header_badgeLarge-2GPV8","links":"Header_links-3QY6X","link":"Header_link-2GEkx","menuButton":"Header_menuButton-1OvMe"};
 
 /***/ },
 
@@ -48960,7 +49020,7 @@ var PopoverDropdown = function (_Component) {
         otherProps,
         _react2.default.createElement(
           _Button2.default,
-          { className: (0, _classnames2.default)('layout-row layout-align-start-center flex rel-box light', className), style: style },
+          { className: (0, _classnames2.default)('layout-row layout-align-start-center rel-box light', className), style: style },
           _react2.default.createElement(_LoadingOverlay2.default, { className: _PopoverDropdown2.default.loading, show: loading, linear: true, hideBg: true }),
           children,
           getInnerText(),
@@ -50860,26 +50920,26 @@ var _default = function (_React$Component) {
           name = _props.name,
           href = _props.href,
           children = _props.children,
-          buttonRef = _props.buttonRef,
-          otherProps = (0, _objectWithoutProperties3.default)(_props, ['className', 'name', 'href', 'children', 'buttonRef']);
+          childRef = _props.childRef,
+          otherProps = (0, _objectWithoutProperties3.default)(_props, ['className', 'name', 'href', 'children', 'childRef']);
 
 
       if (name) {
         return _react2.default.createElement(
           _Link2.default,
-          (0, _extends3.default)({ ref: buttonRef, className: (0, _classnames2.default)(_Button2.default.button, className), name: name }, otherProps),
+          (0, _extends3.default)({ ref: childRef, className: (0, _classnames2.default)(_Button2.default.button, className), name: name }, otherProps),
           children
         );
       } else if (href) {
         return _react2.default.createElement(
           'a',
-          (0, _extends3.default)({ ref: buttonRef, className: (0, _classnames2.default)(_Button2.default.button, className), href: href }, otherProps),
+          (0, _extends3.default)({ ref: childRef, className: (0, _classnames2.default)(_Button2.default.button, className), href: href }, otherProps),
           children
         );
       } else {
         return _react2.default.createElement(
           'button',
-          (0, _extends3.default)({ ref: buttonRef, className: (0, _classnames2.default)(_Button2.default.button, className) }, otherProps),
+          (0, _extends3.default)({ ref: childRef, className: (0, _classnames2.default)(_Button2.default.button, className) }, otherProps),
           children
         );
       }
@@ -53858,6 +53918,10 @@ var _ChildrenHistory = __webpack_require__("bMtl");
 
 var _ChildrenHistory2 = _interopRequireDefault(_ChildrenHistory);
 
+var _FileSyncUnderway = __webpack_require__("Gm6i");
+
+var _FileSyncUnderway2 = _interopRequireDefault(_FileSyncUnderway);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var contextIdentifier = 'FileListCm';
@@ -53875,6 +53939,7 @@ var propTypesObject = {
   crumbClickFn: _react.PropTypes.func, // When a crumb is clicked
   selected: _react.PropTypes.object, // The currently selected file
   contentStyle: _react.PropTypes.object, // Styles for the content section
+  initialSync: _react2.default.PropTypes.bool, // Optional: True if this is the initial project sync (general uses !project.remote.lastSynced)
   crumbPopup: _react2.default.PropTypes.bool, // Optional: Should we show a popup on the crumbs?
   search: _react2.default.PropTypes.bool, // Optional: Should search be enabled
   link: _react2.default.PropTypes.bool, // Optional: Should each row be a link with href
@@ -53926,12 +53991,14 @@ var FileList = (_temp2 = _class = function (_Component) {
           getFiles = _props.getFiles,
           options = _props.options,
           path = _props.path,
-          projectId = _props.projectId;
+          projectId = _props.projectId,
+          fileListCacheKey = _props.fileListCacheKey;
 
       getFiles({
         path: path,
         provider: options.explore,
-        projectId: projectId
+        projectId: projectId,
+        cacheKey: fileListCacheKey
       });
     }
   }, {
@@ -54038,6 +54105,7 @@ var FileList = (_temp2 = _class = function (_Component) {
           getFiles = _props5.getFiles,
           getSearchResults = _props5.getSearchResults,
           link = _props5.link,
+          initialSync = _props5.initialSync,
           search = _props5.search,
           contentStyle = _props5.contentStyle,
           singleClickFn = _props5.singleClickFn,
@@ -54049,10 +54117,11 @@ var FileList = (_temp2 = _class = function (_Component) {
           projectId = _props5.projectId,
           crumbPopup = _props5.crumbPopup,
           dispatch = _props5.dispatch,
-          otherProps = (0, _objectWithoutProperties3.default)(_props5, ['fileList', 'fileListCacheKey', 'getFiles', 'getSearchResults', 'link', 'search', 'contentStyle', 'singleClickFn', 'doubleClickFn', 'crumbClickFn', 'selected', 'options', 'path', 'projectId', 'crumbPopup', 'dispatch']);
+          otherProps = (0, _objectWithoutProperties3.default)(_props5, ['fileList', 'fileListCacheKey', 'getFiles', 'getSearchResults', 'link', 'initialSync', 'search', 'contentStyle', 'singleClickFn', 'doubleClickFn', 'crumbClickFn', 'selected', 'options', 'path', 'projectId', 'crumbPopup', 'dispatch']);
 
 
       var isLoading = !fileList || fileList.loading;
+      var isInitialSync = !(0, _get3.default)(fileList, 'folder') && initialSync;
 
       var fileRowChildren = (0, _get3.default)(fileList, 'query', '').length > 0 ? this.renderSearchResults(isLoading) : this.renderResults(isLoading);
 
@@ -54062,71 +54131,87 @@ var FileList = (_temp2 = _class = function (_Component) {
       return _react2.default.createElement(
         'div',
         otherProps,
-        _react2.default.createElement(
+        isInitialSync ? _react2.default.createElement(
           'div',
-          { className: _FileList2.default.breadcrumbs + ' layout-row layout-align-start-center' },
-          _react2.default.createElement(_FileBreadCrumbs2.default, {
-            className: 'flex',
-            meta: (0, _get3.default)(fileList, 'folder', {}),
-            clickFn: crumbClickFn,
-            popup: crumbPopup
-          }),
-          _react2.default.createElement(
-            _SimpleIconButton2.default,
-            {
-              onClick: this.goHome,
-              title: 'Home'
-            },
-            _react2.default.createElement(_home2.default, { size: 22 })
-          ),
-          _react2.default.createElement(
-            _SimpleIconButton2.default,
-            {
-              onClick: this.refresh,
-              title: 'Refresh'
-            },
-            _react2.default.createElement(_refresh2.default, { size: 22 })
-          ),
-          search ? _react2.default.createElement(_SearchInput2.default, {
-            value: fileList.query,
-            model: 'fileList.' + fileListCacheKey + '.query',
-            className: (0, _classnames2.default)(_FileList2.default.search, 'hide-xs'),
-            placeholder: 'Search Files'
-          }) : null
-        ),
-        _react2.default.createElement(
-          'div',
-          {
-            className: 'rel-box',
-            style: contentStyle
-          },
+          { className: 'rel-box' },
           _react2.default.createElement(_LoadingOverlay2.default, {
             show: isLoading,
             linear: true,
             hideBg: true,
             noOverlay: true
           }),
+          _react2.default.createElement(_FileSyncUnderway2.default, {
+            refresh: this.refresh
+          })
+        ) : _react2.default.createElement(
+          'div',
+          null,
           _react2.default.createElement(
-            _AccordianAnimate2.default,
-            {
-              duration: 300,
-              itemHeight: 48,
-              items: fileRowHistoric
-            },
+            'div',
+            { className: _FileList2.default.breadcrumbs + ' layout-row layout-align-start-center' },
+            _react2.default.createElement(_FileBreadCrumbs2.default, {
+              className: 'flex',
+              meta: (0, _get3.default)(fileList, 'folder', {}),
+              clickFn: crumbClickFn,
+              popup: crumbPopup
+            }),
             _react2.default.createElement(
-              _reactFlipMove2.default,
+              _SimpleIconButton2.default,
+              {
+                onClick: this.goHome,
+                title: 'Home'
+              },
+              _react2.default.createElement(_home2.default, { size: 22 })
+            ),
+            _react2.default.createElement(
+              _SimpleIconButton2.default,
+              {
+                onClick: this.refresh,
+                title: 'Refresh'
+              },
+              _react2.default.createElement(_refresh2.default, { size: 22 })
+            ),
+            search ? _react2.default.createElement(_SearchInput2.default, {
+              value: fileList.query,
+              model: 'fileList.' + fileListCacheKey + '.query',
+              className: (0, _classnames2.default)(_FileList2.default.search, 'hide-xs'),
+              placeholder: 'Search Files'
+            }) : null
+          ),
+          _react2.default.createElement(
+            'div',
+            {
+              className: 'rel-box',
+              style: contentStyle
+            },
+            _react2.default.createElement(_LoadingOverlay2.default, {
+              show: isLoading,
+              linear: true,
+              hideBg: true,
+              noOverlay: true
+            }),
+            _react2.default.createElement(
+              _AccordianAnimate2.default,
               {
                 duration: 300,
-                enterAnimation: 'fade',
-                leaveAnimation: 'fade'
+                itemHeight: 48,
+                items: fileRowHistoric
               },
-              fileRowHistoric
-            )
-          ),
-          options.showMenu ? _react2.default.createElement(_ContextMenu2.default, {
-            identifier: contextIdentifier,
-            menu: (0, _FileListMenu2.default)(dispatch)
-          }) : null
+              _react2.default.createElement(
+                _reactFlipMove2.default,
+                {
+                  duration: 300,
+                  enterAnimation: 'fade',
+                  leaveAnimation: 'fade'
+                },
+                fileRowHistoric
+              )
+            ),
+            options.showMenu ? _react2.default.createElement(_ContextMenu2.default, {
+              identifier: contextIdentifier,
+              menu: (0, _FileListMenu2.default)(dispatch)
+            }) : null
+          )
         )
       );
     }
@@ -56414,6 +56499,118 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "cv3d":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _class, _temp;
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _FileSyncIcon = __webpack_require__("fL8t");
+
+var _FileSyncIcon2 = _interopRequireDefault(_FileSyncIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FileSyncUnderway = (_temp = _class = function (_Component) {
+  (0, _inherits3.default)(FileSyncUnderway, _Component);
+
+  function FileSyncUnderway() {
+    (0, _classCallCheck3.default)(this, FileSyncUnderway);
+    return (0, _possibleConstructorReturn3.default)(this, (FileSyncUnderway.__proto__ || (0, _getPrototypeOf2.default)(FileSyncUnderway)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(FileSyncUnderway, [{
+    key: 'render',
+    value: function render() {
+      var refresh = this.props.refresh;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'flex layout-column layout-align-center-center text-center', style: { padding: '40px 15px' } },
+        _react2.default.createElement(_FileSyncIcon2.default, { size: 120 }),
+        _react2.default.createElement(
+          'div',
+          { className: 'text-title-4', style: { marginBottom: '10px' } },
+          'Initial sync in progress'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'text-title-5' },
+          'Your files are syncing from the cloud.',
+          _react2.default.createElement('br', null),
+          'This may take a few minutes.',
+          _react2.default.createElement(
+            'a',
+            { className: 'link-primary', onClick: refresh },
+            ' Refresh.'
+          )
+        )
+      );
+    }
+  }]);
+  return FileSyncUnderway;
+}(_react.Component), _class.propTypes = {
+  refresh: _react.PropTypes.func.isRequired
+}, _temp);
+exports.default = FileSyncUnderway;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(FileSyncUnderway, 'FileSyncUnderway', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/FileSyncUnderway/FileSyncUnderway.jsx');
+}();
+
+;
+;
+
+var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "cvVl":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -58314,6 +58511,45 @@ module.exports = function isBuffer(arg) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"primary":"#4484d3","secondary":"rgba(0, 0, 0, 0.7)","border1":"rgba(0, 0, 0, 0.1)","radio":"Radio_radio-KXmeZ","checked":"Radio_checked-tIr-6"};
+
+/***/ },
+
+/***/ "fL8t":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _FileSyncIcon = __webpack_require__("zaoH");
+
+var _FileSyncIcon2 = _interopRequireDefault(_FileSyncIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _FileSyncIcon2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -77598,6 +77834,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+var _defineProperty2 = __webpack_require__("bOdI");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
 var _getPrototypeOf = __webpack_require__("Zx67");
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -77738,7 +77978,7 @@ var Header = function (_Component) {
           _react2.default.createElement(_notifications2.default, { size: 22 }),
           numNotifications > 0 && _react2.default.createElement(
             'div',
-            { className: _Header2.default.badge },
+            { className: (0, _classnames2.default)(_Header2.default.badge, (0, _defineProperty3.default)({}, _Header2.default.badgeLarge, numNotifications >= 10)) },
             numNotifications
           )
         ),
@@ -86115,6 +86355,132 @@ module.exports = ReactTransitionChildMapping;
 
 /***/ },
 
+/***/ "zaoH":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = __webpack_require__("aSqn");
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+var _FileSyncIcon = __webpack_require__("B3ga");
+
+var _FileSyncIcon2 = _interopRequireDefault(_FileSyncIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(props) {
+  return _react2.default.createElement(
+    _reactIconBase2.default,
+    (0, _extends3.default)({ viewBox: '0 0 150 150' }, props),
+    _react2.default.createElement(
+      'g',
+      null,
+      _react2.default.createElement(
+        'g',
+        { className: _FileSyncIcon2.default.orbit },
+        _react2.default.createElement(
+          'g',
+          null,
+          _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M88.795,59.937c-0.004-5.951-2.316-11.541-6.518-15.736c-4.205-4.209-9.808-6.521-15.772-6.508\r c-5.938,0.016-11.517,2.33-15.697,6.515c-8.672,8.677-8.674,22.799,0.008,31.47c4.21,4.211,9.819,6.52,15.784,6.51\r c5.937-0.014,11.505-2.328,15.689-6.512C86.486,71.476,88.799,65.886,88.795,59.937z' }),
+          _react2.default.createElement('path', { fill: '#282D33', d: 'M66.563,84.188c-6.492,0-12.586-2.52-17.162-7.096c-4.574-4.57-7.096-10.661-7.096-17.147\r c-0.002-6.484,2.516-12.576,7.088-17.15c4.558-4.563,10.633-7.084,17.107-7.102c6.535,0,12.621,2.52,17.193,7.095\r c4.574,4.569,7.098,10.659,7.102,17.147c0.004,6.482-2.514,12.574-7.092,17.155c-4.563,4.563-10.635,7.084-17.099,7.098H66.563z\r M66.556,39.693c-5.454,0.014-10.528,2.119-14.333,5.928c-3.817,3.82-5.92,8.906-5.919,14.324\r c0.001,5.417,2.104,10.502,5.925,14.316c3.82,3.823,8.91,5.926,14.334,5.926v2l0.033-2c5.398-0.012,10.468-2.117,14.279-5.926\r c3.82-3.823,5.924-8.91,5.92-14.323c-0.004-5.42-2.109-10.506-5.93-14.321C77.047,41.795,71.966,39.693,66.556,39.693z' })
+        ),
+        _react2.default.createElement(
+          'g',
+          null,
+          _react2.default.createElement('path', { fill: '#30C0D8', d: 'M78.701,72.035c-3.252,3.264-7.565,5.057-12.153,5.059c-9.459,0.008-17.154-7.684-17.152-17.145\r c0-4.564,1.777-8.86,5.006-12.104c3.248-3.26,7.561-5.053,12.141-5.053c4.578-0.002,8.881,1.777,12.127,5.027\r c3.244,3.238,5.031,7.549,5.035,12.12C83.707,64.5,81.932,68.794,78.701,72.035z' }),
+          _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M55.38,59.947h-4c0-3.949,1.538-7.667,4.329-10.469c2.806-2.818,6.535-4.37,10.501-4.37v4\r c-2.894,0-5.616,1.134-7.667,3.192C56.503,54.348,55.38,57.064,55.38,59.947z' })
+          )
+        ),
+        _react2.default.createElement('rect', { x: '60.037', y: '94.84', fill: '#B7BEC0', width: '13.027', height: '21.18' }),
+        _react2.default.createElement(
+          'g',
+          null,
+          _react2.default.createElement('rect', { x: '62.006', y: '90.341', fill: '#FFFFFF', width: '9.088', height: '4.453' }),
+          _react2.default.createElement('polygon', { fill: '#282D33', points: '64.005,94.793 60.005,94.793 60.008,88.34 73.095,88.342 73.095,94.793 69.095,94.793\r 69.095,92.342 64.006,92.34 \t\t\t' })
+        ),
+        _react2.default.createElement(
+          'g',
+          null,
+          _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M71.095,116.02c0,0.725,0,1.453-0.002,2.182c-2.506,2.51-6.576,2.51-9.088-0.002c0-0.727,0-1.453,0-2.18\r H71.095z' }),
+          _react2.default.createElement('path', { fill: '#282D33', d: 'M66.553,122.082c-0.002,0-0.002,0-0.002,0c-2.251,0-4.367-0.877-5.96-2.469l-0.586-0.584v-3.01h4v1.26\r c0.741,0.521,1.622,0.803,2.546,0.803c0.001,0,0.001,0,0.001,0c0.924,0,1.804-0.279,2.542-0.801l0.001-1.262h4l-0.005,3.012\r l-0.582,0.584C70.918,121.207,68.803,122.082,66.553,122.082z' })
+        ),
+        _react2.default.createElement(
+          'g',
+          null,
+          _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement(
+              'g',
+              null,
+              _react2.default.createElement('rect', { x: '67.988', y: '82.35', fill: '#282D33', width: '4', height: '6.852' })
+            )
+          ),
+          _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement(
+              'g',
+              null,
+              _react2.default.createElement('rect', { x: '61.113', y: '82.35', fill: '#282D33', width: '4', height: '6.852' })
+            )
+          )
+        )
+      ),
+      _react2.default.createElement(
+        'g',
+        null,
+        _react2.default.createElement('path', { fill: '#282D33', d: 'M115.811,92.213c-0.123,0-0.246-0.002-0.367-0.008l-0.346,0.008H76.73v-4h36.965l0.045-0.123l1.541,0.094\r c0.176,0.016,0.35,0.029,0.529,0.029c3.471,0,6.295-2.824,6.295-6.297c0-3.422-2.68-6.182-6.102-6.281l-2.178-0.064l0.25-2.167\r c0.082-0.703,0.123-1.328,0.123-1.914c0-8.89-7.23-16.121-16.117-16.121c-0.637,0-1.295,0.045-2.01,0.137l-1.822,0.236\r l-0.389-1.796c-1.135-5.24-3.75-10.022-7.563-13.829c-5.285-5.289-12.315-8.199-19.804-8.199c-0.021,0-0.042,0-0.063,0\r c-7.482,0.02-14.505,2.934-19.772,8.206c-4.994,4.996-7.894,11.651-8.164,18.739l-0.052,1.336l-1.253,0.463\r c-5.56,2.057-9.295,7.412-9.295,13.324c0,7.846,6.381,14.227,14.225,14.227h14.251v4H42.12c-10.049,0-18.225-8.176-18.225-18.227\r c0-7.133,4.24-13.633,10.678-16.568c0.595-7.611,3.854-14.715,9.256-20.121c6.021-6.025,14.045-9.356,22.594-9.379\r c0.023,0,0.049,0,0.072,0c8.559,0,16.593,3.326,22.632,9.37c3.938,3.931,6.758,8.775,8.223,14.096\r c0.246-0.011,0.488-0.015,0.732-0.015c11.092,0,20.117,9.025,20.117,20.121c0,0.137-0.002,0.273-0.006,0.414\r c4.572,1.063,7.912,5.125,7.912,10.012C126.105,87.594,121.486,92.213,115.811,92.213z' })
+      )
+    )
+  );
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/FileSyncUnderway/FileSyncIcon/FileSyncIcon.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/FileSyncUnderway/FileSyncIcon/FileSyncIcon.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "zjZt":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -86346,4 +86712,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.9c673bde5e582374a5a5.js.map
+//# sourceMappingURL=application.309105ca1bcd5d6fa90c.js.map
