@@ -1,4 +1,4 @@
-webpackJsonp([55,61],{
+webpackJsonp([56,62],{
 
 /***/ "+6Bu":
 /***/ function(module, exports) {
@@ -17323,8 +17323,13 @@ var projectThreadsRoute = exports.projectThreadsRoute = function projectThreadsR
   var projectId = _ref12.projectId;
   return '/project/' + projectId + '/threads';
 };
-var projectTeamRoute = exports.projectTeamRoute = function projectTeamRoute(_ref13) {
-  var projectId = _ref13.projectId;
+var projectThreadRoute = exports.projectThreadRoute = function projectThreadRoute(_ref13) {
+  var threadId = _ref13.threadId,
+      projectId = _ref13.projectId;
+  return '/project/' + projectId + '/threads/' + threadId;
+};
+var projectTeamRoute = exports.projectTeamRoute = function projectTeamRoute(_ref14) {
+  var projectId = _ref14.projectId;
   return '/project/' + projectId + '/team';
 };
 var registerRoute = exports.registerRoute = function registerRoute() {
@@ -17336,41 +17341,40 @@ var securityRoute = exports.securityRoute = function securityRoute() {
 var settingsRoute = exports.settingsRoute = function settingsRoute() {
   return '/settings';
 };
-var threadEditRoute = exports.threadEditRoute = function threadEditRoute(_ref14) {
-  var threadId = _ref14.threadId,
-      projectId = _ref14.projectId;
-  return '/project/' + projectId + '/threads/' + threadId + '/edit';
-};
-var threadRoute = exports.threadRoute = function threadRoute(_ref15) {
+var threadEditRoute = exports.threadEditRoute = function threadEditRoute(_ref15) {
   var threadId = _ref15.threadId,
       projectId = _ref15.projectId;
-  return '/project/' + projectId + '/threads/' + threadId;
+  return '/project/' + projectId + '/threads/' + threadId + '/edit';
+};
+var threadRoute = exports.threadRoute = function threadRoute(_ref16) {
+  var threadId = _ref16.threadId;
+  return '/thread/' + threadId;
 };
 var termsRoute = exports.termsRoute = function termsRoute() {
   return '/terms';
 };
-var userDetailsRoute = exports.userDetailsRoute = function userDetailsRoute(_ref16) {
-  var userId = _ref16.userId;
+var userDetailsRoute = exports.userDetailsRoute = function userDetailsRoute(_ref17) {
+  var userId = _ref17.userId;
   return '/users/' + userId + '/details';
 };
-var userFollowersRoute = exports.userFollowersRoute = function userFollowersRoute(_ref17) {
-  var userId = _ref17.userId;
+var userFollowersRoute = exports.userFollowersRoute = function userFollowersRoute(_ref18) {
+  var userId = _ref18.userId;
   return '/users/' + userId + '/followers';
 };
-var userFollowingRoute = exports.userFollowingRoute = function userFollowingRoute(_ref18) {
-  var userId = _ref18.userId;
+var userFollowingRoute = exports.userFollowingRoute = function userFollowingRoute(_ref19) {
+  var userId = _ref19.userId;
   return '/users/' + userId + '/following';
 };
-var userProjectsRoute = exports.userProjectsRoute = function userProjectsRoute(_ref19) {
-  var userId = _ref19.userId;
+var userProjectsRoute = exports.userProjectsRoute = function userProjectsRoute(_ref20) {
+  var userId = _ref20.userId;
   return '/users/' + userId + '/projects';
 };
-var userRoute = exports.userRoute = function userRoute(_ref20) {
-  var userId = _ref20.userId;
+var userRoute = exports.userRoute = function userRoute(_ref21) {
+  var userId = _ref21.userId;
   return '/users/' + userId;
 };
-var userStarsRoute = exports.userStarsRoute = function userStarsRoute(_ref21) {
-  var userId = _ref21.userId;
+var userStarsRoute = exports.userStarsRoute = function userStarsRoute(_ref22) {
+  var userId = _ref22.userId;
   return '/users/' + userId + '/stars';
 };
 ;
@@ -17431,6 +17435,8 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(projectSettingsThreadsRoute, 'projectSettingsThreadsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(projectThreadsRoute, 'projectThreadsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+
+  __REACT_HOT_LOADER__.register(projectThreadRoute, 'projectThreadRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(projectTeamRoute, 'projectTeamRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
@@ -21226,6 +21232,9 @@ exports.default = function (_ref) {
   var getProjectTeam = function getProjectTeam(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(5), __webpack_require__.e(3), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "knNm")), cb);
   };
+  var getThread = function getThread(loc, cb) {
+    return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(55).then(__webpack_require__.bind(null, "vm5t")), cb);
+  };
   var getRegister = function getRegister(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(50).then(__webpack_require__.bind(null, "WuR6")), cb);
   };
@@ -21344,6 +21353,7 @@ exports.default = function (_ref) {
     _react2.default.createElement(_reactRouter.Route, { path: '/search', getComponent: getSearch }),
     _react2.default.createElement(_reactRouter.Route, { path: '/security', getComponent: getSecurity }),
     _react2.default.createElement(_reactRouter.Route, { path: '/terms', getComponent: getTerms }),
+    _react2.default.createElement(_reactRouter.Route, { path: 'thread/:threadId', getComponent: getThread }),
     _react2.default.createElement(
       _reactRouter.Route,
       { path: 'project/:stub', getComponent: getProject },
@@ -26605,24 +26615,6 @@ var _FileList = __webpack_require__("6phH");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _ref = _react2.default.createElement(
-  'span',
-  null,
-  ' / '
-);
-
-var _ref2 = _react2.default.createElement(
-  'span',
-  null,
-  ' / '
-);
-
-var _ref3 = _react2.default.createElement(
-  'span',
-  null,
-  '. . .'
-);
-
 var FileBreadCrumbs = (_temp = _class = function (_Component) {
   (0, _inherits3.default)(FileBreadCrumbs, _Component);
 
@@ -26716,7 +26708,11 @@ var FileBreadCrumbs = (_temp = _class = function (_Component) {
                     link: link
                   })
                 ),
-                !isLastChild && _ref
+                !isLastChild && _react2.default.createElement(
+                  'span',
+                  null,
+                  ' / '
+                )
               );
             };
 
@@ -26725,7 +26721,11 @@ var FileBreadCrumbs = (_temp = _class = function (_Component) {
                 'span',
                 { key: idx },
                 !isLastChild ? clickableText : plainText,
-                !isLastChild && _ref2
+                !isLastChild && _react2.default.createElement(
+                  'span',
+                  null,
+                  ' / '
+                )
               );
             };
             return parentfolder && popup && idx != 0 ? getPopoverCrumb() : getPlainCrumb();
@@ -26737,7 +26737,11 @@ var FileBreadCrumbs = (_temp = _class = function (_Component) {
             (0, _stringConcat.middle)(meta.name, 30, 0.8)
           );
         } else {
-          return _ref3;
+          return _react2.default.createElement(
+            'span',
+            null,
+            '. . .'
+          );
         }
       };
 
@@ -26752,8 +26756,32 @@ var FileBreadCrumbs = (_temp = _class = function (_Component) {
 }(_react.Component), _class.defaultProps = {
   popup: false,
   clickFn: function clickFn() {}
-}, _temp);
+}, _class.propTypes = {
+  popup: _react.PropTypes.bool,
+  clickFn: _react.PropTypes.func,
+  meta: _react.PropTypes.object,
+  link: _react.PropTypes.bool }, _temp);
 exports.default = FileBreadCrumbs;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(FileBreadCrumbs, 'FileBreadCrumbs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileList/components/FileBreadCrumbs.jsx');
+}();
+
+;
+;
+
+var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -80593,12 +80621,6 @@ var dispatchToProps = {
   getToken: _Auth.getToken
 };
 
-var _ref3 = _react2.default.createElement(_Toasts2.default, null);
-
-var _ref4 = _react2.default.createElement(_ModalContainer2.default, null);
-
-var _ref5 = _react2.default.createElement(_RouteLoading2.default, null);
-
 var LoginContainer = (_dec = (0, _reactRedux.connect)(stateToProps, dispatchToProps), _dec(_class = function (_Component) {
   (0, _inherits3.default)(LoginContainer, _Component);
 
@@ -80613,7 +80635,20 @@ var LoginContainer = (_dec = (0, _reactRedux.connect)(stateToProps, dispatchToPr
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref2 = LoginContainer.__proto__ || (0, _getPrototypeOf2.default)(LoginContainer)).call.apply(_ref2, [this].concat(args))), _this), _this.goSomewhere = function (nextProps) {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref2 = LoginContainer.__proto__ || (0, _getPrototypeOf2.default)(LoginContainer)).call.apply(_ref2, [this].concat(args))), _this), _this.goSomewhere = function () {
+      var _this2;
+
+      return (_this2 = _this).__goSomewhere__REACT_HOT_LOADER__.apply(_this2, arguments);
+    }, _this.parseGlobalQueryParams = function () {
+      var _this3;
+
+      return (_this3 = _this).__parseGlobalQueryParams__REACT_HOT_LOADER__.apply(_this3, arguments);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(LoginContainer, [{
+    key: '__goSomewhere__REACT_HOT_LOADER__',
+    value: function __goSomewhere__REACT_HOT_LOADER__(nextProps) {
       var userSettingsMessages = nextProps.userSettingsMessages,
           isLoggedIn = nextProps.isLoggedIn,
           location = nextProps.location,
@@ -80629,21 +80664,22 @@ var LoginContainer = (_dec = (0, _reactRedux.connect)(stateToProps, dispatchToPr
       } else if (isLoggedIn && notYetOnboarded && !pathname.includes('onboarding')) {
         goOnboarding();
       }
-    }, _this.parseGlobalQueryParams = function () {
-      var _this$props = _this.props,
-          location = _this$props.location,
-          isLoggedIn = _this$props.isLoggedIn,
-          getToken = _this$props.getToken;
+    }
+  }, {
+    key: '__parseGlobalQueryParams__REACT_HOT_LOADER__',
+    value: function __parseGlobalQueryParams__REACT_HOT_LOADER__() {
+      var _props = this.props,
+          location = _props.location,
+          isLoggedIn = _props.isLoggedIn,
+          getToken = _props.getToken;
       var query = location.query;
       // If we have query.id and we are not logged in, we use the id as an auth token
 
       if (query.id) {
         getToken(query.id);
       }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(LoginContainer, [{
+    }
+  }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       this.goSomewhere(nextProps);
@@ -80667,15 +80703,39 @@ var LoginContainer = (_dec = (0, _reactRedux.connect)(stateToProps, dispatchToPr
           { className: 'layout-column flex' },
           children
         ),
-        _ref3,
-        _ref4,
-        _ref5
+        _react2.default.createElement(_Toasts2.default, null),
+        _react2.default.createElement(_ModalContainer2.default, null),
+        _react2.default.createElement(_RouteLoading2.default, null)
       );
     }
   }]);
   return LoginContainer;
 }(_react.Component)) || _class);
 exports.default = LoginContainer;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(LoginContainer, 'LoginContainer', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/AppRoot/index.js');
+
+  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/AppRoot/index.js');
+
+  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/AppRoot/index.js');
+}();
+
+;
+;
+
+var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -86712,4 +86772,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.309105ca1bcd5d6fa90c.js.map
+//# sourceMappingURL=application.12e587352e392cb4e1d6.js.map
