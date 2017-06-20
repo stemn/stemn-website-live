@@ -34778,7 +34778,7 @@ var setActiveProject = exports.setActiveProject = function setActiveProject(_ref
 
     dispatch((0, _Websocket.joinRoom)({
       room: projectId,
-      type: 'project,'
+      type: 'project'
     }));
   };
 };
@@ -86772,4 +86772,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.12e587352e392cb4e1d6.js.map
+//# sourceMappingURL=application.b3454952fdca5eb60681.js.map
