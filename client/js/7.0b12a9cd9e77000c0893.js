@@ -1,80 +1,10 @@
-webpackJsonp([8,62],{
+webpackJsonp([7,62],{
 
 /***/ "0MEN":
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"primary":"#4484d3","slider":"FileCompareSlider_slider-3e-Om","active":"FileCompareSlider_active-2S86s"};
-
-/***/ },
-
-/***/ "0jvu":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _SimpleTable = __webpack_require__("Oygz");
-
-var _SimpleTable2 = _interopRequireDefault(_SimpleTable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-///////////////////////////////// COMPONENT /////////////////////////////////
-
-// Component Core
-var _default = _react2.default.createClass({
-  displayName: '_default',
-  render: function render() {
-    var children = this.props.children;
-
-    return _react2.default.createElement(
-      'table',
-      { className: _SimpleTable2.default.table },
-      _react2.default.createElement(
-        'tbody',
-        null,
-        children
-      )
-    );
-  }
-});
-
-// Styles
-
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tables/SimpleTable/SimpleTable.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Tables/SimpleTable/SimpleTable.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -192,6 +122,54 @@ module.exports = forEach;
 
 /***/ },
 
+/***/ "37Zr":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Crumb = exports.Breadcrumbs = undefined;
+
+var _Breadcrumbs2 = __webpack_require__("iMBo");
+
+var _Breadcrumbs3 = _interopRequireDefault(_Breadcrumbs2);
+
+var _Crumb2 = __webpack_require__("7acK");
+
+var _Crumb3 = _interopRequireDefault(_Crumb2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Breadcrumbs = exports.Breadcrumbs = _Breadcrumbs3.default;
+var Crumb = exports.Crumb = _Crumb3.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Breadcrumbs, 'Breadcrumbs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Breadcrumbs/index.js');
+
+  __REACT_HOT_LOADER__.register(Crumb, 'Crumb', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Breadcrumbs/index.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "3xMh":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -241,176 +219,6 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewPcbLoader/PreviewPcbLoader.jsx');
 
   __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewPcbLoader/PreviewPcbLoader.jsx');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "3xiL":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _getPrototypeOf = __webpack_require__("Zx67");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("Zrlr");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("wxAW");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("zwoO");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("Pf15");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _get2 = __webpack_require__("Q7hp");
-
-var _get3 = _interopRequireDefault(_get2);
-
-var _dec, _dec2, _class;
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _FetchDataHoc = __webpack_require__("YapR");
-
-var _FetchDataHoc2 = _interopRequireDefault(_FetchDataHoc);
-
-var _SyncTimelineActions = __webpack_require__("frFe");
-
-var _FilesActions = __webpack_require__("iLLw");
-
-var _reactRouterRedux = __webpack_require__("jZgO");
-
-var _FileCompare = __webpack_require__("tDaj");
-
-var _File = __webpack_require__("Sm6U");
-
-var _File2 = _interopRequireDefault(_File);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var stateToProps = function stateToProps(_ref, _ref2) {
-  var files = _ref.files,
-      fileCompare = _ref.fileCompare,
-      syncTimeline = _ref.syncTimeline;
-  var params = _ref2.params,
-      location = _ref2.location;
-  var projectId = params.projectId,
-      fileId = params.fileId;
-  //  console.log(params);
-
-  var revisionId = location.query.revision;
-  var cacheKey = fileId + '-' + revisionId;
-  return {
-    cacheKey: cacheKey,
-    fileId: fileId,
-    compare: (0, _get3.default)(fileCompare, cacheKey, {}),
-    file: files.fileMeta[cacheKey],
-    projectId: projectId,
-    revisonId: revisionId || '',
-    timeline: (0, _get3.default)(syncTimeline, cacheKey, {})
-  };
-};
-
-var dispatchToProps = {
-  changeMode: _FileCompare.changeMode,
-  fetchTimeline: _SyncTimelineActions.fetchTimeline,
-  getMeta: _FilesActions.getMeta,
-  initCompare: _FileCompare.initCompare,
-  pushRoute: _reactRouterRedux.push,
-  select: _FileCompare.select
-};
-
-var fetchConfigs = [{
-  hasChanged: 'cacheKey',
-  onChange: function onChange(props) {
-    props.getMeta({
-      fileId: props.fileId,
-      revisionId: props.revisionId,
-      projectId: props.projectId,
-      cacheKey: props.cacheKey
-    });
-    props.fetchTimeline({
-      entityType: 'file',
-      types: ['commits', 'changes'],
-      entityId: props.fileId,
-      cacheKey: props.cacheKey
-    });
-  }
-}, {
-  hasChanged: 'file.data.fileId',
-  onChange: function onChange(props) {
-    if ((0, _get3.default)(props, 'file.data.fileId')) {
-      props.initCompare({
-        cacheKey: props.cacheKey,
-        file: props.file
-      });
-    }
-  }
-}];
-
-var FileContainer = (_dec = (0, _reactRedux.connect)(stateToProps, dispatchToProps), _dec2 = (0, _FetchDataHoc2.default)(fetchConfigs), _dec(_class = _dec2(_class = function (_Component) {
-  (0, _inherits3.default)(FileContainer, _Component);
-
-  function FileContainer() {
-    (0, _classCallCheck3.default)(this, FileContainer);
-    return (0, _possibleConstructorReturn3.default)(this, (FileContainer.__proto__ || (0, _getPrototypeOf2.default)(FileContainer)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(FileContainer, [{
-    key: 'render',
-    value: function render() {
-      var file = this.props.file;
-
-
-      return file && file.data ? _react2.default.createElement(_File2.default, this.props) : null;
-    }
-  }]);
-  return FileContainer;
-}(_react.Component)) || _class) || _class);
-exports.default = FileContainer;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(FileContainer, 'FileContainer', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.container.js');
-
-  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.container.js');
-
-  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.container.js');
-
-  __REACT_HOT_LOADER__.register(fetchConfigs, 'fetchConfigs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.container.js');
 }();
 
 ;
@@ -557,6 +365,150 @@ var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "6DBV":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TogglePanel = undefined;
+
+var _defineProperty2 = __webpack_require__("bOdI");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _TogglePanelActions = __webpack_require__("z53e");
+
+var _TogglePanel = __webpack_require__("vVr8");
+
+var _TogglePanel2 = _interopRequireDefault(_TogglePanel);
+
+var _chevronRight = __webpack_require__("raO4");
+
+var _chevronRight2 = _interopRequireDefault(_chevronRight);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**************************************************************
+  <TogglePanel cacheKey="some-cache-id">
+    <div className="layout-row flex layout-align-start-center">
+      <div className="flex">Header Content</div>
+    </div>
+    <div>
+      Panel Content
+    </div>
+  </TogglePanel>
+**************************************************************/
+
+var TogglePanel = exports.TogglePanel = _react2.default.createClass({
+  displayName: 'TogglePanel',
+
+  propTypes: {
+    cacheKey: _react.PropTypes.string.isRequired },
+  toggle: function toggle(toState) {
+    this.props.dispatch((0, _TogglePanelActions.toggle)({
+      cacheKey: this.props.cacheKey,
+      value: toState
+    }));
+  },
+  render: function render() {
+    var _this = this;
+
+    var _props = this.props,
+        toggleState = _props.toggleState,
+        className = _props.className;
+
+    var getContent = function getContent() {
+      if (toggleState) {
+        return _react2.default.createElement(
+          'div',
+          { className: _TogglePanel2.default.content },
+          _this.props.children[2]
+        );
+      }
+    };
+    return _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'div',
+        { className: (0, _classnames2.default)(_TogglePanel2.default.titleBar, 'layout-row layout-align-start-center', className) },
+        _react2.default.createElement(_chevronRight2.default, { onClick: function onClick() {
+            return _this.toggle(null);
+          }, className: (0, _classnames2.default)(_TogglePanel2.default.toggleIcon, (0, _defineProperty3.default)({}, _TogglePanel2.default.toggleIconActive, toggleState)), size: '22' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'flex layout-row layout-align-start-center' },
+          _react2.default.createElement(
+            'div',
+            { className: 'flex', onClick: function onClick() {
+                return _this.toggle(null);
+              } },
+            this.props.children[0]
+          ),
+          this.props.children[1]
+        )
+      ),
+      getContent()
+    );
+  }
+});
+
+var mapStateToProps = function mapStateToProps(_ref, _ref2) {
+  var togglePanel = _ref.togglePanel;
+  var cacheKey = _ref2.cacheKey;
+
+  return {
+    toggleState: togglePanel[cacheKey]
+  };
+};
+
+var _default = (0, _reactRedux.connect)(mapStateToProps)(TogglePanel);
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(TogglePanel, 'TogglePanel', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.jsx');
+
+  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.jsx');
 }();
 
 ;
@@ -733,14 +685,6 @@ module.exports = {"primary":"#4484d3","border1":"rgba(0, 0, 0, 0.1)","timeline-m
 
 /***/ },
 
-/***/ "6pkq":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"header":"File_header-30wvx","timeline":"File_timeline-Nlzyc","sidebar":"File_sidebar-1LU3u","isOpen":"File_isOpen-2Wbgw","sidebarButton":"File_sidebarButton-2j1de","preview":"File_preview-1TZKZ","sidebarTitle":"File_sidebarTitle-kfk1D"};
-
-/***/ },
-
 /***/ "6wP3":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -787,10 +731,10 @@ var groupRevisions = exports.groupRevisions = function groupRevisions(revisions)
 
 var orderByTime = exports.orderByTime = function orderByTime(items) {
   return (0, _orderBy3.default)(items, [function (item) {
-    return item.data.revisionNumber;
-  }, function (item) {
     return new Date(item.timestamp).getTime();
-  }], ['asc', 'asc']);
+  }, function (item) {
+    return item.data.revisionNumber;
+  }], ['desc', 'desc']);
 };
 ;
 
@@ -861,6 +805,119 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/assets/icons/compare/single.js');
 
   __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/assets/icons/compare/single.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "7acK":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__("+6Bu");
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Crumb = __webpack_require__("Ase/");
+
+var _Crumb2 = _interopRequireDefault(_Crumb);
+
+var _stringConcat = __webpack_require__("19Kw");
+
+var _Link = __webpack_require__("GeCl");
+
+var _Link2 = _interopRequireDefault(_Link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Crumb = function (_Component) {
+  (0, _inherits3.default)(Crumb, _Component);
+
+  function Crumb() {
+    (0, _classCallCheck3.default)(this, Crumb);
+    return (0, _possibleConstructorReturn3.default)(this, (Crumb.__proto__ || (0, _getPrototypeOf2.default)(Crumb)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(Crumb, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          text = _props.text,
+          otherProps = (0, _objectWithoutProperties3.default)(_props, ['text']);
+
+      return _react2.default.createElement(
+        _Link2.default,
+        (0, _extends3.default)({ className: (0, _classnames2.default)(_Crumb2.default.crumb, 'link-primary') }, otherProps),
+        _react2.default.createElement(
+          'span',
+          { className: _Crumb2.default.slash },
+          '/'
+        ),
+        (0, _stringConcat.middle)(text, 20, 0.6)
+      );
+    }
+  }]);
+  return Crumb;
+}(_react.Component);
+
+exports.default = Crumb;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Crumb, 'Crumb', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Breadcrumbs/Crumb.jsx');
 }();
 
 ;
@@ -1178,6 +1235,21 @@ module.exports = intersection;
 
 /***/ },
 
+/***/ "ApCO":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ "Ase/":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"crumb":"Crumb_crumb-3HqzC","slash":"Crumb_slash-NK-9h"};
+
+/***/ },
+
 /***/ "Cc65":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1239,6 +1311,14 @@ var _temp2 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "DDgy":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"header":"SubSubHeader_header-3_JRv","headerBorder":"SubSubHeader_headerBorder-3N5ww"};
 
 /***/ },
 
@@ -1487,7 +1567,8 @@ var Component = _react2.default.createClass({
     var Items = items.map(function (item, index) {
       if (item.event == 'commit') {
         // Order the items by the timestamp
-        var subItemsOrdered = (0, _Timeline.orderByTime)(item.data.items);
+        var subItemsOrdered = (0, _Timeline.orderByTime)(item.data.items).reverse();
+        // These are reversed because they go left to right (not right to left like the other items)
         return _react2.default.createElement(
           _Popover2.default,
           { preferPlace: preferPlace || 'below', trigger: 'hoverSingleDelay', tipSize: 6 },
@@ -1811,6 +1892,159 @@ exports.default = clickDrag;
 
 /***/ },
 
+/***/ "FTSl":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _ProjectCommit = __webpack_require__("h5iT");
+
+var _ProjectCommit2 = _interopRequireDefault(_ProjectCommit);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _ProjectCommit2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "Ia4n":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__("+6Bu");
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _class, _temp;
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _SubSubHeader = __webpack_require__("DDgy");
+
+var _SubSubHeader2 = _interopRequireDefault(_SubSubHeader);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Layout = __webpack_require__("PjCM");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SubHeader = (_temp = _class = function (_Component) {
+  (0, _inherits3.default)(SubHeader, _Component);
+
+  function SubHeader() {
+    (0, _classCallCheck3.default)(this, SubHeader);
+    return (0, _possibleConstructorReturn3.default)(this, (SubHeader.__proto__ || (0, _getPrototypeOf2.default)(SubHeader)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(SubHeader, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          title = _props.title,
+          children = _props.children,
+          className = _props.className,
+          otherProps = (0, _objectWithoutProperties3.default)(_props, ['title', 'children', 'className']);
+
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({ className: (0, _classnames2.default)(_SubSubHeader2.default.header, className) }, otherProps),
+        _react2.default.createElement(
+          _Layout.Container,
+          null,
+          _react2.default.createElement('div', { className: _SubSubHeader2.default.headerBorder }),
+          children
+        )
+      );
+    }
+  }]);
+  return SubHeader;
+}(_react.Component), _class.propTypes = {
+  children: _react.PropTypes.node
+}, _temp);
+exports.default = SubHeader;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(SubHeader, 'SubHeader', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/modules/SubSubHeader/SubSubHeader.jsx');
+}();
+
+;
+;
+
+var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "KBYM":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2057,14 +2291,6 @@ var _temp2 = function () {
 }();
 
 ;
-
-/***/ },
-
-/***/ "Mc/w":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"part":"AssemblyParts_part-F2k26","time":"AssemblyParts_time-3aeZi"};
 
 /***/ },
 
@@ -2566,15 +2792,7 @@ module.exports = (staticPath) => {
 
 /***/ },
 
-/***/ "Oygz":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"table":"SimpleTable_table-osN4P"};
-
-/***/ },
-
-/***/ "P7zP":
+/***/ "P1+L":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2583,57 +2801,21 @@ module.exports = {"table":"SimpleTable_table-osN4P"};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
 
-var _react = __webpack_require__("U7vG");
+var _SubSubHeader = __webpack_require__("Ia4n");
 
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _SectionTitle = __webpack_require__("hue9");
-
-var _SectionTitle2 = _interopRequireDefault(_SectionTitle);
+var _SubSubHeader2 = _interopRequireDefault(_SubSubHeader);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-///////////////////////////////// COMPONENT /////////////////////////////////
-
-// Styles
-var _default = _react2.default.createClass({
-  displayName: '_default',
-  render: function render() {
-    var _props = this.props,
-        children = _props.children,
-        style = _props.style,
-        className = _props.className;
-
-    return _react2.default.createElement(
-      'div',
-      { className: (0, _classnames2.default)(_SectionTitle2.default.section, 'layout-row', className), style: style },
-      _react2.default.createElement(
-        'div',
-        { className: _SectionTitle2.default.text },
-        children
-      )
-    );
-  }
-}); // Component Core
-
-
-var _default2 = _default;
-exports.default = _default2;
+exports.default = _SubSubHeader2.default;
 ;
 
 var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Titles/SectionTitle/SectionTitle.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Titles/SectionTitle/SectionTitle.jsx');
 }();
 
 ;
@@ -2658,9 +2840,32 @@ var _temp2 = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DownloadFile = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _redux = __webpack_require__("c9Fv");
+
+var _reactDom = __webpack_require__("O27J");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRedux = __webpack_require__("4n+p");
 
@@ -2682,48 +2887,71 @@ var _utils = __webpack_require__("CzcJ");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-///////////////////////////////// COMPONENT /////////////////////////////////
+var DownloadFile = function (_Component) {
+  (0, _inherits3.default)(DownloadFile, _Component);
 
-var DownloadFile = exports.DownloadFile = _react2.default.createClass({
-  displayName: 'DownloadFile',
-  saveFile: function saveFile() {
-    var _this = this;
+  function DownloadFile() {
+    var _ref;
 
-    var _props = this.props,
-        file = _props.file,
-        fileUrl = _props.fileUrl;
+    var _temp, _this, _ret;
 
-    this.props.getFullPath({
-      path: file.path,
-      projectId: file.project._id,
-      provider: file.provider
-    }).then(function (filePath) {
-      _this.props.saveFile({ fileUrl: fileUrl, filePath: filePath });
-    });
-  },
-  render: function render() {
-    var _props2 = this.props,
-        children = _props2.children,
-        title = _props2.title,
-        file = _props2.file,
-        fileUrl = _props2.fileUrl,
-        progress = _props2.progress;
+    (0, _classCallCheck3.default)(this, DownloadFile);
 
-    if (true) {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = DownloadFile.__proto__ || (0, _getPrototypeOf2.default)(DownloadFile)).call.apply(_ref, [this].concat(args))), _this), _this.saveFile = function () {
+      var _this2;
+
+      return (_this2 = _this).__saveFile__REACT_HOT_LOADER__.apply(_this2, arguments);
+    }, _this.anchorRef = null, _this.getAnchorRef = function () {
+      var _this3;
+
+      return (_this3 = _this).__getAnchorRef__REACT_HOT_LOADER__.apply(_this3, arguments);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(DownloadFile, [{
+    key: '__saveFile__REACT_HOT_LOADER__',
+    value: function __saveFile__REACT_HOT_LOADER__() {
+      var _props = this.props,
+          file = _props.file,
+          fileUrl = _props.fileUrl,
+          saveFile = _props.saveFile;
+
+      var anchorEl = _reactDom2.default.findDOMNode(this.anchorRef);
+      // If we dont have a href attribute, we run the saveFile function
+      // If we do, the click action will have already started downloading via the html5 download api
+      // This second method will only work on desktop
+      if (!anchorEl.getAttribute('href')) {
+        saveFile({
+          file: file,
+          fileUrl: fileUrl,
+          anchorEl: anchorEl });
+      }
+    }
+  }, {
+    key: '__getAnchorRef__REACT_HOT_LOADER__',
+    value: function __getAnchorRef__REACT_HOT_LOADER__(ref) {
+      if (ref) {
+        this.anchorRef = ref;
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props2 = this.props,
+          children = _props2.children,
+          title = _props2.title,
+          file = _props2.file,
+          fileUrl = _props2.fileUrl,
+          progress = _props2.progress;
+
       return _react2.default.createElement(
         'a',
         {
-          className: 'link-primary',
-          href: fileUrl,
-          download: file.name,
-          title: title
-        },
-        children
-      );
-    } else {
-      return _react2.default.createElement(
-        'a',
-        {
+          ref: this.getAnchorRef,
           className: 'link-primary',
           onClick: this.saveFile,
           title: title
@@ -2736,14 +2964,13 @@ var DownloadFile = exports.DownloadFile = _react2.default.createClass({
         })
       );
     }
-  }
-});
+  }]);
+  return DownloadFile;
+}(_react.Component);
 
-///////////////////////////////// CONTAINER /////////////////////////////////
-
-function mapStateToProps(_ref, _ref2) {
-  var files = _ref.files;
-  var file = _ref2.file;
+function mapStateToProps(_ref2, _ref3) {
+  var files = _ref2.files;
+  var file = _ref3.file;
 
   var fileUrl = (0, _utils.getDownloadUrl)(file);
   return {
@@ -2753,8 +2980,7 @@ function mapStateToProps(_ref, _ref2) {
 }
 
 var dispatchToProps = {
-  getDownloadUrl: _utils.getDownloadUrl,
-  saveFile: _utils.saveFile
+  saveFile: _FilesActions.saveFile
 };
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, dispatchToProps)(DownloadFile);
@@ -2763,14 +2989,14 @@ var _default2 = _default;
 exports.default = _default2;
 ;
 
-var _temp = function () {
+var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(DownloadFile, 'DownloadFile', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/DownloadFile/DownloadFile.jsx');
-
   __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/DownloadFile/DownloadFile.jsx');
+
+  __REACT_HOT_LOADER__.register(DownloadFile, 'DownloadFile', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/DownloadFile/DownloadFile.jsx');
 
   __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/DownloadFile/DownloadFile.jsx');
 
@@ -2782,7 +3008,7 @@ var _temp = function () {
 ;
 ;
 
-var _temp2 = function () {
+var _temp3 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -2827,6 +3053,122 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/Messages/AssemblyPartNotFound/AssemblyPartNotFoundModal/AssemblyPartNotFoundModal.container.js');
 
   __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/Messages/AssemblyPartNotFound/AssemblyPartNotFoundModal/AssemblyPartNotFoundModal.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "PcgJ":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _get2 = __webpack_require__("Q7hp");
+
+var _get3 = _interopRequireDefault(_get2);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _FileCompare = __webpack_require__("lHlc");
+
+var _FileCompare2 = _interopRequireDefault(_FileCompare);
+
+var _FetchDataHoc = __webpack_require__("YapR");
+
+var _FetchDataHoc2 = _interopRequireDefault(_FetchDataHoc);
+
+var _redux = __webpack_require__("c9Fv");
+
+var _SyncTimelineActions = __webpack_require__("frFe");
+
+var _TogglePanel = __webpack_require__("z53e");
+
+var _FileCompare3 = __webpack_require__("tDaj");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var stateToProps = function stateToProps(_ref, _ref2) {
+  var syncTimeline = _ref.syncTimeline,
+      fileCompare = _ref.fileCompare;
+  var file = _ref2.file;
+
+  var syncTimelineCacheKey = '' + file.data.fileId;
+  var togglePanelCacheKey = file.data.fileId + '-' + file.data.revisionId;
+  return {
+    compare: (0, _get3.default)(fileCompare, syncTimelineCacheKey, {}),
+    syncTimelineCacheKey: syncTimelineCacheKey,
+    togglePanelCacheKey: togglePanelCacheKey
+  };
+};
+
+var dispatchToProps = {
+  fetchTimeline: _SyncTimelineActions.fetchTimeline,
+  toggle: _TogglePanel.toggle,
+  initCompare: _FileCompare3.initCompare,
+  changeMode: _FileCompare3.changeMode,
+  select: _FileCompare3.select
+};
+
+var fetchConfigs = [{
+  hasChanged: 'syncTimelineCacheKey',
+  onChange: function onChange(props) {
+    props.initCompare({
+      cacheKey: props.syncTimelineCacheKey,
+      file: props.file
+    });
+  }
+}, {
+  hasChanged: 'togglePanelCacheKey',
+  onChange: function onChange(props) {
+    if (props.isOpen) {
+      props.toggle({
+        cacheKey: props.togglePanelCacheKey,
+        value: true
+      });
+    }
+  }
+}];
+
+var withFetchData = (0, _FetchDataHoc2.default)(fetchConfigs)(_FileCompare2.default);
+var withRedux = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(withFetchData);
+var _default = withRedux;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(fetchConfigs, 'fetchConfigs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(withFetchData, 'withFetchData', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(withRedux, 'withRedux', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.container.js');
 }();
 
 ;
@@ -2911,7 +3253,7 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "Sm6U":
+/***/ "TMNS":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2921,10 +3263,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = undefined;
-
-var _defineProperty2 = __webpack_require__("bOdI");
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 var _getPrototypeOf = __webpack_require__("Zx67");
 
@@ -2946,10 +3284,6 @@ var _inherits2 = __webpack_require__("Pf15");
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _get2 = __webpack_require__("Q7hp");
-
-var _get3 = _interopRequireDefault(_get2);
-
 var _react = __webpack_require__("U7vG");
 
 var _react2 = _interopRequireDefault(_react);
@@ -2958,332 +3292,149 @@ var _classnames = __webpack_require__("HW6M");
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _File = __webpack_require__("6pkq");
+var _ProjectCommit = __webpack_require__("ieBU");
 
-var _File2 = _interopRequireDefault(_File);
+var _ProjectCommit2 = _interopRequireDefault(_ProjectCommit);
 
-var _routeActions = __webpack_require__("B98q");
+var _TimelineUtils = __webpack_require__("6wP3");
 
-var _FileCompareUtils = __webpack_require__("L5gr");
+var _Breadcrumbs = __webpack_require__("37Zr");
 
-var _utils = __webpack_require__("CzcJ");
+var _Layout = __webpack_require__("PjCM");
 
-var _SyncTimelineUtils = __webpack_require__("ilh4");
+var _UserAvatar = __webpack_require__("vs4/");
 
-var _moment = __webpack_require__("PJh5");
+var _UserAvatar2 = _interopRequireDefault(_UserAvatar);
 
-var _moment2 = _interopRequireDefault(_moment);
+var _FileCompare = __webpack_require__("X4Gv");
 
-var _AssemblyParts = __webpack_require__("dLrU");
+var _FileCompare2 = _interopRequireDefault(_FileCompare);
 
-var _AssemblyParts2 = _interopRequireDefault(_AssemblyParts);
+var _SubSubHeader = __webpack_require__("P1+L");
 
-var _DragResize = __webpack_require__("xWsN");
+var _SubSubHeader2 = _interopRequireDefault(_SubSubHeader);
 
-var _DragResize2 = _interopRequireDefault(_DragResize);
+var _EditorDisplay = __webpack_require__("i0X4");
 
-var _FileBreadCrumbs = __webpack_require__("I3IC");
-
-var _FileBreadCrumbs2 = _interopRequireDefault(_FileBreadCrumbs);
-
-var _SectionTitle = __webpack_require__("P7zP");
-
-var _SectionTitle2 = _interopRequireDefault(_SectionTitle);
-
-var _SimpleTable = __webpack_require__("0jvu");
-
-var _SimpleTable2 = _interopRequireDefault(_SimpleTable);
-
-var _Timeline = __webpack_require__("ewRW");
-
-var _Timeline2 = _interopRequireDefault(_Timeline);
-
-var _TimelineVertical = __webpack_require__("G/eK");
-
-var _TimelineVertical2 = _interopRequireDefault(_TimelineVertical);
-
-var _FileCompareInner = __webpack_require__("jjFu");
-
-var _FileCompareInner2 = _interopRequireDefault(_FileCompareInner);
-
-var _FileCompareMenu = __webpack_require__("66lh");
-
-var _FileCompareMenu2 = _interopRequireDefault(_FileCompareMenu);
-
-var _SimpleIconButton = __webpack_require__("D2fa");
-
-var _SimpleIconButton2 = _interopRequireDefault(_SimpleIconButton);
-
-var _menu = __webpack_require__("IOYW");
-
-var _menu2 = _interopRequireDefault(_menu);
-
-var _close = __webpack_require__("J9Lb");
-
-var _close2 = _interopRequireDefault(_close);
-
-var _reactHelmet = __webpack_require__("PIAa");
+var _EditorDisplay2 = _interopRequireDefault(_EditorDisplay);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var File = function (_Component) {
-  (0, _inherits3.default)(File, _Component);
+var ProjectCommit = function (_Component) {
+  (0, _inherits3.default)(ProjectCommit, _Component);
 
-  function File(props) {
-    (0, _classCallCheck3.default)(this, File);
-
-    var _this = (0, _possibleConstructorReturn3.default)(this, (File.__proto__ || (0, _getPrototypeOf2.default)(File)).call(this, props));
-
-    _this.toggleOpen = function () {
-      return _this.__toggleOpen__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.clickFileOrFolder = function () {
-      return _this.__clickFileOrFolder__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.onSelect = function () {
-      return _this.__onSelect__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.changeMode = function () {
-      return _this.__changeMode__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.isSelected = function () {
-      return _this.__isSelected__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.state = {
-      isOpen: false
-    };
-    return _this;
+  function ProjectCommit() {
+    (0, _classCallCheck3.default)(this, ProjectCommit);
+    return (0, _possibleConstructorReturn3.default)(this, (ProjectCommit.__proto__ || (0, _getPrototypeOf2.default)(ProjectCommit)).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(File, [{
-    key: '__toggleOpen__REACT_HOT_LOADER__',
-    value: function __toggleOpen__REACT_HOT_LOADER__() {
-      this.setState({
-        isOpen: !this.state.isOpen
-      });
-    }
-  }, {
-    key: '__clickFileOrFolder__REACT_HOT_LOADER__',
-    value: function __clickFileOrFolder__REACT_HOT_LOADER__(_ref) {
-      var file = _ref.file;
-      var fileId = file.fileId,
-          revisionId = file.revisionId;
-      var pushRoute = this.props.pushRoute;
-
-      var projectId = this.props.file.data.project._id;
-      if (file.type == 'file') {
-        pushRoute((0, _routeActions.fileRoute)({ fileId: fileId, projectId: projectId, revisionId: revisionId }));
-      } else if (projectId) {
-        pushRoute((0, _routeActions.projectRoute)({ projectId: projectId }));
-      }
-    }
-  }, {
-    key: '__onSelect__REACT_HOT_LOADER__',
-    value: function __onSelect__REACT_HOT_LOADER__(file) {
-      console.log(file);
+  (0, _createClass3.default)(ProjectCommit, [{
+    key: 'renderLoaded',
+    value: function renderLoaded() {
       var _props = this.props,
-          select = _props.select,
-          cacheKey = _props.cacheKey,
-          _props$compare = _props.compare,
-          mode = _props$compare.mode,
-          lastSelected = _props$compare.lastSelected;
+          commit = _props.commit.data,
+          project = _props.project;
 
-      select({ file: file, mode: mode, lastSelected: lastSelected, cacheKey: cacheKey });
-    }
-  }, {
-    key: '__changeMode__REACT_HOT_LOADER__',
-    value: function __changeMode__REACT_HOT_LOADER__(mode) {
-      var _props2 = this.props,
-          changeMode = _props2.changeMode,
-          cacheKey = _props2.cacheKey;
 
-      changeMode({ cacheKey: cacheKey, mode: mode });
-    }
-  }, {
-    key: '__isSelected__REACT_HOT_LOADER__',
-    value: function __isSelected__REACT_HOT_LOADER__(item) {
-      var _props$compare2 = this.props.compare,
-          selected1 = _props$compare2.selected1,
-          selected2 = _props$compare2.selected2,
-          mode = _props$compare2.mode;
+      var groupedRevisions = (0, _TimelineUtils.groupRevisions)(commit.data.items);
 
-      return (0, _FileCompareUtils.isSelected)({ item: item, selected1: selected1, selected2: selected2, mode: mode });
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _SubSubHeader2.default,
+          null,
+          _react2.default.createElement(
+            _Breadcrumbs.Breadcrumbs,
+            null,
+            _react2.default.createElement(_Breadcrumbs.Crumb, { name: 'projectCommitsRoute', params: { projectId: project.data._id }, text: 'History' }),
+            _react2.default.createElement(_Breadcrumbs.Crumb, { name: 'projectCommitsRoute', params: { projectId: project.data._id }, query: { type: 'commits' }, text: 'Commits' }),
+            _react2.default.createElement(_Breadcrumbs.Crumb, { text: commit.data.name })
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'h2',
+            { className: _ProjectCommit2.default.title },
+            _react2.default.createElement(
+              'span',
+              null,
+              commit.data.name
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: _ProjectCommit2.default.number },
+              '\xA0#C',
+              commit.data.commitNumber
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: _ProjectCommit2.default.blurb },
+            _react2.default.createElement(_EditorDisplay2.default, { value: commit.data.body })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: (0, _classnames2.default)('layout-row layout-align-start-center', _ProjectCommit2.default.meta) },
+            _react2.default.createElement(_UserAvatar2.default, {
+              className: _ProjectCommit2.default.avatar,
+              name: commit.user.name,
+              picture: commit.user.picture,
+              size: 20,
+              shape: 'square'
+            }),
+            _react2.default.createElement(
+              'div',
+              { className: 'text-ellipsis' },
+              _react2.default.createElement(
+                'b',
+                null,
+                commit.user.name
+              ),
+              '\xA0commited ',
+              groupedRevisions.length,
+              ' files containing a total of ',
+              commit.data.items.length,
+              ' revisions.'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _Layout.Container,
+          { className: _ProjectCommit2.default.files },
+          _react2.default.createElement(
+            'div',
+            { className: 'text-mini-caps' },
+            'Files updated:'
+          ),
+          groupedRevisions.map(function (file, index) {
+            return _react2.default.createElement(_FileCompare2.default, {
+              className: _ProjectCommit2.default.file,
+              project: project,
+              file: file,
+              type: 'collapse',
+              isOpen: index === 0,
+              key: file._id
+            });
+          })
+        )
+      );
     }
   }, {
     key: 'render',
     value: function render() {
-      var _props3 = this.props,
-          _props3$compare = _props3.compare,
-          mode = _props3$compare.mode,
-          selected1 = _props3$compare.selected1,
-          selected2 = _props3$compare.selected2,
-          file = _props3.file,
-          timeline = _props3.timeline;
-      var isOpen = this.state.isOpen;
-
-      var items = (0, _FileCompareUtils.orderItemsByTime)(mode, selected1, selected2);
-      var file1 = (0, _get3.default)(items, [0, 'data']);
-      var file2 = (0, _get3.default)(items, [1, 'data']);
-      var timelineData = (0, _get3.default)(timeline, 'data', []);
-      var revisions = (0, _SyncTimelineUtils.getRevisions)(timelineData);
-      var displayFileHeader = ['sideBySide', 'aboveAndBelow'].includes(mode);
+      var commit = this.props.commit;
 
       return _react2.default.createElement(
         'div',
-        { className: 'layout-column flex', style: { overflow: 'hidden', maxHeight: '100vh' } },
-        _react2.default.createElement(
-          _reactHelmet.Helmet,
-          null,
-          _react2.default.createElement(
-            'title',
-            null,
-            file.data.project.name + ' - ' + file.data.path
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: _File2.default.header },
-          _react2.default.createElement(_FileBreadCrumbs2.default, {
-            className: 'text-ellipsis',
-            meta: file.data,
-            link: true,
-            popup: true
-          }),
-          _react2.default.createElement('div', { className: 'flex' }),
-          _react2.default.createElement(_FileCompareMenu2.default, {
-            file1: file1,
-            file2: file2,
-            revisions: revisions,
-            mode: mode,
-            changeMode: this.changeMode
-          }),
-          _react2.default.createElement(
-            _SimpleIconButton2.default,
-            {
-              className: _File2.default.sidebarButton,
-              onClick: this.toggleOpen,
-              title: isOpen ? 'Close Sidebar' : 'Open Sidebar'
-            },
-            isOpen ? _react2.default.createElement(_close2.default, { size: 20 }) : _react2.default.createElement(_menu2.default, { size: 20 })
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'layout-row flex rel-box' },
-          _react2.default.createElement(
-            'div',
-            { className: (0, _classnames2.default)(_File2.default.preview, 'layout-column flex') },
-            _react2.default.createElement(_FileCompareInner2.default, {
-              className: 'layout-column flex',
-              project: file.data.project,
-              file1: file1,
-              file2: file2,
-              mode: mode,
-              header: displayFileHeader
-            }),
-            _react2.default.createElement(_Timeline2.default, {
-              className: _File2.default.timeline,
-              items: timelineData,
-              onSelect: this.onSelect,
-              isSelected: this.isSelected,
-              preferPlace: 'above'
-            })
-          ),
-          _react2.default.createElement(
-            'aside',
-            { className: (0, _classnames2.default)(_File2.default.sidebar, (0, _defineProperty3.default)({}, _File2.default.isOpen, isOpen)) },
-            _react2.default.createElement(
-              _SectionTitle2.default,
-              { className: _File2.default.sidebarTitle },
-              'Meta'
-            ),
-            _react2.default.createElement(
-              _SimpleTable2.default,
-              null,
-              _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  'Name'
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  file.data.name
-                )
-              ),
-              _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  'Size'
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  (0, _utils.formatBytes)(file.data.size)
-                )
-              ),
-              _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  'Last modified'
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  (0, _moment2.default)(file.data.modified).fromNow()
-                )
-              ),
-              revisions.length > 0 && _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  'Revisions'
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  revisions.length
-                )
-              )
-            ),
-            _react2.default.createElement(_AssemblyParts2.default, {
-              fileMeta: file,
-              clickFn: this.clickFileOrFolder
-            }),
-            _react2.default.createElement(
-              _SectionTitle2.default,
-              { className: _File2.default.sidebarTitle },
-              'Timeline'
-            ),
-            _react2.default.createElement(_TimelineVertical2.default, {
-              items: timelineData,
-              type: 'file'
-            })
-          )
-        )
+        { className: _ProjectCommit2.default.content },
+        commit && commit.data ? this.renderLoaded() : null
       );
     }
   }]);
-  return File;
+  return ProjectCommit;
 }(_react.Component);
 
-exports.default = File;
+exports.default = ProjectCommit;
 ;
 
 var _temp = function () {
@@ -3291,7 +3442,7 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(File, 'File', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/File/File.js');
+  __REACT_HOT_LOADER__.register(ProjectCommit, 'ProjectCommit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.js');
 }();
 
 ;
@@ -3835,6 +3986,45 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "X4Gv":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _FileCompare = __webpack_require__("PcgJ");
+
+var _FileCompare2 = _interopRequireDefault(_FileCompare);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _FileCompare2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "XKp3":
 /***/ function(module, exports) {
 
@@ -3962,199 +4152,6 @@ var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
-/***/ "dLrU":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.AssemblyParts = exports.Row = undefined;
-
-var _orderBy2 = __webpack_require__("Ba3q");
-
-var _orderBy3 = _interopRequireDefault(_orderBy2);
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _AssemblyParts = __webpack_require__("Mc/w");
-
-var _AssemblyParts2 = _interopRequireDefault(_AssemblyParts);
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _moment = __webpack_require__("PJh5");
-
-var _moment2 = _interopRequireDefault(_moment);
-
-var _PreviewCadUtils = __webpack_require__("hsss");
-
-var _FilesActions = __webpack_require__("iLLw");
-
-var _SectionTitle = __webpack_require__("P7zP");
-
-var _SectionTitle2 = _interopRequireDefault(_SectionTitle);
-
-var _LoadingOverlay = __webpack_require__("K+/r");
-
-var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var propTypesObject = {
-  fileMeta: _react.PropTypes.object.isRequired, // fileMeta for the assembly
-  clickFn: _react.PropTypes.func.isRequired // clickFn(part) - Run when a part is clicked
-};
-
-var Row = exports.Row = _react2.default.createClass({
-  displayName: 'Row',
-  render: function render() {
-    var _props = this.props,
-        file = _props.file,
-        clickFn = _props.clickFn;
-
-    var timeFromNow = (0, _moment2.default)(file.modified).fromNow();
-    return _react2.default.createElement(
-      'a',
-      { className: _AssemblyParts2.default.part + ' layout-row', onClick: function onClick() {
-          return clickFn({ file: file });
-        } },
-      _react2.default.createElement(
-        'div',
-        { className: 'flex' },
-        file.name
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: _AssemblyParts2.default.time },
-        timeFromNow
-      )
-    );
-  }
-});
-
-var AssemblyParts = exports.AssemblyParts = _react2.default.createClass({
-  displayName: 'AssemblyParts',
-
-  propTypes: propTypesObject,
-  onMount: function onMount(nextProps, prevProps) {
-    if (!prevProps || nextProps.fileMeta != prevProps.fileMeta && nextProps.fileMeta.data) {
-      if ((0, _PreviewCadUtils.isAssembly)(nextProps.fileMeta.data.extension)) {
-        nextProps.dispatch((0, _FilesActions.getAssemblyParts)({
-          fileId: nextProps.fileMeta.data.fileId,
-          projectId: nextProps.fileMeta.data.project._id,
-          revisionId: nextProps.fileMeta.data.revisionId
-        }));
-      }
-      nextProps.dispatch((0, _FilesActions.getAssemblyParents)({
-        fileId: nextProps.fileMeta.data.fileId,
-        projectId: nextProps.fileMeta.data.project._id,
-        revisionId: nextProps.fileMeta.data.revisionId
-      }));
-    }
-  },
-  componentDidMount: function componentDidMount() {
-    this.onMount(this.props);
-  },
-  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    this.onMount(nextProps, this.props);
-  },
-  render: function render() {
-    var _props2 = this.props,
-        parts = _props2.parts,
-        assemblies = _props2.assemblies,
-        clickFn = _props2.clickFn;
-
-
-    var displayRows = function displayRows(items, title) {
-      var itemsOrdrered = (0, _orderBy3.default)(items.data, 'name');
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _SectionTitle2.default,
-          { style: { margin: '30px 0 15px' } },
-          title
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'rel-box', style: items.loading ? { minHeight: '70px' } : {} },
-          itemsOrdrered.map(function (file) {
-            return _react2.default.createElement(Row, { file: file, clickFn: clickFn, key: file._id });
-          }),
-          _react2.default.createElement(_LoadingOverlay2.default, { show: items.loading, size: 'sm' })
-        )
-      );
-    };
-
-    var hasChildParts = parts && parts.data && parts.data.length > 0 || parts && parts.loading;
-    var hasParentAssemblies = assemblies && assemblies.data && assemblies.data.length > 0 || assemblies && assemblies.loading;
-
-    if (hasChildParts || hasParentAssemblies) {
-      return _react2.default.createElement(
-        'div',
-        null,
-        hasParentAssemblies ? displayRows(assemblies, 'Parent Assemblies') : null,
-        hasChildParts ? displayRows(parts, 'Assembly Parts') : null
-      );
-    } else {
-      return null;
-    }
-  }
-});
-
-var mapStateToProps = function mapStateToProps(_ref, _ref2) {
-  var files = _ref.files;
-  var fileMeta = _ref2.fileMeta;
-
-  var cacheKey = fileMeta.data.fileId + '-' + fileMeta.data.revisionId;
-  return {
-    parts: files.fileAssemblyParts[cacheKey],
-    assemblies: files.fileAssemblyParents[cacheKey]
-  };
-};
-
-var _default = (0, _reactRedux.connect)(mapStateToProps)(AssemblyParts);
-
-var _default2 = _default;
-exports.default = _default2;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Row, 'Row', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(AssemblyParts, 'AssemblyParts', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(propTypesObject, 'propTypesObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
-
-  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/AssemblyParts/AssemblyParts.jsx');
 }();
 
 ;
@@ -4785,6 +4782,134 @@ module.exports = baseIntersection;
 
 /***/ },
 
+/***/ "h5iT":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _dec2, _class;
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _FetchDataHoc = __webpack_require__("YapR");
+
+var _FetchDataHoc2 = _interopRequireDefault(_FetchDataHoc);
+
+var _CommitsActions = __webpack_require__("soWG");
+
+var _ProjectCommit = __webpack_require__("TMNS");
+
+var _ProjectCommit2 = _interopRequireDefault(_ProjectCommit);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var stateToProps = function stateToProps(_ref, _ref2) {
+  var projects = _ref.projects,
+      commits = _ref.commits;
+  var params = _ref2.params;
+
+  var projectId = params.stub;
+  var commitId = params.commitId;;
+  var project = projects.data[projectId];
+  var commit = commits[commitId];
+
+  return {
+    project: project,
+    projectId: projectId,
+    commitId: commitId,
+    commit: commit
+  };
+};
+
+var dispatchToProps = {
+  getCommit: _CommitsActions.getCommit
+};
+
+var fetchConfigs = [{
+  hasChanged: 'commitId',
+  onChange: function onChange(_ref3) {
+    var getCommit = _ref3.getCommit,
+        commitId = _ref3.commitId;
+    return getCommit({ commitId: commitId });
+  }
+}];
+
+var ProjectCommitContainer = (_dec = (0, _reactRedux.connect)(stateToProps, dispatchToProps), _dec2 = (0, _FetchDataHoc2.default)(fetchConfigs), _dec(_class = _dec2(_class = function (_Component) {
+  (0, _inherits3.default)(ProjectCommitContainer, _Component);
+
+  function ProjectCommitContainer() {
+    (0, _classCallCheck3.default)(this, ProjectCommitContainer);
+    return (0, _possibleConstructorReturn3.default)(this, (ProjectCommitContainer.__proto__ || (0, _getPrototypeOf2.default)(ProjectCommitContainer)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(ProjectCommitContainer, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(_ProjectCommit2.default, this.props);
+    }
+  }]);
+  return ProjectCommitContainer;
+}(_react.Component)) || _class) || _class);
+exports.default = ProjectCommitContainer;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(ProjectCommitContainer, 'ProjectCommitContainer', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.container.js');
+
+  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.container.js');
+
+  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.container.js');
+
+  __REACT_HOT_LOADER__.register(fetchConfigs, 'fetchConfigs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "hfFu":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -4796,7 +4921,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _DownloadModal = __webpack_require__("ofc4");
+var _DownloadModal = __webpack_require__("nHqc");
 
 var _DownloadModal2 = _interopRequireDefault(_DownloadModal);
 
@@ -4897,16 +5022,8 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "hue9":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"secondary":"rgba(0, 0, 0, 0.7)","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","section":"SectionTitle_section-mtOg6","text":"SectionTitle_text-1DCVp"};
-
-/***/ },
-
-/***/ "ilh4":
-/***/ function(module, exports) {
+/***/ "iMBo":
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
@@ -4914,6 +5031,112 @@ module.exports = {"secondary":"rgba(0, 0, 0, 0.7)","border1":"rgba(0, 0, 0, 0.1)
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Breadcrumbs = __webpack_require__("ApCO");
+
+var _Breadcrumbs2 = _interopRequireDefault(_Breadcrumbs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Breadcrumbs = function (_Component) {
+  (0, _inherits3.default)(Breadcrumbs, _Component);
+
+  function Breadcrumbs() {
+    (0, _classCallCheck3.default)(this, Breadcrumbs);
+    return (0, _possibleConstructorReturn3.default)(this, (Breadcrumbs.__proto__ || (0, _getPrototypeOf2.default)(Breadcrumbs)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(Breadcrumbs, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'layout-row' },
+        this.props.children
+      );
+    }
+  }]);
+  return Breadcrumbs;
+}(_react.Component);
+
+exports.default = Breadcrumbs;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Breadcrumbs, 'Breadcrumbs', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Breadcrumbs/Breadcrumbs.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "ieBU":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"title":"ProjectCommit_title-3AUjC","blurb":"ProjectCommit_blurb-34vNQ","number":"ProjectCommit_number-2glNA","meta":"ProjectCommit_meta-1_t40","avatar":"ProjectCommit_avatar-1vjY7","files":"ProjectCommit_files-3IAEU","file":"ProjectCommit_file-1Zg86"};
+
+/***/ },
+
+/***/ "ilh4":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getRevisions = undefined;
+
+var _uniqBy2 = __webpack_require__("VXg5");
+
+var _uniqBy3 = _interopRequireDefault(_uniqBy2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var getRevisions = exports.getRevisions = function getRevisions(syncTimeline) {
   // syncTimeline contains revision and commit events
   // This will look inside commits and create an array of revisions.
@@ -4929,7 +5152,7 @@ var getRevisions = exports.getRevisions = function getRevisions(syncTimeline) {
     }
   });
 
-  return result;
+  return (0, _uniqBy3.default)(result, '_id');
 };
 ;
 
@@ -5270,45 +5493,6 @@ var _temp2 = function () {
 
 /***/ },
 
-/***/ "jvCS":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _File = __webpack_require__("3xiL");
-
-var _File2 = _interopRequireDefault(_File);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _File2.default;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
-
-/***/ },
-
 /***/ "kS0c":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -5455,6 +5639,388 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "ktek":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"primary":"#4484d3","border1":"rgba(0, 0, 0, 0.1)","bg1":"rgba(0, 0, 0, 0.03)","timeline":"FileCompare_timeline-3Xl0F","header":"FileCompare_header-3dcTo"};
+
+/***/ },
+
+/***/ "lHlc":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _get2 = __webpack_require__("Q7hp");
+
+var _get3 = _interopRequireDefault(_get2);
+
+var _class, _temp2;
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _FileCompare = __webpack_require__("ktek");
+
+var _FileCompare2 = _interopRequireDefault(_FileCompare);
+
+var _FileCompareUtils = __webpack_require__("L5gr");
+
+var _TogglePanel = __webpack_require__("6DBV");
+
+var _TogglePanel2 = _interopRequireDefault(_TogglePanel);
+
+var _DragResize = __webpack_require__("xWsN");
+
+var _DragResize2 = _interopRequireDefault(_DragResize);
+
+var _FileCompareMenu = __webpack_require__("66lh");
+
+var _FileCompareMenu2 = _interopRequireDefault(_FileCompareMenu);
+
+var _FileCompareInner = __webpack_require__("jjFu");
+
+var _FileCompareInner2 = _interopRequireDefault(_FileCompareInner);
+
+var _Timeline = __webpack_require__("ewRW");
+
+var _Timeline2 = _interopRequireDefault(_Timeline);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FileCompare = (_temp2 = _class = function (_Component) {
+  (0, _inherits3.default)(FileCompare, _Component);
+
+  function FileCompare() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, FileCompare);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = FileCompare.__proto__ || (0, _getPrototypeOf2.default)(FileCompare)).call.apply(_ref, [this].concat(args))), _this), _this.onSelect = function () {
+      var _this2;
+
+      return (_this2 = _this).__onSelect__REACT_HOT_LOADER__.apply(_this2, arguments);
+    }, _this.changeMode = function () {
+      var _this3;
+
+      return (_this3 = _this).__changeMode__REACT_HOT_LOADER__.apply(_this3, arguments);
+    }, _this.isSelected = function () {
+      var _this4;
+
+      return (_this4 = _this).__isSelected__REACT_HOT_LOADER__.apply(_this4, arguments);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(FileCompare, [{
+    key: '__onSelect__REACT_HOT_LOADER__',
+    value: function __onSelect__REACT_HOT_LOADER__(file) {
+      var _props = this.props,
+          select = _props.select,
+          syncTimelineCacheKey = _props.syncTimelineCacheKey,
+          _props$compare = _props.compare,
+          mode = _props$compare.mode,
+          lastSelected = _props$compare.lastSelected;
+
+      select({
+        file: file,
+        mode: mode,
+        lastSelected: lastSelected,
+        cacheKey: syncTimelineCacheKey
+      });
+    }
+  }, {
+    key: '__changeMode__REACT_HOT_LOADER__',
+    value: function __changeMode__REACT_HOT_LOADER__(mode, revisions) {
+      var _props2 = this.props,
+          changeMode = _props2.changeMode,
+          syncTimelineCacheKey = _props2.syncTimelineCacheKey;
+
+      changeMode({
+        cacheKey: syncTimelineCacheKey,
+        mode: mode
+      });
+    }
+  }, {
+    key: '__isSelected__REACT_HOT_LOADER__',
+    value: function __isSelected__REACT_HOT_LOADER__(item) {
+      var _props$compare2 = this.props.compare,
+          selected1 = _props$compare2.selected1,
+          selected2 = _props$compare2.selected2,
+          mode = _props$compare2.mode;
+
+      return (0, _FileCompareUtils.isSelected)({
+        item: item,
+        selected1: selected1,
+        selected2: selected2,
+        mode: mode
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this5 = this;
+
+      var _props3 = this.props,
+          _props3$compare = _props3.compare,
+          mode = _props3$compare.mode,
+          selected1 = _props3$compare.selected1,
+          selected2 = _props3$compare.selected2,
+          file = _props3.file,
+          project = _props3.project,
+          togglePanelCacheKey = _props3.togglePanelCacheKey,
+          type = _props3.type,
+          className = _props3.className;
+
+      var items = (0, _FileCompareUtils.orderItemsByTime)(mode, selected1, selected2);
+      var file1 = (0, _get3.default)(items, [0, 'data']);
+      var file2 = (0, _get3.default)(items, [1, 'data']);
+
+      var collapseTemplate = function collapseTemplate() {
+        return _react2.default.createElement(
+          'div',
+          { className: className },
+          _react2.default.createElement(
+            _TogglePanel2.default,
+            { cacheKey: togglePanelCacheKey },
+            _react2.default.createElement(
+              'div',
+              { className: 'text-ellipsis text-grey-4' },
+              file.data.path
+            ),
+            _react2.default.createElement(_FileCompareMenu2.default, {
+              file1: file1,
+              file2: file2,
+              revisions: file.revisions,
+              mode: mode,
+              changeMode: _this5.changeMode,
+              enablePreview: true
+            }),
+            _react2.default.createElement(
+              _DragResize2.default,
+              {
+                side: 'bottom',
+                height: '500',
+                heightRange: [0, 1000],
+                className: 'layout-column flex'
+              },
+              _react2.default.createElement(_FileCompareInner2.default, {
+                project: project.data,
+                event: selected1,
+                file1: file1,
+                file2: file2,
+                mode: mode
+              }),
+              file.revisions.length > 1 ? _react2.default.createElement(_Timeline2.default, {
+                className: _FileCompare2.default.timeline,
+                size: 'sm',
+                onSelect: _this5.onSelect,
+                isSelected: _this5.isSelected,
+                items: file.revisions,
+                preferPlace: 'above'
+              }) : null
+            )
+          )
+        );
+      };
+
+      var standardTemplate = function standardTemplate() {
+        return _react2.default.createElement(
+          'div',
+          { className: (0, _classnames2.default)('layout-column flex', className) },
+          _react2.default.createElement(
+            'div',
+            { className: _FileCompare2.default.header + ' layout-row layout-align-start-center' },
+            _react2.default.createElement(
+              'div',
+              { className: 'flex' },
+              file.data.path
+            ),
+            _react2.default.createElement(_FileCompareMenu2.default, {
+              file1: file1,
+              file2: file2,
+              revisions: file.revisions,
+              mode: mode,
+              changeMode: _this5.changeMode,
+              enablePreview: true
+            })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'layout-column flex' },
+            _react2.default.createElement(_FileCompareInner2.default, {
+              project: project,
+              event: selected1,
+              file1: file1,
+              file2: file2,
+              mode: mode,
+              header: ['sideBySide', 'aboveAndBelow'].includes(mode)
+            })
+          ),
+          _react2.default.createElement(_Timeline2.default, {
+            className: _FileCompare2.default.timeline,
+            size: 'sm',
+            onSelect: _this5.onSelect,
+            isSelected: _this5.isSelected,
+            items: file.revisions,
+            preferPlace: 'above'
+          })
+        );
+      };
+
+      if (!file1) {
+        return null;
+      }
+      return type == 'collapse' ? collapseTemplate() : standardTemplate();
+    }
+  }]);
+  return FileCompare;
+}(_react.Component), _class.propTypes = {
+  className: _react.PropTypes.string,
+  project: _react.PropTypes.object.isRequired,
+  file: _react.PropTypes.object.isRequired,
+  isOpen: _react.PropTypes.bool, // Is it open ( to be used with collapse )
+  type: _react.PropTypes.oneOf(['collapse', undefined])
+}, _temp2);
+exports.default = FileCompare;
+;
+
+var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(FileCompare, 'FileCompare', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FileCompare/FileCompare.jsx');
+}();
+
+;
+;
+
+var _temp4 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "nHqc":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _get2 = __webpack_require__("Q7hp");
+
+var _get3 = _interopRequireDefault(_get2);
+
+var _reactRedux = __webpack_require__("4n+p");
+
+var _ModalRegistry = __webpack_require__("p8CK");
+
+var _SyncTimelineActions = __webpack_require__("frFe");
+
+var _DownloadModal = __webpack_require__("ofc4");
+
+var _DownloadModal2 = _interopRequireDefault(_DownloadModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var stateToProps = function stateToProps(_ref, _ref2) {
+  var syncTimeline = _ref.syncTimeline;
+  var file = _ref2.file;
+
+  return {
+    syncTimeline: (0, _get3.default)(syncTimeline, [file.fileId], {})
+  };
+};
+
+var dispatchToProps = {
+  fetchTimeline: _SyncTimelineActions.fetchTimeline
+};
+
+var modalName = 'FILE_DOWNLOAD';
+var ModalComponent = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(_DownloadModal2.default);
+(0, _ModalRegistry.registerModal)(modalName, ModalComponent);
+var _default = modalName;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.container.js');
+
+  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.container.js');
+
+  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.container.js');
+
+  __REACT_HOT_LOADER__.register(ModalComponent, 'ModalComponent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.container.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.container.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "ocwg":
 /***/ function(module, exports) {
 
@@ -5471,21 +6037,6 @@ module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGlu
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DownloadModal = undefined;
-
-var _orderBy2 = __webpack_require__("Ba3q");
-
-var _orderBy3 = _interopRequireDefault(_orderBy2);
-
-var _redux = __webpack_require__("c9Fv");
-
-var _reactRedux = __webpack_require__("4n+p");
-
-var _ModalRegistry = __webpack_require__("p8CK");
-
-var _SyncTimelineActions = __webpack_require__("frFe");
-
-var SyncTimelineActions = _interopRequireWildcard(_SyncTimelineActions);
 
 var _react = __webpack_require__("U7vG");
 
@@ -5494,6 +6045,10 @@ var _react2 = _interopRequireDefault(_react);
 var _moment = __webpack_require__("PJh5");
 
 var _moment2 = _interopRequireDefault(_moment);
+
+var _Timeline = __webpack_require__("6wP3");
+
+var _SyncTimeline = __webpack_require__("ilh4");
 
 var _classnames = __webpack_require__("HW6M");
 
@@ -5523,59 +6078,47 @@ var _LoadingOverlay = __webpack_require__("K+/r");
 
 var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var propTypesObject = {
-  revisions: _react.PropTypes.array, // Standard array of revisions
+  //  revisions: PropTypes.array,                // Standard array of revisions
   file: _react.PropTypes.object.isRequired };
 
-var DownloadModal = exports.DownloadModal = _react2.default.createClass({
-  displayName: 'DownloadModal',
+var _default = _react2.default.createClass({
+  displayName: '_default',
 
   propTypes: propTypesObject,
-  onMount: function onMount(nextProps, prevProps) {
-    // If this is a sync file
-    if (nextProps.file.project && nextProps.file.project._id) {
-      nextProps.syncTimelineActions.fetchTimeline({
+  componentWillMount: function componentWillMount() {
+    var _props = this.props,
+        file = _props.file,
+        fetchTimeline = _props.fetchTimeline;
+
+    if (file.project && file.project._id) {
+      // If this is a sync file
+      fetchTimeline({
         entityType: 'file',
-        entityId: nextProps.file.fileId
+        entityId: file.fileId,
+        cacheKey: file.fileId
+      });
+    } else {
+      // If this is remote file
+      fetchTimeline({
+        entityType: 'file',
+        entityId: file.fileId,
+        provider: file.provider,
+        cacheKey: file.fileId
       });
     }
-    // If this is remote file
-    else {
-        nextProps.syncTimelineActions.fetchTimeline({
-          entityType: 'file',
-          entityId: nextProps.file.fileId,
-          provider: nextProps.file.provider
-        });
-      }
-  },
-  componentWillMount: function componentWillMount() {
-    this.onMount(this.props);
   },
   render: function render() {
-    var _props = this.props,
-        modalCancel = _props.modalCancel,
-        modalConfirm = _props.modalConfirm;
     var _props2 = this.props,
-        revisions = _props2.revisions,
-        syncTimeline = _props2.syncTimeline;
+        syncTimeline = _props2.syncTimeline,
+        modalCancel = _props2.modalCancel,
+        modalConfirm = _props2.modalConfirm;
 
 
-    var orderByTime = function orderByTime(items) {
-      return (0, _orderBy3.default)(items, function (item) {
-        return new Date(item.timestamp).getTime();
-      }, 'desc');
-    };
-    var filterByRevision = function filterByRevision(items) {
-      return items.filter(function (item) {
-        return item.event == 'revision';
-      });
-    };
+    var allRevisions = syncTimeline && syncTimeline.data ? (0, _Timeline.orderByTime)((0, _SyncTimeline.getRevisions)(syncTimeline.data)) : [];
 
-    var allRevisions = syncTimeline && syncTimeline.data ? orderByTime(filterByRevision(syncTimeline.data)) : [];
     return _react2.default.createElement(
       'div',
       { className: _DownloadModal2.default.modal + ' layout-column' },
@@ -5635,26 +6178,6 @@ var DownloadModal = exports.DownloadModal = _react2.default.createClass({
   }
 });
 
-function stateToProps(_ref, _ref2) {
-  var syncTimeline = _ref.syncTimeline;
-  var file = _ref2.file;
-
-  return {
-    syncTimeline: syncTimeline[file.fileId]
-  };
-}
-
-function dispatchToProps(dispatch) {
-  return {
-    syncTimelineActions: (0, _redux.bindActionCreators)(SyncTimelineActions, dispatch),
-    dispatch: dispatch
-  };
-}
-
-var modalName = 'FILE_DOWNLOAD';
-var ModalComponent = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(DownloadModal);
-(0, _ModalRegistry.registerModal)(modalName, ModalComponent);
-var _default = modalName;
 var _default2 = _default;
 exports.default = _default2;
 ;
@@ -5664,17 +6187,7 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(DownloadModal, 'DownloadModal', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.jsx');
-
-  __REACT_HOT_LOADER__.register(stateToProps, 'stateToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.jsx');
-
-  __REACT_HOT_LOADER__.register(dispatchToProps, 'dispatchToProps', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.jsx');
-
   __REACT_HOT_LOADER__.register(propTypesObject, 'propTypesObject', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.jsx');
-
-  __REACT_HOT_LOADER__.register(modalName, 'modalName', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.jsx');
-
-  __REACT_HOT_LOADER__.register(ModalComponent, 'ModalComponent', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.jsx');
 
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/Download/DownloadModal/DownloadModal.jsx');
 
@@ -5994,6 +6507,56 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "soWG":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getCommit = undefined;
+
+var _axios = __webpack_require__("mtWM");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var getCommit = exports.getCommit = function getCommit(_ref) {
+  var commitId = _ref.commitId;
+  return {
+    type: 'COMMITS/GET_COMMIT',
+    payload: (0, _axios2.default)('api/v1/commits/' + commitId),
+    meta: {
+      cacheKey: commitId
+    }
+  };
+};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(getCommit, 'getCommit', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Commits/Commits.actions.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "tDaj":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -6102,6 +6665,14 @@ module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGlu
 
 /***/ },
 
+/***/ "vVr8":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"border1":"rgba(0, 0, 0, 0.1)","titleBar":"TogglePanel_titleBar-37a0p","toggleIcon":"TogglePanel_toggleIcon-3Bjck","toggleIconActive":"TogglePanel_toggleIconActive-2cHXc","content":"TogglePanel_content-ksKiC"};
+
+/***/ },
+
 /***/ "vcqR":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -6132,48 +6703,6 @@ var _utils = __webpack_require__("CzcJ");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//const ImagePropTypes = {
-//  arrayBuffer  : PropTypes.array,   // Image data array buffer
-//  onLoad       : PropTypes.func,    // Function to be run on load
-//}
-
-// Array Buffer Image
-//export const Image = React.createClass({
-//  propTypes: ImagePropTypes,
-//  getInitialState () {
-//    return {
-//      src: ''
-//    }
-//  },
-//  componentWillMount() { this.onMount(this.props) },
-//  componentWillReceiveProps(nextProps) { this.onMount(nextProps, this.props)},
-//  onMount(nextProps, prevProps) {
-//    // If the fileData has changed
-//    console.log(nextProps);
-//    if(nextProps.arrayBuffer && nextProps.arrayBuffer.length > 0){
-//      if(!prevProps || nextProps.arrayBuffer != prevProps.arrayBuffer){
-//        const arrayBuffer = nextProps.arrayBuffer;
-//        const u8          = new Uint8Array(arrayBuffer);
-//        const b64encoded  = btoa(String.fromCharCode.apply(null, u8));
-//        const mimetype    = "image/png"; // or whatever your image mime type is
-//        const b64src      = "data:"+mimetype+";base64,"+b64encoded;
-//        this.setState({src: b64src})
-//
-//        // Run the load function
-//        if(nextProps.onLoad){
-//          nextProps.onLoad()
-//        }
-//      }
-//    }
-//  },
-//  render() {
-//    const { src } = this.state;
-//    return (
-//      <img ref="img" src={src} { ...omit(this.props, Object.keys(ImagePropTypes)) }/>
-//    )
-//  }
-//});
-
 var _default = _react2.default.createClass({
   displayName: '_default',
   getInitialState: function getInitialState() {
@@ -6192,21 +6721,13 @@ var _default = _react2.default.createClass({
   onMount: function onMount(nextProps, prevProps) {
     // If the previewId changes, download a new file
     if (!prevProps || nextProps.previewId !== prevProps.previewId) {
-
-      // If this is a desktop app, we download the file (otherwise we fetch with img src)
-      if (false) {
-        nextProps.downloadFn({
-          projectId: nextProps.fileMeta.project._id,
-          fileId: nextProps.fileMeta.fileId,
-          revisionId: nextProps.fileMeta.revisionId,
-          provider: nextProps.fileMeta.provider,
-          responseType: 'path'
-        });
-      }
-      // Else, this is web - we set loading to true
-      else {
-          this.setState({ loading: true });
-        }
+      nextProps.downloadFn({
+        projectId: nextProps.fileMeta.project._id,
+        fileId: nextProps.fileMeta.fileId,
+        revisionId: nextProps.fileMeta.revisionId,
+        provider: nextProps.fileMeta.provider,
+        responseType: 'path'
+      });
     }
   },
   onLoad: function onLoad() {
@@ -6224,7 +6745,6 @@ var _default = _react2.default.createClass({
       var heightScale = containerHeight / naturalHeight * 0.9;
       var scale = widthScale < heightScale ? widthScale : heightScale;
       _this.setState({
-        loading: false,
         scale: scale > 1 ? 1 : scale,
         naturalWidth: naturalWidth,
         naturalHeight: naturalHeight
@@ -6250,17 +6770,15 @@ var _default = _react2.default.createClass({
     var _state = this.state,
         scale = _state.scale,
         naturalWidth = _state.naturalWidth,
-        naturalHeight = _state.naturalHeight,
-        loading = _state.loading;
+        naturalHeight = _state.naturalHeight;
 
     var sizeStyles = {
       width: naturalWidth * scale,
       height: naturalHeight * scale
     };
 
-    var imageUrl =  false ? fileData && fileData.data ? fileData.data : '' : (0, _utils.getDownloadUrl)(fileMeta);
-
-    var isLoading =  false ? fileData && fileData.data ? fileData.loading : true : loading;
+    var imageUrl = fileData && fileData.data ? fileData.data : '';
+    var isLoading = fileData && fileData.data ? fileData.loading : true;
 
     return _react2.default.createElement(
       'div',
@@ -6929,6 +7447,73 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "z53e":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var toggle = exports.toggle = function toggle(_ref) {
+  var cacheKey = _ref.cacheKey,
+      value = _ref.value;
+
+  return function (dispatch, getState) {
+    var currentValue = getState().togglePanel[cacheKey];
+
+    // If value == null - we toggle.
+    // Otherwise, we set it to the value.
+
+    dispatch({
+      type: 'TOGGLE_PANEL/TOGGLE',
+      payload: {
+        cacheKey: cacheKey,
+        value: value === null ? !currentValue : value
+      }
+    });
+  };
+};
+var toggleMulti = exports.toggleMulti = function toggleMulti(_ref2) {
+  var cacheKeys = _ref2.cacheKeys;
+
+  return function (dispatch, getState) {
+    var newValue = cacheKeys && cacheKeys[0] ? !getState().togglePanel[cacheKeys[0]] : false;
+    dispatch({
+      type: 'TOGGLE_PANEL/TOGGLE_MULTI',
+      payload: {
+        cacheKeys: cacheKeys,
+        value: newValue
+      }
+    });
+  };
+};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(toggle, 'toggle', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.actions.js');
+
+  __REACT_HOT_LOADER__.register(toggleMulti, 'toggleMulti', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/TogglePanel/TogglePanel.actions.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "z7Ks":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -6969,4 +7554,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=8.a62ae7bbfed0631c680c.js.map
+//# sourceMappingURL=7.0b12a9cd9e77000c0893.js.map

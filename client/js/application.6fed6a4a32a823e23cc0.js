@@ -30895,6 +30895,7 @@ function deleteComment(_ref9) {
       var event = getState().syncTimeline[timelineCacheKey].data.find(function (event) {
         return event.data.comment === comment._id;
       });
+      console.log({ event: event });
       if (event) {
         dispatch((0, _SyncTimeline.deleteEvent)({
           cacheKey: timelineCacheKey,
@@ -31842,7 +31843,7 @@ var ProjectNewModal = function (_Component) {
       var fileStoreTemplate = function fileStoreTemplate() {
         return _react2.default.createElement(
           'div',
-          { className: _ProjectNewModal2.default.panel + ' rel-box' },
+          { className: _ProjectNewModal2.default.panel + ' rel-box layout-column' },
           _react2.default.createElement(
             'h3',
             null,
@@ -42644,6 +42645,73 @@ function indexOf(xs, x) {
 
 /***/ },
 
+/***/ "Rwh0":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _axios = __webpack_require__("mtWM");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(_ref) {
+  var file = _ref.file,
+      fileUrl = _ref.fileUrl,
+      anchorEl = _ref.anchorEl;
+  return function (dispatch, getState) {
+    return (0, _axios2.default)({
+      method: 'GET',
+      url: '/api/v1/sync/shareLink/' + file.project._id + '/' + file.fileId + '?revisionId=' + file.revisionId
+    }).then(function (_ref2) {
+      var data = _ref2.data;
+
+      // We modify the anchor tag directly.
+      // Yes, I know. Not very reacty.
+      // We need this all to be sync. This seems nicer than updating the state with the new download and href attributes
+      anchorEl.setAttribute('download', file.name);
+      anchorEl.setAttribute('href', "https://dev.stemn.com" + '/api/v1/sync/shareDownload?token=' + data.token);
+      // Now, we simulate the click to start the download
+      // The anchor's onClick function should check that href does not exist
+      // Otherwise this will loop.
+      anchorEl.click();
+    });
+  };
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/actions/saveFile.web.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/actions/saveFile.web.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "Rx1E":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -43228,7 +43296,7 @@ module.exports = baseHasIn;
 /***/ },
 
 /***/ "SQIr":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
@@ -43236,6 +43304,12 @@ module.exports = baseHasIn;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _axios = __webpack_require__("mtWM");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(_ref) {
   var projectId = _ref.projectId,
@@ -43245,13 +43319,21 @@ var _default = function _default(_ref) {
       responseType = _ref.responseType;
 
   var cacheKey = fileId + '-' + revisionId;
+
+  // If the response type is path, we change it to blob and create
+  // a filepath in the then statement
   return {
     type: 'FILES/GET_FILE',
-    http: true,
-    payload: {
+    payload: (0, _axios2.default)({
       url: projectId ? '/api/v1/sync/download/' + projectId + '/' + fileId : '/api/v1/remote/download/' + provider + '/' + fileId,
-      params: { revisionId: revisionId }
-    },
+      params: { revisionId: revisionId },
+      responseType: responseType === 'path' ? 'blob' : responseType
+    }).then(function (response) {
+      if (responseType === 'path') {
+        response.data = window.URL.createObjectURL(response.data);
+      }
+      return response;
+    }),
     meta: {
       cacheKey: cacheKey
     }
@@ -74080,7 +74162,7 @@ module.exports = __webpack_require__.p + "images/sdf.svg?eccc4c43e742eca18912783
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.renderFileDownload = exports.renderFileProgress = exports.renderFileError = exports.renderFile = exports.getRelatedThreads = exports.getMeta = exports.getFileProgress = exports.getFile = exports.getAssemblyParts = exports.getAssemblyParents = exports.downloadProgress = undefined;
+exports.saveFile = exports.renderFileDownload = exports.renderFileProgress = exports.renderFileError = exports.renderFile = exports.getRelatedThreads = exports.getMeta = exports.getFileProgress = exports.getFile = exports.getAssemblyParts = exports.getAssemblyParents = exports.downloadProgress = undefined;
 
 var _downloadProgress2 = __webpack_require__("V32k");
 
@@ -74126,6 +74208,10 @@ var _renderFileDownload2 = __webpack_require__("czYd");
 
 var _renderFileDownload3 = _interopRequireDefault(_renderFileDownload2);
 
+var _saveFile2 = __webpack_require__("Rwh0");
+
+var _saveFile3 = _interopRequireDefault(_saveFile2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.downloadProgress = _downloadProgress3.default;
@@ -74139,6 +74225,7 @@ exports.renderFile = _renderFile3.default;
 exports.renderFileError = _renderFileError3.default;
 exports.renderFileProgress = _renderFileProgress3.default;
 exports.renderFileDownload = _renderFileDownload3.default;
+exports.saveFile = _saveFile3.default;
 ;
 
 var _temp = function () {
@@ -86772,4 +86859,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.b3454952fdca5eb60681.js.map
+//# sourceMappingURL=application.6fed6a4a32a823e23cc0.js.map
