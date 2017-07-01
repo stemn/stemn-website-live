@@ -1,5 +1,44 @@
 webpackJsonp([56,62],{
 
+/***/ "+/VY":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _ScrollToTop = __webpack_require__("a+XX");
+
+var _ScrollToTop2 = _interopRequireDefault(_ScrollToTop);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _ScrollToTop2.default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "+6Bu":
 /***/ function(module, exports) {
 
@@ -16248,6 +16287,10 @@ var _render = __webpack_require__("XBQd");
 
 var _render2 = _interopRequireDefault(_render);
 
+var _thread = __webpack_require__("rbf3");
+
+var _thread2 = _interopRequireDefault(_thread);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(store, action) {
@@ -16255,6 +16298,7 @@ var _default = function _default(store, action) {
   (0, _files2.default)(store, action);
   (0, _project2.default)(store, action);
   (0, _render2.default)(store, action);
+  (0, _thread2.default)(store, action);
 };
 
 var _default2 = _default;
@@ -30705,10 +30749,9 @@ var _temp2 = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.newReaction = exports.toggleReaction = undefined;
 exports.getComment = getComment;
 exports.newComment = newComment;
-exports.toggleReaction = toggleReaction;
-exports.newReaction = newReaction;
 exports.deleteReaction = deleteReaction;
 exports.startEdit = startEdit;
 exports.finishEdit = finishEdit;
@@ -30724,6 +30767,10 @@ var _ThreadsActions = __webpack_require__("88Vw");
 var ThreadsActions = _interopRequireWildcard(_ThreadsActions);
 
 var _SyncTimeline = __webpack_require__("frFe");
+
+var _confirmAuth = __webpack_require__("VFLF");
+
+var _confirmAuth2 = _interopRequireDefault(_confirmAuth);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -30787,11 +30834,10 @@ function newComment(_ref2) {
   };
 }
 
-function toggleReaction(_ref4) {
+var toggleReaction = exports.toggleReaction = function toggleReaction(_ref4) {
   var commentId = _ref4.commentId,
       reactionType = _ref4.reactionType;
-
-  return function (dispatch, getState) {
+  return (0, _confirmAuth2.default)(function (dispatch, getState) {
     var reactions = getState().comments.data[commentId].data.reactions;
     var userId = getState().auth.user._id;
     var reactionExists = reactions.find(function (reaction) {
@@ -30803,14 +30849,13 @@ function toggleReaction(_ref4) {
     } else {
       dispatch(newReaction({ commentId: commentId, reactionType: reactionType }));
     }
-  };
-}
+  });
+};
 
-function newReaction(_ref5) {
+var newReaction = exports.newReaction = function newReaction(_ref5) {
   var commentId = _ref5.commentId,
       reactionType = _ref5.reactionType;
-
-  return function (dispatch) {
+  return (0, _confirmAuth2.default)(function (dispatch) {
 
     var reaction = {
       type: reactionType
@@ -30828,8 +30873,8 @@ function newReaction(_ref5) {
         commentId: commentId
       }
     });
-  };
-}
+  });
+};
 
 function deleteReaction(_ref6) {
   var commentId = _ref6.commentId,
@@ -46537,9 +46582,9 @@ var _default = function _default(actionToRun, noDispatch) {
   return function (dispatch, getState) {
     if (getState().auth.authToken && getState().auth.user._id) {
       if (noDispatch) {
-        actionToRun();
+        actionToRun(dispatch, getState);
       } else {
-        dispatch(actionToRun());
+        dispatch(actionToRun(dispatch, getState));
       }
     } else {
       dispatch((0, _reactRouterRedux.push)({
@@ -53226,6 +53271,89 @@ module.exports = { "default": __webpack_require__("/n6Q"), __esModule: true };
 
 /***/ },
 
+/***/ "a+XX":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ScrollToTop = function (_Component) {
+  (0, _inherits3.default)(ScrollToTop, _Component);
+
+  function ScrollToTop() {
+    (0, _classCallCheck3.default)(this, ScrollToTop);
+    return (0, _possibleConstructorReturn3.default)(this, (ScrollToTop.__proto__ || (0, _getPrototypeOf2.default)(ScrollToTop)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(ScrollToTop, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return null;
+    }
+  }]);
+  return ScrollToTop;
+}(_react.Component);
+
+exports.default = ScrollToTop;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(ScrollToTop, 'ScrollToTop', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Scroll/ScrollToTop/ScrollToTop.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "aCM0":
 /***/ function(module, exports) {
 
@@ -56551,6 +56679,10 @@ var _LandingFooter = __webpack_require__("WOUS");
 
 var _LandingFooter2 = _interopRequireDefault(_LandingFooter);
 
+var _ScrollToTop = __webpack_require__("+/VY");
+
+var _ScrollToTop2 = _interopRequireDefault(_ScrollToTop);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var LandingLayout = function (_Component) {
@@ -56573,6 +56705,7 @@ var LandingLayout = function (_Component) {
         'div',
         (0, _extends3.default)({ className: 'layout-column flex' }, otherProps),
         _react2.default.createElement(_LandingHeader2.default, null),
+        _react2.default.createElement(_ScrollToTop2.default, null),
         _react2.default.createElement(
           'div',
           { className: 'flex', style: { overflow: 'hidden' } },
@@ -66778,6 +66911,10 @@ var _Footer = __webpack_require__("Ni+I");
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
+var _ScrollToTop = __webpack_require__("+/VY");
+
+var _ScrollToTop2 = _interopRequireDefault(_ScrollToTop);
+
 var _classnames = __webpack_require__("HW6M");
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -66823,6 +66960,7 @@ var StandardLayout = function (_Component) {
         'div',
         (0, _extends3.default)({ className: (0, _classnames2.default)(standardClasses) }, otherProps),
         _react2.default.createElement(_Header2.default, null),
+        _react2.default.createElement(_ScrollToTop2.default, null),
         _react2.default.createElement(
           'div',
           { className: 'flex layout-column' },
@@ -76495,6 +76633,60 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "rbf3":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _SyncTimelineActions = __webpack_require__("frFe");
+
+var _default = function _default(store, action) {
+  var dispatch = store.dispatch,
+      getState = store.getState;
+
+
+  switch (action.type) {
+    case 'THREAD/THREAD_UPDATED':
+      return dispatch((0, _SyncTimelineActions.fetchTimeline)({
+        entityId: action.payload.threadId,
+        size: 500,
+        entityType: 'thread'
+      }));
+  }
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Websocket/eventMap/thread.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Websocket/eventMap/thread.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "reGU":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -78554,6 +78746,13 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//const filterMountConfig = (config) => config.filter(item => !item.unmount)
+var filterUnMountConfig = function filterUnMountConfig(config) {
+  return config.filter(function (item) {
+    return item.unmount;
+  });
+};
+
 var fetchDataHoc = function fetchDataHoc(configs) {
   return function (WrappedComponent) {
     return function (_Component) {
@@ -78574,15 +78773,21 @@ var fetchDataHoc = function fetchDataHoc(configs) {
           var _this2;
 
           return (_this2 = _this).__determineHasChanged__REACT_HOT_LOADER__.apply(_this2, arguments);
-        }, _this.mount = function () {
+        }, _this.processConfig = function () {
           var _this3;
 
-          return (_this3 = _this).__mount__REACT_HOT_LOADER__.apply(_this3, arguments);
+          return (_this3 = _this).__processConfig__REACT_HOT_LOADER__.apply(_this3, arguments);
+        }, _this.mount = function () {
+          var _this4;
+
+          return (_this4 = _this).__mount__REACT_HOT_LOADER__.apply(_this4, arguments);
         }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
       }
 
       (0, _createClass3.default)(fetchData, [{
         key: 'componentDidMount',
+
+        // Mount
         value: function componentDidMount() {
           this.mount(this.props, {}, true);
         }
@@ -78591,6 +78796,21 @@ var fetchDataHoc = function fetchDataHoc(configs) {
         value: function componentWillReceiveProps(nextProps) {
           this.mount(nextProps, this.props, false);
         }
+        // Unmount
+
+      }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+          var _this5 = this;
+
+          // Note, we set firstRun to true because this is the last run so we want to process
+          // all unmount events
+          filterUnMountConfig(configs).forEach(function (config) {
+            return _this5.processConfig({}, _this5.props, true, config);
+          });
+        }
+        // Utils
+
       }, {
         key: '__determineHasChanged__REACT_HOT_LOADER__',
         value: function __determineHasChanged__REACT_HOT_LOADER__(nextProps, prevProps, firstRun, config) {
@@ -78606,17 +78826,22 @@ var fetchDataHoc = function fetchDataHoc(configs) {
           }
         }
       }, {
+        key: '__processConfig__REACT_HOT_LOADER__',
+        value: function __processConfig__REACT_HOT_LOADER__(nextProps, prevProps, firstRun, config) {
+          // This will process the config if it has changed
+          var hasChanged = this.determineHasChanged(nextProps, prevProps, firstRun, config);
+          if (hasChanged) {
+            config.onChange(nextProps, prevProps);
+          }
+        }
+      }, {
         key: '__mount__REACT_HOT_LOADER__',
         value: function __mount__REACT_HOT_LOADER__(nextProps, prevProps, firstRun) {
-          var _this4 = this;
+          var _this6 = this;
 
-          var processConfig = function processConfig(config) {
-            var hasChanged = _this4.determineHasChanged(nextProps, prevProps, firstRun, config);
-            if (hasChanged) {
-              config.onChange(nextProps);
-            }
-          };
-          configs.forEach(processConfig);
+          configs.forEach(function (config) {
+            return _this6.processConfig(nextProps, prevProps, firstRun, config);
+          });
         }
       }, {
         key: 'render',
@@ -78638,6 +78863,8 @@ var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+
+  __REACT_HOT_LOADER__.register(filterUnMountConfig, 'filterUnMountConfig', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FetchDataHoc/FetchDataHoc.js');
 
   __REACT_HOT_LOADER__.register(fetchDataHoc, 'fetchDataHoc', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/FetchDataHoc/FetchDataHoc.js');
 
@@ -86859,4 +87086,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.6fed6a4a32a823e23cc0.js.map
+//# sourceMappingURL=application.881fa66b865da9b646c1.js.map
