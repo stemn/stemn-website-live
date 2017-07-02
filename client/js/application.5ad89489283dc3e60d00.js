@@ -76645,6 +76645,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _SyncTimelineActions = __webpack_require__("frFe");
 
+var _Comments = __webpack_require__("KX+g");
+
+var _Threads = __webpack_require__("88Vw");
+
 var _default = function _default(store, action) {
   var dispatch = store.dispatch,
       getState = store.getState;
@@ -76652,10 +76656,19 @@ var _default = function _default(store, action) {
 
   switch (action.type) {
     case 'THREAD/THREAD_UPDATED':
-      return dispatch((0, _SyncTimelineActions.fetchTimeline)({
-        entityId: action.payload.threadId,
-        size: 500,
-        entityType: 'thread'
+      {
+        dispatch((0, _SyncTimelineActions.fetchTimeline)({
+          entityId: action.payload.threadId,
+          size: 500,
+          entityType: 'thread'
+        }));
+        dispatch((0, _Threads.getThread)({
+          threadId: action.payload.threadId
+        }));
+      }
+    case 'THREAD/COMMENT_UPDATED':
+      return dispatch((0, _Comments.getComment)({
+        commentId: action.payload.comment
       }));
   }
 };
@@ -86445,12 +86458,12 @@ var _default = function _default(store, action) {
   var dispatch = store.dispatch,
       getState = store.getState;
 
+  //  if (action.payload.actioner === getState().auth.user._id){
+  //    return undefined
+  //  }
+  //
+  //  // Actions that we DON'T process if user is the actioner
 
-  if (action.payload.actioner === getState().auth.user._id) {
-    return undefined;
-  }
-
-  // Actions that we DON'T process if user is the actioner
   switch (action.type) {
     case 'PROJECT/ADDED_TO_PROJECT':
       return dispatch((0, _ProjectsActions.getUserProjects)({ userId: getState().auth.user._id }));
@@ -87086,4 +87099,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.881fa66b865da9b646c1.js.map
+//# sourceMappingURL=application.5ad89489283dc3e60d00.js.map
