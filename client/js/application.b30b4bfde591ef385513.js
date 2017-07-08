@@ -35030,21 +35030,21 @@ var confirmLinkRemote = exports.confirmLinkRemote = function confirmLinkRemote(_
   return function (dispatch) {
 
     var linkRemoteProviderDependent = function linkRemoteProviderDependent() {
-      if (!provider) {
-        return unlinkRemote({
+      if (!provider && prevProvider) {
+        return dispatch(unlinkRemote({
           prevProvider: prevProvider,
           projectId: projectId,
           userId: userId
-        });
-      } else {
-        return linkRemote({
+        }));
+      } else if (provider) {
+        return dispatch(linkRemote({
           id: id,
           path: path,
           prevProvider: prevProvider,
           projectId: projectId,
           provider: provider,
           userId: userId
-        });
+        }));
       }
     };
 
@@ -35052,10 +35052,10 @@ var confirmLinkRemote = exports.confirmLinkRemote = function confirmLinkRemote(_
       return dispatch(ModalActions.showConfirm({
         message: 'Changing your file store <b>will delete your entire commit and change history.</b> Are you sure you want to do this? There is no going back.'
       })).then(function () {
-        return dispatch(linkRemoteProviderDependent());
+        return linkRemoteProviderDependent();
       });
     } else {
-      return dispatch(linkRemoteProviderDependent());
+      return linkRemoteProviderDependent();
     }
   };
 };
@@ -87099,4 +87099,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.5ad89489283dc3e60d00.js.map
+//# sourceMappingURL=application.b30b4bfde591ef385513.js.map
