@@ -1568,6 +1568,7 @@ var Component = _react2.default.createClass({
       if (item.event == 'commit') {
         // Order the items by the timestamp
         var subItemsOrdered = (0, _Timeline.orderByTime)(item.data.items).reverse();
+
         // These are reversed because they go left to right (not right to left like the other items)
         return _react2.default.createElement(
           _Popover2.default,
@@ -4629,7 +4630,7 @@ var Component = _react2.default.createClass({
     var moreRight = page > 0;
 
     // Order the items by the timestamp
-    var itemsOrdered = (0, _Timeline3.orderByTime)(items);
+    var itemsOrdered = (0, _Timeline3.orderByTime)(items).reverse();
 
     return _react2.default.createElement(
       'div',
@@ -7554,4 +7555,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=7.0b12a9cd9e77000c0893.js.map
+//# sourceMappingURL=7.c6fb7792030c2bf67186.js.map

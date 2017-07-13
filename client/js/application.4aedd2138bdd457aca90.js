@@ -17278,9 +17278,6 @@ var commitRoute = exports.commitRoute = function commitRoute(_ref) {
       projectId = _ref.projectId;
   return '/project/' + projectId + '/history/' + commitId;
 };
-var contactRoute = exports.contactRoute = function contactRoute() {
-  return '/contact';
-};
 var downloadRoute = exports.downloadRoute = function downloadRoute() {
   return '/download';
 };
@@ -17421,104 +17418,6 @@ var userStarsRoute = exports.userStarsRoute = function userStarsRoute(_ref22) {
   var userId = _ref22.userId;
   return '/users/' + userId + '/stars';
 };
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(commitRoute, 'commitRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(contactRoute, 'contactRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(downloadRoute, 'downloadRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(exploreRoute, 'exploreRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(fieldRoute, 'fieldRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(fileRoute, 'fileRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(flowRoute, 'flowRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(homeRoute, 'homeRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(landingRoute, 'landingRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(loginRoute, 'loginRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(onboardingAboutRoute, 'onboardingAboutRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(onboardingDownloadRoute, 'onboardingDownloadRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(onboardingSyncRoute, 'onboardingSyncRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(openSourceRoute, 'openSourceRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(organisationRoute, 'organisationRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(passwordLostRoute, 'passwordLostRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(pricingRoute, 'pricingRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(privacyRoute, 'privacyRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectCommitsRoute, 'projectCommitsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectFilesRoute, 'projectFilesRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectFolderRoute, 'projectFolderRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectRoute, 'projectRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectSettingsRoute, 'projectSettingsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectSettingsTeamRoute, 'projectSettingsTeamRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectSettingsThreadsRoute, 'projectSettingsThreadsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectThreadsRoute, 'projectThreadsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectThreadRoute, 'projectThreadRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(projectTeamRoute, 'projectTeamRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(registerRoute, 'registerRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(securityRoute, 'securityRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(settingsRoute, 'settingsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(threadEditRoute, 'threadEditRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(threadRoute, 'threadRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(termsRoute, 'termsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(userDetailsRoute, 'userDetailsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(userFollowersRoute, 'userFollowersRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(userFollowingRoute, 'userFollowingRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(userProjectsRoute, 'userProjectsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(userRoute, 'userRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-
-  __REACT_HOT_LOADER__.register(userStarsRoute, 'userStarsRoute', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -39795,6 +39694,116 @@ var _input2 = _interopRequireDefault(_input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _ref = _react2.default.createElement(
+  _reactHelmet.Helmet,
+  null,
+  _react2.default.createElement(
+    'title',
+    null,
+    'Stemn: Seamless Version Control and Task Tracking'
+  )
+);
+
+var _ref2 = _react2.default.createElement(
+  'h1',
+  null,
+  'Seamless Version Control and Task Tracking'
+);
+
+var _ref3 = _react2.default.createElement(
+  'h3',
+  null,
+  'A unified workflow for modern engineers'
+);
+
+var _ref4 = _react2.default.createElement('img', { src: _screenshot2.default });
+
+var _ref5 = _react2.default.createElement('img', { src: _historyCombined2.default });
+
+var _ref6 = _react2.default.createElement(
+  _Layout.Col,
+  { className: 'flex-gt-xs-50 lg' },
+  _react2.default.createElement(
+    'h4',
+    { className: 'text-title-2' },
+    'Infinite version history'
+  ),
+  _react2.default.createElement(
+    'p',
+    { className: 'text-title-4' },
+    'All your changes are automatically synced as you work.'
+  ),
+  _react2.default.createElement(
+    'p',
+    { className: 'text-title-4' },
+    'View any previous versions, complete with comments and commit messages. Compare and revert your files with a single click.'
+  )
+);
+
+var _ref7 = _react2.default.createElement(
+  'h4',
+  { className: 'text-title-2' },
+  'Access your files anywhere'
+);
+
+var _ref8 = _react2.default.createElement(
+  'p',
+  { className: 'text-title-4' },
+  'Whether you\u2019re in the office, in the lab, or on the go, preview your files in your browser or any device.'
+);
+
+var _ref9 = _react2.default.createElement(
+  'p',
+  { className: 'text-title-4' },
+  'Preview hundreds of different file-types directly in your web browser.'
+);
+
+var _ref10 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'dxf' });
+
+var _ref11 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'dwg' });
+
+var _ref12 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'tex' });
+
+var _ref13 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'xlsx' });
+
+var _ref14 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'cpp' });
+
+var _ref15 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'more' });
+
+var _ref16 = _react2.default.createElement('img', { src: _historyTimeline2.default });
+
+var _ref17 = _react2.default.createElement(
+  _Layout.Col,
+  { className: 'flex-xs-100 flex-gt-xs-50 lg' },
+  _react2.default.createElement(
+    'h4',
+    { className: 'text-title-2' },
+    'No more miscommunication'
+  ),
+  _react2.default.createElement(
+    'p',
+    { className: 'text-title-4' },
+    'Simplify your communication between team members, clients, and stakeholders by commenting directly on files.'
+  ),
+  _react2.default.createElement(
+    'p',
+    { className: 'text-title-4' },
+    'Stay informed of discussions and project events as soon as they happen.'
+  )
+);
+
+var _ref18 = _react2.default.createElement(
+  'h4',
+  { className: 'text-title-2' },
+  'Ready?'
+);
+
+var _ref19 = _react2.default.createElement(
+  'p',
+  { className: 'text-title-4' },
+  'Get started for free. Download the desktop app and sign up.'
+);
+
 var Landing = function (_Component) {
   (0, _inherits3.default)(Landing, _Component);
 
@@ -39812,28 +39821,12 @@ var Landing = function (_Component) {
       return _react2.default.createElement(
         _LandingLayout2.default,
         null,
-        _react2.default.createElement(
-          _reactHelmet.Helmet,
-          null,
-          _react2.default.createElement(
-            'title',
-            null,
-            'Stemn: Seamless Version Control and Task Tracking'
-          )
-        ),
+        _ref,
         _react2.default.createElement(
           _HeroBanner2.default,
           { className: _Landing2.default.banner },
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Seamless Version Control and Task Tracking'
-          ),
-          _react2.default.createElement(
-            'h3',
-            null,
-            'A unified workflow for modern engineers'
-          ),
+          _ref2,
+          _ref3,
           (0, _isMobile2.default)() ? _react2.default.createElement(
             _Button2.default,
             { className: _Landing2.default.downloadButton + ' secondary lg', name: 'loginRoute' },
@@ -39847,7 +39840,7 @@ var Landing = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: _Landing2.default.screenshot },
-            _react2.default.createElement('img', { src: _screenshot2.default })
+            _ref4
           )
         ),
         _react2.default.createElement(
@@ -39862,28 +39855,10 @@ var Landing = function (_Component) {
               _react2.default.createElement(
                 'div',
                 { className: _Landing2.default.timeline },
-                _react2.default.createElement('img', { src: _historyCombined2.default })
+                _ref5
               )
             ),
-            _react2.default.createElement(
-              _Layout.Col,
-              { className: 'flex-gt-xs-50 lg' },
-              _react2.default.createElement(
-                'h4',
-                { className: 'text-title-2' },
-                'Infinite version history'
-              ),
-              _react2.default.createElement(
-                'p',
-                { className: 'text-title-4' },
-                'All your changes are automatically synced as you work.'
-              ),
-              _react2.default.createElement(
-                'p',
-                { className: 'text-title-4' },
-                'View any previous versions, complete with comments and commit messages. Compare and revert your files with a single click.'
-              )
-            )
+            _ref6
           )
         ),
         _react2.default.createElement(
@@ -39898,30 +39873,18 @@ var Landing = function (_Component) {
               _react2.default.createElement(
                 _Layout.Col,
                 { className: 'flex-order-xs-2 flex-xs-100 flex-gt-xs-50 lg' },
-                _react2.default.createElement(
-                  'h4',
-                  { className: 'text-title-2' },
-                  'Access your files anywhere'
-                ),
-                _react2.default.createElement(
-                  'p',
-                  { className: 'text-title-4' },
-                  'Whether you\u2019re in the office, in the lab, or on the go, preview your files in your browser, from any device.'
-                ),
-                _react2.default.createElement(
-                  'p',
-                  { className: 'text-title-4' },
-                  'Preview hundreds of different file-types directly in your web browser.'
-                ),
+                _ref7,
+                _ref8,
+                _ref9,
                 _react2.default.createElement(
                   'div',
                   { className: (0, _classnames2.default)(_Landing2.default.fileIcons, 'layout-row') },
-                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'dxf' }),
-                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'dwg' }),
-                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'tex' }),
-                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'xlsx' }),
-                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'cpp' }),
-                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'more' })
+                  _ref10,
+                  _ref11,
+                  _ref12,
+                  _ref13,
+                  _ref14,
+                  _ref15
                 )
               ),
               _react2.default.createElement(
@@ -39944,28 +39907,10 @@ var Landing = function (_Component) {
               _react2.default.createElement(
                 'div',
                 { className: _Landing2.default.historyTimeline },
-                _react2.default.createElement('img', { src: _historyTimeline2.default })
+                _ref16
               )
             ),
-            _react2.default.createElement(
-              _Layout.Col,
-              { className: 'flex-xs-100 flex-gt-xs-50 lg' },
-              _react2.default.createElement(
-                'h4',
-                { className: 'text-title-2' },
-                'No more miscommunication'
-              ),
-              _react2.default.createElement(
-                'p',
-                { className: 'text-title-4' },
-                'Simplify your feedback process by team members, clients, and stakeholders comment directly on files.'
-              ),
-              _react2.default.createElement(
-                'p',
-                { className: 'text-title-4' },
-                'Stay informed of discussions and project milestones as soon as they happen.'
-              )
-            )
+            _ref17
           )
         ),
         _react2.default.createElement(
@@ -39974,16 +39919,8 @@ var Landing = function (_Component) {
           _react2.default.createElement(
             _Layout.Container,
             { className: 'layout-column layout-align-center-center text-center' },
-            _react2.default.createElement(
-              'h4',
-              { className: 'text-title-2' },
-              'Ready?'
-            ),
-            _react2.default.createElement(
-              'p',
-              { className: 'text-title-4' },
-              'Get started for free. Download the desktop app and sign up.'
-            ),
+            _ref18,
+            _ref19,
             (0, _isMobile2.default)() ? _react2.default.createElement(
               _Button2.default,
               { className: _Landing2.default.downloadButton + ' secondary lg', name: 'loginRoute' },
@@ -40013,26 +39950,6 @@ var Landing = function (_Component) {
 }(_react.Component);
 
 exports.default = Landing;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(Landing, 'Landing', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/Landing/Landing.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -54270,7 +54187,10 @@ var FileList = (_temp2 = _class = function (_Component) {
       var filesFiltered = options.foldersOnly ? filesNormal.filter(function (file) {
         return file.type === 'folder';
       }) : filesNormal;
-      var filesOrdered = (0, _orderBy3.default)(filesFiltered, ['type', 'name'], ['desc', 'asc']);
+      var filesOrdered = (0, _orderBy3.default)(filesFiltered, ['type', function (_ref2) {
+        var name = _ref2.name;
+        return name.toLowerCase();
+      }], ['desc', 'asc']);
 
       if (filesOrdered && filesOrdered.length > 0) {
         return filesOrdered.map(function (file) {
@@ -54311,7 +54231,10 @@ var FileList = (_temp2 = _class = function (_Component) {
       var filesFiltered = options.foldersOnly ? filesNormal.filter(function (file) {
         return file.type === 'folder';
       }) : filesNormal;
-      var filesOrdered = (0, _orderBy3.default)(filesFiltered, ['type', 'name'], ['desc', 'asc']);
+      var filesOrdered = (0, _orderBy3.default)(filesFiltered, ['type', function (_ref3) {
+        var name = _ref3.name;
+        return name.toLowerCase();
+      }], ['desc', 'asc']);
 
       if (filesOrdered && filesOrdered.length > 0) {
         return filesOrdered.map(function (file) {
@@ -87099,4 +87022,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.b30b4bfde591ef385513.js.map
+//# sourceMappingURL=application.4aedd2138bdd457aca90.js.map
