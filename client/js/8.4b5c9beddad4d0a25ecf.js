@@ -2353,6 +2353,10 @@ var _AssemblyPartNotFoundModal = __webpack_require__("eq6m");
 
 var _AssemblyPartNotFoundModal2 = _interopRequireDefault(_AssemblyPartNotFoundModal);
 
+var _AssemblyPartNotFound = __webpack_require__("dxvn");
+
+var _AssemblyPartNotFound2 = _interopRequireDefault(_AssemblyPartNotFound);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -2368,6 +2372,8 @@ var AssemblyPartNotFound = exports.AssemblyPartNotFound = _react2.default.create
     var openModal = function openModal() {
       dispatch(ModalActions.showModal({ modalType: _AssemblyPartNotFoundModal2.default, modalProps: { parts: parts } }));
     };
+
+    console.log(parts);
     return _react2.default.createElement(
       'div',
       { className: 'layout-column layout-align-center-center flex text-center' },
@@ -2378,7 +2384,20 @@ var AssemblyPartNotFound = exports.AssemblyPartNotFound = _react2.default.create
         _react2.default.createElement(
           'div',
           { className: 'text-title-4', style: { marginBottom: '10px' } },
-          'Assembly part could not be found!'
+          'Assembly part',
+          parts.length > 1 && 's',
+          ' could not be found!'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: _AssemblyPartNotFound2.default.well },
+          parts.map(function (part) {
+            return _react2.default.createElement(
+              'div',
+              { className: 'text-title-5', key: part },
+              part
+            );
+          })
         ),
         _react2.default.createElement(
           'div',
@@ -4252,6 +4271,14 @@ var _temp2 = function () {
 }();
 
 ;
+
+/***/ },
+
+/***/ "dxvn":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"well":"AssemblyPartNotFound_well-dl6jY"};
 
 /***/ },
 
@@ -6995,4 +7022,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=8.a8282a02d30c217067b1.js.map
+//# sourceMappingURL=8.4b5c9beddad4d0a25ecf.js.map
