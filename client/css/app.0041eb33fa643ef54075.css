@@ -8918,7 +8918,7 @@ body {
   font-size: 13px;
   color: rgba(0, 0, 0, 0.8);
   padding: 0px;
-/*  line-height: 1.2em;*/
+  line-height: 1.2;
 }
 
 a {
@@ -9059,24 +9059,26 @@ textarea {
   overflow-y: hidden;
 }
 
-::-webkit-scrollbar{
-	width: 4px;
-	height: 4px;
-	background-color: rgba(0, 0, 0, 0.03);
-}
-::-webkit-scrollbar-thumb{
-	background-color: rgba(0, 0, 0, 0.1);
+@media (min-width: 600px) {
+  ::-webkit-scrollbar{
+      width: 4px;
+      height: 4px;
+      background-color: rgba(0, 0, 0, 0.03);
+  }
+  ::-webkit-scrollbar-thumb{
+      background-color: rgba(0, 0, 0, 0.1);
+  }
+  .scroll-dark ::-webkit-scrollbar{
+    width: 4px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .scroll-dark ::-webkit-scrollbar-thumb{
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
-.scroll-dark ::-webkit-scrollbar{
-  width: 4px;
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.scroll-dark ::-webkit-scrollbar-thumb{
-  background-color: rgba(255, 255, 255, 0.1);
-}
 /*@value primary: rgb(68, 154, 211);*/
 /*@value primary-2: rgb(64, 129, 173);*/
 
@@ -9606,7 +9608,7 @@ span.CodeMirror-selectedtext { background: none; }
 .MoreButton_moreButton-3I0RU{width:18px;height:18px;border-radius:50%;position:absolute;background:rgb(188, 188, 188);margin-top:1px;line-height:16px;text-align:center;z-index:2;opacity:0;transition:0.2s ease all}.MoreButton_moreButton-3I0RU:hover{opacity:1}.MoreButton_moreButtonLeft-1ZC55{left:0;transform:translate(-50%, -50%)}.MoreButton_moreButtonRight-zuy2H{left:auto;right:0;transform:translate(50%, -50%)}.MoreButton_moreButtonLeft-1ZC55 svg{transform:rotate(180deg)}
 .TimelineInner_dots-24OPs{transition:0.6s cubic-bezier(0.69, 0.01, 0.17, 0.99) transform;height:100%;white-space:nowrap;max-width:inherit;position:absolute;right:0}.TimelineInner_dotGroup-1iVSM{border:2px solid rgb(188, 188, 188);background:#f8f8f8;border-radius:13px;padding:5px;transition:0.3s ease all;margin-left:30px}.TimelineInner_dotGroup-1iVSM:hover{background:#ebebeb}.TimelineInner_dotGroup-1iVSM .TimelineInner_dot-1Chkh{border-color:transparent;height:12px;width:12px;min-width:12px;margin-left:5px}.TimelineInner_dot-1Chkh{border-radius:50%;display:inline-block;height:16px;width:16px;min-width:16px;transition:0.1s ease all;background:rgb(188, 188, 188);margin-left:30px;color:#f8f8f8;font-size:9px;font-weight:bold;border:2px solid #f8f8f8}.TimelineInner_dot-1Chkh.TimelineInner_active-1Pqj0{background:#4484d3}.TimelineInner_dot-1Chkh:first-child{margin-left:0}.TimelineInner_popup-1pS6h{padding:8px}.TimelineInner_popup-1pS6h b{display:inline-block;margin-bottom:5px}.TimelineInner_popupImage-XAw95{margin-right:10px;width:30px;height:30px}
 .TimelineItem_item-1PqnK{line-height:1.4em;color:rgba(0,0,0,0.5)}.TimelineItem_item-1PqnK a{color:#4484d3;margin:0 4px}.TimelineItem_item-1PqnK a:hover{color:#3777c6}.TimelineItem_avatar-2HlDs{margin-right:10px;display:inline-block}.TimelineItem_startMarker-RODt0{position:absolute;width:11px;top:0;left:-6px;border-top:1px solid #e8e8e8}@media (max-width: 599px){.TimelineItem_startMarker-RODt0{display:none}}.TimelineItem_endMarker-3Jmwu{position:absolute;width:11px;bottom:0;left:-6px;border-bottom:1px solid #e8e8e8}@media (max-width: 599px){.TimelineItem_endMarker-3Jmwu{display:none}}.TimelineItem_group-owCxh>div{margin-bottom:5px;margin-left:55px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.Comment_comment-3Y0xc{position:relative}.Comment_commentAvatar-2XsKx{margin-right:10px}.Comment_commentBody-2b90y{background:white;border:1px solid rgba(0, 0, 0, 0.1);line-height:1.5em}.Comment_commentHeader-3t42A{background:white;padding:15px 20px}.Comment_date-3DZJW{color:rgba(0, 0, 0, 0.5)}.Comment_commentContent-1vfaK{margin:20px;margin-top:0px;overflow:hidden}.Comment_commentFooter-2oNxt{padding:6px 20px;border-top:1px dashed rgba(0,0,0,0.2)}.Comment_reactions-1CUyQ{padding:0 20px 15px}.Comment_comment-3Y0xc:first-child{margin-top:15px}.Comment_comment-3Y0xc:last-child{margin-bottom:15px}.Comment_comment-3Y0xc+.Comment_comment-3Y0xc:before{content:' ';height:15px;border-left:1px solid #e8e8e8;margin-left:30px}
+.Comment_comment-3Y0xc{position:relative}.Comment_commentAvatar-2XsKx{margin-right:10px}.Comment_commentBody-2b90y{background:white;border:1px solid rgba(0, 0, 0, 0.1);line-height:1.5em;position:relative}.Comment_commentHeader-3t42A{background:white;padding:15px 20px}.Comment_date-3DZJW{color:rgba(0, 0, 0, 0.5)}.Comment_commentContent-1vfaK{margin:20px;margin-top:0px;overflow:hidden}.Comment_commentFooter-2oNxt{padding:6px 20px;border-top:1px dashed rgba(0,0,0,0.2)}.Comment_reactions-1CUyQ{padding:0 20px 15px}.Comment_comment-3Y0xc:first-child{margin-top:15px}.Comment_comment-3Y0xc:last-child{margin-bottom:15px}.Comment_comment-3Y0xc+.Comment_comment-3Y0xc:before{content:' ';height:15px;border-left:1px solid #e8e8e8;margin-left:30px}
 .EditorNew_editor-1yqNU pre{font-family:Open Sans;padding:0px;color:rgba(0,0,0,0.9);line-height:1.6em}.EditorNew_editor-1yqNU .CodeMirror-selected{background-color:rgb(56, 161, 230)}.EditorNew_editor-1yqNU .CodeMirror-selectedtext{color:rgb(255, 255, 255)}.EditorNew_editor-1yqNU .CodeMirror-placeholder{color:rgba(0,0,0,0.3)}.EditorNew_editor-1yqNU .CodeMirror-lines{padding:0px}.EditorNew_editor-1yqNU .CodeMirror-line{padding:0px}.EditorNew_editor-1yqNU .cm-header{color:rgba(0,0,0,0.6)}.EditorNew_editor-1yqNU .cm-header-1{display:inline-block;font-size:30px;margin-bottom:20px;margin:10px 0}.EditorNew_editor-1yqNU .cm-header-2{display:inline-block;font-size:25px;margin:10px 0}.EditorNew_editor-1yqNU .cm-header-3{display:inline-block;font-size:18px;margin:5px 0}.EditorNew_editor-1yqNU .cm-variable-2{color:rgba(0,0,0,0.6)}.EditorNew_editor-1yqNU .cm-string{color:rgba(0,0,0,0.6)}.EditorNew_editor-1yqNU .cm-link{color:#4484d3}.EditorNew_editor-1yqNU .cm-comment{color:rgba(0,0,0,0.4)}.EditorNew_editor-1yqNU .cm-delimit{color:#ff6a6a}
 .EditorToolbar_toolbar-2r8mQ{background:white;position:absolute;top:1px;right:1px;margin-top:10px;margin-right:10px;z-index:10}.EditorToolbar_toolbar-2r8mQ svg{width:18px;height:18px}
 .UploadModal_image-2rgYm{width:600px;height:400px}
