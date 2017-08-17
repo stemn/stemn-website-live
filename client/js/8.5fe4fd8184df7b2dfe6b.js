@@ -2285,6 +2285,30 @@ var getViewerType = exports.getViewerType = function getViewerType(fileType, pro
   });
   return viewerType || 'other';
 };
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(viewerFileTypes, 'viewerFileTypes', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewFile.utils.js');
+
+  __REACT_HOT_LOADER__.register(getViewerType, 'getViewerType', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewFile.utils.js');
+
+  __REACT_HOT_LOADER__.register(getCodeMirrorExts, 'getCodeMirrorExts', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewFile.utils.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -5463,13 +5487,42 @@ var systemImport = function systemImport() {
   return __webpack_require__.e/* System.import */(60).then(__webpack_require__.bind(null, "3h54"));
 };
 
-exports.default = function (props) {
+var _default = function _default(props) {
   return _react2.default.createElement(_LoadSplitCode2.default, (0, _extends3.default)({
     cacheKey: 'PreviewCad',
     systemImport: systemImport,
     otherModules: otherModules
   }, props));
 };
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(otherModules, 'otherModules', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCadLoader/PreviewCadLoader.jsx');
+
+  __REACT_HOT_LOADER__.register(systemImport, 'systemImport', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCadLoader/PreviewCadLoader.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCadLoader/PreviewCadLoader.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCadLoader/PreviewCadLoader.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -6960,4 +7013,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=8.983c3e9349dbd5f189c4.js.map
+//# sourceMappingURL=8.5fe4fd8184df7b2dfe6b.js.map
