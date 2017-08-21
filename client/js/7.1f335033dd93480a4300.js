@@ -3328,6 +3328,10 @@ var _EditorDisplay = __webpack_require__("i0X4");
 
 var _EditorDisplay2 = _interopRequireDefault(_EditorDisplay);
 
+var _Link = __webpack_require__("GeCl");
+
+var _Link2 = _interopRequireDefault(_Link);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ProjectCommit = function (_Component) {
@@ -3385,20 +3389,34 @@ var ProjectCommit = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: (0, _classnames2.default)('layout-row layout-align-start-center', _ProjectCommit2.default.meta) },
-            _react2.default.createElement(_UserAvatar2.default, {
-              className: _ProjectCommit2.default.avatar,
-              name: commit.user.name,
-              picture: commit.user.picture,
-              size: 20,
-              shape: 'square'
-            }),
+            _react2.default.createElement(
+              _Link2.default,
+              {
+                name: 'userRoute',
+                params: { userId: commit.user._id }
+              },
+              _react2.default.createElement(_UserAvatar2.default, {
+                className: _ProjectCommit2.default.avatar,
+                name: commit.user.name,
+                picture: commit.user.picture,
+                size: 20,
+                shape: 'square'
+              })
+            ),
             _react2.default.createElement(
               'div',
               { className: 'text-ellipsis' },
               _react2.default.createElement(
-                'b',
-                null,
-                commit.user.name
+                _Link2.default,
+                {
+                  name: 'userRoute',
+                  params: { userId: commit.user._id }
+                },
+                _react2.default.createElement(
+                  'b',
+                  null,
+                  commit.user.name
+                )
               ),
               '\xA0commited ',
               groupedRevisions.length,
@@ -7574,4 +7592,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=7.d01f911a0a46a9cbc09d.js.map
+//# sourceMappingURL=7.1f335033dd93480a4300.js.map

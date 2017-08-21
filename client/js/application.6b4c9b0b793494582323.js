@@ -40229,123 +40229,11 @@ var _demo = __webpack_require__("izKC");
 
 var _demo2 = _interopRequireDefault(_demo);
 
+var _Link = __webpack_require__("GeCl");
+
+var _Link2 = _interopRequireDefault(_Link);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _ref = _react2.default.createElement(
-  _reactHelmet.Helmet,
-  null,
-  _react2.default.createElement(
-    'title',
-    null,
-    'Stemn: Seamless Version Control and Task Tracking'
-  )
-);
-
-var _ref2 = _react2.default.createElement(
-  'h1',
-  null,
-  'Seamless Version Control and Task Tracking'
-);
-
-var _ref3 = _react2.default.createElement(
-  'h3',
-  null,
-  'A unified workflow for modern engineers'
-);
-
-var _ref4 = _react2.default.createElement('img', { src: _screenshot2.default });
-
-var _ref5 = _react2.default.createElement(
-  'video',
-  { muted: true, autoPlay: true, loop: true },
-  _react2.default.createElement('source', { src: _demo2.default, type: 'video/mp4' })
-);
-
-var _ref6 = _react2.default.createElement('img', { src: _historyCombined2.default });
-
-var _ref7 = _react2.default.createElement(
-  _Layout.Col,
-  { className: 'flex-gt-xs-50 lg' },
-  _react2.default.createElement(
-    'h4',
-    { className: 'text-title-2' },
-    'Infinite version history'
-  ),
-  _react2.default.createElement(
-    'p',
-    { className: 'text-title-4' },
-    'All your changes are automatically synced as you work.'
-  ),
-  _react2.default.createElement(
-    'p',
-    { className: 'text-title-4' },
-    'View any previous versions, complete with comments and commit messages. Compare and revert your files with a single click.'
-  )
-);
-
-var _ref8 = _react2.default.createElement(
-  'h4',
-  { className: 'text-title-2' },
-  'Access your files anywhere'
-);
-
-var _ref9 = _react2.default.createElement(
-  'p',
-  { className: 'text-title-4' },
-  'Whether you\u2019re in the office, in the lab, or on the go, preview your files in your browser or any device.'
-);
-
-var _ref10 = _react2.default.createElement(
-  'p',
-  { className: 'text-title-4' },
-  'Preview hundreds of different file-types directly in your web browser.'
-);
-
-var _ref11 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'dxf' });
-
-var _ref12 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'dwg' });
-
-var _ref13 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'tex' });
-
-var _ref14 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'xlsx' });
-
-var _ref15 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'cpp' });
-
-var _ref16 = _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'more' });
-
-var _ref17 = _react2.default.createElement('img', { src: _historyTimeline2.default });
-
-var _ref18 = _react2.default.createElement(
-  _Layout.Col,
-  { className: 'flex-xs-100 flex-gt-xs-50 lg' },
-  _react2.default.createElement(
-    'h4',
-    { className: 'text-title-2' },
-    'No more miscommunication'
-  ),
-  _react2.default.createElement(
-    'p',
-    { className: 'text-title-4' },
-    'Simplify your communication between team members, clients, and stakeholders by commenting directly on files.'
-  ),
-  _react2.default.createElement(
-    'p',
-    { className: 'text-title-4' },
-    'Stay informed of discussions and project events as soon as they happen.'
-  )
-);
-
-var _ref19 = _react2.default.createElement(
-  'h4',
-  { className: 'text-title-2' },
-  'Ready?'
-);
-
-var _ref20 = _react2.default.createElement(
-  'p',
-  { className: 'text-title-4' },
-  'Get started for free. Download the desktop app and sign up.'
-);
 
 var Landing = function (_Component) {
   (0, _inherits3.default)(Landing, _Component);
@@ -40372,12 +40260,28 @@ var Landing = function (_Component) {
       return _react2.default.createElement(
         _LandingLayout2.default,
         null,
-        _ref,
+        _react2.default.createElement(
+          _reactHelmet.Helmet,
+          null,
+          _react2.default.createElement(
+            'title',
+            null,
+            'Stemn: Seamless Version Control and Task Tracking'
+          )
+        ),
         _react2.default.createElement(
           _HeroBanner2.default,
           { className: _Landing2.default.banner },
-          _ref2,
-          _ref3,
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Seamless Version Control and Task Tracking'
+          ),
+          _react2.default.createElement(
+            'h3',
+            null,
+            'A unified workflow for modern engineers'
+          ),
           (0, _isMobile2.default)() ? _react2.default.createElement(
             _Button2.default,
             { className: _Landing2.default.downloadButton + ' secondary lg', name: 'loginRoute' },
@@ -40389,13 +40293,21 @@ var Landing = function (_Component) {
             'Download Now'
           ),
           _react2.default.createElement(
-            'div',
-            { className: _Landing2.default.screenshot },
-            _ref4,
+            _Link2.default,
+            {
+              className: _Landing2.default.screenshot,
+              name: 'fileRoute',
+              params: { projectId: '595c9a90891a7600ba39b6d8', fileId: '595c9aaa3fccf200ba2568c7' }
+            },
+            _react2.default.createElement('img', { src: _screenshot2.default }),
             _react2.default.createElement(
               'div',
               { className: (0, _classnames2.default)(_Landing2.default.screenshotCad, 'layout-column') },
-              _ref5
+              _react2.default.createElement(
+                'video',
+                { muted: true, autoPlay: true, loop: true },
+                _react2.default.createElement('source', { src: _demo2.default, type: 'video/mp4' })
+              )
             )
           )
         ),
@@ -40411,10 +40323,28 @@ var Landing = function (_Component) {
               _react2.default.createElement(
                 'div',
                 { className: _Landing2.default.timeline },
-                _ref6
+                _react2.default.createElement('img', { src: _historyCombined2.default })
               )
             ),
-            _ref7
+            _react2.default.createElement(
+              _Layout.Col,
+              { className: 'flex-gt-xs-50 lg' },
+              _react2.default.createElement(
+                'h4',
+                { className: 'text-title-2' },
+                'Infinite version history'
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'text-title-4' },
+                'All your changes are automatically synced as you work.'
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'text-title-4' },
+                'View any previous versions, complete with comments and commit messages. Compare and revert your files with a single click.'
+              )
+            )
           )
         ),
         _react2.default.createElement(
@@ -40429,18 +40359,30 @@ var Landing = function (_Component) {
               _react2.default.createElement(
                 _Layout.Col,
                 { className: 'flex-order-xs-2 flex-xs-100 flex-gt-xs-50 lg' },
-                _ref8,
-                _ref9,
-                _ref10,
+                _react2.default.createElement(
+                  'h4',
+                  { className: 'text-title-2' },
+                  'Access your files anywhere'
+                ),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text-title-4' },
+                  'Whether you\u2019re in the office, in the lab, or on the go, preview your files in your browser or any device.'
+                ),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text-title-4' },
+                  'Preview hundreds of different file-types directly in your web browser.'
+                ),
                 _react2.default.createElement(
                   'div',
                   { className: (0, _classnames2.default)(_Landing2.default.fileIcons, 'layout-row') },
-                  _ref11,
-                  _ref12,
-                  _ref13,
-                  _ref14,
-                  _ref15,
-                  _ref16
+                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'dxf' }),
+                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'dwg' }),
+                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'tex' }),
+                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'xlsx' }),
+                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'cpp' }),
+                  _react2.default.createElement(_FileIcon2.default, { size: 50, type: 'file', fileType: 'more' })
                 )
               ),
               _react2.default.createElement(
@@ -40463,10 +40405,28 @@ var Landing = function (_Component) {
               _react2.default.createElement(
                 'div',
                 { className: _Landing2.default.historyTimeline },
-                _ref17
+                _react2.default.createElement('img', { src: _historyTimeline2.default })
               )
             ),
-            _ref18
+            _react2.default.createElement(
+              _Layout.Col,
+              { className: 'flex-xs-100 flex-gt-xs-50 lg' },
+              _react2.default.createElement(
+                'h4',
+                { className: 'text-title-2' },
+                'No more miscommunication'
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'text-title-4' },
+                'Simplify your communication between team members, clients, and stakeholders by commenting directly on files.'
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'text-title-4' },
+                'Stay informed of discussions and project events as soon as they happen.'
+              )
+            )
           )
         ),
         _react2.default.createElement(
@@ -40475,8 +40435,16 @@ var Landing = function (_Component) {
           _react2.default.createElement(
             _Layout.Container,
             { className: 'layout-column layout-align-center-center text-center' },
-            _ref19,
-            _ref20,
+            _react2.default.createElement(
+              'h4',
+              { className: 'text-title-2' },
+              'Ready?'
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'text-title-4' },
+              'Get started for free. Download the desktop app and sign up.'
+            ),
             (0, _isMobile2.default)() ? _react2.default.createElement(
               _Button2.default,
               { className: _Landing2.default.downloadButton + ' secondary lg', name: 'loginRoute' },
@@ -40518,6 +40486,26 @@ var Landing = function (_Component) {
 
 
 exports.default = Landing;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Landing, 'Landing', 'C:/Users/david/repositories/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/Landing/Landing.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -88678,4 +88666,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.aad976486600130c6c6c.js.map
+//# sourceMappingURL=application.6b4c9b0b793494582323.js.map
