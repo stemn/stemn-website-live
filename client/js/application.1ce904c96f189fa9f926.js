@@ -1129,6 +1129,11 @@ var FileRow = (_temp2 = _class = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: (0, _classnames2.default)(_FileRow2.default.label, 'hide-xs') },
+          file.parts && _react2.default.createElement(
+            _Label2.default,
+            { title: 'Virtual File' },
+            'Virtual File'
+          ),
           file.revisionNumber > 1 && _react2.default.createElement(
             _Label2.default,
             { title: file.revisionNumber + ' revisions' },
@@ -88666,4 +88671,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.6b4c9b0b793494582323.js.map
+//# sourceMappingURL=application.1ce904c96f189fa9f926.js.map

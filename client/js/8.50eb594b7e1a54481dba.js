@@ -2229,6 +2229,10 @@ var _codemirror2 = _interopRequireDefault(_codemirror);
 
 __webpack_require__("+fCR");
 
+var _whatsThatGerber = __webpack_require__("T6CH");
+
+var _whatsThatGerber2 = _interopRequireDefault(_whatsThatGerber);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getCodeMirrorExts = function getCodeMirrorExts() {
@@ -2243,8 +2247,7 @@ var getCodeMirrorExts = function getCodeMirrorExts() {
 
 var viewerFileTypes = exports.viewerFileTypes = {
   general: {
-    gerber: ['gerber', // Virtual gerber type
-    'drl', 'drd', 'out', 'outline', 'gbl', 'sol', 'gbs', 'sts', 'gbp', 'crs', 'gbo', 'pls', 'gtl', 'cmp', 'gts', 'stc', 'gtp', 'crc', 'gto', 'plc'],
+    gerber: ['gerber'],
     pcb: ['brd', 'pcb', 'kicad_pcb'],
     image: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'bmp', 'ico'],
     code: getCodeMirrorExts(),
@@ -2263,7 +2266,9 @@ var viewerFileTypes = exports.viewerFileTypes = {
   }
 };
 
-var getViewerType = exports.getViewerType = function getViewerType(fileType, provider) {
+var getViewerType = exports.getViewerType = function getViewerType(fileName, provider) {
+  var extension = fileName.split('.').pop();
+
   var providers = ['dropbox', 'drive'];
   if (!providers.includes(provider)) {
     console.error('Invalid provider type:', provider);
@@ -2278,12 +2283,16 @@ var getViewerType = exports.getViewerType = function getViewerType(fileType, pro
   };
   var mergedFileTypes = _icepick2.default.merge(generalFileTypes, providerFileTypes, mergeResolver);
 
-  // Get the viewer type
-  var fileTypeLower = fileType ? fileType.toLowerCase() : '';
-  var viewerType = (0, _keys2.default)(mergedFileTypes).find(function (viewerType) {
-    return mergedFileTypes[viewerType].includes(fileTypeLower);
-  });
-  return viewerType || 'other';
+  if ((0, _whatsThatGerber2.default)(fileName)) {
+    return 'gerber';
+  } else {
+    // Get the viewer type
+    var extensionLower = extension ? extension.toLowerCase() : '';
+    var viewerType = (0, _keys2.default)(mergedFileTypes).find(function (viewerType) {
+      return mergedFileTypes[viewerType].includes(extensionLower);
+    });
+    return viewerType || 'other';
+  }
 };
 ;
 
@@ -3361,6 +3370,149 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "T6CH":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict'
+
+// TODO: replace with Array.find once 0.10 support can be dropped
+// https://github.com/nodejs/LTS#lts-schedule
+var find = function(collection, predicate) {
+  var i
+  var element
+
+  for (i = 0; i < collection.length; i++) {
+    element = collection[i]
+
+    if (predicate(element)) {
+      return element
+    }
+  }
+}
+
+var layerTypes = [
+  {
+    id: 'tcu',
+    name: {
+      en: 'top copper'
+    },
+    match: /((F.Cu)|(top\.gbr))|(\.((cmp)|(top$)|(gtl)))|(\.toplayer\.ger)/i
+  },
+  {
+    id: 'tsm',
+    name: {
+      en: 'top soldermask'
+    },
+    match: /((F.Mask)|(topmask))|(\.((stc)|(tsm)|(gts)|(smt)))|(\.topsoldermask\.ger)/i
+  },
+  {
+    id: 'tss',
+    name: {
+      en: 'top silkscreen'
+    },
+    match: /((F.SilkS)|(topsilk))|(\.((plc)|(tsk)|(gto)|(sst)))|(\.topsilkscreen\.ger)/i
+  },
+  {
+    id: 'tsp',
+    name: {
+      en: 'top solderpaste'
+    },
+    match: /((F.Paste)|(toppaste))|(\.((crc)|(tsp)|(gtp)|(spt)))|(\.tcream\.ger)/i
+  },
+  {
+    id: 'bcu',
+    name: {
+      en: 'bottom copper'
+    },
+    match: /(B.Cu|bottom\.gbr)|(\.((sol)|(bot$)|(gbl)))|(\.bottomlayer\.ger)/i
+  },
+  {
+    id: 'bsm',
+    name: {
+      en: 'bottom soldermask'
+    },
+    match: /(B.Mask|bottommask\.)|(\.((sts)|(bsm)|(gbs)|(smb)))|(\.bottomsoldermask\.ger)/i
+  },
+  {
+    id: 'bss',
+    name: {
+      en: 'bottom silkscreen'
+    },
+    match: /((B.SilkS)|(bottomsilk\.))|(\.((pls)|(bsk)|(gbo)|(ssb)))|(\.bottomsilkscreen\.ger)/i
+  },
+  {
+    id: 'bsp',
+    name: {
+      en: 'bottom solderpaste'
+    },
+    match: /(B.Paste)|(\.((crs)|(bsp)|(gbp)|(spb)))|(\.bcream\.ger)/i
+  },
+  {
+    id: 'icu',
+    name: {
+      en: 'inner copper'
+    },
+    match: /(In(ner)?\d+.Cu)|(\.((ly)|(g)|(in))\d+)|(\.internalplane\d+\.ger)/i
+  },
+  {
+    id: 'out',
+    name: {
+      en: 'board outline'
+    },
+    match: /((Edge.Cuts)|(outline))|(\.((dim)|(mil)|(gm[l\d])|(gko)|(fab$)))|(\.boardoutline\.ger)/i
+  },
+  {
+    id: 'drl',
+    name: {
+      en: 'drill hits'
+    },
+    match: /\.((fab\.gbr)|(cnc)|(drl)|(xln)|(txt)|(tap)|(drd)|(exc))/i
+  },
+  {
+    id: undefined,
+    name: {
+      en: 'catch all'
+    },
+    match: /.*/
+  }
+]
+
+module.exports = function whatsThatGerber(filename) {
+  return find(layerTypes, function(type) {
+    return type.match.test(filename)
+  }).id
+}
+
+module.exports.getAllTypes = function() {
+  return layerTypes.map(function(type) {
+    return type.id
+  })
+}
+
+module.exports.isValidType = function(type) {
+  return layerTypes.some(function(layerType) {
+    return layerType.id === type
+  })
+}
+
+module.exports.getFullName = function whatsThatGerberTypeName(typeId, locale) {
+  var type = find(layerTypes, function(type) {
+    return type.id === typeId
+  })
+
+  locale = locale || 'en'
+
+  if (!type || !type.name[locale]) {
+    return ''
+  }
+
+  return type.name[locale]
+}
+
+
+/***/ },
+
 /***/ "URI7":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -3555,7 +3707,7 @@ var Component = exports.Component = _react2.default.createClass({
       return null;
     }
 
-    var previewType = (0, _PreviewFileUtils.getViewerType)(file1.extension, file1.provider);
+    var previewType = (0, _PreviewFileUtils.getViewerType)(file1.name, file1.provider);
     var compareModes = (0, _FileCompareUtils.getCompareModes)(previewType, previewType);
     var CompareIcon = (0, _FileCompareUtils.getCompareIcon)(mode);
     var hasRevisions = revisions && revisions.length > 1 || file1 && file2;
@@ -4120,11 +4272,13 @@ var AssemblyParts = exports.AssemblyParts = _react2.default.createClass({
           revisionId: nextProps.fileMeta.data.revisionId
         }));
       }
-      nextProps.dispatch((0, _FilesActions.getAssemblyParents)({
-        fileId: nextProps.fileMeta.data.fileId,
-        projectId: nextProps.fileMeta.data.project._id,
-        revisionId: nextProps.fileMeta.data.revisionId
-      }));
+      if ((0, _PreviewCadUtils.isCad)(nextProps.fileMeta.data.extension)) {
+        nextProps.dispatch((0, _FilesActions.getAssemblyParents)({
+          fileId: nextProps.fileMeta.data.fileId,
+          projectId: nextProps.fileMeta.data.project._id,
+          revisionId: nextProps.fileMeta.data.revisionId
+        }));
+      }
     }
   },
   componentDidMount: function componentDidMount() {
@@ -4896,13 +5050,9 @@ var _temp2 = function () {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.isAssembly = exports.isWebGlSupported = undefined;
+exports.isCad = exports.isAssembly = exports.isWebGlSupported = undefined;
 
-var _axios = __webpack_require__("mtWM");
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _PreviewFile = __webpack_require__("NamU");
 
 var isWebGlSupported = exports.isWebGlSupported = function isWebGlSupported(return_context) {
     if (!!window.WebGLRenderingContext) {
@@ -4935,6 +5085,10 @@ var isAssembly = exports.isAssembly = function isAssembly(fileType) {
     var assemblyFileTypes = ['sldasm', 'catproduct', 'iam'];
     return assemblyFileTypes.includes(fileType.toLowerCase());
 };
+
+var isCad = exports.isCad = function isCad(fileType) {
+    return _PreviewFile.viewerFileTypes.general.autodesk.includes(fileType);
+};
 ;
 
 var _temp = function () {
@@ -4945,6 +5099,8 @@ var _temp = function () {
     __REACT_HOT_LOADER__.register(isWebGlSupported, "isWebGlSupported", "C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/PreviewCad.utils.js");
 
     __REACT_HOT_LOADER__.register(isAssembly, "isAssembly", "C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/PreviewCad.utils.js");
+
+    __REACT_HOT_LOADER__.register(isCad, "isCad", "C:/Users/david/repositories/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCad/PreviewCad.utils.js");
 }();
 
 ;
@@ -5881,8 +6037,7 @@ var Component = exports.Component = _react2.default.createClass({
         fileRender = _props.fileRender,
         filesActions = _props.filesActions,
         header = _props.header,
-        event = _props.event,
-        codeSplitting = _props.codeSplitting;
+        event = _props.event;
 
     var previewId = file.project._id + '-' + file.fileId + '-' + file.revisionId;
 
@@ -5897,7 +6052,7 @@ var Component = exports.Component = _react2.default.createClass({
     };
 
     var getPreview = function getPreview() {
-      var viewerType = (0, _PreviewFileUtils.getViewerType)(file.extension, file.provider);
+      var viewerType = (0, _PreviewFileUtils.getViewerType)(file.name, file.provider);
 
       if (fileData && fileData.error || fileRender && fileRender.error) {
         return _react2.default.createElement(_Messages2.default, {
@@ -5989,18 +6144,28 @@ var Component = exports.Component = _react2.default.createClass({
 ///////////////////////////////// CONTAINER /////////////////////////////////
 
 function mapStateToProps(_ref, _ref2) {
-  var files = _ref.files,
-      codeSplitting = _ref.codeSplitting;
+  var files = _ref.files;
   var project = _ref2.project,
       file = _ref2.file,
       event = _ref2.event;
 
-  var cacheKey = event && event.timestamp && (0, _PreviewCadUtils.isAssembly)(file.extension) ? file.fileId + '-' + file.revisionId + '-' + event.timestamp : file.fileId + '-' + file.revisionId;
-  return {
-    fileData: files.fileData[cacheKey],
-    fileRender: files.fileRenders[cacheKey],
-    codeSplitting: codeSplitting
-  };
+  // If the file has sub-parts, it is a gerber assembly - we need to fetch multiple files
+  if (file.parts) {
+    var fileData = file.parts.map(function (file) {
+      return files.fileData[file.fileId + '-' + file.revisionId];
+    });
+    return {
+      fileData: fileData
+    };
+  } else {
+    var cacheKey = event && event.timestamp && (0, _PreviewCadUtils.isAssembly)(file.extension) ? file.fileId + '-' + file.revisionId + '-' + event.timestamp : file.fileId + '-' + file.revisionId;
+
+    var _fileData = files.fileData[cacheKey];
+    return {
+      fileData: _fileData,
+      fileRender: files.fileRenders[cacheKey]
+    };
+  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -6105,8 +6270,6 @@ exports.changeMode = exports.select = exports.initCompare = undefined;
 var _get2 = __webpack_require__("Q7hp");
 
 var _get3 = _interopRequireDefault(_get2);
-
-var _PreviewFileUtils = __webpack_require__("NamU");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7013,4 +7176,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=8.5fe4fd8184df7b2dfe6b.js.map
+//# sourceMappingURL=8.50eb594b7e1a54481dba.js.map
