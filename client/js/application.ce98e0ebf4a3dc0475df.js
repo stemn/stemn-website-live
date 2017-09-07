@@ -4072,6 +4072,8 @@ module.exports = __webpack_require__.p + "images/crx.svg?60d804bbb2763b663bb1b96
 "use strict";
 'use strict';
 
+__webpack_require__("UVEF");
+
 var _react = __webpack_require__("U7vG");
 
 var _react2 = _interopRequireDefault(_react);
@@ -4119,8 +4121,6 @@ var _reduxPersist = __webpack_require__("AyKp");
 var _DesktopReleases = __webpack_require__("fYNP");
 
 var _Notifications = __webpack_require__("pY+W");
-
-__webpack_require__("UVEF");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -95953,4 +95953,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.18ef5d6f186e7087602b.js.map
+//# sourceMappingURL=application.ce98e0ebf4a3dc0475df.js.map
