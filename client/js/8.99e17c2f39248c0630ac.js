@@ -18,6 +18,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__("+6Bu");
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
 var _react = __webpack_require__("U7vG");
 
 var _react2 = _interopRequireDefault(_react);
@@ -26,30 +34,27 @@ var _SimpleTable = __webpack_require__("Oygz");
 
 var _SimpleTable2 = _interopRequireDefault(_SimpleTable);
 
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// /////////////////////////////// COMPONENT /////////////////////////////////
+var _default = function _default(props) {
+  var children = props.children,
+      className = props.className,
+      otherProps = (0, _objectWithoutProperties3.default)(props, ['children', 'className']);
 
-// Component Core
-var _default = _react2.default.createClass({
-  displayName: '_default',
-  render: function render() {
-    var children = this.props.children;
-
-    return _react2.default.createElement(
-      'table',
-      { className: _SimpleTable2.default.table },
-      _react2.default.createElement(
-        'tbody',
-        null,
-        children
-      )
-    );
-  }
-});
-
-// Styles
-
+  return _react2.default.createElement(
+    'table',
+    (0, _extends3.default)({ className: (0, _classnames2.default)(_SimpleTable2.default.table, className) }, otherProps),
+    _react2.default.createElement(
+      'tbody',
+      null,
+      children
+    )
+  );
+};
 
 var _default2 = _default;
 exports.default = _default2;
@@ -192,6 +197,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var requireCodemirrorMode = __webpack_require__(5);
 
+
+// Add a special case for pipeline files.
+// These should be treated as yaml
+var transformExtension = function transformExtension(extension) {
+  if (extension === 'pipeline') {
+    return 'yaml';
+  }
+  return extension;
+};
+
 var Viewer = function (_Component) {
   (0, _inherits3.default)(Viewer, _Component);
 
@@ -218,7 +233,8 @@ var Viewer = function (_Component) {
     value: function __getCodemirrorRef__REACT_HOT_LOADER__(ref) {
       var _props = this.props,
           data = _props.data,
-          extension = _props.extension;
+          extension = _props.extension,
+          hideNumbers = _props.hideNumbers;
 
 
       if (ref && extension) {
@@ -230,10 +246,11 @@ var Viewer = function (_Component) {
           readOnly: true,
           dragDrop: false,
           lineWrapping: true,
-          lineNumbers: true
+          lineNumbers: !hideNumbers
         });
         // Get Mode
-        var modeInfo = _codemirror2.default.findModeByExtension(extension);
+        var transformedExtension = transformExtension(extension);
+        var modeInfo = _codemirror2.default.findModeByExtension(transformedExtension);
         var mode = modeInfo ? modeInfo.mode : 'null';
         if (mode && mode != 'null') {
           var modePath = './' + mode + '/' + mode + '.js';
@@ -287,6 +304,8 @@ var _temp2 = function () {
   __REACT_HOT_LOADER__.register(Viewer, 'Viewer', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCode/Viewer.jsx');
 
   __REACT_HOT_LOADER__.register(requireCodemirrorMode, 'requireCodemirrorMode', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCode/Viewer.jsx');
+
+  __REACT_HOT_LOADER__.register(transformExtension, 'transformExtension', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCode/Viewer.jsx');
 }();
 
 ;
@@ -2526,7 +2545,7 @@ var _whatsThatGerber2 = _interopRequireDefault(_whatsThatGerber);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getCodeMirrorExts = function getCodeMirrorExts() {
-  var codeExts = [];
+  var codeExts = ['pipeline'];
   (0, _forEach3.default)(_codemirror2.default.modeInfo, function (mode) {
     if (mode.ext) {
       codeExts = codeExts.concat(mode.ext);
@@ -3755,7 +3774,7 @@ var layerTypes = [
     name: {
       en: 'drill hits'
     },
-    match: /\.((fab\.gbr)|(cnc)|(drl)|(xln)|(txt)|(tap)|(drd)|(exc))/i
+    match: /\.((fab\.gbr)|(cnc)|(drl)|(xln)|(tap)|(drd)|(exc))/i
   },
   {
     id: undefined,
@@ -7610,4 +7629,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=8.5115caa02203e7851506.js.map
+//# sourceMappingURL=8.99e17c2f39248c0630ac.js.map

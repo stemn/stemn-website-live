@@ -122,6 +122,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var requireCodemirrorMode = __webpack_require__(5);
 
+
+// Add a special case for pipeline files.
+// These should be treated as yaml
+var transformExtension = function transformExtension(extension) {
+  if (extension === 'pipeline') {
+    return 'yaml';
+  }
+  return extension;
+};
+
 var Viewer = function (_Component) {
   (0, _inherits3.default)(Viewer, _Component);
 
@@ -148,7 +158,8 @@ var Viewer = function (_Component) {
     value: function __getCodemirrorRef__REACT_HOT_LOADER__(ref) {
       var _props = this.props,
           data = _props.data,
-          extension = _props.extension;
+          extension = _props.extension,
+          hideNumbers = _props.hideNumbers;
 
 
       if (ref && extension) {
@@ -160,10 +171,11 @@ var Viewer = function (_Component) {
           readOnly: true,
           dragDrop: false,
           lineWrapping: true,
-          lineNumbers: true
+          lineNumbers: !hideNumbers
         });
         // Get Mode
-        var modeInfo = _codemirror2.default.findModeByExtension(extension);
+        var transformedExtension = transformExtension(extension);
+        var modeInfo = _codemirror2.default.findModeByExtension(transformedExtension);
         var mode = modeInfo ? modeInfo.mode : 'null';
         if (mode && mode != 'null') {
           var modePath = './' + mode + '/' + mode + '.js';
@@ -217,6 +229,8 @@ var _temp2 = function () {
   __REACT_HOT_LOADER__.register(Viewer, 'Viewer', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCode/Viewer.jsx');
 
   __REACT_HOT_LOADER__.register(requireCodemirrorMode, 'requireCodemirrorMode', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCode/Viewer.jsx');
+
+  __REACT_HOT_LOADER__.register(transformExtension, 'transformExtension', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Files/PreviewFile/PreviewCode/Viewer.jsx');
 }();
 
 ;
@@ -2200,6 +2214,232 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "GF9g":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("Zx67");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("wxAW");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("zwoO");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("Pf15");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("HW6M");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _ProjectCommit = __webpack_require__("ieBU");
+
+var _ProjectCommit2 = _interopRequireDefault(_ProjectCommit);
+
+var _TimelineUtils = __webpack_require__("6wP3");
+
+var _Breadcrumbs = __webpack_require__("37Zr");
+
+var _Layout = __webpack_require__("PjCM");
+
+var _UserAvatar = __webpack_require__("vs4/");
+
+var _UserAvatar2 = _interopRequireDefault(_UserAvatar);
+
+var _FileCompare = __webpack_require__("X4Gv");
+
+var _FileCompare2 = _interopRequireDefault(_FileCompare);
+
+var _SubSubHeader = __webpack_require__("P1+L");
+
+var _SubSubHeader2 = _interopRequireDefault(_SubSubHeader);
+
+var _EditorDisplay = __webpack_require__("i0X4");
+
+var _EditorDisplay2 = _interopRequireDefault(_EditorDisplay);
+
+var _Link = __webpack_require__("GeCl");
+
+var _Link2 = _interopRequireDefault(_Link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ProjectCommit = function (_Component) {
+  (0, _inherits3.default)(ProjectCommit, _Component);
+
+  function ProjectCommit() {
+    (0, _classCallCheck3.default)(this, ProjectCommit);
+    return (0, _possibleConstructorReturn3.default)(this, (ProjectCommit.__proto__ || (0, _getPrototypeOf2.default)(ProjectCommit)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(ProjectCommit, [{
+    key: 'renderLoaded',
+    value: function renderLoaded() {
+      var _props = this.props,
+          commit = _props.commit.data,
+          project = _props.project,
+          projectId = _props.projectId;
+
+
+      var groupedRevisions = (0, _TimelineUtils.groupRevisions)(commit.revisions.map(function (revision) {
+        return { data: revision };
+      }));
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _SubSubHeader2.default,
+          null,
+          _react2.default.createElement(
+            _Breadcrumbs.Breadcrumbs,
+            null,
+            _react2.default.createElement(_Breadcrumbs.Crumb, { name: 'projectCommitsRoute', params: { projectId: projectId }, text: 'History' }),
+            _react2.default.createElement(_Breadcrumbs.Crumb, { name: 'projectCommitsRoute', params: { projectId: projectId }, query: { type: 'commits' }, text: 'Commits' }),
+            _react2.default.createElement(_Breadcrumbs.Crumb, { text: commit.name })
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'h2',
+            { className: _ProjectCommit2.default.title },
+            _react2.default.createElement(
+              'span',
+              null,
+              commit.name
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: _ProjectCommit2.default.number },
+              '\xA0#C',
+              commit.commitNumber
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: _ProjectCommit2.default.blurb },
+            _react2.default.createElement(_EditorDisplay2.default, { value: commit.body })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: (0, _classnames2.default)('layout-row layout-align-start-center', _ProjectCommit2.default.meta) },
+            _react2.default.createElement(
+              _Link2.default,
+              {
+                name: 'userRoute',
+                params: { userId: commit.owner._id }
+              },
+              _react2.default.createElement(_UserAvatar2.default, {
+                className: _ProjectCommit2.default.avatar,
+                name: commit.owner.name,
+                picture: commit.owner.picture,
+                size: 20,
+                shape: 'square'
+              })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'text-ellipsis' },
+              _react2.default.createElement(
+                _Link2.default,
+                {
+                  name: 'userRoute',
+                  params: { userId: commit.owner._id }
+                },
+                _react2.default.createElement(
+                  'b',
+                  null,
+                  commit.owner.name
+                )
+              ),
+              '\xA0commited ',
+              groupedRevisions.length,
+              ' files containing a total of ',
+              commit.revisions.length,
+              ' revisions.'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _Layout.Container,
+          { className: _ProjectCommit2.default.files },
+          _react2.default.createElement(
+            'div',
+            { className: 'text-mini-caps' },
+            'Files updated:'
+          ),
+          groupedRevisions.map(function (file, index) {
+            return _react2.default.createElement(_FileCompare2.default, {
+              className: _ProjectCommit2.default.file,
+              project: project,
+              file: file,
+              type: 'collapse',
+              isOpen: index === 0,
+              key: file._id
+            });
+          })
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var commit = this.props.commit;
+
+      return _react2.default.createElement(
+        'div',
+        { className: _ProjectCommit2.default.content },
+        commit && commit.data ? this.renderLoaded() : null
+      );
+    }
+  }]);
+  return ProjectCommit;
+}(_react.Component);
+
+exports.default = ProjectCommit;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(ProjectCommit, 'ProjectCommit', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "Ia4n":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2751,7 +2991,7 @@ var _whatsThatGerber2 = _interopRequireDefault(_whatsThatGerber);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getCodeMirrorExts = function getCodeMirrorExts() {
-  var codeExts = [];
+  var codeExts = ['pipeline'];
   (0, _forEach3.default)(_codemirror2.default.modeInfo, function (mode) {
     if (mode.ext) {
       codeExts = codeExts.concat(mode.ext);
@@ -3656,7 +3896,7 @@ var layerTypes = [
     name: {
       en: 'drill hits'
     },
-    match: /\.((fab\.gbr)|(cnc)|(drl)|(xln)|(txt)|(tap)|(drd)|(exc))/i
+    match: /\.((fab\.gbr)|(cnc)|(drl)|(xln)|(tap)|(drd)|(exc))/i
   },
   {
     id: undefined,
@@ -3699,229 +3939,6 @@ module.exports.getFullName = function whatsThatGerberTypeName(typeId, locale) {
   return type.name[locale]
 }
 
-
-/***/ },
-
-/***/ "TMNS":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _getPrototypeOf = __webpack_require__("Zx67");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("Zrlr");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("wxAW");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("zwoO");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("Pf15");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _react = __webpack_require__("U7vG");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__("HW6M");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _ProjectCommit = __webpack_require__("ieBU");
-
-var _ProjectCommit2 = _interopRequireDefault(_ProjectCommit);
-
-var _TimelineUtils = __webpack_require__("6wP3");
-
-var _Breadcrumbs = __webpack_require__("37Zr");
-
-var _Layout = __webpack_require__("PjCM");
-
-var _UserAvatar = __webpack_require__("vs4/");
-
-var _UserAvatar2 = _interopRequireDefault(_UserAvatar);
-
-var _FileCompare = __webpack_require__("X4Gv");
-
-var _FileCompare2 = _interopRequireDefault(_FileCompare);
-
-var _SubSubHeader = __webpack_require__("P1+L");
-
-var _SubSubHeader2 = _interopRequireDefault(_SubSubHeader);
-
-var _EditorDisplay = __webpack_require__("i0X4");
-
-var _EditorDisplay2 = _interopRequireDefault(_EditorDisplay);
-
-var _Link = __webpack_require__("GeCl");
-
-var _Link2 = _interopRequireDefault(_Link);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ProjectCommit = function (_Component) {
-  (0, _inherits3.default)(ProjectCommit, _Component);
-
-  function ProjectCommit() {
-    (0, _classCallCheck3.default)(this, ProjectCommit);
-    return (0, _possibleConstructorReturn3.default)(this, (ProjectCommit.__proto__ || (0, _getPrototypeOf2.default)(ProjectCommit)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(ProjectCommit, [{
-    key: 'renderLoaded',
-    value: function renderLoaded() {
-      var _props = this.props,
-          commit = _props.commit.data,
-          project = _props.project;
-
-
-      var groupedRevisions = (0, _TimelineUtils.groupRevisions)(commit.data.items);
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _SubSubHeader2.default,
-          null,
-          _react2.default.createElement(
-            _Breadcrumbs.Breadcrumbs,
-            null,
-            _react2.default.createElement(_Breadcrumbs.Crumb, { name: 'projectCommitsRoute', params: { projectId: project.data._id }, text: 'History' }),
-            _react2.default.createElement(_Breadcrumbs.Crumb, { name: 'projectCommitsRoute', params: { projectId: project.data._id }, query: { type: 'commits' }, text: 'Commits' }),
-            _react2.default.createElement(_Breadcrumbs.Crumb, { text: commit.data.name })
-          ),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(
-            'h2',
-            { className: _ProjectCommit2.default.title },
-            _react2.default.createElement(
-              'span',
-              null,
-              commit.data.name
-            ),
-            _react2.default.createElement(
-              'span',
-              { className: _ProjectCommit2.default.number },
-              '\xA0#C',
-              commit.data.commitNumber
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: _ProjectCommit2.default.blurb },
-            _react2.default.createElement(_EditorDisplay2.default, { value: commit.data.body })
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: (0, _classnames2.default)('layout-row layout-align-start-center', _ProjectCommit2.default.meta) },
-            _react2.default.createElement(
-              _Link2.default,
-              {
-                name: 'userRoute',
-                params: { userId: commit.user._id }
-              },
-              _react2.default.createElement(_UserAvatar2.default, {
-                className: _ProjectCommit2.default.avatar,
-                name: commit.user.name,
-                picture: commit.user.picture,
-                size: 20,
-                shape: 'square'
-              })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'text-ellipsis' },
-              _react2.default.createElement(
-                _Link2.default,
-                {
-                  name: 'userRoute',
-                  params: { userId: commit.user._id }
-                },
-                _react2.default.createElement(
-                  'b',
-                  null,
-                  commit.user.name
-                )
-              ),
-              '\xA0commited ',
-              groupedRevisions.length,
-              ' files containing a total of ',
-              commit.data.items.length,
-              ' revisions.'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          _Layout.Container,
-          { className: _ProjectCommit2.default.files },
-          _react2.default.createElement(
-            'div',
-            { className: 'text-mini-caps' },
-            'Files updated:'
-          ),
-          groupedRevisions.map(function (file, index) {
-            return _react2.default.createElement(_FileCompare2.default, {
-              className: _ProjectCommit2.default.file,
-              project: project,
-              file: file,
-              type: 'collapse',
-              isOpen: index === 0,
-              key: file._id
-            });
-          })
-        )
-      );
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var commit = this.props.commit;
-
-      return _react2.default.createElement(
-        'div',
-        { className: _ProjectCommit2.default.content },
-        commit && commit.data ? this.renderLoaded() : null
-      );
-    }
-  }]);
-  return ProjectCommit;
-}(_react.Component);
-
-exports.default = ProjectCommit;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(ProjectCommit, 'ProjectCommit', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/ProjectCommit/ProjectCommit.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -5408,7 +5425,7 @@ var _FetchDataHoc2 = _interopRequireDefault(_FetchDataHoc);
 
 var _CommitsActions = __webpack_require__("soWG");
 
-var _ProjectCommit = __webpack_require__("TMNS");
+var _ProjectCommit = __webpack_require__("GF9g");
 
 var _ProjectCommit2 = _interopRequireDefault(_ProjectCommit);
 
@@ -8184,4 +8201,4 @@ var _temp2 = function () {
 /***/ }
 
 });
-//# sourceMappingURL=7.a22611d1f610bacb9999.js.map
+//# sourceMappingURL=7.53be3e55e4efed7c8df3.js.map

@@ -1604,6 +1604,186 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "+zqC":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var LazyWrapper = __webpack_require__("koBG"),
+    LodashWrapper = __webpack_require__("0R+t"),
+    baseLodash = __webpack_require__("5a4p"),
+    isArray = __webpack_require__("7gq8"),
+    isObjectLike = __webpack_require__("Gopx"),
+    wrapperClone = __webpack_require__("9bML");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Creates a `lodash` object which wraps `value` to enable implicit method
+ * chain sequences. Methods that operate on and return arrays, collections,
+ * and functions can be chained together. Methods that retrieve a single value
+ * or may return a primitive value will automatically end the chain sequence
+ * and return the unwrapped value. Otherwise, the value must be unwrapped
+ * with `_#value`.
+ *
+ * Explicit chain sequences, which must be unwrapped with `_#value`, may be
+ * enabled using `_.chain`.
+ *
+ * The execution of chained methods is lazy, that is, it's deferred until
+ * `_#value` is implicitly or explicitly called.
+ *
+ * Lazy evaluation allows several methods to support shortcut fusion.
+ * Shortcut fusion is an optimization to merge iteratee calls; this avoids
+ * the creation of intermediate arrays and can greatly reduce the number of
+ * iteratee executions. Sections of a chain sequence qualify for shortcut
+ * fusion if the section is applied to an array and iteratees accept only
+ * one argument. The heuristic for whether a section qualifies for shortcut
+ * fusion is subject to change.
+ *
+ * Chaining is supported in custom builds as long as the `_#value` method is
+ * directly or indirectly included in the build.
+ *
+ * In addition to lodash methods, wrappers have `Array` and `String` methods.
+ *
+ * The wrapper `Array` methods are:
+ * `concat`, `join`, `pop`, `push`, `shift`, `sort`, `splice`, and `unshift`
+ *
+ * The wrapper `String` methods are:
+ * `replace` and `split`
+ *
+ * The wrapper methods that support shortcut fusion are:
+ * `at`, `compact`, `drop`, `dropRight`, `dropWhile`, `filter`, `find`,
+ * `findLast`, `head`, `initial`, `last`, `map`, `reject`, `reverse`, `slice`,
+ * `tail`, `take`, `takeRight`, `takeRightWhile`, `takeWhile`, and `toArray`
+ *
+ * The chainable wrapper methods are:
+ * `after`, `ary`, `assign`, `assignIn`, `assignInWith`, `assignWith`, `at`,
+ * `before`, `bind`, `bindAll`, `bindKey`, `castArray`, `chain`, `chunk`,
+ * `commit`, `compact`, `concat`, `conforms`, `constant`, `countBy`, `create`,
+ * `curry`, `debounce`, `defaults`, `defaultsDeep`, `defer`, `delay`,
+ * `difference`, `differenceBy`, `differenceWith`, `drop`, `dropRight`,
+ * `dropRightWhile`, `dropWhile`, `extend`, `extendWith`, `fill`, `filter`,
+ * `flatMap`, `flatMapDeep`, `flatMapDepth`, `flatten`, `flattenDeep`,
+ * `flattenDepth`, `flip`, `flow`, `flowRight`, `fromPairs`, `functions`,
+ * `functionsIn`, `groupBy`, `initial`, `intersection`, `intersectionBy`,
+ * `intersectionWith`, `invert`, `invertBy`, `invokeMap`, `iteratee`, `keyBy`,
+ * `keys`, `keysIn`, `map`, `mapKeys`, `mapValues`, `matches`, `matchesProperty`,
+ * `memoize`, `merge`, `mergeWith`, `method`, `methodOf`, `mixin`, `negate`,
+ * `nthArg`, `omit`, `omitBy`, `once`, `orderBy`, `over`, `overArgs`,
+ * `overEvery`, `overSome`, `partial`, `partialRight`, `partition`, `pick`,
+ * `pickBy`, `plant`, `property`, `propertyOf`, `pull`, `pullAll`, `pullAllBy`,
+ * `pullAllWith`, `pullAt`, `push`, `range`, `rangeRight`, `rearg`, `reject`,
+ * `remove`, `rest`, `reverse`, `sampleSize`, `set`, `setWith`, `shuffle`,
+ * `slice`, `sort`, `sortBy`, `splice`, `spread`, `tail`, `take`, `takeRight`,
+ * `takeRightWhile`, `takeWhile`, `tap`, `throttle`, `thru`, `toArray`,
+ * `toPairs`, `toPairsIn`, `toPath`, `toPlainObject`, `transform`, `unary`,
+ * `union`, `unionBy`, `unionWith`, `uniq`, `uniqBy`, `uniqWith`, `unset`,
+ * `unshift`, `unzip`, `unzipWith`, `update`, `updateWith`, `values`,
+ * `valuesIn`, `without`, `wrap`, `xor`, `xorBy`, `xorWith`, `zip`,
+ * `zipObject`, `zipObjectDeep`, and `zipWith`
+ *
+ * The wrapper methods that are **not** chainable by default are:
+ * `add`, `attempt`, `camelCase`, `capitalize`, `ceil`, `clamp`, `clone`,
+ * `cloneDeep`, `cloneDeepWith`, `cloneWith`, `conformsTo`, `deburr`,
+ * `defaultTo`, `divide`, `each`, `eachRight`, `endsWith`, `eq`, `escape`,
+ * `escapeRegExp`, `every`, `find`, `findIndex`, `findKey`, `findLast`,
+ * `findLastIndex`, `findLastKey`, `first`, `floor`, `forEach`, `forEachRight`,
+ * `forIn`, `forInRight`, `forOwn`, `forOwnRight`, `get`, `gt`, `gte`, `has`,
+ * `hasIn`, `head`, `identity`, `includes`, `indexOf`, `inRange`, `invoke`,
+ * `isArguments`, `isArray`, `isArrayBuffer`, `isArrayLike`, `isArrayLikeObject`,
+ * `isBoolean`, `isBuffer`, `isDate`, `isElement`, `isEmpty`, `isEqual`,
+ * `isEqualWith`, `isError`, `isFinite`, `isFunction`, `isInteger`, `isLength`,
+ * `isMap`, `isMatch`, `isMatchWith`, `isNaN`, `isNative`, `isNil`, `isNull`,
+ * `isNumber`, `isObject`, `isObjectLike`, `isPlainObject`, `isRegExp`,
+ * `isSafeInteger`, `isSet`, `isString`, `isUndefined`, `isTypedArray`,
+ * `isWeakMap`, `isWeakSet`, `join`, `kebabCase`, `last`, `lastIndexOf`,
+ * `lowerCase`, `lowerFirst`, `lt`, `lte`, `max`, `maxBy`, `mean`, `meanBy`,
+ * `min`, `minBy`, `multiply`, `noConflict`, `noop`, `now`, `nth`, `pad`,
+ * `padEnd`, `padStart`, `parseInt`, `pop`, `random`, `reduce`, `reduceRight`,
+ * `repeat`, `result`, `round`, `runInContext`, `sample`, `shift`, `size`,
+ * `snakeCase`, `some`, `sortedIndex`, `sortedIndexBy`, `sortedLastIndex`,
+ * `sortedLastIndexBy`, `startCase`, `startsWith`, `stubArray`, `stubFalse`,
+ * `stubObject`, `stubString`, `stubTrue`, `subtract`, `sum`, `sumBy`,
+ * `template`, `times`, `toFinite`, `toInteger`, `toJSON`, `toLength`,
+ * `toLower`, `toNumber`, `toSafeInteger`, `toString`, `toUpper`, `trim`,
+ * `trimEnd`, `trimStart`, `truncate`, `unescape`, `uniqueId`, `upperCase`,
+ * `upperFirst`, `value`, and `words`
+ *
+ * @name _
+ * @constructor
+ * @category Seq
+ * @param {*} value The value to wrap in a `lodash` instance.
+ * @returns {Object} Returns the new `lodash` wrapper instance.
+ * @example
+ *
+ * function square(n) {
+ *   return n * n;
+ * }
+ *
+ * var wrapped = _([1, 2, 3]);
+ *
+ * // Returns an unwrapped value.
+ * wrapped.reduce(_.add);
+ * // => 6
+ *
+ * // Returns a wrapped value.
+ * var squares = wrapped.map(square);
+ *
+ * _.isArray(squares);
+ * // => false
+ *
+ * _.isArray(squares.value());
+ * // => true
+ */
+function lodash(value) {
+  if (isObjectLike(value) && !isArray(value) && !(value instanceof LazyWrapper)) {
+    if (value instanceof LodashWrapper) {
+      return value;
+    }
+    if (hasOwnProperty.call(value, '__wrapped__')) {
+      return wrapperClone(value);
+    }
+  }
+  return new LodashWrapper(value);
+}
+
+// Ensure wrappers are instances of `baseLodash`.
+lodash.prototype = baseLodash.prototype;
+lodash.prototype.constructor = lodash;
+
+module.exports = lodash;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(objectProto, 'objectProto', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/wrapperLodash.js');
+
+  __REACT_HOT_LOADER__.register(hasOwnProperty, 'hasOwnProperty', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/wrapperLodash.js');
+
+  __REACT_HOT_LOADER__.register(lodash, 'lodash', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/wrapperLodash.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "//Fk":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2708,6 +2888,152 @@ module.exports = __webpack_require__.p + "images/odc.svg?d414e7060426e2710742e24
 
 /***/ },
 
+/***/ "0DQm":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseSetData = __webpack_require__("K2BQ"),
+    createBind = __webpack_require__("VqAG"),
+    createCurry = __webpack_require__("5s8F"),
+    createHybrid = __webpack_require__("6Eyi"),
+    createPartial = __webpack_require__("Y3z5"),
+    getData = __webpack_require__("pGGo"),
+    mergeData = __webpack_require__("3OAZ"),
+    setData = __webpack_require__("sIFy"),
+    setWrapToString = __webpack_require__("Jdza"),
+    toInteger = __webpack_require__("la66");
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_BIND_FLAG = 1,
+    WRAP_BIND_KEY_FLAG = 2,
+    WRAP_CURRY_FLAG = 8,
+    WRAP_CURRY_RIGHT_FLAG = 16,
+    WRAP_PARTIAL_FLAG = 32,
+    WRAP_PARTIAL_RIGHT_FLAG = 64;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * Creates a function that either curries or invokes `func` with optional
+ * `this` binding and partially applied arguments.
+ *
+ * @private
+ * @param {Function|string} func The function or method name to wrap.
+ * @param {number} bitmask The bitmask flags.
+ *    1 - `_.bind`
+ *    2 - `_.bindKey`
+ *    4 - `_.curry` or `_.curryRight` of a bound function
+ *    8 - `_.curry`
+ *   16 - `_.curryRight`
+ *   32 - `_.partial`
+ *   64 - `_.partialRight`
+ *  128 - `_.rearg`
+ *  256 - `_.ary`
+ *  512 - `_.flip`
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @param {Array} [partials] The arguments to be partially applied.
+ * @param {Array} [holders] The `partials` placeholder indexes.
+ * @param {Array} [argPos] The argument positions of the new function.
+ * @param {number} [ary] The arity cap of `func`.
+ * @param {number} [arity] The arity of `func`.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createWrap(func, bitmask, thisArg, partials, holders, argPos, ary, arity) {
+  var isBindKey = bitmask & WRAP_BIND_KEY_FLAG;
+  if (!isBindKey && typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  var length = partials ? partials.length : 0;
+  if (!length) {
+    bitmask &= ~(WRAP_PARTIAL_FLAG | WRAP_PARTIAL_RIGHT_FLAG);
+    partials = holders = undefined;
+  }
+  ary = ary === undefined ? ary : nativeMax(toInteger(ary), 0);
+  arity = arity === undefined ? arity : toInteger(arity);
+  length -= holders ? holders.length : 0;
+
+  if (bitmask & WRAP_PARTIAL_RIGHT_FLAG) {
+    var partialsRight = partials,
+        holdersRight = holders;
+
+    partials = holders = undefined;
+  }
+  var data = isBindKey ? undefined : getData(func);
+
+  var newData = [func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity];
+
+  if (data) {
+    mergeData(newData, data);
+  }
+  func = newData[0];
+  bitmask = newData[1];
+  thisArg = newData[2];
+  partials = newData[3];
+  holders = newData[4];
+  arity = newData[9] = newData[9] === undefined ? isBindKey ? 0 : func.length : nativeMax(newData[9] - length, 0);
+
+  if (!arity && bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG)) {
+    bitmask &= ~(WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG);
+  }
+  if (!bitmask || bitmask == WRAP_BIND_FLAG) {
+    var result = createBind(func, bitmask, thisArg);
+  } else if (bitmask == WRAP_CURRY_FLAG || bitmask == WRAP_CURRY_RIGHT_FLAG) {
+    result = createCurry(func, bitmask, arity);
+  } else if ((bitmask == WRAP_PARTIAL_FLAG || bitmask == (WRAP_BIND_FLAG | WRAP_PARTIAL_FLAG)) && !holders.length) {
+    result = createPartial(func, bitmask, thisArg, partials);
+  } else {
+    result = createHybrid.apply(undefined, newData);
+  }
+  var setter = data ? baseSetData : setData;
+  return setWrapToString(setter(result, newData), func, bitmask);
+}
+
+module.exports = createWrap;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(FUNC_ERROR_TEXT, 'FUNC_ERROR_TEXT', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createWrap.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_FLAG, 'WRAP_BIND_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createWrap.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_KEY_FLAG, 'WRAP_BIND_KEY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createWrap.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_FLAG, 'WRAP_CURRY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createWrap.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_RIGHT_FLAG, 'WRAP_CURRY_RIGHT_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createWrap.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_PARTIAL_FLAG, 'WRAP_PARTIAL_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createWrap.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_PARTIAL_RIGHT_FLAG, 'WRAP_PARTIAL_RIGHT_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createWrap.js');
+
+  __REACT_HOT_LOADER__.register(nativeMax, 'nativeMax', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createWrap.js');
+
+  __REACT_HOT_LOADER__.register(createWrap, 'createWrap', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createWrap.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "0DSl":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2764,6 +3090,57 @@ module.exports = __webpack_require__.p + "images/swf.svg?552ce47422853bfe1f82544
 
 // removed by extract-text-webpack-plugin
 module.exports = {"primary":"#4484d3","border1":"rgba(0, 0, 0, 0.1)","warn":"rgb(244,67,54)","toastContainer":"Toasts-web_toastContainer-1gNpb","toast":"Toasts-web_toast-2IUUo","toastInner":"Toasts-web_toastInner-2g4E7","icon":"Toasts-web_icon-2ZDEo","close":"Toasts-web_close-3Ynkr","enter":"Toasts-web_enter-21Lp_","appear":"Toasts-web_appear-36PMX","enterActive":"Toasts-web_enterActive-2smsJ","appearActive":"Toasts-web_appearActive-199XG","leave":"Toasts-web_leave-fvWli","leaveActive":"Toasts-web_leaveActive-3hD3T","error":"Toasts-web_error-1hcXK"};
+
+/***/ },
+
+/***/ "0R+t":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseCreate = __webpack_require__("IPfx"),
+    baseLodash = __webpack_require__("5a4p");
+
+/**
+ * The base constructor for creating `lodash` wrapper objects.
+ *
+ * @private
+ * @param {*} value The value to wrap.
+ * @param {boolean} [chainAll] Enable explicit method chain sequences.
+ */
+function LodashWrapper(value, chainAll) {
+  this.__wrapped__ = value;
+  this.__actions__ = [];
+  this.__chain__ = !!chainAll;
+  this.__index__ = 0;
+  this.__values__ = undefined;
+}
+
+LodashWrapper.prototype = baseCreate(baseLodash.prototype);
+LodashWrapper.prototype.constructor = LodashWrapper;
+
+module.exports = LodashWrapper;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(LodashWrapper, 'LodashWrapper', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_LodashWrapper.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -3110,6 +3487,610 @@ module.exports = {
 
 /***/ },
 
+/***/ "0r/u":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var mapping = __webpack_require__("hwkA"),
+    fallbackHolder = __webpack_require__("tUXZ");
+
+/** Built-in value reference. */
+var push = Array.prototype.push;
+
+/**
+ * Creates a function, with an arity of `n`, that invokes `func` with the
+ * arguments it receives.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {number} n The arity of the new function.
+ * @returns {Function} Returns the new function.
+ */
+function baseArity(func, n) {
+  return n == 2 ? function (a, b) {
+    return func.apply(undefined, arguments);
+  } : function (a) {
+    return func.apply(undefined, arguments);
+  };
+}
+
+/**
+ * Creates a function that invokes `func`, with up to `n` arguments, ignoring
+ * any additional arguments.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @param {number} n The arity cap.
+ * @returns {Function} Returns the new function.
+ */
+function baseAry(func, n) {
+  return n == 2 ? function (a, b) {
+    return func(a, b);
+  } : function (a) {
+    return func(a);
+  };
+}
+
+/**
+ * Creates a clone of `array`.
+ *
+ * @private
+ * @param {Array} array The array to clone.
+ * @returns {Array} Returns the cloned array.
+ */
+function cloneArray(array) {
+  var length = array ? array.length : 0,
+      result = Array(length);
+
+  while (length--) {
+    result[length] = array[length];
+  }
+  return result;
+}
+
+/**
+ * Creates a function that clones a given object using the assignment `func`.
+ *
+ * @private
+ * @param {Function} func The assignment function.
+ * @returns {Function} Returns the new cloner function.
+ */
+function createCloner(func) {
+  return function (object) {
+    return func({}, object);
+  };
+}
+
+/**
+ * A specialized version of `_.spread` which flattens the spread array into
+ * the arguments of the invoked `func`.
+ *
+ * @private
+ * @param {Function} func The function to spread arguments over.
+ * @param {number} start The start position of the spread.
+ * @returns {Function} Returns the new function.
+ */
+function flatSpread(func, start) {
+  return function () {
+    var length = arguments.length,
+        lastIndex = length - 1,
+        args = Array(length);
+
+    while (length--) {
+      args[length] = arguments[length];
+    }
+    var array = args[start],
+        otherArgs = args.slice(0, start);
+
+    if (array) {
+      push.apply(otherArgs, array);
+    }
+    if (start != lastIndex) {
+      push.apply(otherArgs, args.slice(start + 1));
+    }
+    return func.apply(this, otherArgs);
+  };
+}
+
+/**
+ * Creates a function that wraps `func` and uses `cloner` to clone the first
+ * argument it receives.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} cloner The function to clone arguments.
+ * @returns {Function} Returns the new immutable function.
+ */
+function wrapImmutable(func, cloner) {
+  return function () {
+    var length = arguments.length;
+    if (!length) {
+      return;
+    }
+    var args = Array(length);
+    while (length--) {
+      args[length] = arguments[length];
+    }
+    var result = args[0] = cloner.apply(undefined, args);
+    func.apply(undefined, args);
+    return result;
+  };
+}
+
+/**
+ * The base implementation of `convert` which accepts a `util` object of methods
+ * required to perform conversions.
+ *
+ * @param {Object} util The util object.
+ * @param {string} name The name of the function to convert.
+ * @param {Function} func The function to convert.
+ * @param {Object} [options] The options object.
+ * @param {boolean} [options.cap=true] Specify capping iteratee arguments.
+ * @param {boolean} [options.curry=true] Specify currying.
+ * @param {boolean} [options.fixed=true] Specify fixed arity.
+ * @param {boolean} [options.immutable=true] Specify immutable operations.
+ * @param {boolean} [options.rearg=true] Specify rearranging arguments.
+ * @returns {Function|Object} Returns the converted function or object.
+ */
+function baseConvert(util, name, func, options) {
+  var setPlaceholder,
+      isLib = typeof name == 'function',
+      isObj = name === Object(name);
+
+  if (isObj) {
+    options = func;
+    func = name;
+    name = undefined;
+  }
+  if (func == null) {
+    throw new TypeError();
+  }
+  options || (options = {});
+
+  var config = {
+    'cap': 'cap' in options ? options.cap : true,
+    'curry': 'curry' in options ? options.curry : true,
+    'fixed': 'fixed' in options ? options.fixed : true,
+    'immutable': 'immutable' in options ? options.immutable : true,
+    'rearg': 'rearg' in options ? options.rearg : true
+  };
+
+  var forceCurry = 'curry' in options && options.curry,
+      forceFixed = 'fixed' in options && options.fixed,
+      forceRearg = 'rearg' in options && options.rearg,
+      placeholder = isLib ? func : fallbackHolder,
+      pristine = isLib ? func.runInContext() : undefined;
+
+  var helpers = isLib ? func : {
+    'ary': util.ary,
+    'assign': util.assign,
+    'clone': util.clone,
+    'curry': util.curry,
+    'forEach': util.forEach,
+    'isArray': util.isArray,
+    'isFunction': util.isFunction,
+    'iteratee': util.iteratee,
+    'keys': util.keys,
+    'rearg': util.rearg,
+    'toInteger': util.toInteger,
+    'toPath': util.toPath
+  };
+
+  var ary = helpers.ary,
+      assign = helpers.assign,
+      clone = helpers.clone,
+      curry = helpers.curry,
+      each = helpers.forEach,
+      isArray = helpers.isArray,
+      isFunction = helpers.isFunction,
+      keys = helpers.keys,
+      rearg = helpers.rearg,
+      toInteger = helpers.toInteger,
+      toPath = helpers.toPath;
+
+  var aryMethodKeys = keys(mapping.aryMethod);
+
+  var wrappers = {
+    'castArray': function castArray(_castArray) {
+      return function () {
+        var value = arguments[0];
+        return isArray(value) ? _castArray(cloneArray(value)) : _castArray.apply(undefined, arguments);
+      };
+    },
+    'iteratee': function iteratee(_iteratee) {
+      return function () {
+        var func = arguments[0],
+            arity = arguments[1],
+            result = _iteratee(func, arity),
+            length = result.length;
+
+        if (config.cap && typeof arity == 'number') {
+          arity = arity > 2 ? arity - 2 : 1;
+          return length && length <= arity ? result : baseAry(result, arity);
+        }
+        return result;
+      };
+    },
+    'mixin': function mixin(_mixin) {
+      return function (source) {
+        var func = this;
+        if (!isFunction(func)) {
+          return _mixin(func, Object(source));
+        }
+        var pairs = [];
+        each(keys(source), function (key) {
+          if (isFunction(source[key])) {
+            pairs.push([key, func.prototype[key]]);
+          }
+        });
+
+        _mixin(func, Object(source));
+
+        each(pairs, function (pair) {
+          var value = pair[1];
+          if (isFunction(value)) {
+            func.prototype[pair[0]] = value;
+          } else {
+            delete func.prototype[pair[0]];
+          }
+        });
+        return func;
+      };
+    },
+    'nthArg': function nthArg(_nthArg) {
+      return function (n) {
+        var arity = n < 0 ? 1 : toInteger(n) + 1;
+        return curry(_nthArg(n), arity);
+      };
+    },
+    'rearg': function rearg(_rearg) {
+      return function (func, indexes) {
+        var arity = indexes ? indexes.length : 0;
+        return curry(_rearg(func, indexes), arity);
+      };
+    },
+    'runInContext': function runInContext(_runInContext) {
+      return function (context) {
+        return baseConvert(util, _runInContext(context), options);
+      };
+    }
+  };
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Casts `func` to a function with an arity capped iteratee if needed.
+   *
+   * @private
+   * @param {string} name The name of the function to inspect.
+   * @param {Function} func The function to inspect.
+   * @returns {Function} Returns the cast function.
+   */
+  function castCap(name, func) {
+    if (config.cap) {
+      var indexes = mapping.iterateeRearg[name];
+      if (indexes) {
+        return iterateeRearg(func, indexes);
+      }
+      var n = !isLib && mapping.iterateeAry[name];
+      if (n) {
+        return iterateeAry(func, n);
+      }
+    }
+    return func;
+  }
+
+  /**
+   * Casts `func` to a curried function if needed.
+   *
+   * @private
+   * @param {string} name The name of the function to inspect.
+   * @param {Function} func The function to inspect.
+   * @param {number} n The arity of `func`.
+   * @returns {Function} Returns the cast function.
+   */
+  function castCurry(name, func, n) {
+    return forceCurry || config.curry && n > 1 ? curry(func, n) : func;
+  }
+
+  /**
+   * Casts `func` to a fixed arity function if needed.
+   *
+   * @private
+   * @param {string} name The name of the function to inspect.
+   * @param {Function} func The function to inspect.
+   * @param {number} n The arity cap.
+   * @returns {Function} Returns the cast function.
+   */
+  function castFixed(name, func, n) {
+    if (config.fixed && (forceFixed || !mapping.skipFixed[name])) {
+      var data = mapping.methodSpread[name],
+          start = data && data.start;
+
+      return start === undefined ? ary(func, n) : flatSpread(func, start);
+    }
+    return func;
+  }
+
+  /**
+   * Casts `func` to an rearged function if needed.
+   *
+   * @private
+   * @param {string} name The name of the function to inspect.
+   * @param {Function} func The function to inspect.
+   * @param {number} n The arity of `func`.
+   * @returns {Function} Returns the cast function.
+   */
+  function castRearg(name, func, n) {
+    return config.rearg && n > 1 && (forceRearg || !mapping.skipRearg[name]) ? rearg(func, mapping.methodRearg[name] || mapping.aryRearg[n]) : func;
+  }
+
+  /**
+   * Creates a clone of `object` by `path`.
+   *
+   * @private
+   * @param {Object} object The object to clone.
+   * @param {Array|string} path The path to clone by.
+   * @returns {Object} Returns the cloned object.
+   */
+  function cloneByPath(object, path) {
+    path = toPath(path);
+
+    var index = -1,
+        length = path.length,
+        lastIndex = length - 1,
+        result = clone(Object(object)),
+        nested = result;
+
+    while (nested != null && ++index < length) {
+      var key = path[index],
+          value = nested[key];
+
+      if (value != null) {
+        nested[path[index]] = clone(index == lastIndex ? value : Object(value));
+      }
+      nested = nested[key];
+    }
+    return result;
+  }
+
+  /**
+   * Converts `lodash` to an immutable auto-curried iteratee-first data-last
+   * version with conversion `options` applied.
+   *
+   * @param {Object} [options] The options object. See `baseConvert` for more details.
+   * @returns {Function} Returns the converted `lodash`.
+   */
+  function convertLib(options) {
+    return _.runInContext.convert(options)(undefined);
+  }
+
+  /**
+   * Create a converter function for `func` of `name`.
+   *
+   * @param {string} name The name of the function to convert.
+   * @param {Function} func The function to convert.
+   * @returns {Function} Returns the new converter function.
+   */
+  function createConverter(name, func) {
+    var realName = mapping.aliasToReal[name] || name,
+        methodName = mapping.remap[realName] || realName,
+        oldOptions = options;
+
+    return function (options) {
+      var newUtil = isLib ? pristine : helpers,
+          newFunc = isLib ? pristine[methodName] : func,
+          newOptions = assign(assign({}, oldOptions), options);
+
+      return baseConvert(newUtil, realName, newFunc, newOptions);
+    };
+  }
+
+  /**
+   * Creates a function that wraps `func` to invoke its iteratee, with up to `n`
+   * arguments, ignoring any additional arguments.
+   *
+   * @private
+   * @param {Function} func The function to cap iteratee arguments for.
+   * @param {number} n The arity cap.
+   * @returns {Function} Returns the new function.
+   */
+  function iterateeAry(func, n) {
+    return overArg(func, function (func) {
+      return typeof func == 'function' ? baseAry(func, n) : func;
+    });
+  }
+
+  /**
+   * Creates a function that wraps `func` to invoke its iteratee with arguments
+   * arranged according to the specified `indexes` where the argument value at
+   * the first index is provided as the first argument, the argument value at
+   * the second index is provided as the second argument, and so on.
+   *
+   * @private
+   * @param {Function} func The function to rearrange iteratee arguments for.
+   * @param {number[]} indexes The arranged argument indexes.
+   * @returns {Function} Returns the new function.
+   */
+  function iterateeRearg(func, indexes) {
+    return overArg(func, function (func) {
+      var n = indexes.length;
+      return baseArity(rearg(baseAry(func, n), indexes), n);
+    });
+  }
+
+  /**
+   * Creates a function that invokes `func` with its first argument transformed.
+   *
+   * @private
+   * @param {Function} func The function to wrap.
+   * @param {Function} transform The argument transform.
+   * @returns {Function} Returns the new function.
+   */
+  function overArg(func, transform) {
+    return function () {
+      var length = arguments.length;
+      if (!length) {
+        return func();
+      }
+      var args = Array(length);
+      while (length--) {
+        args[length] = arguments[length];
+      }
+      var index = config.rearg ? 0 : length - 1;
+      args[index] = transform(args[index]);
+      return func.apply(undefined, args);
+    };
+  }
+
+  /**
+   * Creates a function that wraps `func` and applys the conversions
+   * rules by `name`.
+   *
+   * @private
+   * @param {string} name The name of the function to wrap.
+   * @param {Function} func The function to wrap.
+   * @returns {Function} Returns the converted function.
+   */
+  function wrap(name, func) {
+    var result,
+        realName = mapping.aliasToReal[name] || name,
+        wrapped = func,
+        wrapper = wrappers[realName];
+
+    if (wrapper) {
+      wrapped = wrapper(func);
+    } else if (config.immutable) {
+      if (mapping.mutate.array[realName]) {
+        wrapped = wrapImmutable(func, cloneArray);
+      } else if (mapping.mutate.object[realName]) {
+        wrapped = wrapImmutable(func, createCloner(func));
+      } else if (mapping.mutate.set[realName]) {
+        wrapped = wrapImmutable(func, cloneByPath);
+      }
+    }
+    each(aryMethodKeys, function (aryKey) {
+      each(mapping.aryMethod[aryKey], function (otherName) {
+        if (realName == otherName) {
+          var data = mapping.methodSpread[realName],
+              afterRearg = data && data.afterRearg;
+
+          result = afterRearg ? castFixed(realName, castRearg(realName, wrapped, aryKey), aryKey) : castRearg(realName, castFixed(realName, wrapped, aryKey), aryKey);
+
+          result = castCap(realName, result);
+          result = castCurry(realName, result, aryKey);
+          return false;
+        }
+      });
+      return !result;
+    });
+
+    result || (result = wrapped);
+    if (result == func) {
+      result = forceCurry ? curry(result, 1) : function () {
+        return func.apply(this, arguments);
+      };
+    }
+    result.convert = createConverter(realName, func);
+    if (mapping.placeholder[realName]) {
+      setPlaceholder = true;
+      result.placeholder = func.placeholder = placeholder;
+    }
+    return result;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  if (!isObj) {
+    return wrap(name, func);
+  }
+  var _ = func;
+
+  // Convert methods by ary cap.
+  var pairs = [];
+  each(aryMethodKeys, function (aryKey) {
+    each(mapping.aryMethod[aryKey], function (key) {
+      var func = _[mapping.remap[key] || key];
+      if (func) {
+        pairs.push([key, wrap(key, func)]);
+      }
+    });
+  });
+
+  // Convert remaining methods.
+  each(keys(_), function (key) {
+    var func = _[key];
+    if (typeof func == 'function') {
+      var length = pairs.length;
+      while (length--) {
+        if (pairs[length][0] == key) {
+          return;
+        }
+      }
+      func.convert = createConverter(key, func);
+      pairs.push([key, func]);
+    }
+  });
+
+  // Assign to `_` leaving `_.prototype` unchanged to allow chaining.
+  each(pairs, function (pair) {
+    _[pair[0]] = pair[1];
+  });
+
+  _.convert = convertLib;
+  if (setPlaceholder) {
+    _.placeholder = placeholder;
+  }
+  // Assign aliases.
+  each(keys(_), function (key) {
+    each(mapping.realToAlias[key] || [], function (alias) {
+      _[alias] = _[key];
+    });
+  });
+
+  return _;
+}
+
+module.exports = baseConvert;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(push, 'push', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/_baseConvert.js');
+
+  __REACT_HOT_LOADER__.register(baseArity, 'baseArity', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/_baseConvert.js');
+
+  __REACT_HOT_LOADER__.register(baseAry, 'baseAry', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/_baseConvert.js');
+
+  __REACT_HOT_LOADER__.register(cloneArray, 'cloneArray', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/_baseConvert.js');
+
+  __REACT_HOT_LOADER__.register(createCloner, 'createCloner', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/_baseConvert.js');
+
+  __REACT_HOT_LOADER__.register(flatSpread, 'flatSpread', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/_baseConvert.js');
+
+  __REACT_HOT_LOADER__.register(wrapImmutable, 'wrapImmutable', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/_baseConvert.js');
+
+  __REACT_HOT_LOADER__.register(baseConvert, 'baseConvert', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/_baseConvert.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "0sLz":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -3450,6 +4431,56 @@ ReporterError.prototype.rethrow = function rethrow(msg) {
   return this;
 };
 
+
+/***/ },
+
+/***/ "16Px":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+/**
+ * Gets the number of `placeholder` occurrences in `array`.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} placeholder The placeholder to search for.
+ * @returns {number} Returns the placeholder count.
+ */
+function countHolders(array, placeholder) {
+  var length = array.length,
+      result = 0;
+
+  while (length--) {
+    if (array[length] === placeholder) {
+      ++result;
+    }
+  }
+  return result;
+}
+
+module.exports = countHolders;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(countHolders, "countHolders", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_countHolders.js");
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -3796,6 +4827,41 @@ var _temp = function () {
   }
 
   __REACT_HOT_LOADER__.register(defineProperty, 'defineProperty', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_defineProperty.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "1M45":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var WeakMap = __webpack_require__("EYuj");
+
+/** Used to store function metadata. */
+var metaMap = WeakMap && new WeakMap();
+
+module.exports = metaMap;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(metaMap, 'metaMap', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_metaMap.js');
 }();
 
 ;
@@ -4800,6 +5866,73 @@ var _temp3 = function () {
 exports.decode = exports.parse = __webpack_require__("kMPS");
 exports.encode = exports.stringify = __webpack_require__("xaZU");
 
+
+/***/ },
+
+/***/ "1oZf":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseClone = __webpack_require__("/Gjv");
+
+/** Used to compose bitmasks for cloning. */
+var CLONE_SYMBOLS_FLAG = 4;
+
+/**
+ * Creates a shallow clone of `value`.
+ *
+ * **Note:** This method is loosely based on the
+ * [structured clone algorithm](https://mdn.io/Structured_clone_algorithm)
+ * and supports cloning arrays, array buffers, booleans, date objects, maps,
+ * numbers, `Object` objects, regexes, sets, strings, symbols, and typed
+ * arrays. The own enumerable properties of `arguments` objects are cloned
+ * as plain objects. An empty object is returned for uncloneable values such
+ * as error objects, functions, DOM nodes, and WeakMaps.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to clone.
+ * @returns {*} Returns the cloned value.
+ * @see _.cloneDeep
+ * @example
+ *
+ * var objects = [{ 'a': 1 }, { 'b': 2 }];
+ *
+ * var shallow = _.clone(objects);
+ * console.log(shallow[0] === objects[0]);
+ * // => true
+ */
+function clone(value) {
+  return baseClone(value, CLONE_SYMBOLS_FLAG);
+}
+
+module.exports = clone;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(CLONE_SYMBOLS_FLAG, 'CLONE_SYMBOLS_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/clone.js');
+
+  __REACT_HOT_LOADER__.register(clone, 'clone', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/clone.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -7233,6 +8366,138 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "3OAZ":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var composeArgs = __webpack_require__("gTAO"),
+    composeArgsRight = __webpack_require__("Smad"),
+    replaceHolders = __webpack_require__("Yiv5");
+
+/** Used as the internal argument placeholder. */
+var PLACEHOLDER = '__lodash_placeholder__';
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_BIND_FLAG = 1,
+    WRAP_BIND_KEY_FLAG = 2,
+    WRAP_CURRY_BOUND_FLAG = 4,
+    WRAP_CURRY_FLAG = 8,
+    WRAP_ARY_FLAG = 128,
+    WRAP_REARG_FLAG = 256;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMin = Math.min;
+
+/**
+ * Merges the function metadata of `source` into `data`.
+ *
+ * Merging metadata reduces the number of wrappers used to invoke a function.
+ * This is possible because methods like `_.bind`, `_.curry`, and `_.partial`
+ * may be applied regardless of execution order. Methods like `_.ary` and
+ * `_.rearg` modify function arguments, making the order in which they are
+ * executed important, preventing the merging of metadata. However, we make
+ * an exception for a safe combined case where curried functions have `_.ary`
+ * and or `_.rearg` applied.
+ *
+ * @private
+ * @param {Array} data The destination metadata.
+ * @param {Array} source The source metadata.
+ * @returns {Array} Returns `data`.
+ */
+function mergeData(data, source) {
+  var bitmask = data[1],
+      srcBitmask = source[1],
+      newBitmask = bitmask | srcBitmask,
+      isCommon = newBitmask < (WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG | WRAP_ARY_FLAG);
+
+  var isCombo = srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_CURRY_FLAG || srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_REARG_FLAG && data[7].length <= source[8] || srcBitmask == (WRAP_ARY_FLAG | WRAP_REARG_FLAG) && source[7].length <= source[8] && bitmask == WRAP_CURRY_FLAG;
+
+  // Exit early if metadata can't be merged.
+  if (!(isCommon || isCombo)) {
+    return data;
+  }
+  // Use source `thisArg` if available.
+  if (srcBitmask & WRAP_BIND_FLAG) {
+    data[2] = source[2];
+    // Set when currying a bound function.
+    newBitmask |= bitmask & WRAP_BIND_FLAG ? 0 : WRAP_CURRY_BOUND_FLAG;
+  }
+  // Compose partial arguments.
+  var value = source[3];
+  if (value) {
+    var partials = data[3];
+    data[3] = partials ? composeArgs(partials, value, source[4]) : value;
+    data[4] = partials ? replaceHolders(data[3], PLACEHOLDER) : source[4];
+  }
+  // Compose partial right arguments.
+  value = source[5];
+  if (value) {
+    partials = data[5];
+    data[5] = partials ? composeArgsRight(partials, value, source[6]) : value;
+    data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : source[6];
+  }
+  // Use source `argPos` if available.
+  value = source[7];
+  if (value) {
+    data[7] = value;
+  }
+  // Use source `ary` if it's smaller.
+  if (srcBitmask & WRAP_ARY_FLAG) {
+    data[8] = data[8] == null ? source[8] : nativeMin(data[8], source[8]);
+  }
+  // Use source `arity` if one is not provided.
+  if (data[9] == null) {
+    data[9] = source[9];
+  }
+  // Use source `func` and merge bitmasks.
+  data[0] = source[0];
+  data[1] = newBitmask;
+
+  return data;
+}
+
+module.exports = mergeData;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(PLACEHOLDER, 'PLACEHOLDER', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_mergeData.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_FLAG, 'WRAP_BIND_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_mergeData.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_KEY_FLAG, 'WRAP_BIND_KEY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_mergeData.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_BOUND_FLAG, 'WRAP_CURRY_BOUND_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_mergeData.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_FLAG, 'WRAP_CURRY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_mergeData.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_ARY_FLAG, 'WRAP_ARY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_mergeData.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_REARG_FLAG, 'WRAP_REARG_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_mergeData.js');
+
+  __REACT_HOT_LOADER__.register(nativeMin, 'nativeMin', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_mergeData.js');
+
+  __REACT_HOT_LOADER__.register(mergeData, 'mergeData', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_mergeData.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "3PYz":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -8485,6 +9750,71 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "4hni":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseAssignValue = __webpack_require__("UDgK"),
+    createAggregator = __webpack_require__("y3lt");
+
+/**
+ * Creates an object composed of keys generated from the results of running
+ * each element of `collection` thru `iteratee`. The corresponding value of
+ * each key is the last element responsible for generating the key. The
+ * iteratee is invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} [iteratee=_.identity] The iteratee to transform keys.
+ * @returns {Object} Returns the composed aggregate object.
+ * @example
+ *
+ * var array = [
+ *   { 'dir': 'left', 'code': 97 },
+ *   { 'dir': 'right', 'code': 100 }
+ * ];
+ *
+ * _.keyBy(array, function(o) {
+ *   return String.fromCharCode(o.code);
+ * });
+ * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+ *
+ * _.keyBy(array, 'dir');
+ * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+ */
+var keyBy = createAggregator(function (result, value, key) {
+  baseAssignValue(result, key, value);
+});
+
+module.exports = keyBy;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(keyBy, 'keyBy', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/keyBy.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "4mcu":
 /***/ function(module, exports) {
 
@@ -9454,6 +10784,45 @@ function toInteger(value) {
 
 module.exports = toInteger;
 
+
+/***/ },
+
+/***/ "5a4p":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+/**
+ * The function whose prototype chain sequence wrappers inherit from.
+ *
+ * @private
+ */
+function baseLodash() {
+  // No operation performed.
+}
+
+module.exports = baseLodash;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(baseLodash, "baseLodash", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_baseLodash.js");
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -13101,6 +14470,77 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "5s8F":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var apply = __webpack_require__("T5Zr"),
+    createCtor = __webpack_require__("aNiE"),
+    createHybrid = __webpack_require__("6Eyi"),
+    createRecurry = __webpack_require__("Rs6I"),
+    getHolder = __webpack_require__("O7+k"),
+    replaceHolders = __webpack_require__("Yiv5"),
+    root = __webpack_require__("w3EA");
+
+/**
+ * Creates a function that wraps `func` to enable currying.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+ * @param {number} arity The arity of `func`.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createCurry(func, bitmask, arity) {
+  var Ctor = createCtor(func);
+
+  function wrapper() {
+    var length = arguments.length,
+        args = Array(length),
+        index = length,
+        placeholder = getHolder(wrapper);
+
+    while (index--) {
+      args[index] = arguments[index];
+    }
+    var holders = length < 3 && args[0] !== placeholder && args[length - 1] !== placeholder ? [] : replaceHolders(args, placeholder);
+
+    length -= holders.length;
+    if (length < arity) {
+      return createRecurry(func, bitmask, createHybrid, wrapper.placeholder, undefined, args, holders, undefined, undefined, arity - length);
+    }
+    var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+    return apply(fn, this, args);
+  }
+  return wrapper;
+}
+
+module.exports = createCurry;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(createCurry, 'createCurry', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createCurry.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "5zde":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -13262,6 +14702,185 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(filterSelectedChangesByPossible, 'filterSelectedChangesByPossible', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.utils.js');
 
   __REACT_HOT_LOADER__.register(getToggleAllStatus, 'getToggleAllStatus', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Changes/Changes.utils.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "6DqO":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseGetTag = __webpack_require__("AIZn"),
+    isObjectLike = __webpack_require__("Gopx");
+
+/** `Object#toString` result references. */
+var regexpTag = '[object RegExp]';
+
+/**
+ * The base implementation of `_.isRegExp` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a regexp, else `false`.
+ */
+function baseIsRegExp(value) {
+  return isObjectLike(value) && baseGetTag(value) == regexpTag;
+}
+
+module.exports = baseIsRegExp;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(regexpTag, 'regexpTag', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_baseIsRegExp.js');
+
+  __REACT_HOT_LOADER__.register(baseIsRegExp, 'baseIsRegExp', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_baseIsRegExp.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "6Eyi":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var composeArgs = __webpack_require__("gTAO"),
+    composeArgsRight = __webpack_require__("Smad"),
+    countHolders = __webpack_require__("16Px"),
+    createCtor = __webpack_require__("aNiE"),
+    createRecurry = __webpack_require__("Rs6I"),
+    getHolder = __webpack_require__("O7+k"),
+    reorder = __webpack_require__("beKe"),
+    replaceHolders = __webpack_require__("Yiv5"),
+    root = __webpack_require__("w3EA");
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_BIND_FLAG = 1,
+    WRAP_BIND_KEY_FLAG = 2,
+    WRAP_CURRY_FLAG = 8,
+    WRAP_CURRY_RIGHT_FLAG = 16,
+    WRAP_ARY_FLAG = 128,
+    WRAP_FLIP_FLAG = 512;
+
+/**
+ * Creates a function that wraps `func` to invoke it with optional `this`
+ * binding of `thisArg`, partial application, and currying.
+ *
+ * @private
+ * @param {Function|string} func The function or method name to wrap.
+ * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @param {Array} [partials] The arguments to prepend to those provided to
+ *  the new function.
+ * @param {Array} [holders] The `partials` placeholder indexes.
+ * @param {Array} [partialsRight] The arguments to append to those provided
+ *  to the new function.
+ * @param {Array} [holdersRight] The `partialsRight` placeholder indexes.
+ * @param {Array} [argPos] The argument positions of the new function.
+ * @param {number} [ary] The arity cap of `func`.
+ * @param {number} [arity] The arity of `func`.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createHybrid(func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity) {
+  var isAry = bitmask & WRAP_ARY_FLAG,
+      isBind = bitmask & WRAP_BIND_FLAG,
+      isBindKey = bitmask & WRAP_BIND_KEY_FLAG,
+      isCurried = bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG),
+      isFlip = bitmask & WRAP_FLIP_FLAG,
+      Ctor = isBindKey ? undefined : createCtor(func);
+
+  function wrapper() {
+    var length = arguments.length,
+        args = Array(length),
+        index = length;
+
+    while (index--) {
+      args[index] = arguments[index];
+    }
+    if (isCurried) {
+      var placeholder = getHolder(wrapper),
+          holdersCount = countHolders(args, placeholder);
+    }
+    if (partials) {
+      args = composeArgs(args, partials, holders, isCurried);
+    }
+    if (partialsRight) {
+      args = composeArgsRight(args, partialsRight, holdersRight, isCurried);
+    }
+    length -= holdersCount;
+    if (isCurried && length < arity) {
+      var newHolders = replaceHolders(args, placeholder);
+      return createRecurry(func, bitmask, createHybrid, wrapper.placeholder, thisArg, args, newHolders, argPos, ary, arity - length);
+    }
+    var thisBinding = isBind ? thisArg : this,
+        fn = isBindKey ? thisBinding[func] : func;
+
+    length = args.length;
+    if (argPos) {
+      args = reorder(args, argPos);
+    } else if (isFlip && length > 1) {
+      args.reverse();
+    }
+    if (isAry && ary < length) {
+      args.length = ary;
+    }
+    if (this && this !== root && this instanceof wrapper) {
+      fn = Ctor || createCtor(fn);
+    }
+    return fn.apply(thisBinding, args);
+  }
+  return wrapper;
+}
+
+module.exports = createHybrid;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_FLAG, 'WRAP_BIND_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createHybrid.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_KEY_FLAG, 'WRAP_BIND_KEY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createHybrid.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_FLAG, 'WRAP_CURRY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createHybrid.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_RIGHT_FLAG, 'WRAP_CURRY_RIGHT_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createHybrid.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_ARY_FLAG, 'WRAP_ARY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createHybrid.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_FLIP_FLAG, 'WRAP_FLIP_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createHybrid.js');
+
+  __REACT_HOT_LOADER__.register(createHybrid, 'createHybrid', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createHybrid.js');
 }();
 
 ;
@@ -14001,6 +15620,60 @@ function baseRepeat(string, n) {
 
 module.exports = baseRepeat;
 
+
+/***/ },
+
+/***/ "6uBy":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict';
+
+/** Used to match wrap detail comments. */
+var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/;
+
+/**
+ * Inserts wrapper `details` in a comment at the top of the `source` body.
+ *
+ * @private
+ * @param {string} source The source to modify.
+ * @returns {Array} details The details to insert.
+ * @returns {string} Returns the modified source.
+ */
+function insertWrapDetails(source, details) {
+  var length = details.length;
+  if (!length) {
+    return source;
+  }
+  var lastIndex = length - 1;
+  details[lastIndex] = (length > 1 ? '& ' : '') + details[lastIndex];
+  details = details.join(length > 2 ? ', ' : ' ');
+  return source.replace(reWrapComment, '{\n/* [wrapped with ' + details + '] */\n');
+}
+
+module.exports = insertWrapDetails;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(reWrapComment, 'reWrapComment', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_insertWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(insertWrapDetails, 'insertWrapDetails', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_insertWrapDetails.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -15534,6 +17207,91 @@ var _temp2 = function () {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/lua.svg?145e6b95695272c8b86effef7fb5e7ac";
+
+/***/ },
+
+/***/ "7saB":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var arrayEach = __webpack_require__("JUBG"),
+    arrayIncludes = __webpack_require__("hacZ");
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_BIND_FLAG = 1,
+    WRAP_BIND_KEY_FLAG = 2,
+    WRAP_CURRY_FLAG = 8,
+    WRAP_CURRY_RIGHT_FLAG = 16,
+    WRAP_PARTIAL_FLAG = 32,
+    WRAP_PARTIAL_RIGHT_FLAG = 64,
+    WRAP_ARY_FLAG = 128,
+    WRAP_REARG_FLAG = 256,
+    WRAP_FLIP_FLAG = 512;
+
+/** Used to associate wrap methods with their bit flags. */
+var wrapFlags = [['ary', WRAP_ARY_FLAG], ['bind', WRAP_BIND_FLAG], ['bindKey', WRAP_BIND_KEY_FLAG], ['curry', WRAP_CURRY_FLAG], ['curryRight', WRAP_CURRY_RIGHT_FLAG], ['flip', WRAP_FLIP_FLAG], ['partial', WRAP_PARTIAL_FLAG], ['partialRight', WRAP_PARTIAL_RIGHT_FLAG], ['rearg', WRAP_REARG_FLAG]];
+
+/**
+ * Updates wrapper `details` based on `bitmask` flags.
+ *
+ * @private
+ * @returns {Array} details The details to modify.
+ * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+ * @returns {Array} Returns `details`.
+ */
+function updateWrapDetails(details, bitmask) {
+  arrayEach(wrapFlags, function (pair) {
+    var value = '_.' + pair[0];
+    if (bitmask & pair[1] && !arrayIncludes(details, value)) {
+      details.push(value);
+    }
+  });
+  return details.sort();
+}
+
+module.exports = updateWrapDetails;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_FLAG, 'WRAP_BIND_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_KEY_FLAG, 'WRAP_BIND_KEY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_FLAG, 'WRAP_CURRY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_RIGHT_FLAG, 'WRAP_CURRY_RIGHT_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_PARTIAL_FLAG, 'WRAP_PARTIAL_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_PARTIAL_RIGHT_FLAG, 'WRAP_PARTIAL_RIGHT_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_ARY_FLAG, 'WRAP_ARY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_REARG_FLAG, 'WRAP_REARG_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_FLIP_FLAG, 'WRAP_FLIP_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(wrapFlags, 'wrapFlags', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+
+  __REACT_HOT_LOADER__.register(updateWrapDetails, 'updateWrapDetails', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_updateWrapDetails.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -18550,6 +20308,58 @@ module.exports = {
 
 /***/ },
 
+/***/ "9bML":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var LazyWrapper = __webpack_require__("koBG"),
+    LodashWrapper = __webpack_require__("0R+t"),
+    copyArray = __webpack_require__("em3X");
+
+/**
+ * Creates a clone of `wrapper`.
+ *
+ * @private
+ * @param {Object} wrapper The wrapper to clone.
+ * @returns {Object} Returns the cloned wrapper.
+ */
+function wrapperClone(wrapper) {
+  if (wrapper instanceof LazyWrapper) {
+    return wrapper.clone();
+  }
+  var result = new LodashWrapper(wrapper.__wrapped__, wrapper.__chain__);
+  result.__actions__ = copyArray(wrapper.__actions__);
+  result.__index__ = wrapper.__index__;
+  result.__values__ = wrapper.__values__;
+  return result;
+}
+
+module.exports = wrapperClone;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(wrapperClone, 'wrapperClone', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_wrapperClone.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "9ezj":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -18954,6 +20764,10 @@ var _thread = __webpack_require__("rbf3");
 
 var _thread2 = _interopRequireDefault(_thread);
 
+var _pipeline = __webpack_require__("ulzz");
+
+var _pipeline2 = _interopRequireDefault(_pipeline);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(store, action) {
@@ -18962,6 +20776,7 @@ var _default = function _default(store, action) {
   (0, _project2.default)(store, action);
   (0, _render2.default)(store, action);
   (0, _thread2.default)(store, action);
+  (0, _pipeline2.default)(store, action);
 };
 
 var _default2 = _default;
@@ -20248,42 +22063,57 @@ var projectCommitsRoute = exports.projectCommitsRoute = function projectCommitsR
   var projectId = _ref5.projectId;
   return '/project/' + projectId + '/history';
 };
-var projectFilesRoute = exports.projectFilesRoute = function projectFilesRoute(_ref6) {
+var projectPipelinesRoute = exports.projectPipelinesRoute = function projectPipelinesRoute(_ref6) {
   var projectId = _ref6.projectId;
+  return '/project/' + projectId + '/pipelines';
+};
+var projectPipelineRoute = exports.projectPipelineRoute = function projectPipelineRoute(_ref7) {
+  var projectId = _ref7.projectId,
+      pipelineId = _ref7.pipelineId;
+  return '/project/' + projectId + '/pipelines/' + pipelineId + '/';
+};
+var projectPipelineStepRoute = exports.projectPipelineStepRoute = function projectPipelineStepRoute(_ref8) {
+  var projectId = _ref8.projectId,
+      pipelineId = _ref8.pipelineId,
+      stepId = _ref8.stepId;
+  return '/project/' + projectId + '/pipelines/' + pipelineId + '/steps/' + stepId;
+};
+var projectFilesRoute = exports.projectFilesRoute = function projectFilesRoute(_ref9) {
+  var projectId = _ref9.projectId;
   return '/project/' + projectId + '/files';
 };
-var projectFolderRoute = exports.projectFolderRoute = function projectFolderRoute(_ref7) {
-  var projectId = _ref7.projectId,
-      fileId = _ref7.fileId;
+var projectFolderRoute = exports.projectFolderRoute = function projectFolderRoute(_ref10) {
+  var projectId = _ref10.projectId,
+      fileId = _ref10.fileId;
   return '/project/' + projectId + '/files/' + (fileId || '');
 };
-var projectRoute = exports.projectRoute = function projectRoute(_ref8) {
-  var projectId = _ref8.projectId;
+var projectRoute = exports.projectRoute = function projectRoute(_ref11) {
+  var projectId = _ref11.projectId;
   return '/project/' + projectId;
 };
-var projectSettingsRoute = exports.projectSettingsRoute = function projectSettingsRoute(_ref9) {
-  var projectId = _ref9.projectId;
+var projectSettingsRoute = exports.projectSettingsRoute = function projectSettingsRoute(_ref12) {
+  var projectId = _ref12.projectId;
   return '/project/' + projectId + '/settings';
 };
-var projectSettingsTeamRoute = exports.projectSettingsTeamRoute = function projectSettingsTeamRoute(_ref10) {
-  var projectId = _ref10.projectId;
+var projectSettingsTeamRoute = exports.projectSettingsTeamRoute = function projectSettingsTeamRoute(_ref13) {
+  var projectId = _ref13.projectId;
   return '/project/' + projectId + '/settings/team';
 };
-var projectSettingsThreadsRoute = exports.projectSettingsThreadsRoute = function projectSettingsThreadsRoute(_ref11) {
-  var projectId = _ref11.projectId;
+var projectSettingsThreadsRoute = exports.projectSettingsThreadsRoute = function projectSettingsThreadsRoute(_ref14) {
+  var projectId = _ref14.projectId;
   return '/project/' + projectId + '/settings/threads';
 };
-var projectThreadsRoute = exports.projectThreadsRoute = function projectThreadsRoute(_ref12) {
-  var projectId = _ref12.projectId;
+var projectThreadsRoute = exports.projectThreadsRoute = function projectThreadsRoute(_ref15) {
+  var projectId = _ref15.projectId;
   return '/project/' + projectId + '/threads';
 };
-var projectThreadRoute = exports.projectThreadRoute = function projectThreadRoute(_ref13) {
-  var threadId = _ref13.threadId,
-      projectId = _ref13.projectId;
+var projectThreadRoute = exports.projectThreadRoute = function projectThreadRoute(_ref16) {
+  var threadId = _ref16.threadId,
+      projectId = _ref16.projectId;
   return '/project/' + projectId + '/threads/' + threadId;
 };
-var projectTeamRoute = exports.projectTeamRoute = function projectTeamRoute(_ref14) {
-  var projectId = _ref14.projectId;
+var projectTeamRoute = exports.projectTeamRoute = function projectTeamRoute(_ref17) {
+  var projectId = _ref17.projectId;
   return '/project/' + projectId + '/team';
 };
 var registerRoute = exports.registerRoute = function registerRoute() {
@@ -20295,40 +22125,40 @@ var securityRoute = exports.securityRoute = function securityRoute() {
 var settingsRoute = exports.settingsRoute = function settingsRoute() {
   return '/settings';
 };
-var threadEditRoute = exports.threadEditRoute = function threadEditRoute(_ref15) {
-  var threadId = _ref15.threadId,
-      projectId = _ref15.projectId;
+var threadEditRoute = exports.threadEditRoute = function threadEditRoute(_ref18) {
+  var threadId = _ref18.threadId,
+      projectId = _ref18.projectId;
   return '/project/' + projectId + '/threads/' + threadId + '/edit';
 };
-var threadRoute = exports.threadRoute = function threadRoute(_ref16) {
-  var threadId = _ref16.threadId;
+var threadRoute = exports.threadRoute = function threadRoute(_ref19) {
+  var threadId = _ref19.threadId;
   return '/thread/' + threadId;
 };
 var termsRoute = exports.termsRoute = function termsRoute() {
   return '/terms';
 };
-var userDetailsRoute = exports.userDetailsRoute = function userDetailsRoute(_ref17) {
-  var userId = _ref17.userId;
+var userDetailsRoute = exports.userDetailsRoute = function userDetailsRoute(_ref20) {
+  var userId = _ref20.userId;
   return '/users/' + userId + '/details';
 };
-var userFollowersRoute = exports.userFollowersRoute = function userFollowersRoute(_ref18) {
-  var userId = _ref18.userId;
+var userFollowersRoute = exports.userFollowersRoute = function userFollowersRoute(_ref21) {
+  var userId = _ref21.userId;
   return '/users/' + userId + '/followers';
 };
-var userFollowingRoute = exports.userFollowingRoute = function userFollowingRoute(_ref19) {
-  var userId = _ref19.userId;
+var userFollowingRoute = exports.userFollowingRoute = function userFollowingRoute(_ref22) {
+  var userId = _ref22.userId;
   return '/users/' + userId + '/following';
 };
-var userProjectsRoute = exports.userProjectsRoute = function userProjectsRoute(_ref20) {
-  var userId = _ref20.userId;
+var userProjectsRoute = exports.userProjectsRoute = function userProjectsRoute(_ref23) {
+  var userId = _ref23.userId;
   return '/users/' + userId + '/projects';
 };
-var userRoute = exports.userRoute = function userRoute(_ref21) {
-  var userId = _ref21.userId;
+var userRoute = exports.userRoute = function userRoute(_ref24) {
+  var userId = _ref24.userId;
   return '/users/' + userId;
 };
-var userStarsRoute = exports.userStarsRoute = function userStarsRoute(_ref22) {
-  var userId = _ref22.userId;
+var userStarsRoute = exports.userStarsRoute = function userStarsRoute(_ref25) {
+  var userId = _ref25.userId;
   return '/users/' + userId + '/stars';
 };
 var notFound = exports.notFound = function notFound() {
@@ -20376,6 +22206,12 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(privacyRoute, 'privacyRoute', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(projectCommitsRoute, 'projectCommitsRoute', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+
+  __REACT_HOT_LOADER__.register(projectPipelinesRoute, 'projectPipelinesRoute', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+
+  __REACT_HOT_LOADER__.register(projectPipelineRoute, 'projectPipelineRoute', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+
+  __REACT_HOT_LOADER__.register(projectPipelineStepRoute, 'projectPipelineStepRoute', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(projectFilesRoute, 'projectFilesRoute', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
@@ -20706,6 +22542,245 @@ AES.prototype._doCryptBlock = function (M, keySchedule, SUB_MIX, SBOX) {
 exports.AES = AES
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("EuP9").Buffer))
+
+/***/ },
+
+/***/ "BIf1":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.leaveStepRoom = exports.joinStepRoom = exports.leavePipelineRoom = exports.joinPipelineRoom = exports.getStep = exports.rerunPipeline = exports.getLastPipelines = exports.getPipelines = exports.getPipeline = undefined;
+
+var _axios = __webpack_require__("mtWM");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _Websocket = __webpack_require__("r0iT");
+
+var _reactRouterRedux = __webpack_require__("jZgO");
+
+var _routeActions = __webpack_require__("B98q");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var getPipeline = exports.getPipeline = function getPipeline(_ref) {
+  var pipelineId = _ref.pipelineId;
+  return {
+    type: 'PIPELINES/GET_PIPELINE',
+    payload: (0, _axios2.default)({
+      method: 'GET',
+      url: '/api/v1/pipelines/' + pipelineId
+    }),
+    meta: {
+      cacheKey: pipelineId
+    }
+  };
+};
+
+var getPipelines = exports.getPipelines = function getPipelines(_ref2) {
+  var projectId = _ref2.projectId,
+      cacheKey = _ref2.cacheKey,
+      page = _ref2.page,
+      size = _ref2.size,
+      criteria = _ref2.criteria;
+  return {
+    type: 'PIPELINES/GET_PIPELINES',
+    http: true,
+    payload: {
+      method: 'GET',
+      url: '/api/v1/projects/' + projectId + '/pipelines',
+      params: {
+        page: page,
+        size: size,
+        criteria: criteria
+      }
+    },
+    throttle: {
+      time: 500,
+      endpoint: 'get-pipelines'
+    },
+    meta: {
+      cacheKey: cacheKey,
+      projectId: projectId
+    }
+  };
+};
+
+var getLastPipelines = exports.getLastPipelines = function getLastPipelines() {
+  return function (dispatch, getState) {
+    var _getState$pipelines$l = getState().pipelines.lastPipelinesRequest,
+        projectId = _getState$pipelines$l.projectId,
+        cacheKey = _getState$pipelines$l.cacheKey;
+
+    return projectId && cacheKey && dispatch(getPipelines({ projectId: projectId, cacheKey: cacheKey }));
+  };
+};
+
+var rerunPipeline = exports.rerunPipeline = function rerunPipeline(_ref3) {
+  var pipelineId = _ref3.pipelineId;
+  return function (dispatch) {
+    return dispatch({
+      type: 'PIPELINES/RERUN_PIPELINE',
+      payload: (0, _axios2.default)({
+        method: 'POST',
+        url: '/api/v1/pipelines/' + pipelineId + '/restart'
+      }).then(function (_ref4) {
+        var newPipeline = _ref4.data;
+        return dispatch((0, _reactRouterRedux.push)((0, _routeActions.projectPipelineRoute)({
+          projectId: newPipeline.project._id,
+          pipelineId: newPipeline._id
+        })));
+      }),
+      meta: {
+        pipelineId: pipelineId
+      }
+    });
+  };
+};
+
+var getStep = exports.getStep = function getStep(_ref5) {
+  var stepId = _ref5.stepId;
+  return {
+    type: 'PIPELINES/GET_STEP',
+    payload: (0, _axios2.default)({
+      method: 'GET',
+      url: '/api/v1/steps/' + stepId
+    })
+  };
+};
+
+var joinPipelineRoom = exports.joinPipelineRoom = function joinPipelineRoom(_ref6) {
+  var pipelineId = _ref6.pipelineId;
+  return (0, _Websocket.joinRoom)({
+    room: pipelineId,
+    type: 'pipeline'
+  });
+};
+
+var leavePipelineRoom = exports.leavePipelineRoom = function leavePipelineRoom(_ref7) {
+  var pipelineId = _ref7.pipelineId;
+  return (0, _Websocket.leaveRoom)({
+    room: pipelineId,
+    type: 'pipeline'
+  });
+};
+
+var joinStepRoom = exports.joinStepRoom = function joinStepRoom(_ref8) {
+  var stepId = _ref8.stepId;
+  return (0, _Websocket.joinRoom)({
+    room: stepId,
+    type: 'step'
+  });
+};
+
+var leaveStepRoom = exports.leaveStepRoom = function leaveStepRoom(_ref9) {
+  var stepId = _ref9.stepId;
+  return (0, _Websocket.leaveRoom)({
+    room: stepId,
+    type: 'step'
+  });
+};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(getPipeline, 'getPipeline', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.actions.js');
+
+  __REACT_HOT_LOADER__.register(getPipelines, 'getPipelines', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.actions.js');
+
+  __REACT_HOT_LOADER__.register(getLastPipelines, 'getLastPipelines', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.actions.js');
+
+  __REACT_HOT_LOADER__.register(rerunPipeline, 'rerunPipeline', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.actions.js');
+
+  __REACT_HOT_LOADER__.register(getStep, 'getStep', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.actions.js');
+
+  __REACT_HOT_LOADER__.register(joinPipelineRoom, 'joinPipelineRoom', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.actions.js');
+
+  __REACT_HOT_LOADER__.register(leavePipelineRoom, 'leavePipelineRoom', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.actions.js');
+
+  __REACT_HOT_LOADER__.register(joinStepRoom, 'joinStepRoom', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.actions.js');
+
+  __REACT_HOT_LOADER__.register(leaveStepRoom, 'leaveStepRoom', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.actions.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "BJ1D":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var createWrap = __webpack_require__("0DQm");
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_ARY_FLAG = 128;
+
+/**
+ * Creates a function that invokes `func`, with up to `n` arguments,
+ * ignoring any additional arguments.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Function
+ * @param {Function} func The function to cap arguments for.
+ * @param {number} [n=func.length] The arity cap.
+ * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+ * @returns {Function} Returns the new capped function.
+ * @example
+ *
+ * _.map(['6', '8', '10'], _.ary(parseInt, 1));
+ * // => [6, 8, 10]
+ */
+function ary(func, n, guard) {
+  n = guard ? undefined : n;
+  n = func && n == null ? func.length : n;
+  return createWrap(func, WRAP_ARY_FLAG, undefined, undefined, undefined, undefined, n);
+}
+
+module.exports = ary;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(WRAP_ARY_FLAG, 'WRAP_ARY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/ary.js');
+
+  __REACT_HOT_LOADER__.register(ary, 'ary', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/ary.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -21696,6 +23771,115 @@ var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+}();
+
+;
+
+/***/ },
+
+/***/ "CSSN":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict';
+
+/** Used to compose unicode character classes. */
+var rsAstralRange = '\\ud800-\\udfff',
+    rsComboMarksRange = '\\u0300-\\u036f',
+    reComboHalfMarksRange = '\\ufe20-\\ufe2f',
+    rsComboSymbolsRange = '\\u20d0-\\u20ff',
+    rsComboRange = rsComboMarksRange + reComboHalfMarksRange + rsComboSymbolsRange,
+    rsVarRange = '\\ufe0e\\ufe0f';
+
+/** Used to compose unicode capture groups. */
+var rsAstral = '[' + rsAstralRange + ']',
+    rsCombo = '[' + rsComboRange + ']',
+    rsFitz = '\\ud83c[\\udffb-\\udfff]',
+    rsModifier = '(?:' + rsCombo + '|' + rsFitz + ')',
+    rsNonAstral = '[^' + rsAstralRange + ']',
+    rsRegional = '(?:\\ud83c[\\udde6-\\uddff]){2}',
+    rsSurrPair = '[\\ud800-\\udbff][\\udc00-\\udfff]',
+    rsZWJ = '\\u200d';
+
+/** Used to compose unicode regexes. */
+var reOptMod = rsModifier + '?',
+    rsOptVar = '[' + rsVarRange + ']?',
+    rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
+    rsSeq = rsOptVar + reOptMod + rsOptJoin,
+    rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
+
+/** Used to match [string symbols](https://mathiasbynens.be/notes/javascript-unicode). */
+var reUnicode = RegExp(rsFitz + '(?=' + rsFitz + ')|' + rsSymbol + rsSeq, 'g');
+
+/**
+ * Converts a Unicode `string` to an array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the converted array.
+ */
+function unicodeToArray(string) {
+    return string.match(reUnicode) || [];
+}
+
+module.exports = unicodeToArray;
+;
+
+var _temp = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+
+    __REACT_HOT_LOADER__.register(rsAstralRange, 'rsAstralRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsComboMarksRange, 'rsComboMarksRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(reComboHalfMarksRange, 'reComboHalfMarksRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsComboSymbolsRange, 'rsComboSymbolsRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsComboRange, 'rsComboRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsVarRange, 'rsVarRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsAstral, 'rsAstral', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsCombo, 'rsCombo', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsFitz, 'rsFitz', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsModifier, 'rsModifier', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsNonAstral, 'rsNonAstral', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsRegional, 'rsRegional', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsSurrPair, 'rsSurrPair', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsZWJ, 'rsZWJ', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(reOptMod, 'reOptMod', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsOptVar, 'rsOptVar', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsOptJoin, 'rsOptJoin', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsSeq, 'rsSeq', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(rsSymbol, 'rsSymbol', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(reUnicode, 'reUnicode', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+
+    __REACT_HOT_LOADER__.register(unicodeToArray, 'unicodeToArray', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_unicodeToArray.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
 }();
 
 ;
@@ -23120,15 +25304,26 @@ var _default = function (_React$Component) {
           className = _props.className,
           color = _props.color,
           disabled = _props.disabled,
-          otherProps = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'color', 'disabled']);
+          href = _props.href,
+          otherProps = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'color', 'disabled', 'href']);
 
-      var allClasses = (0, _classnames2.default)(_SimpleIconButton2.default.button, className, (_classNames = {}, (0, _defineProperty3.default)(_classNames, _SimpleIconButton2.default.white, color == 'white'), (0, _defineProperty3.default)(_classNames, 'disabled', disabled), _classNames));
+      var allClasses = (0, _classnames2.default)(_SimpleIconButton2.default.button, className, (_classNames = {}, (0, _defineProperty3.default)(_classNames, _SimpleIconButton2.default.white, color === 'white'), (0, _defineProperty3.default)(_classNames, 'disabled', disabled), _classNames));
 
       if (this.props.to || this.props.name) {
         return _react2.default.createElement(
           _Link2.default,
           (0, _extends3.default)({
             className: allClasses
+          }, otherProps),
+          children
+        );
+      }
+      if (this.props.href) {
+        return _react2.default.createElement(
+          'a',
+          (0, _extends3.default)({
+            className: allClasses,
+            href: href
           }, otherProps),
           children
         );
@@ -24044,13 +26239,13 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(46).then(__webpack_require__.bind(null, "lHpz")), cb);
   };
   var getExplore = function getExplore(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(24), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "wMHT")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(25), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "wMHT")), cb);
   };
   var getField = function getField(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(28)]).then(__webpack_require__.bind(null, "GXbu")), cb);
   };
   var getFieldOverview = function getFieldOverview(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(18), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "XFbw")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(19), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "XFbw")), cb);
   };
   var getFile = function getFile(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(8), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "jvCS")), cb);
@@ -24059,7 +26254,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(45).then(__webpack_require__.bind(null, "rtAa")), cb);
   };
   var getHome = function getHome(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, "MhFa")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, "MhFa")), cb);
   };
   var getLogin = function getLogin(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(53).then(__webpack_require__.bind(null, "WTdZ")), cb);
@@ -24095,7 +26290,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(49).then(__webpack_require__.bind(null, "R6ka")), cb);
   };
   var getProject = function getProject(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(27)]).then(__webpack_require__.bind(null, "cs2g")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(20)]).then(__webpack_require__.bind(null, "cs2g")), cb);
   };
   var getProjectCommit = function getProjectCommit(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(7), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "FTSl")), cb);
@@ -24140,28 +26335,28 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(50).then(__webpack_require__.bind(null, "WuR6")), cb);
   };
   var getSearch = function getSearch(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(20), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "cf2e")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(21), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "cf2e")), cb);
   };
   var getSecurity = function getSecurity(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(48).then(__webpack_require__.bind(null, "CStl")), cb);
   };
   var getSettings = function getSettings(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(21), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "qkLM")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(22), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "qkLM")), cb);
   };
   var getSettingsAccount = function getSettingsAccount(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(17), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "P8VH")), cb);
   };
   var getSettingsBilling = function getSettingsBilling(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, "nAtR")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(26)]).then(__webpack_require__.bind(null, "nAtR")), cb);
   };
   var getSettingsEmails = function getSettingsEmails(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(23), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "vwLr")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(24), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "vwLr")), cb);
   };
   var getSettingsProfile = function getSettingsProfile(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(13), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "WMt1")), cb);
   };
   var getSettingsProfileDetails = function getSettingsProfileDetails(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(22)]).then(__webpack_require__.bind(null, "q8Uh")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(23)]).then(__webpack_require__.bind(null, "q8Uh")), cb);
   };
   var getSettingsProjects = function getSettingsProjects(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(40), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "wTM9")), cb);
@@ -24170,7 +26365,7 @@ exports.default = function (_ref) {
     return (0, _routesUtils.getRoute)(dispatch, __webpack_require__.e/* System.import */(47).then(__webpack_require__.bind(null, "dDeL")), cb);
   };
   var getUser = function getUser(loc, cb) {
-    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(26)]).then(__webpack_require__.bind(null, "4ota")), cb);
+    return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(27)]).then(__webpack_require__.bind(null, "4ota")), cb);
   };
   var getUserDetails = function getUserDetails(loc, cb) {
     return (0, _routesUtils.getRoute)(dispatch, Promise.all/* System.import */([__webpack_require__.e(0), __webpack_require__.e(41), __webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "IQ0q")), cb);
@@ -28218,6 +30413,90 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "GQC5":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseClone = __webpack_require__("/Gjv"),
+    baseIteratee = __webpack_require__("9lEZ");
+
+/** Used to compose bitmasks for cloning. */
+var CLONE_DEEP_FLAG = 1;
+
+/**
+ * Creates a function that invokes `func` with the arguments of the created
+ * function. If `func` is a property name, the created function returns the
+ * property value for a given element. If `func` is an array or object, the
+ * created function returns `true` for elements that contain the equivalent
+ * source properties, otherwise it returns `false`.
+ *
+ * @static
+ * @since 4.0.0
+ * @memberOf _
+ * @category Util
+ * @param {*} [func=_.identity] The value to convert to a callback.
+ * @returns {Function} Returns the callback.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney', 'age': 36, 'active': true },
+ *   { 'user': 'fred',   'age': 40, 'active': false }
+ * ];
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.filter(users, _.iteratee({ 'user': 'barney', 'active': true }));
+ * // => [{ 'user': 'barney', 'age': 36, 'active': true }]
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.filter(users, _.iteratee(['user', 'fred']));
+ * // => [{ 'user': 'fred', 'age': 40 }]
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.map(users, _.iteratee('user'));
+ * // => ['barney', 'fred']
+ *
+ * // Create custom iteratee shorthands.
+ * _.iteratee = _.wrap(_.iteratee, function(iteratee, func) {
+ *   return !_.isRegExp(func) ? iteratee(func) : function(string) {
+ *     return func.test(string);
+ *   };
+ * });
+ *
+ * _.filter(['abc', 'def'], /ef/);
+ * // => ['def']
+ */
+function iteratee(func) {
+  return baseIteratee(typeof func == 'function' ? func : baseClone(func, CLONE_DEEP_FLAG));
+}
+
+module.exports = iteratee;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(CLONE_DEEP_FLAG, 'CLONE_DEEP_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/iteratee.js');
+
+  __REACT_HOT_LOADER__.register(iteratee, 'iteratee', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/iteratee.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "GQlt":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -29011,6 +31290,40 @@ exports.encrypt = function (self, chunk) {
 
 /***/ },
 
+/***/ "H4v4":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var convert = __webpack_require__("nPUy"),
+    func = convert('flow', __webpack_require__("zly7"));
+
+func.placeholder = __webpack_require__("tUXZ");
+module.exports = func;
+;
+
+var _temp = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+
+    __REACT_HOT_LOADER__.register(func, 'func', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/flow.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+}();
+
+;
+
+/***/ },
+
 /***/ "H7KY":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -29161,6 +31474,118 @@ Ultron.prototype.destroy = function destroy() {
 //
 module.exports = Ultron;
 
+
+/***/ },
+
+/***/ "HP5/":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var LodashWrapper = __webpack_require__("0R+t"),
+    flatRest = __webpack_require__("43GM"),
+    getData = __webpack_require__("pGGo"),
+    getFuncName = __webpack_require__("auJV"),
+    isArray = __webpack_require__("7gq8"),
+    isLaziable = __webpack_require__("hQHz");
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_CURRY_FLAG = 8,
+    WRAP_PARTIAL_FLAG = 32,
+    WRAP_ARY_FLAG = 128,
+    WRAP_REARG_FLAG = 256;
+
+/**
+ * Creates a `_.flow` or `_.flowRight` function.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new flow function.
+ */
+function createFlow(fromRight) {
+  return flatRest(function (funcs) {
+    var length = funcs.length,
+        index = length,
+        prereq = LodashWrapper.prototype.thru;
+
+    if (fromRight) {
+      funcs.reverse();
+    }
+    while (index--) {
+      var func = funcs[index];
+      if (typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      if (prereq && !wrapper && getFuncName(func) == 'wrapper') {
+        var wrapper = new LodashWrapper([], true);
+      }
+    }
+    index = wrapper ? index : length;
+    while (++index < length) {
+      func = funcs[index];
+
+      var funcName = getFuncName(func),
+          data = funcName == 'wrapper' ? getData(func) : undefined;
+
+      if (data && isLaziable(data[0]) && data[1] == (WRAP_ARY_FLAG | WRAP_CURRY_FLAG | WRAP_PARTIAL_FLAG | WRAP_REARG_FLAG) && !data[4].length && data[9] == 1) {
+        wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
+      } else {
+        wrapper = func.length == 1 && isLaziable(func) ? wrapper[funcName]() : wrapper.thru(func);
+      }
+    }
+    return function () {
+      var args = arguments,
+          value = args[0];
+
+      if (wrapper && args.length == 1 && isArray(value)) {
+        return wrapper.plant(value).value();
+      }
+      var index = 0,
+          result = length ? funcs[index].apply(this, args) : value;
+
+      while (++index < length) {
+        result = funcs[index].call(this, result);
+      }
+      return result;
+    };
+  });
+}
+
+module.exports = createFlow;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(FUNC_ERROR_TEXT, 'FUNC_ERROR_TEXT', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createFlow.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_FLAG, 'WRAP_CURRY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createFlow.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_PARTIAL_FLAG, 'WRAP_PARTIAL_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createFlow.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_ARY_FLAG, 'WRAP_ARY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createFlow.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_REARG_FLAG, 'WRAP_REARG_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createFlow.js');
+
+  __REACT_HOT_LOADER__.register(createFlow, 'createFlow', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createFlow.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -33123,6 +35548,14 @@ var _WebsocketReducer = __webpack_require__("A4Kg");
 
 var _WebsocketReducer2 = _interopRequireDefault(_WebsocketReducer);
 
+var _PipelinesReducer = __webpack_require__("kE/c");
+
+var _PipelinesReducer2 = _interopRequireDefault(_PipelinesReducer);
+
+var _TerminalReducer = __webpack_require__("lIxZ");
+
+var _TerminalReducer2 = _interopRequireDefault(_TerminalReducer);
+
 var _StoreReducer = __webpack_require__("VqK3");
 
 var _StoreReducer2 = _interopRequireDefault(_StoreReducer);
@@ -33165,7 +35598,9 @@ var splitReducers = (0, _redux.combineReducers)({
   desktopReleases: _DesktopReleasesReducer2.default,
   userSettings: _UserSettingsReducer2.default,
   stringFilter: _StringFilterReducer2.default,
-  websocket: _WebsocketReducer2.default
+  websocket: _WebsocketReducer2.default,
+  pipelines: _PipelinesReducer2.default,
+  terminal: _TerminalReducer2.default
 });
 
 var _default = function _default(state, action) {
@@ -33267,6 +35702,56 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "Jdza":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var getWrapDetails = __webpack_require__("zBJx"),
+    insertWrapDetails = __webpack_require__("6uBy"),
+    setToString = __webpack_require__("CJqP"),
+    updateWrapDetails = __webpack_require__("7saB");
+
+/**
+ * Sets the `toString` method of `wrapper` to mimic the source of `reference`
+ * with wrapper details in a comment at the top of the source body.
+ *
+ * @private
+ * @param {Function} wrapper The function to modify.
+ * @param {Function} reference The reference function.
+ * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+ * @returns {Function} Returns `wrapper`.
+ */
+function setWrapToString(wrapper, reference, bitmask) {
+  var source = reference + '';
+  return setToString(wrapper, insertWrapDetails(source, updateWrapDetails(getWrapDetails(source), bitmask)));
+}
+
+module.exports = setWrapToString;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(setWrapToString, 'setWrapToString', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_setWrapToString.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "Jfvy":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -33333,6 +35818,40 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACO
 
 // removed by extract-text-webpack-plugin
 module.exports = {"border1":"rgba(0, 0, 0, 0.1)","overlay":"Modal_overlay-2k-8j","fade-in":"Modal_fade-in-2JrbP","modal":"Modal_modal-2ErUL","fade-in-pulse-08":"Modal_fade-in-pulse-08-3CWEm"};
+
+/***/ },
+
+/***/ "Jpwv":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var convert = __webpack_require__("nPUy"),
+    func = convert('map', __webpack_require__("eu2V"));
+
+func.placeholder = __webpack_require__("tUXZ");
+module.exports = func;
+;
+
+var _temp = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+
+    __REACT_HOT_LOADER__.register(func, 'func', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/map.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+}();
+
+;
 
 /***/ },
 
@@ -33847,6 +36366,52 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
   return 0;
 };
 
+
+/***/ },
+
+/***/ "K2BQ":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var identity = __webpack_require__("mD4+"),
+    metaMap = __webpack_require__("1M45");
+
+/**
+ * The base implementation of `setData` without support for hot loop shorting.
+ *
+ * @private
+ * @param {Function} func The function to associate metadata with.
+ * @param {*} data The metadata.
+ * @returns {Function} Returns `func`.
+ */
+var baseSetData = !metaMap ? identity : function (func, data) {
+  metaMap.set(func, data);
+  return func;
+};
+
+module.exports = baseSetData;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(baseSetData, 'baseSetData', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_baseSetData.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -38837,7 +41402,7 @@ module.exports = Sha
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.unlinkRemote = exports.linkRemote = exports.confirmLinkRemote = exports.removeField = exports.addField = exports.saveProject = exports.deleteProject = exports.confirmDeleteProject = exports.getUserProjects = exports.createProject = exports.getProject = exports.setActiveProject = undefined;
+exports.createClonedProject = exports.unlinkRemote = exports.linkRemote = exports.confirmLinkRemote = exports.removeField = exports.addField = exports.saveProject = exports.deleteProject = exports.confirmDeleteProject = exports.getUserProjects = exports.createProject = exports.getProject = exports.setActiveProject = undefined;
 
 var _promise = __webpack_require__("//Fk");
 
@@ -38911,25 +41476,25 @@ var getProject = exports.getProject = function getProject(_ref2) {
 
     var existingSize = project ? project.dataSize : undefined;
 
-    if ((0, _utils.shouldDownload)(size, existingSize) || force) {
-      return dispatch({
-        type: 'PROJECTS/GET_PROJECT',
-        httpPackage: {
-          url: '/api/v1/projects',
-          method: 'GET',
-          staticParams: {
-            select: fields[size]
-          },
-          params: {
-            ids: projectId
-          }
+    // if (shouldDownload(size, existingSize) || force) {
+    return dispatch({
+      type: 'PROJECTS/GET_PROJECT',
+      httpPackage: {
+        url: '/api/v1/projects',
+        method: 'GET',
+        staticParams: {
+          select: fields[size]
         },
-        meta: {
-          projectId: projectId,
-          size: size
+        params: {
+          ids: projectId
         }
-      });
-    }
+      },
+      meta: {
+        projectId: projectId,
+        size: size
+      }
+    });
+    // }
   };
 };
 
@@ -39199,6 +41764,30 @@ var unlinkRemote = exports.unlinkRemote = function unlinkRemote(_ref14) {
     });
   };
 };
+
+var createClonedProject = exports.createClonedProject = function createClonedProject(_ref15) {
+  var projectId = _ref15.projectId,
+      provider = _ref15.provider,
+      isPrivate = _ref15.isPrivate,
+      name = _ref15.name;
+  return function (dispatch) {
+    return (
+      // Clone the project
+      dispatch({
+        type: 'SOCIAL/CLONE',
+        payload: (0, _axios2.default)({
+          method: 'POST',
+          url: '/api/v1/sync/clone/' + projectId,
+          data: {
+            name: name,
+            provider: provider,
+            private: isPrivate
+          }
+        })
+      })
+    );
+  };
+};
 ;
 
 var _temp = function () {
@@ -39235,6 +41824,8 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(linkRemote, 'linkRemote', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/Projects.actions.js');
 
   __REACT_HOT_LOADER__.register(unlinkRemote, 'unlinkRemote', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/Projects.actions.js');
+
+  __REACT_HOT_LOADER__.register(createClonedProject, 'createClonedProject', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/Projects.actions.js');
 
   __REACT_HOT_LOADER__.register(fields, 'fields', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Projects/Projects.actions.js');
 }();
@@ -40532,6 +43123,48 @@ module.exports = __webpack_require__("ejIc")
 /***/ function(module, exports) {
 
 module.exports = true;
+
+/***/ },
+
+/***/ "O7+k":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+/**
+ * Gets the argument placeholder value for `func`.
+ *
+ * @private
+ * @param {Function} func The function to inspect.
+ * @returns {*} Returns the placeholder value.
+ */
+function getHolder(func) {
+  var object = func;
+  return object.placeholder;
+}
+
+module.exports = getHolder;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(getHolder, "getHolder", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_getHolder.js");
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -45786,6 +48419,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 var rootDomain =  true ? window.location.origin : 'http://localhost:49554';
 
+var googleClientId =  true ? '502305750839-8m9aian8ka9qb6j64t3dtjs2nq96tdae.apps.googleusercontent.com' : '502305750839-aq4jo6l15tkb1phi2gpr5hod274444m4.apps.googleusercontent.com';
+
+var dropboxClientId =  true ? '0wgo11dn573805b' : '18uu4ynw3cp92oi';
+
 var oauthCreds = exports.oauthCreds = {
   facebook: {
     url: 'https://www.facebook.com/dialog/oauth',
@@ -45803,7 +48440,7 @@ var oauthCreds = exports.oauthCreds = {
       redirect_uri: rootDomain + '/api/auth/google',
       response_type: 'code',
       prompt: 'consent', // forces request of refresh token
-      client_id: '502305750839-8m9aian8ka9qb6j64t3dtjs2nq96tdae.apps.googleusercontent.com',
+      client_id: googleClientId,
       scope: 'openid profile email https://www.googleapis.com/auth/drive'
     }
   },
@@ -45824,7 +48461,7 @@ var oauthCreds = exports.oauthCreds = {
       force_reapprove: true,
       redirect_uri: rootDomain + '/api/auth/dropbox',
       response_type: 'code',
-      client_id: '0wgo11dn573805b'
+      client_id: dropboxClientId
     }
   }
 };
@@ -45838,6 +48475,10 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(oauthCreds, 'oauthCreds', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/Auth.config.js');
 
   __REACT_HOT_LOADER__.register(rootDomain, 'rootDomain', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/Auth.config.js');
+
+  __REACT_HOT_LOADER__.register(googleClientId, 'googleClientId', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/Auth.config.js');
+
+  __REACT_HOT_LOADER__.register(dropboxClientId, 'dropboxClientId', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/Auth.config.js');
 }();
 
 ;
@@ -46443,6 +49084,100 @@ module.exports.f = function getOwnPropertyNames(it){
   return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
 };
 
+
+/***/ },
+
+/***/ "Rs6I":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var isLaziable = __webpack_require__("hQHz"),
+    setData = __webpack_require__("sIFy"),
+    setWrapToString = __webpack_require__("Jdza");
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_BIND_FLAG = 1,
+    WRAP_BIND_KEY_FLAG = 2,
+    WRAP_CURRY_BOUND_FLAG = 4,
+    WRAP_CURRY_FLAG = 8,
+    WRAP_PARTIAL_FLAG = 32,
+    WRAP_PARTIAL_RIGHT_FLAG = 64;
+
+/**
+ * Creates a function that wraps `func` to continue currying.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+ * @param {Function} wrapFunc The function to create the `func` wrapper.
+ * @param {*} placeholder The placeholder value.
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @param {Array} [partials] The arguments to prepend to those provided to
+ *  the new function.
+ * @param {Array} [holders] The `partials` placeholder indexes.
+ * @param {Array} [argPos] The argument positions of the new function.
+ * @param {number} [ary] The arity cap of `func`.
+ * @param {number} [arity] The arity of `func`.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createRecurry(func, bitmask, wrapFunc, placeholder, thisArg, partials, holders, argPos, ary, arity) {
+  var isCurry = bitmask & WRAP_CURRY_FLAG,
+      newHolders = isCurry ? holders : undefined,
+      newHoldersRight = isCurry ? undefined : holders,
+      newPartials = isCurry ? partials : undefined,
+      newPartialsRight = isCurry ? undefined : partials;
+
+  bitmask |= isCurry ? WRAP_PARTIAL_FLAG : WRAP_PARTIAL_RIGHT_FLAG;
+  bitmask &= ~(isCurry ? WRAP_PARTIAL_RIGHT_FLAG : WRAP_PARTIAL_FLAG);
+
+  if (!(bitmask & WRAP_CURRY_BOUND_FLAG)) {
+    bitmask &= ~(WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG);
+  }
+  var newData = [func, bitmask, thisArg, newPartials, newHolders, newPartialsRight, newHoldersRight, argPos, ary, arity];
+
+  var result = wrapFunc.apply(undefined, newData);
+  if (isLaziable(func)) {
+    setData(result, newData);
+  }
+  result.placeholder = placeholder;
+  return setWrapToString(result, func, bitmask);
+}
+
+module.exports = createRecurry;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_FLAG, 'WRAP_BIND_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createRecurry.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_KEY_FLAG, 'WRAP_BIND_KEY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createRecurry.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_BOUND_FLAG, 'WRAP_CURRY_BOUND_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createRecurry.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_FLAG, 'WRAP_CURRY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createRecurry.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_PARTIAL_FLAG, 'WRAP_PARTIAL_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createRecurry.js');
+
+  __REACT_HOT_LOADER__.register(WRAP_PARTIAL_RIGHT_FLAG, 'WRAP_PARTIAL_RIGHT_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createRecurry.js');
+
+  __REACT_HOT_LOADER__.register(createRecurry, 'createRecurry', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createRecurry.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -48093,6 +50828,78 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "Smad":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * This function is like `composeArgs` except that the arguments composition
+ * is tailored for `_.partialRight`.
+ *
+ * @private
+ * @param {Array} args The provided arguments.
+ * @param {Array} partials The arguments to append to those provided.
+ * @param {Array} holders The `partials` placeholder indexes.
+ * @params {boolean} [isCurried] Specify composing for a curried function.
+ * @returns {Array} Returns the new array of composed arguments.
+ */
+function composeArgsRight(args, partials, holders, isCurried) {
+  var argsIndex = -1,
+      argsLength = args.length,
+      holdersIndex = -1,
+      holdersLength = holders.length,
+      rightIndex = -1,
+      rightLength = partials.length,
+      rangeLength = nativeMax(argsLength - holdersLength, 0),
+      result = Array(rangeLength + rightLength),
+      isUncurried = !isCurried;
+
+  while (++argsIndex < rangeLength) {
+    result[argsIndex] = args[argsIndex];
+  }
+  var offset = argsIndex;
+  while (++rightIndex < rightLength) {
+    result[offset + rightIndex] = partials[rightIndex];
+  }
+  while (++holdersIndex < holdersLength) {
+    if (isUncurried || argsIndex < argsLength) {
+      result[offset + holders[holdersIndex]] = args[argsIndex++];
+    }
+  }
+  return result;
+}
+
+module.exports = composeArgsRight;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(nativeMax, "nativeMax", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_composeArgsRight.js");
+
+  __REACT_HOT_LOADER__.register(composeArgsRight, "composeArgsRight", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_composeArgsRight.js");
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "SsjP":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -49017,6 +51824,64 @@ var _temp = function () {
   }
 
   __REACT_HOT_LOADER__.register(baseAssignValue, 'baseAssignValue', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_baseAssignValue.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "UG9h":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseFlatten = __webpack_require__("0ewx"),
+    map = __webpack_require__("eu2V");
+
+/**
+ * Creates a flattened array of values by running each element in `collection`
+ * thru `iteratee` and flattening the mapped results. The iteratee is invoked
+ * with three arguments: (value, index|key, collection).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Array} Returns the new flattened array.
+ * @example
+ *
+ * function duplicate(n) {
+ *   return [n, n];
+ * }
+ *
+ * _.flatMap([1, 2], duplicate);
+ * // => [1, 1, 2, 2]
+ */
+function flatMap(collection, iteratee) {
+  return baseFlatten(map(collection, iteratee), 1);
+}
+
+module.exports = flatMap;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(flatMap, 'flatMap', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/flatMap.js');
 }();
 
 ;
@@ -53456,6 +56321,65 @@ module.exports = exports['default'];
 
 /***/ },
 
+/***/ "VqAG":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var createCtor = __webpack_require__("aNiE"),
+    root = __webpack_require__("w3EA");
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_BIND_FLAG = 1;
+
+/**
+ * Creates a function that wraps `func` to invoke it with the optional `this`
+ * binding of `thisArg`.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createBind(func, bitmask, thisArg) {
+  var isBind = bitmask & WRAP_BIND_FLAG,
+      Ctor = createCtor(func);
+
+  function wrapper() {
+    var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+    return fn.apply(isBind ? thisArg : this, arguments);
+  }
+  return wrapper;
+}
+
+module.exports = createBind;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_FLAG, 'WRAP_BIND_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createBind.js');
+
+  __REACT_HOT_LOADER__.register(createBind, 'createBind', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createBind.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "VqK3":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -54680,10 +57604,6 @@ var _extends2 = __webpack_require__("Dd8w");
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _assign = __webpack_require__("woOf");
-
-var _assign2 = _interopRequireDefault(_assign);
-
 var _objectWithoutProperties2 = __webpack_require__("+6Bu");
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
@@ -54704,11 +57624,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = function _default(props) {
   var style = props.style,
+      noColor = props.noColor,
       priv = props.private,
-      otherProps = (0, _objectWithoutProperties3.default)(props, ['style', 'private']);
+      otherProps = (0, _objectWithoutProperties3.default)(props, ['style', 'noColor', 'private']);
 
 
-  return priv ? _react2.default.createElement(_lockOutline2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#f5dbab' }, style) }, otherProps)) : _react2.default.createElement(_public2.default, (0, _extends3.default)({ style: (0, _assign2.default)({}, { color: '#bbe8bb' }, style) }, otherProps));
+  return priv ? _react2.default.createElement(_lockOutline2.default, (0, _extends3.default)({ style: noColor ? style : (0, _extends3.default)({}, style, { color: '#f5dbab' }) }, otherProps)) : _react2.default.createElement(_public2.default, (0, _extends3.default)({ style: noColor ? style : (0, _extends3.default)({}, style, { color: '#bbe8bb' }) }, otherProps));
 };
 
 var _default2 = _default;
@@ -55266,6 +58187,80 @@ module.exports = __webpack_require__.p + "images/tex.svg?aece6de26783f3d6bbbd6f7
 
 /***/ },
 
+/***/ "Y3z5":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var apply = __webpack_require__("T5Zr"),
+    createCtor = __webpack_require__("aNiE"),
+    root = __webpack_require__("w3EA");
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_BIND_FLAG = 1;
+
+/**
+ * Creates a function that wraps `func` to invoke it with the `this` binding
+ * of `thisArg` and `partials` prepended to the arguments it receives.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} partials The arguments to prepend to those provided to
+ *  the new function.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createPartial(func, bitmask, thisArg, partials) {
+  var isBind = bitmask & WRAP_BIND_FLAG,
+      Ctor = createCtor(func);
+
+  function wrapper() {
+    var argsIndex = -1,
+        argsLength = arguments.length,
+        leftIndex = -1,
+        leftLength = partials.length,
+        args = Array(leftLength + argsLength),
+        fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+
+    while (++leftIndex < leftLength) {
+      args[leftIndex] = partials[leftIndex];
+    }
+    while (argsLength--) {
+      args[leftIndex++] = arguments[++argsIndex];
+    }
+    return apply(fn, isBind ? thisArg : this, args);
+  }
+  return wrapper;
+}
+
+module.exports = createPartial;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(WRAP_BIND_FLAG, 'WRAP_BIND_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createPartial.js');
+
+  __REACT_HOT_LOADER__.register(createPartial, 'createPartial', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createPartial.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "Y9vR":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -55772,6 +58767,77 @@ module.exports = __webpack_require__.p + "images/hqz.svg?f9e4f5386e5bc5416454ab9
 
 /***/ },
 
+/***/ "Yd7T":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict';
+
+/** Used to compose unicode character classes. */
+var rsAstralRange = '\\ud800-\\udfff',
+    rsComboMarksRange = '\\u0300-\\u036f',
+    reComboHalfMarksRange = '\\ufe20-\\ufe2f',
+    rsComboSymbolsRange = '\\u20d0-\\u20ff',
+    rsComboRange = rsComboMarksRange + reComboHalfMarksRange + rsComboSymbolsRange,
+    rsVarRange = '\\ufe0e\\ufe0f';
+
+/** Used to compose unicode capture groups. */
+var rsZWJ = '\\u200d';
+
+/** Used to detect strings with [zero-width joiners or code points from the astral planes](http://eev.ee/blog/2015/09/12/dark-corners-of-unicode/). */
+var reHasUnicode = RegExp('[' + rsZWJ + rsAstralRange + rsComboRange + rsVarRange + ']');
+
+/**
+ * Checks if `string` contains Unicode symbols.
+ *
+ * @private
+ * @param {string} string The string to inspect.
+ * @returns {boolean} Returns `true` if a symbol is found, else `false`.
+ */
+function hasUnicode(string) {
+  return reHasUnicode.test(string);
+}
+
+module.exports = hasUnicode;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(rsAstralRange, 'rsAstralRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_hasUnicode.js');
+
+  __REACT_HOT_LOADER__.register(rsComboMarksRange, 'rsComboMarksRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_hasUnicode.js');
+
+  __REACT_HOT_LOADER__.register(reComboHalfMarksRange, 'reComboHalfMarksRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_hasUnicode.js');
+
+  __REACT_HOT_LOADER__.register(rsComboSymbolsRange, 'rsComboSymbolsRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_hasUnicode.js');
+
+  __REACT_HOT_LOADER__.register(rsComboRange, 'rsComboRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_hasUnicode.js');
+
+  __REACT_HOT_LOADER__.register(rsVarRange, 'rsVarRange', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_hasUnicode.js');
+
+  __REACT_HOT_LOADER__.register(rsZWJ, 'rsZWJ', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_hasUnicode.js');
+
+  __REACT_HOT_LOADER__.register(reHasUnicode, 'reHasUnicode', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_hasUnicode.js');
+
+  __REACT_HOT_LOADER__.register(hasUnicode, 'hasUnicode', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_hasUnicode.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "YdSu":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -55924,6 +58990,66 @@ EDE.prototype._update = function _update(inp, inOff, out, outOff) {
 EDE.prototype._pad = DES.prototype._pad;
 EDE.prototype._unpad = DES.prototype._unpad;
 
+
+/***/ },
+
+/***/ "Yiv5":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict';
+
+/** Used as the internal argument placeholder. */
+var PLACEHOLDER = '__lodash_placeholder__';
+
+/**
+ * Replaces all `placeholder` elements in `array` with an internal placeholder
+ * and returns an array of their indexes.
+ *
+ * @private
+ * @param {Array} array The array to modify.
+ * @param {*} placeholder The placeholder to replace.
+ * @returns {Array} Returns the new array of placeholder indexes.
+ */
+function replaceHolders(array, placeholder) {
+  var index = -1,
+      length = array.length,
+      resIndex = 0,
+      result = [];
+
+  while (++index < length) {
+    var value = array[index];
+    if (value === placeholder || value === PLACEHOLDER) {
+      array[index] = PLACEHOLDER;
+      result[resIndex++] = index;
+    }
+  }
+  return result;
+}
+
+module.exports = replaceHolders;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(PLACEHOLDER, 'PLACEHOLDER', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_replaceHolders.js');
+
+  __REACT_HOT_LOADER__.register(replaceHolders, 'replaceHolders', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_replaceHolders.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -59381,6 +62507,80 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "aNiE":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseCreate = __webpack_require__("IPfx"),
+    isObject = __webpack_require__("UsEr");
+
+/**
+ * Creates a function that produces an instance of `Ctor` regardless of
+ * whether it was invoked as part of a `new` expression or by `call` or `apply`.
+ *
+ * @private
+ * @param {Function} Ctor The constructor to wrap.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createCtor(Ctor) {
+  return function () {
+    // Use a `switch` statement to work with class constructors. See
+    // http://ecma-international.org/ecma-262/7.0/#sec-ecmascript-function-objects-call-thisargument-argumentslist
+    // for more details.
+    var args = arguments;
+    switch (args.length) {
+      case 0:
+        return new Ctor();
+      case 1:
+        return new Ctor(args[0]);
+      case 2:
+        return new Ctor(args[0], args[1]);
+      case 3:
+        return new Ctor(args[0], args[1], args[2]);
+      case 4:
+        return new Ctor(args[0], args[1], args[2], args[3]);
+      case 5:
+        return new Ctor(args[0], args[1], args[2], args[3], args[4]);
+      case 6:
+        return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+      case 7:
+        return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+    }
+    var thisBinding = baseCreate(Ctor.prototype),
+        result = Ctor.apply(thisBinding, args);
+
+    // Mimic the constructor's `return` behavior.
+    // See https://es5.github.io/#x13.2.2 for more details.
+    return isObject(result) ? result : thisBinding;
+  };
+}
+
+module.exports = createCtor;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(createCtor, 'createCtor', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createCtor.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "aSqn":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -59439,6 +62639,47 @@ IconBase.contextTypes = {
 
 exports.default = IconBase;
 module.exports = exports['default'];
+
+/***/ },
+
+/***/ "aTjF":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict';
+
+/**
+ * Converts an ASCII `string` to an array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the converted array.
+ */
+function asciiToArray(string) {
+  return string.split('');
+}
+
+module.exports = asciiToArray;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(asciiToArray, 'asciiToArray', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_asciiToArray.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -59887,6 +63128,70 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadRow/ThreadRow.jsx');
 
   __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Mentions/ThreadMentionModal/ThreadRow/ThreadRow.jsx');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "auJV":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var realNames = __webpack_require__("p3OR");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Gets the name of `func`.
+ *
+ * @private
+ * @param {Function} func The function to query.
+ * @returns {string} Returns the function name.
+ */
+function getFuncName(func) {
+  var result = func.name + '',
+      array = realNames[result],
+      length = hasOwnProperty.call(realNames, result) ? array.length : 0;
+
+  while (length--) {
+    var data = array[length],
+        otherFunc = data.func;
+    if (otherFunc == null || otherFunc == func) {
+      return data.name;
+    }
+  }
+  return result;
+}
+
+module.exports = getFuncName;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(objectProto, 'objectProto', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_getFuncName.js');
+
+  __REACT_HOT_LOADER__.register(hasOwnProperty, 'hasOwnProperty', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_getFuncName.js');
+
+  __REACT_HOT_LOADER__.register(getFuncName, 'getFuncName', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_getFuncName.js');
 }();
 
 ;
@@ -60361,6 +63666,57 @@ var shared = __webpack_require__("e8AB")('keys')
 module.exports = function(key){
   return shared[key] || (shared[key] = uid(key));
 };
+
+/***/ },
+
+/***/ "axVX":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+/**
+ * A specialized version of `baseAggregator` for arrays.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} setter The function to set `accumulator` values.
+ * @param {Function} iteratee The iteratee to transform keys.
+ * @param {Object} accumulator The initial aggregated object.
+ * @returns {Function} Returns `accumulator`.
+ */
+function arrayAggregator(array, setter, iteratee, accumulator) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+
+  while (++index < length) {
+    var value = array[index];
+    setter(accumulator, value, iteratee(value), array);
+  }
+  return accumulator;
+}
+
+module.exports = arrayAggregator;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(arrayAggregator, "arrayAggregator", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_arrayAggregator.js");
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -62313,6 +65669,66 @@ module.exports = isObject;
 
 /***/ },
 
+/***/ "beKe":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var copyArray = __webpack_require__("em3X"),
+    isIndex = __webpack_require__("qxp8");
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMin = Math.min;
+
+/**
+ * Reorder `array` according to the specified indexes where the element at
+ * the first index is assigned as the first element, the element at
+ * the second index is assigned as the second element, and so on.
+ *
+ * @private
+ * @param {Array} array The array to reorder.
+ * @param {Array} indexes The arranged array indexes.
+ * @returns {Array} Returns `array`.
+ */
+function reorder(array, indexes) {
+  var arrLength = array.length,
+      length = nativeMin(indexes.length, arrLength),
+      oldArray = copyArray(array);
+
+  while (length--) {
+    var index = indexes[length];
+    array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined;
+  }
+  return array;
+}
+
+module.exports = reorder;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(nativeMin, 'nativeMin', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_reorder.js');
+
+  __REACT_HOT_LOADER__.register(reorder, 'reorder', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_reorder.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "bh8o":
 /***/ function(module, exports) {
 
@@ -62358,6 +65774,86 @@ var _temp2 = function () {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/avi.svg?fe59e465fcf59f30baebf5bb88b1db9e";
+
+/***/ },
+
+/***/ "bqM9":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseToString = __webpack_require__("tlQ8"),
+    castSlice = __webpack_require__("pmEr"),
+    hasUnicode = __webpack_require__("Yd7T"),
+    isIterateeCall = __webpack_require__("AKJT"),
+    isRegExp = __webpack_require__("wEmI"),
+    stringToArray = __webpack_require__("cAGM"),
+    toString = __webpack_require__("QC2Y");
+
+/** Used as references for the maximum length and index of an array. */
+var MAX_ARRAY_LENGTH = 4294967295;
+
+/**
+ * Splits `string` by `separator`.
+ *
+ * **Note:** This method is based on
+ * [`String#split`](https://mdn.io/String/split).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category String
+ * @param {string} [string=''] The string to split.
+ * @param {RegExp|string} separator The separator pattern to split by.
+ * @param {number} [limit] The length to truncate results to.
+ * @returns {Array} Returns the string segments.
+ * @example
+ *
+ * _.split('a-b-c', '-', 2);
+ * // => ['a', 'b']
+ */
+function split(string, separator, limit) {
+  if (limit && typeof limit != 'number' && isIterateeCall(string, separator, limit)) {
+    separator = limit = undefined;
+  }
+  limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0;
+  if (!limit) {
+    return [];
+  }
+  string = toString(string);
+  if (string && (typeof separator == 'string' || separator != null && !isRegExp(separator))) {
+    separator = baseToString(separator);
+    if (!separator && hasUnicode(string)) {
+      return castSlice(stringToArray(string), 0, limit);
+    }
+  }
+  return string.split(separator, limit);
+}
+
+module.exports = split;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(MAX_ARRAY_LENGTH, 'MAX_ARRAY_LENGTH', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/split.js');
+
+  __REACT_HOT_LOADER__.register(split, 'split', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/split.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -62638,6 +66134,51 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "cAGM":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var asciiToArray = __webpack_require__("aTjF"),
+    hasUnicode = __webpack_require__("Yd7T"),
+    unicodeToArray = __webpack_require__("CSSN");
+
+/**
+ * Converts `string` to an array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the converted array.
+ */
+function stringToArray(string) {
+    return hasUnicode(string) ? unicodeToArray(string) : asciiToArray(string);
+}
+
+module.exports = stringToArray;
+;
+
+var _temp = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+
+    __REACT_HOT_LOADER__.register(stringToArray, 'stringToArray', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_stringToArray.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+}();
+
+;
+
+/***/ },
+
 /***/ "cCkt":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -62755,6 +66296,47 @@ function getContainer(container, defaultContainer) {
   return _reactDom2.default.findDOMNode(container) || defaultContainer;
 }
 module.exports = exports['default'];
+
+/***/ },
+
+/***/ "cP1j":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+module.exports = {
+  'ary': __webpack_require__("BJ1D"),
+  'assign': __webpack_require__("v4wZ"),
+  'clone': __webpack_require__("1oZf"),
+  'curry': __webpack_require__("rRcz"),
+  'forEach': __webpack_require__("JUBG"),
+  'isArray': __webpack_require__("7gq8"),
+  'isFunction': __webpack_require__("NqBn"),
+  'iteratee': __webpack_require__("GQC5"),
+  'keys': __webpack_require__("E8/n"),
+  'rearg': __webpack_require__("hfV2"),
+  'toInteger': __webpack_require__("la66"),
+  'toPath': __webpack_require__("emjK")
+};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -64821,6 +68403,88 @@ var _temp2 = function () {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/3dm.svg?e2674be856e92446dcfc339205b15708";
+
+/***/ },
+
+/***/ "eu2V":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var arrayMap = __webpack_require__("FGuL"),
+    baseIteratee = __webpack_require__("9lEZ"),
+    baseMap = __webpack_require__("RXfO"),
+    isArray = __webpack_require__("7gq8");
+
+/**
+ * Creates an array of values by running each element in `collection` thru
+ * `iteratee`. The iteratee is invoked with three arguments:
+ * (value, index|key, collection).
+ *
+ * Many lodash methods are guarded to work as iteratees for methods like
+ * `_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.
+ *
+ * The guarded methods are:
+ * `ary`, `chunk`, `curry`, `curryRight`, `drop`, `dropRight`, `every`,
+ * `fill`, `invert`, `parseInt`, `random`, `range`, `rangeRight`, `repeat`,
+ * `sampleSize`, `slice`, `some`, `sortBy`, `split`, `take`, `takeRight`,
+ * `template`, `trim`, `trimEnd`, `trimStart`, and `words`
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Array} Returns the new mapped array.
+ * @example
+ *
+ * function square(n) {
+ *   return n * n;
+ * }
+ *
+ * _.map([4, 8], square);
+ * // => [16, 64]
+ *
+ * _.map({ 'a': 4, 'b': 8 }, square);
+ * // => [16, 64] (iteration order is not guaranteed)
+ *
+ * var users = [
+ *   { 'user': 'barney' },
+ *   { 'user': 'fred' }
+ * ];
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.map(users, 'user');
+ * // => ['barney', 'fred']
+ */
+function map(collection, iteratee) {
+  var func = isArray(collection) ? arrayMap : baseMap;
+  return func(collection, baseIteratee(iteratee, 3));
+}
+
+module.exports = map;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(map, 'map', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/map.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -68324,6 +71988,76 @@ const EventTarget = {
 
 module.exports = EventTarget;
 
+
+/***/ },
+
+/***/ "gTAO":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * Creates an array that is the composition of partially applied arguments,
+ * placeholders, and provided arguments into a single array of arguments.
+ *
+ * @private
+ * @param {Array} args The provided arguments.
+ * @param {Array} partials The arguments to prepend to those provided.
+ * @param {Array} holders The `partials` placeholder indexes.
+ * @params {boolean} [isCurried] Specify composing for a curried function.
+ * @returns {Array} Returns the new array of composed arguments.
+ */
+function composeArgs(args, partials, holders, isCurried) {
+  var argsIndex = -1,
+      argsLength = args.length,
+      holdersLength = holders.length,
+      leftIndex = -1,
+      leftLength = partials.length,
+      rangeLength = nativeMax(argsLength - holdersLength, 0),
+      result = Array(leftLength + rangeLength),
+      isUncurried = !isCurried;
+
+  while (++leftIndex < leftLength) {
+    result[leftIndex] = partials[leftIndex];
+  }
+  while (++argsIndex < holdersLength) {
+    if (isUncurried || argsIndex < argsLength) {
+      result[holders[argsIndex]] = args[argsIndex];
+    }
+  }
+  while (rangeLength--) {
+    result[leftIndex++] = args[argsIndex++];
+  }
+  return result;
+}
+
+module.exports = composeArgs;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(nativeMax, "nativeMax", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_composeArgs.js");
+
+  __REACT_HOT_LOADER__.register(composeArgs, "composeArgs", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_composeArgs.js");
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -73281,6 +77015,63 @@ defineCurve('secp256k1', {
 
 /***/ },
 
+/***/ "hQHz":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var LazyWrapper = __webpack_require__("koBG"),
+    getData = __webpack_require__("pGGo"),
+    getFuncName = __webpack_require__("auJV"),
+    lodash = __webpack_require__("+zqC");
+
+/**
+ * Checks if `func` has a lazy counterpart.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` has a lazy counterpart,
+ *  else `false`.
+ */
+function isLaziable(func) {
+  var funcName = getFuncName(func),
+      other = lodash[funcName];
+
+  if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
+    return false;
+  }
+  if (func === other) {
+    return true;
+  }
+  var data = getData(other);
+  return !!data && func === data[0];
+}
+
+module.exports = isLaziable;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(isLaziable, 'isLaziable', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_isLaziable.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "hTvw":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -73666,6 +77457,70 @@ module.exports = __webpack_require__.p + "images/rm.svg?31e2a1d6e94df19af6e18e79
 
 /***/ },
 
+/***/ "hfV2":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var createWrap = __webpack_require__("0DQm"),
+    flatRest = __webpack_require__("43GM");
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_REARG_FLAG = 256;
+
+/**
+ * Creates a function that invokes `func` with arguments arranged according
+ * to the specified `indexes` where the argument value at the first index is
+ * provided as the first argument, the argument value at the second index is
+ * provided as the second argument, and so on.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Function
+ * @param {Function} func The function to rearrange arguments for.
+ * @param {...(number|number[])} indexes The arranged argument indexes.
+ * @returns {Function} Returns the new function.
+ * @example
+ *
+ * var rearged = _.rearg(function(a, b, c) {
+ *   return [a, b, c];
+ * }, [2, 0, 1]);
+ *
+ * rearged('b', 'c', 'a')
+ * // => ['a', 'b', 'c']
+ */
+var rearg = flatRest(function (func, indexes) {
+  return createWrap(func, WRAP_REARG_FLAG, undefined, undefined, undefined, indexes);
+});
+
+module.exports = rearg;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(WRAP_REARG_FLAG, 'WRAP_REARG_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/rearg.js');
+
+  __REACT_HOT_LOADER__.register(rearg, 'rearg', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/rearg.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "hkfz":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -73751,6 +77606,359 @@ module.exports = __webpack_require__.p + "images/aac.svg?607ef41142193f36f0e253f
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/mdf.svg?8bbcdde6ae4a55ac6db8be7aca55fea9";
+
+/***/ },
+
+/***/ "hwkA":
+/***/ function(module, exports) {
+
+"use strict";
+'use strict';
+
+/** Used to map aliases to their real names. */
+exports.aliasToReal = {
+
+  // Lodash aliases.
+  'each': 'forEach',
+  'eachRight': 'forEachRight',
+  'entries': 'toPairs',
+  'entriesIn': 'toPairsIn',
+  'extend': 'assignIn',
+  'extendAll': 'assignInAll',
+  'extendAllWith': 'assignInAllWith',
+  'extendWith': 'assignInWith',
+  'first': 'head',
+
+  // Methods that are curried variants of others.
+  'conforms': 'conformsTo',
+  'matches': 'isMatch',
+  'property': 'get',
+
+  // Ramda aliases.
+  '__': 'placeholder',
+  'F': 'stubFalse',
+  'T': 'stubTrue',
+  'all': 'every',
+  'allPass': 'overEvery',
+  'always': 'constant',
+  'any': 'some',
+  'anyPass': 'overSome',
+  'apply': 'spread',
+  'assoc': 'set',
+  'assocPath': 'set',
+  'complement': 'negate',
+  'compose': 'flowRight',
+  'contains': 'includes',
+  'dissoc': 'unset',
+  'dissocPath': 'unset',
+  'dropLast': 'dropRight',
+  'dropLastWhile': 'dropRightWhile',
+  'equals': 'isEqual',
+  'identical': 'eq',
+  'indexBy': 'keyBy',
+  'init': 'initial',
+  'invertObj': 'invert',
+  'juxt': 'over',
+  'omitAll': 'omit',
+  'nAry': 'ary',
+  'path': 'get',
+  'pathEq': 'matchesProperty',
+  'pathOr': 'getOr',
+  'paths': 'at',
+  'pickAll': 'pick',
+  'pipe': 'flow',
+  'pluck': 'map',
+  'prop': 'get',
+  'propEq': 'matchesProperty',
+  'propOr': 'getOr',
+  'props': 'at',
+  'symmetricDifference': 'xor',
+  'symmetricDifferenceBy': 'xorBy',
+  'symmetricDifferenceWith': 'xorWith',
+  'takeLast': 'takeRight',
+  'takeLastWhile': 'takeRightWhile',
+  'unapply': 'rest',
+  'unnest': 'flatten',
+  'useWith': 'overArgs',
+  'where': 'conformsTo',
+  'whereEq': 'isMatch',
+  'zipObj': 'zipObject'
+};
+
+/** Used to map ary to method names. */
+exports.aryMethod = {
+  '1': ['assignAll', 'assignInAll', 'attempt', 'castArray', 'ceil', 'create', 'curry', 'curryRight', 'defaultsAll', 'defaultsDeepAll', 'floor', 'flow', 'flowRight', 'fromPairs', 'invert', 'iteratee', 'memoize', 'method', 'mergeAll', 'methodOf', 'mixin', 'nthArg', 'over', 'overEvery', 'overSome', 'rest', 'reverse', 'round', 'runInContext', 'spread', 'template', 'trim', 'trimEnd', 'trimStart', 'uniqueId', 'words', 'zipAll'],
+  '2': ['add', 'after', 'ary', 'assign', 'assignAllWith', 'assignIn', 'assignInAllWith', 'at', 'before', 'bind', 'bindAll', 'bindKey', 'chunk', 'cloneDeepWith', 'cloneWith', 'concat', 'conformsTo', 'countBy', 'curryN', 'curryRightN', 'debounce', 'defaults', 'defaultsDeep', 'defaultTo', 'delay', 'difference', 'divide', 'drop', 'dropRight', 'dropRightWhile', 'dropWhile', 'endsWith', 'eq', 'every', 'filter', 'find', 'findIndex', 'findKey', 'findLast', 'findLastIndex', 'findLastKey', 'flatMap', 'flatMapDeep', 'flattenDepth', 'forEach', 'forEachRight', 'forIn', 'forInRight', 'forOwn', 'forOwnRight', 'get', 'groupBy', 'gt', 'gte', 'has', 'hasIn', 'includes', 'indexOf', 'intersection', 'invertBy', 'invoke', 'invokeMap', 'isEqual', 'isMatch', 'join', 'keyBy', 'lastIndexOf', 'lt', 'lte', 'map', 'mapKeys', 'mapValues', 'matchesProperty', 'maxBy', 'meanBy', 'merge', 'mergeAllWith', 'minBy', 'multiply', 'nth', 'omit', 'omitBy', 'overArgs', 'pad', 'padEnd', 'padStart', 'parseInt', 'partial', 'partialRight', 'partition', 'pick', 'pickBy', 'propertyOf', 'pull', 'pullAll', 'pullAt', 'random', 'range', 'rangeRight', 'rearg', 'reject', 'remove', 'repeat', 'restFrom', 'result', 'sampleSize', 'some', 'sortBy', 'sortedIndex', 'sortedIndexOf', 'sortedLastIndex', 'sortedLastIndexOf', 'sortedUniqBy', 'split', 'spreadFrom', 'startsWith', 'subtract', 'sumBy', 'take', 'takeRight', 'takeRightWhile', 'takeWhile', 'tap', 'throttle', 'thru', 'times', 'trimChars', 'trimCharsEnd', 'trimCharsStart', 'truncate', 'union', 'uniqBy', 'uniqWith', 'unset', 'unzipWith', 'without', 'wrap', 'xor', 'zip', 'zipObject', 'zipObjectDeep'],
+  '3': ['assignInWith', 'assignWith', 'clamp', 'differenceBy', 'differenceWith', 'findFrom', 'findIndexFrom', 'findLastFrom', 'findLastIndexFrom', 'getOr', 'includesFrom', 'indexOfFrom', 'inRange', 'intersectionBy', 'intersectionWith', 'invokeArgs', 'invokeArgsMap', 'isEqualWith', 'isMatchWith', 'flatMapDepth', 'lastIndexOfFrom', 'mergeWith', 'orderBy', 'padChars', 'padCharsEnd', 'padCharsStart', 'pullAllBy', 'pullAllWith', 'rangeStep', 'rangeStepRight', 'reduce', 'reduceRight', 'replace', 'set', 'slice', 'sortedIndexBy', 'sortedLastIndexBy', 'transform', 'unionBy', 'unionWith', 'update', 'xorBy', 'xorWith', 'zipWith'],
+  '4': ['fill', 'setWith', 'updateWith']
+};
+
+/** Used to map ary to rearg configs. */
+exports.aryRearg = {
+  '2': [1, 0],
+  '3': [2, 0, 1],
+  '4': [3, 2, 0, 1]
+};
+
+/** Used to map method names to their iteratee ary. */
+exports.iterateeAry = {
+  'dropRightWhile': 1,
+  'dropWhile': 1,
+  'every': 1,
+  'filter': 1,
+  'find': 1,
+  'findFrom': 1,
+  'findIndex': 1,
+  'findIndexFrom': 1,
+  'findKey': 1,
+  'findLast': 1,
+  'findLastFrom': 1,
+  'findLastIndex': 1,
+  'findLastIndexFrom': 1,
+  'findLastKey': 1,
+  'flatMap': 1,
+  'flatMapDeep': 1,
+  'flatMapDepth': 1,
+  'forEach': 1,
+  'forEachRight': 1,
+  'forIn': 1,
+  'forInRight': 1,
+  'forOwn': 1,
+  'forOwnRight': 1,
+  'map': 1,
+  'mapKeys': 1,
+  'mapValues': 1,
+  'partition': 1,
+  'reduce': 2,
+  'reduceRight': 2,
+  'reject': 1,
+  'remove': 1,
+  'some': 1,
+  'takeRightWhile': 1,
+  'takeWhile': 1,
+  'times': 1,
+  'transform': 2
+};
+
+/** Used to map method names to iteratee rearg configs. */
+exports.iterateeRearg = {
+  'mapKeys': [1],
+  'reduceRight': [1, 0]
+};
+
+/** Used to map method names to rearg configs. */
+exports.methodRearg = {
+  'assignInAllWith': [1, 0],
+  'assignInWith': [1, 2, 0],
+  'assignAllWith': [1, 0],
+  'assignWith': [1, 2, 0],
+  'differenceBy': [1, 2, 0],
+  'differenceWith': [1, 2, 0],
+  'getOr': [2, 1, 0],
+  'intersectionBy': [1, 2, 0],
+  'intersectionWith': [1, 2, 0],
+  'isEqualWith': [1, 2, 0],
+  'isMatchWith': [2, 1, 0],
+  'mergeAllWith': [1, 0],
+  'mergeWith': [1, 2, 0],
+  'padChars': [2, 1, 0],
+  'padCharsEnd': [2, 1, 0],
+  'padCharsStart': [2, 1, 0],
+  'pullAllBy': [2, 1, 0],
+  'pullAllWith': [2, 1, 0],
+  'rangeStep': [1, 2, 0],
+  'rangeStepRight': [1, 2, 0],
+  'setWith': [3, 1, 2, 0],
+  'sortedIndexBy': [2, 1, 0],
+  'sortedLastIndexBy': [2, 1, 0],
+  'unionBy': [1, 2, 0],
+  'unionWith': [1, 2, 0],
+  'updateWith': [3, 1, 2, 0],
+  'xorBy': [1, 2, 0],
+  'xorWith': [1, 2, 0],
+  'zipWith': [1, 2, 0]
+};
+
+/** Used to map method names to spread configs. */
+exports.methodSpread = {
+  'assignAll': { 'start': 0 },
+  'assignAllWith': { 'start': 0 },
+  'assignInAll': { 'start': 0 },
+  'assignInAllWith': { 'start': 0 },
+  'defaultsAll': { 'start': 0 },
+  'defaultsDeepAll': { 'start': 0 },
+  'invokeArgs': { 'start': 2 },
+  'invokeArgsMap': { 'start': 2 },
+  'mergeAll': { 'start': 0 },
+  'mergeAllWith': { 'start': 0 },
+  'partial': { 'start': 1 },
+  'partialRight': { 'start': 1 },
+  'without': { 'start': 1 },
+  'zipAll': { 'start': 0 }
+};
+
+/** Used to identify methods which mutate arrays or objects. */
+exports.mutate = {
+  'array': {
+    'fill': true,
+    'pull': true,
+    'pullAll': true,
+    'pullAllBy': true,
+    'pullAllWith': true,
+    'pullAt': true,
+    'remove': true,
+    'reverse': true
+  },
+  'object': {
+    'assign': true,
+    'assignAll': true,
+    'assignAllWith': true,
+    'assignIn': true,
+    'assignInAll': true,
+    'assignInAllWith': true,
+    'assignInWith': true,
+    'assignWith': true,
+    'defaults': true,
+    'defaultsAll': true,
+    'defaultsDeep': true,
+    'defaultsDeepAll': true,
+    'merge': true,
+    'mergeAll': true,
+    'mergeAllWith': true,
+    'mergeWith': true
+  },
+  'set': {
+    'set': true,
+    'setWith': true,
+    'unset': true,
+    'update': true,
+    'updateWith': true
+  }
+};
+
+/** Used to track methods with placeholder support */
+exports.placeholder = {
+  'bind': true,
+  'bindKey': true,
+  'curry': true,
+  'curryRight': true,
+  'partial': true,
+  'partialRight': true
+};
+
+/** Used to map real names to their aliases. */
+exports.realToAlias = function () {
+  var hasOwnProperty = Object.prototype.hasOwnProperty,
+      object = exports.aliasToReal,
+      result = {};
+
+  for (var key in object) {
+    var value = object[key];
+    if (hasOwnProperty.call(result, value)) {
+      result[value].push(key);
+    } else {
+      result[value] = [key];
+    }
+  }
+  return result;
+}();
+
+/** Used to map method names to other names. */
+exports.remap = {
+  'assignAll': 'assign',
+  'assignAllWith': 'assignWith',
+  'assignInAll': 'assignIn',
+  'assignInAllWith': 'assignInWith',
+  'curryN': 'curry',
+  'curryRightN': 'curryRight',
+  'defaultsAll': 'defaults',
+  'defaultsDeepAll': 'defaultsDeep',
+  'findFrom': 'find',
+  'findIndexFrom': 'findIndex',
+  'findLastFrom': 'findLast',
+  'findLastIndexFrom': 'findLastIndex',
+  'getOr': 'get',
+  'includesFrom': 'includes',
+  'indexOfFrom': 'indexOf',
+  'invokeArgs': 'invoke',
+  'invokeArgsMap': 'invokeMap',
+  'lastIndexOfFrom': 'lastIndexOf',
+  'mergeAll': 'merge',
+  'mergeAllWith': 'mergeWith',
+  'padChars': 'pad',
+  'padCharsEnd': 'padEnd',
+  'padCharsStart': 'padStart',
+  'propertyOf': 'get',
+  'rangeStep': 'range',
+  'rangeStepRight': 'rangeRight',
+  'restFrom': 'rest',
+  'spreadFrom': 'spread',
+  'trimChars': 'trim',
+  'trimCharsEnd': 'trimEnd',
+  'trimCharsStart': 'trimStart',
+  'zipAll': 'zip'
+};
+
+/** Used to track methods that skip fixing their arity. */
+exports.skipFixed = {
+  'castArray': true,
+  'flow': true,
+  'flowRight': true,
+  'iteratee': true,
+  'mixin': true,
+  'rearg': true,
+  'runInContext': true
+};
+
+/** Used to track methods that skip rearranging arguments. */
+exports.skipRearg = {
+  'add': true,
+  'assign': true,
+  'assignIn': true,
+  'bind': true,
+  'bindKey': true,
+  'concat': true,
+  'difference': true,
+  'divide': true,
+  'eq': true,
+  'gt': true,
+  'gte': true,
+  'isEqual': true,
+  'lt': true,
+  'lte': true,
+  'matchesProperty': true,
+  'merge': true,
+  'multiply': true,
+  'overArgs': true,
+  'partial': true,
+  'partialRight': true,
+  'propertyOf': true,
+  'random': true,
+  'range': true,
+  'rangeRight': true,
+  'subtract': true,
+  'zip': true,
+  'zipObject': true,
+  'zipObjectDeep': true
+};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -74465,6 +78673,40 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "iuaJ":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var convert = __webpack_require__("nPUy"),
+    func = convert('keyBy', __webpack_require__("4hni"));
+
+func.placeholder = __webpack_require__("tUXZ");
+module.exports = func;
+;
+
+var _temp = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+
+    __REACT_HOT_LOADER__.register(func, 'func', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/keyBy.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+}();
+
+;
+
+/***/ },
+
 /***/ "izKC":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -74610,6 +78852,40 @@ var _temp = function () {
     }
 
     __REACT_HOT_LOADER__.register(difference, 'difference', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/difference.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+}();
+
+;
+
+/***/ },
+
+/***/ "j2t0":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var convert = __webpack_require__("nPUy"),
+    func = convert('flatMap', __webpack_require__("UG9h"));
+
+func.placeholder = __webpack_require__("tUXZ");
+module.exports = func;
+;
+
+var _temp = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+
+    __REACT_HOT_LOADER__.register(func, 'func', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/flatMap.js');
 }();
 
 ;
@@ -76597,6 +80873,179 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "kE/c":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _keyBy2 = __webpack_require__("iuaJ");
+
+var _keyBy3 = _interopRequireDefault(_keyBy2);
+
+var _map2 = __webpack_require__("Jpwv");
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _flatMap2 = __webpack_require__("j2t0");
+
+var _flatMap3 = _interopRequireDefault(_flatMap2);
+
+var _flow2 = __webpack_require__("H4v4");
+
+var _flow3 = _interopRequireDefault(_flow2);
+
+var _icepick = __webpack_require__("PgM/");
+
+var _icepick2 = _interopRequireDefault(_icepick);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var initialState = {
+  lastPipelinesRequest: {
+    cacheKey: undefined,
+    projectId: undefined
+  },
+  pipelines: {},
+  pipelineData: {
+    /*
+      [pipelineId]: {
+        data: {},
+        loading: boolean,
+        rerunPending: boolean,
+      }
+    */
+  },
+  stepData: {}
+};
+
+var replacePipelineStepsWithIds = function replacePipelineStepsWithIds(pipeline) {
+  return (0, _extends3.default)({}, pipeline, {
+    stages: (0, _map3.default)(function (stage) {
+      return (0, _extends3.default)({}, stage, {
+        steps: (0, _map3.default)('_id', stage.steps)
+      });
+    }, pipeline.stages)
+  });
+};
+
+var extractSteps = (0, _flow3.default)((0, _flatMap3.default)('stages'), (0, _flatMap3.default)('steps'), (0, _map3.default)(function (item) {
+  return {
+    loading: false,
+    data: item
+  };
+}), (0, _keyBy3.default)('data._id'));
+
+var extractPipelines = (0, _flow3.default)((0, _map3.default)(function (item) {
+  return {
+    loading: false,
+    data: replacePipelineStepsWithIds(item)
+  };
+}), (0, _keyBy3.default)('data._id'));
+
+var reducer = function reducer(state, action) {
+  switch (action.type) {
+    case 'PIPELINES/GET_PIPELINES_PENDING':
+      return _icepick2.default.chain(state).assocIn(['pipelines', action.meta.cacheKey, 'loading'], true).assocIn(['lastPipelinesRequest'], {
+        cacheKey: action.meta.cacheKey,
+        projectId: action.meta.projectId
+      }).value();
+    case 'PIPELINES/GET_PIPELINES_REJECTED':
+      return _icepick2.default.assocIn(state, ['pipelines', action.meta.cacheKey, 'loading'], false);
+    case 'PIPELINES/GET_PIPELINES_FULFILLED':
+      return _icepick2.default.chain(state).assocIn(['pipelines', action.meta.cacheKey, 'loading'], false).assocIn(['pipelines', action.meta.cacheKey, 'data'], action.payload.data.map(function (item) {
+        return item._id;
+      })).updateIn(['pipelineData'], function (data) {
+        return _icepick2.default.merge(data, extractPipelines(action.payload.data));
+      }).updateIn(['stepData'], function (data) {
+        return _icepick2.default.merge(data, extractSteps(action.payload.data));
+      }).value();
+
+    case 'PIPELINES/GET_PIPELINE_PENDING':
+      return _icepick2.default.assocIn(state, ['pipelineData', action.meta.cacheKey, 'loading'], true);
+    case 'PIPELINES/GET_PIPELINE_REJECTED':
+      return _icepick2.default.assocIn(state, ['pipelineData', action.meta.cacheKey, 'loading'], false);
+    case 'PIPELINES/GET_PIPELINE_FULFILLED':
+      return _icepick2.default.chain(state).updateIn(['pipelineData'], function (data) {
+        return _icepick2.default.merge(data, extractPipelines([action.payload.data]));
+      }).updateIn(['stepData'], function (data) {
+        return _icepick2.default.merge(data, extractSteps([action.payload.data]));
+      }).value();
+
+    case 'PIPELINES/RERUN_PIPELINE_PENDING':
+      return _icepick2.default.assocIn(state, ['pipelineData', action.meta.pipelineId, 'rerunPending'], true);
+    case 'PIPELINES/RERUN_PIPELINE_REJECTED':
+      return _icepick2.default.assocIn(state, ['pipelineData', action.meta.pipelineId, 'rerunPending'], false);
+    case 'PPIPELINES/RERUN_PIPELINE_FULFILLED':
+      return _icepick2.default.assocIn(state, ['pipelineData', action.meta.pipelineId, 'rerunPending'], false);
+
+    case 'PIPELINES/GET_STEP_PENDING':
+      return _icepick2.default.assocIn(state, ['stepData', action.meta.cacheKey, 'loading'], true);
+    case 'PIPELINES/GET_STEP_REJECTED':
+      return _icepick2.default.assocIn(state, ['stepData', action.meta.cacheKey, 'loading'], false);
+    case 'PIPELINES/GET_STEP_FULFILLED':
+      return _icepick2.default.chain(state).assocIn(['stepData', action.payload.data._id, 'loading'], false).assocIn(['stepData', action.payload.data._id, 'data'], action.payload.data).value();
+
+    default:
+      return state;
+  }
+};
+
+var _default = function _default() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  if (!state.hydrated) {
+    state = (0, _extends3.default)({}, initialState, state, { hydrated: true });
+  }
+  return reducer(state, action);
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(initialState, 'initialState', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.reducer.js');
+
+  __REACT_HOT_LOADER__.register(replacePipelineStepsWithIds, 'replacePipelineStepsWithIds', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.reducer.js');
+
+  __REACT_HOT_LOADER__.register(extractSteps, 'extractSteps', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.reducer.js');
+
+  __REACT_HOT_LOADER__.register(extractPipelines, 'extractPipelines', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.reducer.js');
+
+  __REACT_HOT_LOADER__.register(reducer, 'reducer', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.reducer.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.reducer.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Pipelines/Pipelines.reducer.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "kGny":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -76972,6 +81421,65 @@ module.exports = function(fn, args, that){
 
 /***/ },
 
+/***/ "koBG":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseCreate = __webpack_require__("IPfx"),
+    baseLodash = __webpack_require__("5a4p");
+
+/** Used as references for the maximum length and index of an array. */
+var MAX_ARRAY_LENGTH = 4294967295;
+
+/**
+ * Creates a lazy wrapper object which wraps `value` to enable lazy evaluation.
+ *
+ * @private
+ * @constructor
+ * @param {*} value The value to wrap.
+ */
+function LazyWrapper(value) {
+  this.__wrapped__ = value;
+  this.__actions__ = [];
+  this.__dir__ = 1;
+  this.__filtered__ = false;
+  this.__iteratees__ = [];
+  this.__takeCount__ = MAX_ARRAY_LENGTH;
+  this.__views__ = [];
+}
+
+// Ensure `LazyWrapper` is an instance of `baseLodash`.
+LazyWrapper.prototype = baseCreate(baseLodash.prototype);
+LazyWrapper.prototype.constructor = LazyWrapper;
+
+module.exports = LazyWrapper;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(MAX_ARRAY_LENGTH, 'MAX_ARRAY_LENGTH', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_LazyWrapper.js');
+
+  __REACT_HOT_LOADER__.register(LazyWrapper, 'LazyWrapper', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_LazyWrapper.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "ksq2":
 /***/ function(module, exports) {
 
@@ -77131,6 +81639,14 @@ var _keys = __webpack_require__("fZjL");
 
 var _keys2 = _interopRequireDefault(_keys);
 
+var _promise = __webpack_require__("//Fk");
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _classCallCheck2 = __webpack_require__("Zrlr");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
 var _icepick = __webpack_require__("PgM/");
 
 var _icepick2 = _interopRequireDefault(_icepick);
@@ -77145,7 +81661,6 @@ var _querystring2 = _interopRequireDefault(_querystring);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var requests = {}; // This is where the packages are temporarily stored
 /** *************************************************************************************************
 
 This middleware is used to package http requests where possible.
@@ -77176,11 +81691,120 @@ when the request has been fulfilled
 
 ************************************************************************************************** */
 
+var DeferredPromise = function DeferredPromise() {
+  var _this = this;
+
+  (0, _classCallCheck3.default)(this, DeferredPromise);
+
+  this.promise = new _promise2.default(function (resolve, reject) {
+    _this.resolve = resolve;
+    _this.reject = reject;
+  });
+};
+
+var requests = {}; // This is where the packages are temporarily stored
+var promises = {}; // This is where the promises are temporarily stored
 var packageInterval = 20; // All items requested within 20ms will be packaged together
 var suffixes = {
   pending: '_PENDING',
   fulfilled: '_FULFILLED',
   rejected: '_REJECTED'
+};
+
+var reset = function reset(endpoint) {
+  requests[endpoint] = undefined;
+};
+
+var packageAction = function packageAction(action, endpoint) {
+  requests[endpoint].actions.push(action);
+};
+
+var getParams = function getParams(endpoint) {
+  // This will get the all the httpPackage params associated with all the packages on a specific endpoint
+  var samplePackage = requests[endpoint].actions[0].httpPackage;
+  var staticParams = samplePackage.staticParams;
+  var paramKeys = (0, _keys2.default)(samplePackage.params);
+  var dynamicParams = paramKeys.reduce(function (params, key) {
+    params[key] = requests[endpoint].actions.map(function (action) {
+      return action.httpPackage.params[key];
+    });
+    return params;
+  }, {});
+
+  //  console.log(dynamicParams);
+  var params = (0, _assign2.default)({}, staticParams, dynamicParams);
+  return params;
+};
+
+var dispatchAction = function dispatchAction(_ref) {
+  var action = _ref.action,
+      dispatch = _ref.dispatch,
+      response = _ref.response,
+      suffix = _ref.suffix,
+      endpoint = _ref.endpoint;
+
+  var isError = response && response.data && response.data.error;
+  var modifiedSuffix = isError ? suffixes.rejected : suffix; // If the response contains an error, we rejected it.
+
+  if (modifiedSuffix === suffixes.rejected) {
+    promises[endpoint].reject();
+    delete promises[endpoint];
+  } else if (modifiedSuffix === suffixes.fulfilled) {
+    promises[endpoint].resolve();
+  }
+
+  var newAction = _icepick2.default.merge(action, {
+    httpPackage: undefined, // Delete the httpPackage key so we don't loop
+    type: action.type + modifiedSuffix, // Add the suffix to the action
+    payload: response // Add the response to the payload
+  });
+  dispatch(newAction); // Dispatch the new action
+};
+
+var dispatchActions = function dispatchActions(_ref2) {
+  var actions = _ref2.actions,
+      dispatch = _ref2.dispatch,
+      response = _ref2.response,
+      suffix = _ref2.suffix,
+      endpoint = _ref2.endpoint;
+
+  actions.forEach(function (action, index) {
+    var newResponse = response && response.data && response.data[index] ? {
+      data: response.data[index],
+      request: response.request
+    } : response;
+
+    dispatchAction({ action: action, dispatch: dispatch, response: newResponse, suffix: suffix, endpoint: endpoint }); // Dispatch the action
+  });
+};
+
+var resolveRequest = function resolveRequest(endpoint, dispatch) {
+  var samplePackage = requests[endpoint].actions[0].httpPackage; // Use the first item in the package as a sample for the url and method (this is pretty much always correct)
+  var params = getParams(endpoint); // Get the array of query params
+  var actions = requests[endpoint].actions; // We assign actions here so we can delete it in the requests object without causing issues
+  reset(endpoint); // Reset the endpoint so we can begin the next package
+  (0, _axios2.default)({ // Send the request
+    url: samplePackage.url,
+    method: samplePackage.method,
+    params: params
+  }).then(function (response) {
+    // Dispatch the fulfilled actions
+    return dispatchActions({ actions: actions, dispatch: dispatch, response: response, suffix: suffixes.fulfilled, endpoint: endpoint });
+  }).catch(function (response) {
+    // Dispatch the rejected actions
+    return dispatchActions({ actions: actions, dispatch: dispatch, response: response, suffix: suffixes.rejected, endpoint: endpoint });
+  });
+};
+
+var initRequest = function initRequest(action, endpoint, dispatch) {
+  var deferred = new DeferredPromise();
+  requests[endpoint] = {
+    request: setTimeout(function () {
+      return resolveRequest(endpoint, dispatch, deferred);
+    }, packageInterval),
+    actions: []
+  };
+  return deferred;
 };
 
 var _default = function _default(store) {
@@ -77197,105 +81821,26 @@ var _default = function _default(store) {
 
         var endpoint = url + '?' + _querystring2.default.stringify(staticParams);
 
+        if (!promises.endpont) {
+          promises[endpoint] = new DeferredPromise();
+        }
+
         if (!requests[endpoint]) {
           // If the requests object does not exist:
           initRequest(action, endpoint, dispatch); // Initialise the requests object (start the package promise)
         }
         packageAction(action, endpoint); // Push the action onto the package array
         dispatchAction({ action: action, dispatch: dispatch, response: {}, suffix: suffixes.pending }); // Dispatch the _pending action
-      } else {
-        return next(action);
+
+        return promises[endpoint].promise;
       }
+      return next(action);
     };
   };
 };
 
 var _default2 = _default;
 exports.default = _default2;
-
-// //////////////////////////////////////////////////////////////////////////////////////////////
-
-function initRequest(action, endpoint, dispatch) {
-  requests[endpoint] = {
-    request: setTimeout(function () {
-      return resolveRequest(endpoint, dispatch);
-    }, packageInterval),
-    actions: []
-  };
-}
-
-function resolveRequest(endpoint, dispatch) {
-  var samplePackage = requests[endpoint].actions[0].httpPackage; // Use the first item in the package as a sample for the url and method (this is pretty much always correct)
-  var params = getParams(endpoint); // Get the array of query params
-  var actions = requests[endpoint].actions; // We assign actions here so we can delete it in the requests object without causing issues
-  reset(endpoint); // Reset the endpoint so we can begin the next package
-  (0, _axios2.default)({ // Send the request
-    url: samplePackage.url,
-    method: samplePackage.method,
-    params: params
-  }).then(function (response) {
-    return dispatchActions({ actions: actions, dispatch: dispatch, response: response, suffix: suffixes.fulfilled });
-  }) // Dispatch the fulfilled actions
-  .catch(function (response) {
-    return dispatchActions({ actions: actions, dispatch: dispatch, response: response, suffix: suffixes.rejected });
-  }); // Dispatch the rejected actions
-}
-
-function dispatchActions(_ref) {
-  var actions = _ref.actions,
-      dispatch = _ref.dispatch,
-      response = _ref.response,
-      suffix = _ref.suffix;
-
-  actions.forEach(function (action, index) {
-    var newResponse = response && response.data && response.data[index] ? {
-      data: response.data[index],
-      request: response.request
-    } : response;
-
-    dispatchAction({ action: action, dispatch: dispatch, response: newResponse, suffix: suffix }); // Dispatch the action
-  });
-}
-
-function dispatchAction(_ref2) {
-  var action = _ref2.action,
-      dispatch = _ref2.dispatch,
-      response = _ref2.response,
-      suffix = _ref2.suffix;
-
-  var modifiedSuffix = response && response.data && response.data.error ? suffixes.rejected : suffix; // If the response contains an error, we rejected it.
-  var newAction = _icepick2.default.merge(action, {
-    httpPackage: undefined, // Delete the httpPackage key so we don't loop
-    type: action.type + modifiedSuffix, // Add the suffix to the action
-    payload: response // Add the response to the payload
-  });
-  dispatch(newAction); // Dispatch the new action
-}
-
-function reset(endpoint) {
-  requests[endpoint] = undefined;
-}
-
-function packageAction(action, endpoint) {
-  requests[endpoint].actions.push(action);
-}
-
-function getParams(endpoint) {
-  // This will get the all the httpPackage params associated with all the packages on a specific endpoint
-  var samplePackage = requests[endpoint].actions[0].httpPackage;
-  var staticParams = samplePackage.staticParams;
-  var paramKeys = (0, _keys2.default)(samplePackage.params);
-  var dynamicParams = paramKeys.reduce(function (params, key) {
-    params[key] = requests[endpoint].actions.map(function (action) {
-      return action.httpPackage.params[key];
-    });
-    return params;
-  }, {});
-
-  //  console.log(dynamicParams);
-  var params = (0, _assign2.default)({}, staticParams, dynamicParams);
-  return params;
-}
 ;
 
 var _temp = function () {
@@ -77303,13 +81848,15 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(initRequest, 'initRequest', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
+  __REACT_HOT_LOADER__.register(DeferredPromise, 'DeferredPromise', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
-  __REACT_HOT_LOADER__.register(resolveRequest, 'resolveRequest', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
+  __REACT_HOT_LOADER__.register(requests, 'requests', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
-  __REACT_HOT_LOADER__.register(dispatchActions, 'dispatchActions', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
+  __REACT_HOT_LOADER__.register(promises, 'promises', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
-  __REACT_HOT_LOADER__.register(dispatchAction, 'dispatchAction', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
+  __REACT_HOT_LOADER__.register(packageInterval, 'packageInterval', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
+
+  __REACT_HOT_LOADER__.register(suffixes, 'suffixes', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
   __REACT_HOT_LOADER__.register(reset, 'reset', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
@@ -77317,11 +81864,13 @@ var _temp = function () {
 
   __REACT_HOT_LOADER__.register(getParams, 'getParams', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
-  __REACT_HOT_LOADER__.register(requests, 'requests', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
+  __REACT_HOT_LOADER__.register(dispatchAction, 'dispatchAction', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
-  __REACT_HOT_LOADER__.register(packageInterval, 'packageInterval', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
+  __REACT_HOT_LOADER__.register(dispatchActions, 'dispatchActions', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
-  __REACT_HOT_LOADER__.register(suffixes, 'suffixes', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
+  __REACT_HOT_LOADER__.register(resolveRequest, 'resolveRequest', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
+
+  __REACT_HOT_LOADER__.register(initRequest, 'initRequest', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
   __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/redux/middleware/httpPackage/httpPackage.middleware.js');
 
@@ -77404,6 +81953,122 @@ var _temp2 = function () {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/3g2.svg?69a11a48804328daae9818414ef51367";
+
+/***/ },
+
+/***/ "lIxZ":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _map2 = __webpack_require__("Jpwv");
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _split2 = __webpack_require__("ngiB");
+
+var _split3 = _interopRequireDefault(_split2);
+
+var _flow2 = __webpack_require__("H4v4");
+
+var _flow3 = _interopRequireDefault(_flow2);
+
+var _icepick = __webpack_require__("PgM/");
+
+var _icepick2 = _interopRequireDefault(_icepick);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var initialState = {
+  lines: {},
+  loading: {},
+  hasLoadedBefore: {}
+};
+
+var removeFirstIfEmpty = function removeFirstIfEmpty(arr) {
+  return arr && arr.length === 1 && arr[0] === '' ? [] : arr;
+};
+
+var transformLines = (0, _flow3.default)((0, _split3.default)('\n'), removeFirstIfEmpty, (0, _map3.default)(function (item, index) {
+  return {
+    number: index,
+    data: item
+  };
+}));
+
+var reducer = function reducer(state, action) {
+  switch (action.type) {
+    case 'TERMINAL/ADD_LINES':
+      return _icepick2.default.assocIn(state, ['lines', action.meta.stepId], action.payload.lines.map(function (item) {
+        return {
+          number: item[0],
+          data: item[1]
+        };
+      }));
+
+    case 'TERMINAL/GET_LINES_PENDING':
+      return _icepick2.default.assocIn(state, ['loading', action.meta.stepId], true);
+    case 'TERMINAL/GET_LINES_REJECTED':
+      return _icepick2.default.chain(state).assocIn(['loading', action.meta.stepId], false).assocIn(['hasLoadedBefore', action.meta.stepId], true).value();
+    case 'TERMINAL/GET_LINES_FULFILLED':
+      return _icepick2.default.chain(state).assocIn(['loading', action.meta.stepId], false).assocIn(['hasLoadedBefore', action.meta.stepId], true).assocIn(['lines', action.meta.stepId], transformLines(action.payload.data)).value();
+
+    default:
+      return state;
+  }
+};
+
+var _default = function _default() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  if (!state.hydrated) {
+    state = (0, _extends3.default)({}, initialState, state, { hydrated: true });
+  }
+  return reducer(state, action);
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(initialState, 'initialState', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Terminal/Terminal.reducer.js');
+
+  __REACT_HOT_LOADER__.register(removeFirstIfEmpty, 'removeFirstIfEmpty', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Terminal/Terminal.reducer.js');
+
+  __REACT_HOT_LOADER__.register(transformLines, 'transformLines', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Terminal/Terminal.reducer.js');
+
+  __REACT_HOT_LOADER__.register(reducer, 'reducer', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Terminal/Terminal.reducer.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Terminal/Terminal.reducer.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Terminal/Terminal.reducer.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -77491,7 +82156,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var initialState = {
   like: {},
-  follow: {}
+  follow: {},
+  clone: {}
 };
 
 var _default = function _default() {
@@ -80190,6 +84856,53 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "nPUy":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseConvert = __webpack_require__("0r/u"),
+    util = __webpack_require__("cP1j");
+
+/**
+ * Converts `func` of `name` to an immutable auto-curried iteratee-first data-last
+ * version with conversion `options` applied. If `name` is an object its methods
+ * will be converted.
+ *
+ * @param {string} name The name of the function to wrap.
+ * @param {Function} [func] The function to wrap.
+ * @param {Object} [options] The options object. See `baseConvert` for more details.
+ * @returns {Function|Object} Returns the converted function or object.
+ */
+function convert(name, func, options) {
+  return baseConvert(util, name, func, options);
+}
+
+module.exports = convert;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(convert, 'convert', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/convert.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "nXIP":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -80365,6 +85078,40 @@ function calculateNodeStyling(node) {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/torrent.svg?a803d5764bb23a37af20f679a24ecd14";
+
+/***/ },
+
+/***/ "ngiB":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var convert = __webpack_require__("nPUy"),
+    func = convert('split', __webpack_require__("bqM9"));
+
+func.placeholder = __webpack_require__("tUXZ");
+module.exports = func;
+;
+
+var _temp = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+
+    __REACT_HOT_LOADER__.register(func, 'func', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/fp/split.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+}();
+
+;
 
 /***/ },
 
@@ -81124,6 +85871,11 @@ var initialState = {
     provider: '',
     private: false,
     savePending: ''
+  },
+  cloneProject: {
+    name: '',
+    provider: '',
+    private: false
   }
 };
 
@@ -82012,6 +86764,89 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "p2El":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseEach = __webpack_require__("XWWJ");
+
+/**
+ * Aggregates elements of `collection` on `accumulator` with keys transformed
+ * by `iteratee` and values set by `setter`.
+ *
+ * @private
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} setter The function to set `accumulator` values.
+ * @param {Function} iteratee The iteratee to transform keys.
+ * @param {Object} accumulator The initial aggregated object.
+ * @returns {Function} Returns `accumulator`.
+ */
+function baseAggregator(collection, setter, iteratee, accumulator) {
+  baseEach(collection, function (value, key, collection) {
+    setter(accumulator, value, iteratee(value), collection);
+  });
+  return accumulator;
+}
+
+module.exports = baseAggregator;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(baseAggregator, 'baseAggregator', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_baseAggregator.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "p3OR":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+/** Used to lookup unminified function names. */
+var realNames = {};
+
+module.exports = realNames;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(realNames, "realNames", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_realNames.js");
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "p7hS":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -82283,6 +87118,50 @@ var _temp = function () {
   }
 
   __REACT_HOT_LOADER__.register(cloneArrayBuffer, 'cloneArrayBuffer', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_cloneArrayBuffer.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "pGGo":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var metaMap = __webpack_require__("1M45"),
+    noop = __webpack_require__("IjDx");
+
+/**
+ * Gets metadata for `func`.
+ *
+ * @private
+ * @param {Function} func The function to query.
+ * @returns {*} Returns the metadata for `func`.
+ */
+var getData = !metaMap ? noop : function (func) {
+  return metaMap.get(func);
+};
+
+module.exports = getData;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(getData, 'getData', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_getData.js');
 }();
 
 ;
@@ -82749,6 +87628,53 @@ var _temp2 = function () {
     if (typeof __REACT_HOT_LOADER__ === 'undefined') {
         return;
     }
+}();
+
+;
+
+/***/ },
+
+/***/ "pmEr":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseSlice = __webpack_require__("RTV4");
+
+/**
+ * Casts `array` to a slice if it's needed.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {number} start The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the cast slice.
+ */
+function castSlice(array, start, end) {
+  var length = array.length;
+  end = end === undefined ? length : end;
+  return !start && end >= length ? array : baseSlice(array, start, end);
+}
+
+module.exports = castSlice;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(castSlice, 'castSlice', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_castSlice.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
 }();
 
 ;
@@ -83240,6 +88166,78 @@ function extend() {
     return target
 }
 
+
+/***/ },
+
+/***/ "q1o9":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getLines = exports.addLines = undefined;
+
+var _axios = __webpack_require__("mtWM");
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var addLines = exports.addLines = function addLines(_ref) {
+  var lines = _ref.lines,
+      stepId = _ref.stepId;
+  return {
+    type: 'TERMINAL/ADD_LINES',
+    payload: {
+      lines: lines
+    },
+    meta: {
+      stepId: stepId
+    }
+  };
+};
+
+var getLines = exports.getLines = function getLines(_ref2) {
+  var pipelineId = _ref2.pipelineId,
+      stepId = _ref2.stepId;
+  return {
+    type: 'TERMINAL/GET_LINES',
+    payload: (0, _axios2.default)({
+      method: 'GET',
+      url: '/api/v1/pipelines/' + pipelineId + '/steps/' + stepId + '/logs'
+    }).catch(function () {
+      return true;
+    }), // Catch error so toast does not show on 404
+    meta: {
+      stepId: stepId
+    }
+  };
+};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(addLines, 'addLines', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Terminal/Terminal.actions.js');
+
+  __REACT_HOT_LOADER__.register(getLines, 'getLines', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Terminal/Terminal.actions.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -84340,6 +89338,94 @@ function randomBytes (size, cb) {
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("DuR2"), __webpack_require__("lNQ5")))
+
+/***/ },
+
+/***/ "rRcz":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var createWrap = __webpack_require__("0DQm");
+
+/** Used to compose bitmasks for function metadata. */
+var WRAP_CURRY_FLAG = 8;
+
+/**
+ * Creates a function that accepts arguments of `func` and either invokes
+ * `func` returning its result, if at least `arity` number of arguments have
+ * been provided, or returns a function that accepts the remaining `func`
+ * arguments, and so on. The arity of `func` may be specified if `func.length`
+ * is not sufficient.
+ *
+ * The `_.curry.placeholder` value, which defaults to `_` in monolithic builds,
+ * may be used as a placeholder for provided arguments.
+ *
+ * **Note:** This method doesn't set the "length" property of curried functions.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.0.0
+ * @category Function
+ * @param {Function} func The function to curry.
+ * @param {number} [arity=func.length] The arity of `func`.
+ * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+ * @returns {Function} Returns the new curried function.
+ * @example
+ *
+ * var abc = function(a, b, c) {
+ *   return [a, b, c];
+ * };
+ *
+ * var curried = _.curry(abc);
+ *
+ * curried(1)(2)(3);
+ * // => [1, 2, 3]
+ *
+ * curried(1, 2)(3);
+ * // => [1, 2, 3]
+ *
+ * curried(1, 2, 3);
+ * // => [1, 2, 3]
+ *
+ * // Curried with placeholders.
+ * curried(1)(_, 3)(2);
+ * // => [1, 2, 3]
+ */
+function curry(func, arity, guard) {
+  arity = guard ? undefined : arity;
+  var result = createWrap(func, WRAP_CURRY_FLAG, undefined, undefined, undefined, undefined, undefined, arity);
+  result.placeholder = curry.placeholder;
+  return result;
+}
+
+// Assign default placeholders.
+curry.placeholder = {};
+
+module.exports = curry;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(WRAP_CURRY_FLAG, 'WRAP_CURRY_FLAG', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/curry.js');
+
+  __REACT_HOT_LOADER__.register(curry, 'curry', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/curry.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -85827,6 +90913,55 @@ exports['aes-256-gcm'] = {
 
 /***/ },
 
+/***/ "sIFy":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseSetData = __webpack_require__("K2BQ"),
+    shortOut = __webpack_require__("6Fui");
+
+/**
+ * Sets metadata for `func`.
+ *
+ * **Note:** If this function becomes hot, i.e. is invoked a lot in a short
+ * period of time, it will trip its breaker and transition to an identity
+ * function to avoid garbage collection pauses in V8. See
+ * [V8 issue 2070](https://bugs.chromium.org/p/v8/issues/detail?id=2070)
+ * for more details.
+ *
+ * @private
+ * @param {Function} func The function to associate metadata with.
+ * @param {*} data The metadata.
+ * @returns {Function} Returns `func`.
+ */
+var setData = shortOut(baseSetData);
+
+module.exports = setData;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(setData, 'setData', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_setData.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "sIOI":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -87194,6 +92329,39 @@ var _temp2 = function () {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/xml.svg?7f24fb0fc19519a5592c1e72c012a8d2";
+
+/***/ },
+
+/***/ "tUXZ":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+/**
+ * The default argument placeholder value for methods.
+ *
+ * @type {Object}
+ */
+module.exports = {};
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 
 /***/ },
 
@@ -89009,6 +94177,76 @@ var _temp2 = function () {
 ;
 
 var _temp3 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "ulzz":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Terminal = __webpack_require__("q1o9");
+
+var _Pipelines = __webpack_require__("BIf1");
+
+var _default = function _default(store, action) {
+  var dispatch = store.dispatch;
+
+
+  switch (action.type) {
+    case 'PIPELINE/STEP_LOGS':
+      return dispatch((0, _Terminal.addLines)({
+        terminalId: action.payload.pipelineId + '-' + action.payload.stepId,
+        lines: action.payload.lines
+      }));
+
+    case 'PIPELINE/STEP_UPDATED':
+      return dispatch((0, _Pipelines.getStep)({
+        stepId: action.payload.stepId
+      }));
+
+    case 'PIPELINE/PIPELINE_UPDATED':
+      return dispatch((0, _Pipelines.getPipeline)({
+        pipelineId: action.payload.pipelineId
+      }));
+
+    case 'PIPELINE/PIPELINE_CREATED':
+      return dispatch((0, _Pipelines.getLastPipelines)());
+
+    default:
+      return undefined;
+  }
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Websocket/eventMap/pipeline.js');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Websocket/eventMap/pipeline.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
@@ -91680,6 +96918,64 @@ module.exports = pick;
 
 /***/ },
 
+/***/ "wEmI":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var baseIsRegExp = __webpack_require__("6DqO"),
+    baseUnary = __webpack_require__("M6rb"),
+    nodeUtil = __webpack_require__("YRSj");
+
+/* Node.js helper references. */
+var nodeIsRegExp = nodeUtil && nodeUtil.isRegExp;
+
+/**
+ * Checks if `value` is classified as a `RegExp` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a regexp, else `false`.
+ * @example
+ *
+ * _.isRegExp(/abc/);
+ * // => true
+ *
+ * _.isRegExp('/abc/');
+ * // => false
+ */
+var isRegExp = nodeIsRegExp ? baseUnary(nodeIsRegExp) : baseIsRegExp;
+
+module.exports = isRegExp;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(nodeIsRegExp, 'nodeIsRegExp', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/isRegExp.js');
+
+  __REACT_HOT_LOADER__.register(isRegExp, 'isRegExp', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/isRegExp.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "wGjs":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -94249,6 +99545,58 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACO
 
 /***/ },
 
+/***/ "y3lt":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var arrayAggregator = __webpack_require__("axVX"),
+    baseAggregator = __webpack_require__("p2El"),
+    baseIteratee = __webpack_require__("9lEZ"),
+    isArray = __webpack_require__("7gq8");
+
+/**
+ * Creates a function like `_.groupBy`.
+ *
+ * @private
+ * @param {Function} setter The function to set accumulator values.
+ * @param {Function} [initializer] The accumulator object initializer.
+ * @returns {Function} Returns the new aggregator function.
+ */
+function createAggregator(setter, initializer) {
+    return function (collection, iteratee) {
+        var func = isArray(collection) ? arrayAggregator : baseAggregator,
+            accumulator = initializer ? initializer() : {};
+
+        return func(collection, setter, baseIteratee(iteratee, 2), accumulator);
+    };
+}
+
+module.exports = createAggregator;
+;
+
+var _temp = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+
+    __REACT_HOT_LOADER__.register(createAggregator, 'createAggregator', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_createAggregator.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+        return;
+    }
+}();
+
+;
+
+/***/ },
+
 /***/ "y6cw":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -95210,6 +100558,56 @@ var _temp2 = function () {
 
 /***/ },
 
+/***/ "zBJx":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+/** Used to match wrap detail comments. */
+var reWrapDetails = /\{\n\/\* \[wrapped with (.+)\] \*/,
+    reSplitDetails = /,? & /;
+
+/**
+ * Extracts wrapper details from the `source` body comment.
+ *
+ * @private
+ * @param {string} source The source to inspect.
+ * @returns {Array} Returns the wrapper details.
+ */
+function getWrapDetails(source) {
+  var match = source.match(reWrapDetails);
+  return match ? match[1].split(reSplitDetails) : [];
+}
+
+module.exports = getWrapDetails;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(reWrapDetails, "reWrapDetails", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_getWrapDetails.js");
+
+  __REACT_HOT_LOADER__.register(reSplitDetails, "reSplitDetails", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_getWrapDetails.js");
+
+  __REACT_HOT_LOADER__.register(getWrapDetails, "getWrapDetails", "C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/_getWrapDetails.js");
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "zBOP":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -95830,6 +101228,62 @@ try {
 
 /***/ },
 
+/***/ "zly7":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+var createFlow = __webpack_require__("HP5/");
+
+/**
+ * Creates a function that returns the result of invoking the given functions
+ * with the `this` binding of the created function, where each successive
+ * invocation is supplied the return value of the previous.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Util
+ * @param {...(Function|Function[])} [funcs] The functions to invoke.
+ * @returns {Function} Returns the new composite function.
+ * @see _.flowRight
+ * @example
+ *
+ * function square(n) {
+ *   return n * n;
+ * }
+ *
+ * var addSquare = _.flow([_.add, square]);
+ * addSquare(1, 2);
+ * // => 9
+ */
+var flow = createFlow();
+
+module.exports = flow;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(flow, 'flow', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/node_modules/lodash/flow.js');
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
 /***/ "zvjZ":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -95997,4 +101451,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.82f18259d04820dce20d.js.map
+//# sourceMappingURL=application.db28e00ce738d6bc44f1.js.map
