@@ -6065,6 +6065,8 @@ var LinkComponent = function LinkComponent(props) {
   if (isExternal) {
     return _react2.default.createElement('a', (0, _extends3.default)({
       href: getHref(),
+      target: '_blank',
+      rel: 'noopener noreferrer',
       className: allClassNames,
       onClick: extendedOnClick
     }, otherProps));
@@ -22164,6 +22166,12 @@ var userStarsRoute = exports.userStarsRoute = function userStarsRoute(_ref25) {
 var notFound = exports.notFound = function notFound() {
   return '/404';
 };
+var help = exports.help = function help() {
+  return { external: true, pathname: 'https://help.stemn.com' };
+};
+var helpAutomationPipelines = exports.helpAutomationPipelines = function helpAutomationPipelines() {
+  return { external: true, pathname: 'https://help.stemn.com/automation-pipelines' };
+};
 ;
 
 var _temp = function () {
@@ -22256,6 +22264,10 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(userStarsRoute, 'userStarsRoute', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 
   __REACT_HOT_LOADER__.register(notFound, 'notFound', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+
+  __REACT_HOT_LOADER__.register(help, 'help', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
+
+  __REACT_HOT_LOADER__.register(helpAutomationPipelines, 'helpAutomationPipelines', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/src/client/assets/javascripts/pages/routeActions.js');
 }();
 
 ;
@@ -32643,6 +32655,65 @@ var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+}();
+
+;
+;
+
+var _temp2 = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
+
+/***/ },
+
+/***/ "IKQX":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("Dd8w");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = __webpack_require__("U7vG");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = __webpack_require__("aSqn");
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(props) {
+  return _react2.default.createElement(
+    _reactIconBase2.default,
+    (0, _extends3.default)({ viewBox: '0 0 24 24' }, props),
+    _react2.default.createElement('path', { d: 'M19.79,15.41C20.74,13.24 20.74,10.75 19.79,8.59L17.05,9.83C17.65,11.21 17.65,12.78 17.06,14.17L19.79,15.41M15.42,4.21C13.25,3.26 10.76,3.26 8.59,4.21L9.83,6.94C11.22,6.35 12.79,6.35 14.18,6.95L15.42,4.21M4.21,8.58C3.26,10.76 3.26,13.24 4.21,15.42L6.95,14.17C6.35,12.79 6.35,11.21 6.95,9.82L4.21,8.58M8.59,19.79C10.76,20.74 13.25,20.74 15.42,19.78L14.18,17.05C12.8,17.65 11.22,17.65 9.84,17.06L8.59,19.79M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z' })
+  );
+};
+
+var _default2 = _default;
+exports.default = _default2;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Icons/Help.jsx');
+
+  __REACT_HOT_LOADER__.register(_default2, 'default', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Icons/Help.jsx');
 }();
 
 ;
@@ -91218,6 +91289,10 @@ var _menu = __webpack_require__("IOYW");
 
 var _menu2 = _interopRequireDefault(_menu);
 
+var _Help = __webpack_require__("IKQX");
+
+var _Help2 = _interopRequireDefault(_Help);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Header = function (_Component) {
@@ -91272,7 +91347,6 @@ var Header = function (_Component) {
           {
             title: 'Notifications',
             to: '/notifications',
-            style: { marginRight: '10px' },
             className: 'rel-box'
           },
           _react2.default.createElement(_notifications2.default, { size: 22 }),
@@ -91281,6 +91355,15 @@ var Header = function (_Component) {
             { className: (0, _classnames2.default)(_Header2.default.badge, (0, _defineProperty3.default)({}, _Header2.default.badgeLarge, numNotifications >= 10)) },
             numNotifications
           )
+        ),
+        _react2.default.createElement(
+          _SimpleIconButton2.default,
+          {
+            className: 'hide-xs',
+            title: 'Help',
+            name: 'help'
+          },
+          _react2.default.createElement(_Help2.default, { size: 25 })
         ),
         _react2.default.createElement(
           _Popover2.default,
@@ -91294,6 +91377,7 @@ var Header = function (_Component) {
             'a',
             null,
             _react2.default.createElement(_UserAvatar2.default, {
+              style: { marginLeft: '10px' },
               shape: 'square',
               size: 30,
               name: auth.user.name,
@@ -101463,4 +101547,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.1f12e428f262e8b94709.js.map
+//# sourceMappingURL=application.04391daadd6db02975eb.js.map
