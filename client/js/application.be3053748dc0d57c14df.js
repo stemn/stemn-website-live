@@ -48500,11 +48500,18 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var rootDomain =  true ? window.location.origin : 'http://localhost:49554';
+var _GLOBAL_ENV = {"APP_TYPE":"web","NODE_ENV":"production","WEBSITE_URL":"https://stemn.com","API_SERVER":"https://dev.stemn.com","WEBSOCKET_SERVER":"https://dev.stemn.com:8443"},
+    APP_TYPE = _GLOBAL_ENV.APP_TYPE,
+    NODE_ENV = _GLOBAL_ENV.NODE_ENV;
 
-var googleClientId =  true ? '502305750839-8m9aian8ka9qb6j64t3dtjs2nq96tdae.apps.googleusercontent.com' : '502305750839-aq4jo6l15tkb1phi2gpr5hod274444m4.apps.googleusercontent.com';
 
-var dropboxClientId =  true ? '0wgo11dn573805b' : '18uu4ynw3cp92oi';
+var rootDomain = APP_TYPE === 'web' ? window.location.origin : 'http://localhost:49554';
+
+var dropboxClientId = NODE_ENV === 'production' ? '0wgo11dn573805b' : '18uu4ynw3cp92oi';
+
+var facebookClientId = NODE_ENV === 'production' ? '710281375734499' : '141869616672007';
+
+var googleClientId = NODE_ENV === 'production' ? '502305750839-8m9aian8ka9qb6j64t3dtjs2nq96tdae.apps.googleusercontent.com' : '502305750839-aq4jo6l15tkb1phi2gpr5hod274444m4.apps.googleusercontent.com';
 
 var oauthCreds = exports.oauthCreds = {
   facebook: {
@@ -48512,7 +48519,7 @@ var oauthCreds = exports.oauthCreds = {
     postUrl: '/api/v1/auth/facebook',
     params: {
       redirect_uri: rootDomain + '/api/auth/facebook',
-      client_id: '710281375734499'
+      client_id: facebookClientId
     }
   },
   google: {
@@ -48548,32 +48555,6 @@ var oauthCreds = exports.oauthCreds = {
     }
   }
 };
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(oauthCreds, 'oauthCreds', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/Auth.config.js');
-
-  __REACT_HOT_LOADER__.register(rootDomain, 'rootDomain', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/Auth.config.js');
-
-  __REACT_HOT_LOADER__.register(googleClientId, 'googleClientId', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/Auth.config.js');
-
-  __REACT_HOT_LOADER__.register(dropboxClientId, 'dropboxClientId', 'C:/Users/david/repositories/stemn/stemn-frontend/websiteNew/node_modules/stemn-frontend-shared/src/misc/Auth/Auth.config.js');
-}();
-
-;
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ },
 
@@ -101547,4 +101528,4 @@ exports.default = function (self, call) {
 /***/ }
 
 },["+Gey"]);
-//# sourceMappingURL=application.04391daadd6db02975eb.js.map
+//# sourceMappingURL=application.be3053748dc0d57c14df.js.map
